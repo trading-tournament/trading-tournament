@@ -1,0 +1,114 @@
+<!DOCTYPE html>  <html>  
+<head>  
+  <meta charset="UTF-8">  
+  <title>Trading Tournament</title>    <style>  
+    body {  
+      background: #0f172a;  
+      color: white;  
+      font-family: Arial;  
+      text-align: center;  
+      padding: 20px;  
+    }  
+  
+    h1 { color: #22c55e; }  
+  
+    button {  
+      background: #22c55e;  
+      color: black;  
+      padding: 12px 20px;  
+      border: none;  
+      border-radius: 10px;  
+      font-size: 16px;  
+      margin: 10px;  
+      cursor: pointer;  
+    }  
+  
+    input {  
+      padding: 10px;  
+      border-radius: 8px;  
+      border: none;  
+      width: 80%;  
+      margin: 5px;  
+    }  
+  
+    li {  
+      background: #1e293b;  
+      margin: 10px;  
+      padding: 10px;  
+      border-radius: 8px;  
+    }  
+  </style>  </head>  <body>  <h1>🔥 Trading Tournament</h1>  
+<p>Join the challenge and win real money!</p>  <button onclick="join()">Join Tournament ($2)</button>
+
+<h2>🏆 Leaderboard</h2>  
+<ul id="leaderboard">  
+  <li>🥇 Player1 - $5000</li>  
+  <li>🥈 Player2 - $4200</li>  
+</ul>  <h2>🔐 Sign Up / Login</h2>  <input type="email" id="email" placeholder="Enter Email"><br>
+<input type="password" id="password" placeholder="Enter Password"><br>
+
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+
+<script type="module">  
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";  
+  import {  
+    getAuth,  
+    createUserWithEmailAndPassword,  
+    signInWithEmailAndPassword  
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";  
+  
+  const firebaseConfig = {  
+    apiKey: "AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",  
+    authDomain: "project-57e2c805-1b30-40ea-a94.firebaseapp.com",  
+    projectId: "project-57e2c805-1b30-40ea-a94",  
+    storageBucket: "project-57e2c805-1b30-40ea-a94.firebasestorage.app",  
+    messagingSenderId: "567705081329",  
+    appId: "1:567705081329:web:723f968a1eff122945e050"  
+  };  
+  
+  const app = initializeApp(firebaseConfig);  
+  const auth = getAuth(app);  
+  
+  // SIGN UP  
+  window.signup = async function () {  
+    const email = document.getElementById("email").value.trim();  
+    const password = document.getElementById("password").value;  
+  
+    if (!email || !password) {  
+      alert("Enter email & password");  
+      return;  
+    }  
+  
+    try {  
+      await createUserWithEmailAndPassword(auth, email, password);  
+      alert("✅ Account created!");  
+    } catch (error) {  
+      alert(error.message);  
+    }  
+  };  
+  
+  // LOGIN  
+  window.login = async function () {  
+    const email = document.getElementById("email").value.trim();  
+    const password = document.getElementById("password").value;  
+  
+    if (!email || !password) {  
+      alert("Enter email & password");  
+      return;  
+    }  
+  
+    try {  
+      await signInWithEmailAndPassword(auth, email, password);  
+      alert("🔥 Login successful!");  
+    } catch (error) {  
+      alert(error.message);  
+    }  
+  };  
+  
+  // JOIN BUTTON  
+  window.join = function () {  
+    alert("💳 Payment system coming soon!");  
+  };  
+</script>  </body>  
+  </html>
