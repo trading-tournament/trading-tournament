@@ -1,408 +1,244 @@
 <!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TradeLeague</title>  <style>
-    * {
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TradeLeague</title><style>
+*{box-sizing:border-box}
+body{margin:0;background:#07111f;color:#fff;font-family:Arial}
+header{padding:25px;text-align:center;background:linear-gradient(135deg,#0f172a,#064e3b)}
+h1{margin:0;color:#22c55e}
+.container{max-width:800px;margin:auto;padding:15px}
+.card{background:#111c2d;border:1px solid #26354a;border-radius:14px;padding:18px;margin-bottom:15px}
+input,button{width:100%;padding:13px;margin:6px 0;border-radius:8px}
+input{background:#08111f;border:1px solid #334155;color:white}
+button{border:0;background:#22c55e;font-weight:bold;font-size:15px}
+.secondary{background:#334155;color:white}
+.logout{background:#ef4444;color:white}
+.hidden{display:none}
+.msg{padding:10px;margin-top:8px;background:#1e293b;border-radius:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.tour{background:#0b1422;padding:15px;border-radius:10px;border:1px solid #26354a}
+.green{color:#22c55e}
+.yellow{color:#facc15}
+.small{color:#94a3b8;font-size:14px}
+table{width:100%;border-collapse:collapse}
+td,th{padding:9px;border-bottom:1px solid #26354a;text-align:left}
+</style></head><body><header>
+<h1>🔥 TradeLeague</h1>
+<p>Compete. Trade. Climb.</p>
+</header><div class="container"><!-- LOGIN --><div id="loginBox" class="card">
+<h2>🔐 Account</h2><input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password"><button id="signup">Create Account</button>
+<button id="login" class="secondary">Login</button>
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #07111f;
-      color: white;
-    }
-
-    header {
-      text-align: center;
-      padding: 35px 15px;
-      background: linear-gradient(135deg, #0f172a, #064e3b);
-    }
-
-    h1 {
-      color: #22c55e;
-      margin: 0;
-      font-size: 36px;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 30px auto;
-      padding: 15px;
-    }
-
-    .card {
-      background: #111c2d;
-      border: 1px solid #26354a;
-      border-radius: 15px;
-      padding: 25px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 7px 0;
-      border-radius: 8px;
-      border: 1px solid #334155;
-      background: #08111f;
-      color: white;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      margin-top: 10px;
-      border: 0;
-      border-radius: 8px;
-      background: #22c55e;
-      color: #04110a;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .login {
-      background: #334155;
-      color: white;
-    }
-
-    .logout {
-      background: #ef4444;
-      color: white;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    #message {
-      margin-top: 15px;
-      padding: 12px;
-      background: #1e293b;
-      border-radius: 8px;
-      word-break: break-word;
-    }
-
-    .success {
-      color: #86efac;
-    }
-
-    .error {
-      color: #fca5a5;
-    }
-  </style></head><body><header>
-  <h1>🔥 TradeLeague</h1>
-  <p>Compete. Trade. Climb the leaderboard.</p>
-</header><div class="container">  <!-- ACCOUNT PAGE -->  <div id="authBox" class="card"><h2>🔐 Create Account</h2>
-
-<input
-  id="email"
-  type="email"
-  placeholder="Enter your email"
->
-
-<input
-  id="password"
-  type="password"
-  placeholder="Enter password"
->
-
-<button id="signup">
-  Create Account
-</button>
-
-<button id="login" class="login">
-  Login
-</button>
-
-<div id="message">
-  Not logged in.
-</div>
-
-  </div>  <!-- HOME PAGE -->  <div id="homeBox" class="card hidden"><h2>🔥 Welcome to TradeLeague</h2>
-
-<p>
-  You are successfully logged in.
+<div id="msg" class="msg">Not logged in.</div>
+</div><!-- DASHBOARD --><div id="dashboard" class="hidden"><div class="card">
+<h2>👤 My Account</h2>
+<p>Email: <b id="userEmail"></b></p>
+<p>UID: <span id="uid" class="small"></span></p>
+<button id="logout" class="logout">Logout</button>
+</div><div class="card">
+<h2>💰 Demo Trading Balance</h2>
+<h1 class="green">$10,000.00</h1>
+<p class="small">
+Demo balance only. No real money is stored here.
 </p>
-
-<p>
-  Account:
-  <strong id="userEmail"></strong>
+</div><div class="card">
+<h2>🏆 Tournament Lobby</h2><div class="grid"><div class="tour">
+<h3>🥉 Starter</h3>
+<p class="green">$2 Entry</p>
+<p class="small">6 Days</p>
+<button onclick="join('Starter')">View</button>
+</div><div class="tour">
+<h3>🥈 Pro</h3>
+<p class="green">$5 Entry</p>
+<p class="small">3 Days</p>
+<button onclick="join('Pro')">View</button>
+</div><div class="tour">
+<h3>🏆 Elite</h3>
+<p class="green">$10 Entry</p>
+<p class="small">2 Days</p>
+<button onclick="join('Elite')">View</button>
+</div><div class="tour">
+<h3>💎 High Roller</h3>
+<p class="green">$20 Entry</p>
+<p class="small">7 Hours</p>
+<button onclick="join('High Roller')">View</button>
+</div></div>
+</div><div class="card">
+<h2>📊 Leaderboard</h2><table>
+<tr>
+<th>Rank</th>
+<th>Trader</th>
+<th>Profit</th>
+</tr><tr>
+<td>1</td>
+<td>Demo Trader</td>
+<td class="green">+$2,450</td>
+</tr><tr>
+<td>2</td>
+<td>Demo Trader 2</td>
+<td class="green">+$1,980</td>
+</tr><tr>
+<td>3</td>
+<td>Demo Trader 3</td>
+<td class="green">+$1,520</td>
+</tr></table><p class="small">
+Leaderboard shown here is demo data.
 </p>
+</div><div class="card">
+<h2>⚠️ TradeLeague</h2>
+<p class="small">
+This version uses demo trading funds and demo tournament
+information. Real deposits, withdrawals and prize payments
+are not enabled.
+</p>
+</div></div>
+</div><script type="module">
 
-<button id="logout" class="logout">
-  Logout
-</button>
+import{initializeApp}from"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-  </div></div><script type="module">
+import{
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged,
+signOut
+}from"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-  /* FIREBASE */
+import{
+getFirestore,
+doc,
+setDoc,
+serverTimestamp
+}from"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-  import {
-    initializeApp
-  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
-  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+const firebaseConfig={
+apiKey:"AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+authDomain:"project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+projectId:"project-57e2c805-1b30-40ea-a94",
+storageBucket:"project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+messagingSenderId:"567705081329",
+appId:"1:567705081329:web:723f968a1eff122945e050"
+};
 
-  import {
-    getFirestore,
-    doc,
-    setDoc,
-    serverTimestamp
-  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
 
+const email=document.getElementById("email");
+const password=document.getElementById("password");
+const msg=document.getElementById("msg");
 
-  /* YOUR FIREBASE PROJECT */
 
-  const firebaseConfig = {
+/* CREATE ACCOUNT */
 
-    apiKey:
-      "AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+document.getElementById("signup").onclick=async()=>{
 
-    authDomain:
-      "project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+try{
 
-    projectId:
-      "project-57e2c805-1b30-40ea-a94",
+const result=await createUserWithEmailAndPassword(
+auth,
+email.value.trim(),
+password.value
+);
 
-    storageBucket:
-      "project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+const user=result.user;
 
-    messagingSenderId:
-      "567705081329",
+await setDoc(
+doc(db,"users",user.uid),
+{
+uid:user.uid,
+email:user.email,
+createdAt:serverTimestamp()
+}
+);
 
-    appId:
-      "1:567705081329:web:723f968a1eff122945e050"
+msg.textContent="✅ Account created successfully.";
 
-  };
+}catch(error){
 
+msg.textContent="❌ "+error.message;
 
-  const app =
-    initializeApp(firebaseConfig);
+}
 
-  const auth =
-    getAuth(app);
+};
 
-  const db =
-    getFirestore(app);
 
+/* LOGIN */
 
-  /* ELEMENTS */
+document.getElementById("login").onclick=async()=>{
 
-  const email =
-    document.getElementById("email");
+try{
 
-  const password =
-    document.getElementById("password");
+await signInWithEmailAndPassword(
+auth,
+email.value.trim(),
+password.value
+);
 
-  const message =
-    document.getElementById("message");
+msg.textContent="✅ Login successful.";
 
-  const authBox =
-    document.getElementById("authBox");
+}catch(error){
 
-  const homeBox =
-    document.getElementById("homeBox");
+msg.textContent="❌ "+error.message;
 
-  const userEmail =
-    document.getElementById("userEmail");
+}
 
+};
 
-  /* CREATE ACCOUNT */
 
-  document
-    .getElementById("signup")
-    .onclick = async function() {
+/* LOGOUT */
 
-      const emailValue =
-        email.value.trim();
+document.getElementById("logout").onclick=()=>{
+signOut(auth);
+};
 
-      const passwordValue =
-        password.value;
 
+/* LOGIN STATE */
 
-      if (!emailValue || !passwordValue) {
+onAuthStateChanged(auth,user=>{
 
-        message.textContent =
-          "Enter your email and password.";
+if(user){
 
-        message.className =
-          "error";
+document.getElementById("loginBox")
+.classList.add("hidden");
 
-        return;
+document.getElementById("dashboard")
+.classList.remove("hidden");
 
-      }
+document.getElementById("userEmail")
+.textContent=user.email;
 
+document.getElementById("uid")
+.textContent=user.uid;
 
-      if (passwordValue.length < 6) {
+}else{
 
-        message.textContent =
-          "Password must be at least 6 characters.";
+document.getElementById("loginBox")
+.classList.remove("hidden");
 
-        message.className =
-          "error";
+document.getElementById("dashboard")
+.classList.add("hidden");
 
-        return;
+}
 
-      }
+});
 
 
-      try {
+/* TOURNAMENT BUTTON */
 
-        message.textContent =
-          "Creating account...";
+window.join=function(name){
 
+alert(
+name+
+" Tournament\n\n"+
+"This is currently a demo. "+
+"Real-money entry is not enabled."
+);
 
-        const result =
-          await createUserWithEmailAndPassword(
-            auth,
-            emailValue,
-            passwordValue
-          );
-
-
-        const user =
-          result.user;
-
-
-        /* SAVE USER TO FIRESTORE */
-
-        await setDoc(
-          doc(db, "users", user.uid),
-          {
-            uid: user.uid,
-            email: user.email,
-            createdAt: serverTimestamp()
-          }
-        );
-
-
-        message.textContent =
-          "✅ Account created successfully!";
-
-        message.className =
-          "success";
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        message.textContent =
-          "❌ " + error.message;
-
-        message.className =
-          "error";
-
-      }
-
-    };
-
-
-  /* LOGIN */
-
-  document
-    .getElementById("login")
-    .onclick = async function() {
-
-      const emailValue =
-        email.value.trim();
-
-      const passwordValue =
-        password.value;
-
-
-      if (!emailValue || !passwordValue) {
-
-        message.textContent =
-          "Enter your email and password.";
-
-        message.className =
-          "error";
-
-        return;
-
-      }
-
-
-      try {
-
-        message.textContent =
-          "Logging in...";
-
-
-        await signInWithEmailAndPassword(
-          auth,
-          emailValue,
-          passwordValue
-        );
-
-
-        message.textContent =
-          "✅ Login successful!";
-
-        message.className =
-          "success";
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        message.textContent =
-          "❌ " + error.message;
-
-        message.className =
-          "error";
-
-      }
-
-    };
-
-
-  /* LOGOUT */
-
-  document
-    .getElementById("logout")
-    .onclick = async function() {
-
-      await signOut(auth);
-
-    };
-
-
-  /* LOGIN STATUS */
-
-  onAuthStateChanged(
-    auth,
-    function(user) {
-
-      if (user) {
-
-        authBox.classList.add("hidden");
-
-        homeBox.classList.remove("hidden");
-
-        userEmail.textContent =
-          user.email;
-
-      } else {
-
-        authBox.classList.remove("hidden");
-
-        homeBox.classList.add("hidden");
-
-      }
-
-    }
-  );
+};
 
 </script></body>
 </html>
