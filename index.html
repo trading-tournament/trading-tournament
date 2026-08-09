@@ -1,566 +1,395 @@
 <!doctype html>
 
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TradeLeague</title><style>
-*{box-sizing:border-box}
-body{margin:0;background:#07111f;color:#fff;font-family:Arial,sans-serif}
-header{background:#0f172a;padding:16px;text-align:center;position:sticky;top:0;z-index:5}
-h1{margin:0;color:#22c55e}
-main{max-width:700px;margin:auto;padding:12px 12px 75px}
-.card{background:#111c2d;border:1px solid #26354a;border-radius:14px;padding:15px;margin:10px 0}
-input,button{width:100%;padding:12px;margin:5px 0;border-radius:8px}
-input{background:#08111f;color:#fff;border:1px solid #334155}
-button{border:0;background:#22c55e;color:#04110a;font-weight:bold}
-.gray{background:#334155;color:white}
-.red{background:#ef4444;color:white}
-.hidden{display:none}
-.muted{color:#94a3b8}
-.green{color:#22c55e}
-.down{color:#ef4444}
-.yellow{color:#facc15}
-.balance{font-size:32px;font-weight:bold}
-.market{background:#0b1422;border:1px solid #26354a;border-radius:10px;padding:12px;margin:8px 0}
-.market button{margin-top:8px}
-.price{font-size:19px;margin:5px 0}
-.chart{height:250px;background:#08111f;border-radius:10px;padding:8px}
-svg{width:100%;height:100%}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#0f172a;border-top:1px solid #26354a;display:flex;z-index:10}
-.nav button{background:none;color:#cbd5e1;font-size:11px;margin:0;padding:9px 2px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-table{width:100%;border-collapse:collapse}
-td,th{padding:8px;border-bottom:1px solid #26354a;text-align:left}
-</style></head><body><header>
+<title>TradeLeague</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07111f;color:white;font-family:Arial}
+header{padding:15px;text-align:center;background:#0f172a}h1{color:#22c55e;margin:0}
+main{max-width:700px;margin:auto;padding:10px 10px 75px}
+.card,.market{background:#111c2d;border:1px solid #26354a;border-radius:12px;padding:14px;margin:9px 0}
+input,button{width:100%;padding:12px;margin:5px 0;border:0;border-radius:8px}
+input{background:#07111f;color:white;border:1px solid #334155}
+button{background:#22c55e;font-weight:bold}.red{background:#ef4444;color:white}.gray{background:#334155;color:white}
+.hidden{display:none}.muted{color:#94a3b8}.green{color:#22c55e}.down{color:#ef4444}
+.balance{font-size:30px;font-weight:bold}.price{font-size:19px}
+.chart{height:240px;background:#07111f;border-radius:8px}.chart svg{width:100%;height:100%}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0f172a;display:flex;border-top:1px solid #334155}
+.nav button{background:none;color:white;font-size:10px;margin:0;padding:8px 2px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+table{width:100%;border-collapse:collapse}td,th{padding:8px;border-bottom:1px solid #26354a;text-align:left}
+</style>
+</head><body><header>
 <h1>🔥 TradeLeague</h1>
 <small>Compete. Trade. Climb.</small>
-</header><main><!-- LOGIN --><section id="loginBox" class="card">
-<h2>🔐 Account</h2><input id="email" type="email" placeholder="Email">
-<input id="pass" type="password" placeholder="Password"><button id="signup">Create Account</button>
+</header><main><div id="loginBox" class="card">
+<h2>🔐 Account</h2>
+<input id="email" placeholder="Email">
+<input id="pass" type="password" placeholder="Password">
+<button id="signup">Create Account</button>
 <button id="login" class="gray">Login</button>
-
 <p id="msg" class="muted">Not logged in.</p>
-</section><!-- APP --><section id="app" class="hidden"><!-- HOME --><div id="home" class="page"><div class="card">
-<div class="muted">Demo Balance</div>
-<div class="balance">$<span id="bal">0.00</span></div>
-<p id="status" class="muted">Payment not verified</p>
+</div><div id="app" class="hidden"><section id="home" class="page">
+<div class="card">
+<p class="muted">Demo Balance</p>
+<div class="balance">$<span id="bal">0</span></div>
+<p id="status"></p>
 </div><div class="card">
-<h2>🏆 Tournament</h2>
-<p>Starter Tournament</p>
-<p>Time remaining: <b id="timeHome" class="yellow">30:00</b></p>
-<button class="goTournament">Open Tournament</button>
+<h2>🏆 Starter Tournament</h2>
+<p>Entry: <b>$2</b></p>
+<p>Duration: <b>6 days</b></p>
+<p>Time: <b id="timeHome">Loading...</b></p>
+<button onclick="page('tournament')">Leaderboard</button>
 </div><div class="card">
-<h2>📈 Markets</h2>
-<p class="muted">Tap a market to trade.</p>
-<div id="homeMarkets"></div>
-</div></div><!-- MARKETS --><div id="markets" class="page hidden"><div class="card">
 <h2>🌍 Markets</h2>
-<p class="muted">Simulated demo prices.</p>
+<div id="homeMarkets"></div>
+</div>
+</section><section id="markets" class="page hidden">
+<div class="card">
+<h2>🌍 Markets</h2>
 <div id="marketList"></div>
-</div></div><!-- TRADE --><div id="trade" class="page hidden"><div class="card"><h2>📈 <span id="tradeName">Market</span></h2><div class="price">
-$<span id="tradePrice">0.00</span>
-</div><p>
-Movement:
-<b id="move" class="green">0.00%</b>
-</p><div class="chart">
-<svg id="chart" viewBox="0 0 700 250"
+</div>
+</section><section id="trade" class="page hidden">
+<div class="card">
+<h2>📈 <span id="tradeName"></span></h2>
+<div class="price">$<span id="tradePrice">0</span></div>
+<p>Movement: <b id="move">0%</b></p><div class="chart">
+<svg id="chart" viewBox="0 0 700 240"
 preserveAspectRatio="none"></svg>
-</div><p class="muted">
-Green = price going up<br>
-Red = price going down
-</p><label>Trade amount</label>
-<input id="amount" type="number" min="1" placeholder="Example: 50">
-
-<div class="grid">
+</div><input id="amount" type="number" placeholder="Trade amount"><div class="grid">
 <button id="buy">🟢 BUY</button>
 <button id="sell" class="red">🔴 SELL</button>
-</div><p id="tradeMsg" class="muted">Choose an amount.</p></div><div class="card"><h3>📊 Open Position</h3><div id="position">
-No open position.
-</div><p>
-Profit/Loss:
-<b id="pl">$0.00</b>
-</p><button id="closeTrade" class="gray">
-Close Position
-</button></div></div><!-- TRADES --><div id="trades" class="page hidden"><div class="card">
-<h2>📋 My Trades</h2>
+</div><p id="tradeMsg" class="muted"></p>
+</div><div class="card">
+<h3>📊 Open Trades</h3>
+<div id="positions">No open trades.</div>
+</div>
+</section><section id="trades" class="page hidden">
+<div class="card">
+<h2>📋 Completed Trades</h2>
 <div id="history">No completed trades.</div>
-</div></div><!-- TOURNAMENT --><div id="tournament" class="page hidden"><div class="card">
-<h2>🏆 Starter Tournament</h2><p>Starting balance: <b>$500</b></p><p>
-Time remaining:
-<b id="timeTournament" class="yellow">30:00</b>
-</p><p>Highest final balance wins.</p>
-</div><div class="card"><h3>📊 Leaderboard</h3><table>
-<tr>
-<th>Rank</th>
-<th>Trader</th>
-<th>Balance</th>
-</tr><tr>
-<td>1</td>
-<td>Demo Trader</td>
-<td>$1,850</td>
-</tr><tr>
-<td>2</td>
-<td>Demo Trader 2</td>
-<td>$1,420</td>
-</tr><tr>
-<td>3</td>
-<td>You</td>
-<td>$<span id="rankBalance">0</span></td>
-</tr></table></div></div><!-- ACCOUNT --><div id="account" class="page hidden"><div class="card"><h2>👤 My Account</h2><p>Email:
-<b id="userEmail"></b>
-</p><p>
-Payment:
-<b id="payment">Not verified</b>
-</p><p>
-Demo Balance:
-<b>$<span id="accountBalance">0</span></b>
-</p><button id="verify">
-Verify Demo Payment
-</button><button id="logout" class="red">
-Logout
-</button></div><div class="card">
-<p class="muted">
-Demo trading only. Real payments, withdrawals and prizes are not connected.
-</p>
-</div></div></section></main><!-- NAVIGATION --><nav id="nav" class="nav hidden"><button data-page="home">
-🏠<br>Home
-</button><button data-page="markets">
-🌍<br>Markets
-</button><button data-page="trade">
-📈<br>Trade
-</button><button data-page="trades">
-📋<br>Trades
-</button><button data-page="tournament">
-🏆<br>Tournament
-</button><button data-page="account">
-👤<br>Account
-</button></nav><script type="module">
+</div>
+</section><section id="tournament" class="page hidden">
+<div class="card">
+<h2>🏆 Live Leaderboard</h2>
+<p>Starter • $2 • 6 days</p>
+<p>Time: <b id="timeTournament">Loading...</b></p><table>
+<thead>
+<tr><th>Rank</th><th>Trader</th><th>Balance</th><th>Profit</th></tr>
+</thead>
+<tbody id="leaderboard">
+<tr><td colspan="4">Loading...</td></tr>
+</tbody>
+</table>
+</div>
+</section><section id="account" class="page hidden">
+<div class="card">
+<h2>👤 My Account</h2>
+<p>Email: <b id="userEmail"></b></p>
+<p>Payment: <b id="payment"></b></p>
+<p>Balance: $<b id="accountBalance">0</b></p><button id="verify">TEST: Unlock $500</button>
+<button id="logout" class="red">Logout</button>
 
-import {
-initializeApp
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+</div><p class="muted">Demo/test mode. Real payments and prizes are not connected.</p>
+</section></div>
+</main><nav id="nav" class="nav hidden">
+<button onclick="page('home')">🏠<br>Home</button>
+<button onclick="page('markets')">🌍<br>Markets</button>
+<button onclick="page('trade')">📈<br>Trade</button>
+<button onclick="page('trades')">📋<br>Trades</button>
+<button onclick="page('tournament')">🏆<br>Rank</button>
+<button onclick="page('account')">👤<br>Account</button>
+</nav><script type="module">
 
-import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-onAuthStateChanged,
-signOut
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+import{initializeApp}
+from"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-import {
-getFirestore,
-doc,
-getDoc,
-setDoc,
-updateDoc
-} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+import{
+getAuth,createUserWithEmailAndPassword,
+signInWithEmailAndPassword,onAuthStateChanged,signOut
+}from"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
+import{
+getFirestore,doc,getDoc,setDoc,updateDoc,
+collection,query,orderBy,onSnapshot
+}from"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-/* FIREBASE */
 
 const firebaseConfig={
-
-apiKey:
-"AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
-
-authDomain:
-"project-57e2c805-1b30-40ea-a94.firebaseapp.com",
-
-projectId:
-"project-57e2c805-1b30-40ea-a94",
-
-storageBucket:
-"project-57e2c805-1b30-40ea-a94.firebasestorage.app",
-
-messagingSenderId:
-"567705081329",
-
-appId:
-"1:567705081329:web:723f968a1eff122945e050"
-
+apiKey:"AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+authDomain:"project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+projectId:"project-57e2c805-1b30-40ea-a94",
+storageBucket:"project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+messagingSenderId:"567705081329",
+appId:"1:567705081329:web:723f968a1eff122945e050"
 };
 
 const app=initializeApp(firebaseConfig);
-
 const auth=getAuth(app);
-
 const db=getFirestore(app);
+const $=x=>document.getElementById(x);
+
+let user=null,balance=0,tournamentEnd=0;
+let selected=null,positions=[],history=[];
+let unsubBoard=null;
+
+const SIX_DAYS=6*24*60*60*1000;
 
 
-/* VARIABLES */
-
-let user=null;
-let balance=0;
-let selected=null;
-let position=null;
-let history=[];
-let seconds=1800;
-
-
-/* 20 MARKETS */
+/* MARKETS */
 
 const markets=[
-
-["EUR/USD",1.0850],
-["GBP/USD",1.2740],
-["USD/JPY",154.20],
-["AUD/USD",0.6510],
-["USD/CAD",1.3720],
-["USD/CHF",0.8790],
-
-["BTC/USD",65000],
-["ETH/USD",3200],
-["SOL/USD",145],
-["XRP/USD",0.52],
-
-["Gold",2380],
-["Silver",28.20],
-
-["S&P 500",5200],
-["Nasdaq 100",18200],
-["Dow Jones",39000],
-
-["Apple",210],
-["Tesla",240],
-["Nvidia",120],
-["Amazon",185],
+["EUR/USD",1.085],["GBP/USD",1.274],["USD/JPY",154.2],
+["AUD/USD",.651],["USD/CAD",1.372],["USD/CHF",.879],
+["BTC/USD",65000],["ETH/USD",3200],["SOL/USD",145],
+["XRP/USD",.52],["Gold",2380],["Silver",28.2],
+["S&P 500",5200],["Nasdaq 100",18200],["Dow Jones",39000],
+["Apple",210],["Tesla",240],["Nvidia",120],["Amazon",185],
 ["Microsoft",420]
-
 ];
-
-
-/* MARKET DATA */
 
 const data={};
 
 markets.forEach(m=>{
-
-let price=m[1];
-
-data[m[0]]={
-price:price,
-previous:price,
-history:[price]
-};
-
+let p=m[1];
+data[m[0]]={price:p,previous:p,history:[p]};
 for(let i=0;i<60;i++){
-
-price+=price*(Math.random()-0.5)*0.003;
-
-data[m[0]].history.push(price);
-
+p+=p*(Math.random()-.5)*.003;
+data[m[0]].history.push(p);
 }
-
-data[m[0]].price=price;
-data[m[0]].previous=price;
-
+data[m[0]].price=p;
 });
 
 
-/* HELPERS */
+function money(n){return Number(n).toFixed(2)}
 
-const $=id=>document.getElementById(id);
-
-function money(n){
-return Number(n).toFixed(2);
-}
-
-function formatPrice(p){
-
-if(p>=1000)return p.toFixed(2);
-
-if(p>=100)return p.toFixed(2);
-
-return p.toFixed(4);
-
-}
-
-function updateBalance(){
-
-$("bal").textContent=money(balance);
-$("accountBalance").textContent=money(balance);
-$("rankBalance").textContent=money(balance);
-
+function price(n){
+return n>=100?n.toFixed(2):n.toFixed(4);
 }
 
 
 /* NAVIGATION */
 
-function openPage(name){
-
-document
-.querySelectorAll(".page")
-.forEach(p=>p.classList.add("hidden"));
-
+window.page=function(name){
+document.querySelectorAll(".page")
+.forEach(x=>x.classList.add("hidden"));
 $(name).classList.remove("hidden");
-
-if(name==="markets"){
-drawMarkets();
-}
-
-}
-
-document
-.querySelectorAll(".nav button")
-.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-openPage(button.dataset.page);
-
-});
-
-});
-
-
-document
-.querySelector(".goTournament")
-.addEventListener("click",()=>{
-
-openPage("tournament");
-
-});
+if(name==="markets")drawMarkets();
+if(name==="tournament")startLeaderboard();
+};
 
 
 /* SIGN UP */
 
-$("signup").addEventListener("click",async()=>{
-
-const email=$("email").value.trim();
-const password=$("pass").value;
-
-if(!email||!password){
-
-$("msg").textContent=
-"Enter email and password.";
-
-return;
-
-}
-
+$("signup").onclick=async()=>{
 try{
+const email=$("email").value.trim();
+const pass=$("pass").value;
 
-const result=
-await createUserWithEmailAndPassword(
-auth,email,password
-);
+const r=await createUserWithEmailAndPassword(
+auth,email,pass);
 
-await setDoc(
-doc(db,"users",result.user.uid),
-{
-email:email,
+const end=Date.now()+SIX_DAYS;
+
+await setDoc(doc(db,"users",r.user.uid),{
+email,
 paymentVerified:false,
-demoBalance:0
-}
-);
-
-$("msg").textContent=
-"✅ Account created.";
-
-}catch(error){
-
-$("msg").textContent=
-"❌ "+error.message;
-
-}
-
+demoBalance:0,
+startingBalance:0,
+tournamentEnd:end
 });
+
+}catch(e){$("msg").textContent="❌ "+e.message}
+};
 
 
 /* LOGIN */
 
-$("login").addEventListener("click",async()=>{
-
+$("login").onclick=async()=>{
 try{
-
 await signInWithEmailAndPassword(
-auth,
-$("email").value.trim(),
-$("pass").value
-);
+auth,$("email").value.trim(),$("pass").value);
+}catch(e){$("msg").textContent="❌ "+e.message}
+};
 
-}catch(error){
-
-$("msg").textContent=
-"❌ "+error.message;
-
-}
-
-});
+$("logout").onclick=()=>signOut(auth);
 
 
-/* LOGOUT */
+/* LOAD USER */
 
-$("logout").addEventListener("click",()=>{
-
-signOut(auth);
-
-});
-
-
-/* LOAD ACCOUNT */
-
-async function loadAccount(){
+async function loadUser(){
 
 const ref=doc(db,"users",user.uid);
+let s=await getDoc(ref);
 
-let snap=await getDoc(ref);
-
-if(!snap.exists()){
-
+if(!s.exists()){
 await setDoc(ref,{
 email:user.email,
 paymentVerified:false,
-demoBalance:0
+demoBalance:0,
+startingBalance:0,
+tournamentEnd:Date.now()+SIX_DAYS
 });
-
-snap=await getDoc(ref);
-
+s=await getDoc(ref);
 }
 
-const account=snap.data();
+const d=s.data();
 
-balance=account.paymentVerified?500:0;
+balance=Number(d.demoBalance||0);
+tournamentEnd=Number(d.tournamentEnd||0);
+
+if(!tournamentEnd){
+tournamentEnd=Date.now()+SIX_DAYS;
+await updateDoc(ref,{tournamentEnd});
+}
 
 $("userEmail").textContent=user.email;
+$("accountBalance").textContent=money(balance);
 
 $("payment").textContent=
-account.paymentVerified?
-"✅ Verified":
-"❌ Not verified";
+d.paymentVerified?"✅ Verified":"❌ Not verified";
 
 $("status").textContent=
-account.paymentVerified?
+d.paymentVerified?
 "✅ Demo trading unlocked":
 "🔒 Payment not verified";
 
-updateBalance();
-
 drawMarkets();
+updateLeaderboardRecord();
 
 }
 
 
-/* TEMPORARY DEMO VERIFICATION */
+/* TEST UNLOCK */
 
-$("verify").addEventListener("click",async()=>{
+$("verify").onclick=async()=>{
+
+await updateDoc(doc(db,"users",user.uid),{
+paymentVerified:true,
+demoBalance:500,
+startingBalance:500
+});
+
+await loadUser();
+
+};
+
+
+/* BALANCE */
+
+function updateBalance(){
+
+$("bal").textContent=money(balance);
+$("accountBalance").textContent=money(balance);
+
+}
+
+
+/* LEADERBOARD RECORD */
+
+async function updateLeaderboardRecord(){
 
 if(!user)return;
 
-await updateDoc(
-doc(db,"users",user.uid),
-{
-paymentVerified:true,
-demoBalance:500
+await setDoc(doc(db,"leaderboard",user.uid),{
+uid:user.uid,
+email:user.email,
+trader:user.email.split("@")[0],
+balance:balance,
+startingBalance:500,
+tournamentEnd:tournamentEnd,
+updatedAt:Date.now()
+},{merge:true});
+
 }
+
+
+/* LIVE LEADERBOARD */
+
+function startLeaderboard(){
+
+if(unsubBoard)unsubBoard();
+
+const q=query(
+collection(db,"leaderboard"),
+orderBy("balance","desc")
 );
 
-await loadAccount();
+unsubBoard=onSnapshot(q,snap=>{
+
+let rows="";
+let rank=0;
+
+snap.forEach(d=>{
+
+rank++;
+
+const x=d.data();
+
+const profit=
+Number(x.balance||0)-
+Number(x.startingBalance||500);
+
+rows+=`
+
+<tr>
+<td>${rank}</td>
+<td>${x.trader||"Trader"}</td>
+<td>$${money(x.balance||0)}</td>
+<td class="${profit>=0?"green":"down"}">
+${profit>=0?"+":""}$${money(profit)}
+</td>
+</tr>`;
 
 });
+
+$("leaderboard").innerHTML=
+rows||`<tr><td colspan="4">No traders yet.</td></tr>`;
+
+},e=>{
+
+$("leaderboard").innerHTML=
+`<tr><td colspan="4">Leaderboard error</td></tr>`;
+
+});
+
+}
 
 
 /* DRAW MARKETS */
 
 function drawMarkets(){
 
-let html="";
+const make=m=>{
 
-markets.forEach(m=>{
+const n=m[0],d=data[n];
 
-const name=m[0];
-const d=data[name];
-
-const change=
-((d.price-d.previous)/d.previous)*100;
-
-const cls=change>=0?"green":"down";
-const arrow=change>=0?"▲":"▼";
-
-html+=`
-
-<div class="market">
-
-<b>${name}</b>
-
-<div class="price">
-$${formatPrice(d.price)}
-</div>
-
-<span class="${cls}">
-${arrow} ${Math.abs(change).toFixed(2)}%
-</span>
-
-<button data-market="${name}">
-TRADE
-</button>
-
-</div>
-
-`;
-
-});
-
-$("marketList").innerHTML=html;
-
-$("homeMarkets").innerHTML=
-markets.slice(0,5).map(m=>{
-
-const name=m[0];
-const d=data[name];
+const c=(d.price-d.previous)/d.previous*100;
 
 return`
-
 <div class="market">
+<b>${n}</b>
+<div class="price">$${price(d.price)}</div>
+<span class="${c>=0?"green":"down"}">
+${c>=0?"▲":"▼"} ${Math.abs(c).toFixed(2)}%
+</span>
+<button data-m="${n}">TRADE</button>
+</div>`;
 
-<b>${name}</b>
+};
 
-<div class="price">
-$${formatPrice(d.price)}
-</div>
+$("marketList").innerHTML=markets.map(make).join("");
+$("homeMarkets").innerHTML=markets.slice(0,5).map(make).join("");
 
-<button data-market="${name}">
-TRADE
-</button>
-
-</div>
-
-`;
-
-}).join("");
-
-
-document
-.querySelectorAll("[data-market]")
-.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-selectMarket(button.dataset.market);
-
-});
-
-});
-
-}
-
-
-/* SELECT MARKET */
-
-function selectMarket(name){
-
-selected=name;
-
-$("tradeName").textContent=name;
-
-$("tradeMsg").textContent=
-"Choose an amount and Buy or Sell.";
-
-openPage("trade");
-
+document.querySelectorAll("[data-m]")
+.forEach(b=>b.onclick=()=>{
+selected=b.dataset.m;
+$("tradeName").textContent=selected;
+page("trade");
 drawChart();
+});
 
 }
 
@@ -572,99 +401,45 @@ function drawChart(){
 if(!selected)return;
 
 const d=data[selected];
-
-const values=d.history;
-
-const svg=$("chart");
-
-let min=Math.min(...values);
-let max=Math.max(...values);
-
-if(max===min){
-max=min+1;
-}
-
-const width=700;
-const height=250;
-const padding=10;
+let min=Math.min(...d.history);
+let max=Math.max(...d.history);
+if(max===min)max=min+1;
 
 let points="";
 
-values.forEach((price,index)=>{
-
-const x=
-padding+
-(index/(values.length-1))*
-(width-padding*2);
-
-const y=
-height-padding-
-((price-min)/(max-min))*
-(height-padding*2);
-
-points+=
-(x.toFixed(1)+","+
-y.toFixed(1)+" ");
-
+d.history.forEach((v,i)=>{
+const x=10+i/79*680;
+const y=230-(v-min)/(max-min)*220;
+points+=x+","+y+" ";
 });
 
-
-const rising=
-d.price>=d.previous;
-
-const color=
-rising?"#22c55e":"#ef4444";
-
-
-svg.innerHTML=`
-
+$("chart").innerHTML=`
 <polyline
 points="${points}"
 fill="none"
-stroke="${color}"
+stroke="${d.price>=d.previous?"#22c55e":"#ef4444"}"
 stroke-width="4"
-stroke-linejoin="round"
-stroke-linecap="round">
-</polyline>
-
+stroke-linecap="round"
+stroke-linejoin="round"/>
 `;
 
 }
 
 
-/* LIVE SIMULATED PRICE */
+/* PRICE MOVEMENT */
 
 setInterval(()=>{
 
 markets.forEach(m=>{
 
-const name=m[0];
-const d=data[name];
-
+const d=data[m[0]];
 d.previous=d.price;
-
-/*
-Small continuous movement.
-This is simulated demo data.
-*/
-
-const movement=
-(Math.random()-0.5)*0.0025;
-
-d.price=
-d.price+
-d.price*movement;
-
+d.price+=d.price*(Math.random()-.5)*.002;
 d.history.push(d.price);
 
-if(d.history.length>80){
-
-d.history.shift();
-
-}
+if(d.history.length>80)d.history.shift();
 
 });
-
 
 drawMarkets();
 
@@ -672,242 +447,199 @@ if(selected){
 
 const d=data[selected];
 
-$("tradePrice").textContent=
-formatPrice(d.price);
+$("tradePrice").textContent=price(d.price);
 
-const change=
-((d.price-d.previous)/d.previous)*100;
+const c=(d.price-d.previous)/d.previous*100;
 
 $("move").textContent=
-(change>=0?"+":"")+
-change.toFixed(3)+"%";
+(c>=0?"+":"")+c.toFixed(3)+"%";
 
-$("move").className=
-change>=0?"green":"down";
+$("move").className=c>=0?"green":"down";
 
 drawChart();
 
-if(position){
-
-let difference=
-d.price-position.entry;
-
-let result;
-
-if(position.type==="BUY"){
-
-result=
-difference/
-position.entry*
-position.amount;
-
-}else{
-
-result=
--difference/
-position.entry*
-position.amount;
-
-}
-
-$("pl").textContent=
-(result>=0?"+":"")+
-"$"+money(result);
-
-}
+updateOpenPL();
 
 }
 
 },1000);
 
 
-/* BUY / SELL */
+/* MULTIPLE TRADES */
 
-function openPosition(type){
+function openTrade(type){
 
 if(balance<=0){
-
-$("tradeMsg").textContent=
-"🔒 Your demo balance is $0. Verify payment first.";
-
+$("tradeMsg").textContent="🔒 Demo balance is $0.";
 return;
-
 }
 
-if(!selected){
-
-$("tradeMsg").textContent=
-"Choose a market.";
-
-return;
-
-}
-
-if(position){
-
-$("tradeMsg").textContent=
-"Close your current trade first.";
-
-return;
-
-}
-
-const amount=
-Number($("amount").value);
+const amount=Number($("amount").value);
 
 if(!amount||amount<=0){
-
-$("tradeMsg").textContent=
-"Enter a trade amount.";
-
+$("tradeMsg").textContent="Enter an amount.";
 return;
-
 }
 
 if(amount>balance){
-
-$("tradeMsg").textContent=
-"Amount is greater than your balance.";
-
+$("tradeMsg").textContent="Amount is greater than your balance.";
 return;
-
 }
 
-const entry=data[selected].price;
-
-position={
+positions.push({
+id:Date.now()+Math.random(),
 market:selected,
-type:type,
-amount:amount,
-entry:entry
-};
-
-$("position").innerHTML=
-type+" "+selected+
-"<br>Amount: $"+money(amount)+
-"<br>Entry: $"+formatPrice(entry);
-
-$("tradeMsg").textContent=
-"✅ "+type+" position opened.";
-
-}
-
-
-$("buy").addEventListener(
-"click",()=>openPosition("BUY")
-);
-
-$("sell").addEventListener(
-"click",()=>openPosition("SELL")
-);
-
-
-/* CLOSE */
-
-$("closeTrade").addEventListener(
-"click",()=>{
-
-if(!position){
-
-$("tradeMsg").textContent=
-"No open trade.";
-
-return;
-
-}
-
-const d=data[position.market];
-
-const difference=
-d.price-position.entry;
-
-let result;
-
-if(position.type==="BUY"){
-
-result=
-difference/
-position.entry*
-position.amount;
-
-}else{
-
-result=
--difference/
-position.entry*
-position.amount;
-
-}
-
-balance+=result;
-
-history.unshift({
-market:position.market,
-type:position.type,
-result:result
+type,
+amount,
+entry:data[selected].price
 });
 
-$("history").innerHTML=
-history.map(t=>`
+$("tradeMsg").textContent="✅ "+type+" trade opened.";
 
-<p>
-${t.type} ${t.market}:
-<span class="${t.result>=0?"green":"down"}">
-${t.result>=0?"+":""}$${money(t.result)}
-</span>
+drawPositions();
+
+}
+
+
+$("buy").onclick=()=>openTrade("BUY");
+$("sell").onclick=()=>openTrade("SELL");
+
+
+/* OPEN POSITIONS */
+
+function updateOpenPL(){
+
+positions.forEach(p=>{
+
+const d=data[p.market];
+const diff=d.price-p.entry;
+
+p.pl=p.type==="BUY"
+?diff/p.entry*p.amount
+:-diff/p.entry*p.amount;
+
+});
+
+drawPositions();
+
+}
+
+
+function drawPositions(){
+
+if(!positions.length){
+$("positions").innerHTML="No open trades.";
+return;
+}
+
+$("positions").innerHTML=positions.map((p,i)=>`
+
+<div class="market">
+
+<b>${p.type} ${p.market}</b>
+
+<p>Amount: $${money(p.amount)}</p>
+<p>Entry: $${price(p.entry)}</p>
+
+<p class="${p.pl>=0?"green":"down"}">
+P/L: ${p.pl>=0?"+":""}$${money(p.pl||0)}
 </p>
+
+<button data-close="${i}" class="red">
+Close Trade
+</button>
+
+</div>
 
 `).join("");
 
-position=null;
+document.querySelectorAll("[data-close]")
+.forEach(b=>b.onclick=()=>closeTrade(Number(b.dataset.close)));
 
-$("position").textContent=
-"No open position.";
+}
 
-$("pl").textContent=
-"$0.00";
 
-$("tradeMsg").textContent=
-"✅ Trade closed.";
+/* CLOSE ONE TRADE */
+
+async function closeTrade(i){
+
+const p=positions[i];
+const d=data[p.market];
+
+const diff=d.price-p.entry;
+
+const result=p.type==="BUY"
+?diff/p.entry*p.amount
+:-diff/p.entry*p.amount;
+
+balance+=result;
+
+positions.splice(i,1);
+
+history.unshift({
+market:p.market,
+type:p.type,
+result
+});
+
+$("history").innerHTML=history.map(x=>`
+<p>
+${x.type} ${x.market}:
+<span class="${x.result>=0?"green":"down"}">
+${x.result>=0?"+":""}$${money(x.result)}
+</span>
+</p>
+`).join("");
 
 updateBalance();
 
+await updateDoc(doc(db,"users",user.uid),{
+demoBalance:balance
 });
+
+await updateLeaderboardRecord();
+
+drawPositions();
+
+}
 
 
 /* TIMER */
 
-setInterval(()=>{
+function timer(){
 
-if(seconds<=0){
+let r=tournamentEnd-Date.now();
 
+if(r<=0){
 $("timeHome").textContent="ENDED";
 $("timeTournament").textContent="ENDED";
-
 return;
+}
+
+let s=Math.floor(r/1000);
+let d=Math.floor(s/86400);
+s%=86400;
+
+let h=Math.floor(s/3600);
+s%=3600;
+
+let m=Math.floor(s/60);
+s%=60;
+
+const t=d+"d "+
+String(h).padStart(2,"0")+":"+
+String(m).padStart(2,"0")+":"+
+String(s).padStart(2,"0");
+
+$("timeHome").textContent=t;
+$("timeTournament").textContent=t;
 
 }
 
-seconds--;
-
-const minutes=
-Math.floor(seconds/60);
-
-const secs=
-seconds%60;
-
-const text=
-String(minutes).padStart(2,"0")+
-":"+
-String(secs).padStart(2,"0");
-
-$("timeHome").textContent=text;
-$("timeTournament").textContent=text;
-
-},1000);
+setInterval(timer,1000);
 
 
-/* AUTH STATE */
+/* AUTH */
 
 onAuthStateChanged(auth,async u=>{
 
@@ -919,9 +651,9 @@ $("loginBox").classList.add("hidden");
 $("app").classList.remove("hidden");
 $("nav").classList.remove("hidden");
 
-await loadAccount();
-
-openPage("home");
+await loadUser();
+updateBalance();
+page("home");
 
 }else{
 
@@ -930,6 +662,8 @@ user=null;
 $("loginBox").classList.remove("hidden");
 $("app").classList.add("hidden");
 $("nav").classList.add("hidden");
+
+if(unsubBoard)unsubBoard();
 
 }
 
