@@ -1,101 +1,379 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TradeLeague</title>
+<title>TradeLeague Demo</title>
+
 <style>
-body{margin:0;background:#07111f;color:white;font-family:Arial}
-header{text-align:center;background:#111c2d;padding:15px}
-h1{color:#22c55e}
-main{max-width:700px;margin:auto;padding:10px 10px 70px}
-.card{background:#111c2d;border:1px solid #26354a;border-radius:12px;padding:14px;margin:10px 0}
-input,button,select{width:100%;padding:12px;margin:5px 0;border-radius:8px;box-sizing:border-box}
-input,select{background:#07111f;color:white;border:1px solid #334155}
-button{background:#22c55e;border:0;font-weight:bold}
-.red{background:#ef4444;color:white}
-.gray{background:#334155;color:white}
-.hidden{display:none}
-.green{color:#22c55e}
-.redtext{color:#ef4444}
-.yellow{color:#facc15}
-.balance{font-size:30px;font-weight:bold}
-.price{font-size:21px;font-weight:bold}
-.market{background:#0b1627;padding:12px;border-radius:9px;margin:7px 0}
-.nav{position:fixed;bottom:0;left:0;right:0;background:#111827;display:flex}
-.nav button{background:none;color:white;font-size:10px;margin:0}
-table{width:100%;border-collapse:collapse}
-td,th{padding:8px;border-bottom:1px solid #26354a;text-align:left}
-#chart{width:100%;height:200px;background:#07111f;border-radius:8px}
+body{
+margin:0;
+background:#07111f;
+color:#fff;
+font-family:Arial,sans-serif
+}
+
+header{
+text-align:center;
+background:#111c2d;
+padding:14px
+}
+
+h1{
+color:#22c55e;
+margin:0
+}
+
+main{
+max-width:720px;
+margin:auto;
+padding:10px 10px 70px
+}
+
+.card{
+background:#111c2d;
+border:1px solid #26354a;
+border-radius:12px;
+padding:14px;
+margin:10px 0
+}
+
+input,button,select{
+width:100%;
+padding:12px;
+margin:5px 0;
+border-radius:8px;
+box-sizing:border-box
+}
+
+input,select{
+background:#07111f;
+color:#fff;
+border:1px solid #334155
+}
+
+button{
+background:#22c55e;
+border:0;
+font-weight:bold
+}
+
+.red{
+background:#ef4444;
+color:#fff
+}
+
+.gray{
+background:#334155;
+color:#fff
+}
+
+.hidden{
+display:none
+}
+
+.green{
+color:#22c55e
+}
+
+.redtext{
+color:#ef4444
+}
+
+.yellow{
+color:#facc15
+}
+
+.balance{
+font-size:30px;
+font-weight:bold
+}
+
+.price{
+font-size:21px;
+font-weight:bold
+}
+
+.market{
+background:#0b1627;
+padding:12px;
+border-radius:9px;
+margin:7px 0
+}
+
+.nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:#111827;
+display:flex
+}
+
+.nav button{
+background:none;
+color:#fff;
+font-size:10px;
+margin:0
+}
+
+table{
+width:100%;
+border-collapse:collapse
+}
+
+td,th{
+padding:8px;
+border-bottom:1px solid #26354a;
+text-align:left
+}
+
+canvas{
+width:100%;
+height:190px;
+background:#07111f;
+border-radius:8px
+}
 </style>
-</head><body><header>
+</head>
+
+<body>
+
+<header>
 <h1>🔥 TradeLeague</h1>
 <small>DEMO TEST MODE</small>
-</header><main><div id="loading" class="card">
-Checking account...
-</div><div id="login" class="card hidden">
-<h2>🔐 Login</h2>
-<input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password">
-<button id="loginBtn">Login</button>
-<button id="signupBtn" class="gray">Create Account</button>
-<p id="message"></p>
-</div><div id="app" class="hidden"><section id="home"><div class="card">
-<h2 id="tname">Starter Tournament</h2>
-<div class="balance">$<span id="balance">500.00</span></div>
-<p>Time: <b id="timer" class="yellow">--</b></p>
-</div><div class="card">
-<h2>🏆 Tournaments</h2>
-<div id="tournaments"></div>
-</div><div class="card">
-<h2>🌍 Markets</h2>
-<div id="markets"></div>
-</div></section><section id="trade" class="hidden"><div class="card">
-<h2>📈 <span id="marketName">Market</span></h2><div class="price">$<span id="price">0</span></div><p>Movement:
-<b id="movement">0%</b>
-</p><canvas id="chart"></canvas>
+</header>
 
-<input id="amount" type="number" placeholder="Demo amount"><button id="buy">🟢 BUY</button>
-<button id="sell" class="red">🔴 SELL</button>
+<main>
+
+<div id="loading" class="card">
+Checking account...
+</div>
+
+<div id="login" class="card hidden">
+
+<h2>🔐 Login</h2>
+
+<input
+id="email"
+type="email"
+placeholder="Email">
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+<button id="loginBtn">
+Login
+</button>
+
+<button id="signupBtn" class="gray">
+Create Account
+</button>
+
+<p id="message"></p>
+
+</div>
+
+
+<div id="app" class="hidden">
+
+<section id="home">
+
+<div class="card">
+
+<h2 id="tname">
+Starter Tournament
+</h2>
+
+<div class="balance">
+$<span id="balance">500.00</span>
+</div>
+
+<p>
+Time:
+<b id="timer" class="yellow">--</b>
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h2>🏆 Tournaments</h2>
+
+<div id="tournaments"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>🌍 Markets</h2>
+
+<div id="markets"></div>
+
+</div>
+
+</section>
+
+
+<section id="trade" class="hidden">
+
+<div class="card">
+
+<h2>
+📈 <span id="marketName">Market</span>
+</h2>
+
+<div class="price">
+$<span id="price">0</span>
+</div>
+
+<p>
+Movement:
+<b id="movement">0%</b>
+</p>
+
+<canvas id="chart"></canvas>
+
+<input
+id="amount"
+type="number"
+min="1"
+placeholder="Demo amount">
+
+<button id="buy">
+🟢 BUY
+</button>
+
+<button id="sell" class="red">
+🔴 SELL
+</button>
 
 <p id="tradeMessage"></p>
-</div><div class="card">
-<h3>Open Trades</h3>
-<div id="positions">None</div>
-</div></section><section id="rank" class="hidden"><div class="card">
-<h2>🏆 Live Leaderboard</h2><select id="boardSelect"></select>
 
-<p>Time:
+</div>
+
+
+<div class="card">
+
+<h3>Open Trades</h3>
+
+<div id="positions">
+None
+</div>
+
+</div>
+
+</section>
+
+
+<section id="rank" class="hidden">
+
+<div class="card">
+
+<h2>🏆 Live Leaderboard</h2>
+
+<select id="boardSelect"></select>
+
+<p>
+Time:
 <b id="boardTimer" class="yellow">--</b>
-</p><table>
+</p>
+
+<table>
+
 <thead>
+
 <tr>
 <th>#</th>
 <th>Trader</th>
 <th>Balance</th>
 <th>Profit</th>
 </tr>
-</thead><tbody id="board">
-<tr><td colspan="4">Loading...</td></tr>
+
+</thead>
+
+<tbody id="board">
+
+<tr>
+<td colspan="4">
+Loading...
+</td>
+</tr>
+
 </tbody>
-</table><p id="boardStatus">
+
+</table>
+
+<p id="boardStatus">
 🔴 LIVE — updates automatically.
-</p></div></section><section id="account" class="hidden"><div class="card">
+</p>
+
+</div>
+
+</section>
+
+
+<section id="account" class="hidden">
+
+<div class="card">
+
 <h2>👤 Account</h2>
+
 <p id="userEmail"></p>
-<p>Balance: $<b id="accountBalance">500.00</b></p>
-<button id="logout" class="red">Logout</button>
-</div></section></div>
-</main><nav id="nav" class="nav hidden"><button onclick="show('home')">🏠<br>Home</button>
-<button onclick="show('trade')">📈<br>Trade</button>
-<button onclick="show('rank')">🏆<br>Rank</button>
-<button onclick="show('account')">👤<br>Account</button>
 
-</nav><script type="module">
+<p>
+Balance:
+$<b id="accountBalance">500.00</b>
+</p>
 
-import{initializeApp}
-from"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+<button id="logout" class="red">
+Logout
+</button>
 
-import{
+</div>
+
+</section>
+
+</div>
+
+</main>
+
+
+<nav id="nav" class="nav hidden">
+
+<button onclick="show('home')">
+🏠<br>Home
+</button>
+
+<button onclick="show('trade')">
+📈<br>Trade
+</button>
+
+<button onclick="show('rank')">
+🏆<br>Rank
+</button>
+
+<button onclick="show('account')">
+👤<br>Account
+</button>
+
+</nav>
+
+
+<script type="module">
+
+import {
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+import {
 getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
@@ -104,9 +382,11 @@ signOut,
 setPersistence,
 browserLocalPersistence
 }
-from"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-import{
+
+import {
 getFirestore,
 doc,
 getDoc,
@@ -116,139 +396,201 @@ query,
 orderBy,
 onSnapshot
 }
-from"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
 
-/* PUT YOUR EXISTING FIREBASE CONFIG HERE */
+const firebaseConfig = {
 
-const firebaseConfig={
-apiKey:"YOUR_API_KEY",
-authDomain:"YOUR_AUTH_DOMAIN",
-projectId:"YOUR_PROJECT_ID",
-storageBucket:"YOUR_STORAGE_BUCKET",
-messagingSenderId:"YOUR_MESSAGING_SENDER_ID",
-appId:"YOUR_APP_ID"
+apiKey:
+"AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+
+authDomain:
+"project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+
+projectId:
+"project-57e2c805-1b30-40ea-a94",
+
+storageBucket:
+"project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+
+messagingSenderId:
+"567705081329",
+
+appId:
+"1:567705081329:web:723f968a1eff122945e050",
+
+measurementId:
+"G-9P2H1ZNGSG"
+
 };
 
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
+const app =
+initializeApp(firebaseConfig);
 
-await setPersistence(auth,browserLocalPersistence);
+const auth =
+getAuth(app);
+
+const db =
+getFirestore(app);
 
 
-const $=x=>document.getElementById(x);
+await setPersistence(
+auth,
+browserLocalPersistence
+);
 
 
-/* TOURNAMENTS */
+const $ = id =>
+document.getElementById(id);
 
-const T={
+
+const tournaments = {
+
 starter:{
 name:"Starter Tournament",
 entry:2,
 days:6
 },
+
 five:{
 name:"$5 Tournament",
 entry:5,
 days:1
 },
+
 ten:{
 name:"$10 Tournament",
 entry:10,
 days:3
 }
+
 };
 
 
-let user=null;
-let tournament="starter";
-let balance=500;
-let positions=[];
-let market=null;
-let unsubscribe=null;
+const markets = {
 
-
-/* MARKETS */
-
-const M={
 "BTC/USD":65000,
+
 "ETH/USD":3200,
+
 "Gold":2380,
+
 "Apple":210,
+
 "Tesla":240,
+
 "Nvidia":120,
+
 "EUR/USD":1.085,
+
 "GBP/USD":1.274
-};
-
-
-const old={};
-
-for(let x in M)old[x]=M[x];
-
-
-/* PAGE */
-
-window.show=x=>{
-
-["home","trade","rank","account"]
-.forEach(p=>$(p).classList.add("hidden"));
-
-$(x).classList.remove("hidden");
-
-if(x=="rank")leaderboard();
 
 };
 
 
-/* AUTH */
+const oldPrices = {...markets};
 
-$("loginBtn").onclick=async()=>{
+const historyPrices = {};
+
+Object.keys(markets).forEach(
+name=>{
+historyPrices[name]=[
+markets[name]
+];
+}
+);
+
+
+let user = null;
+
+let tournament = "starter";
+
+let balance = 500;
+
+let positions = [];
+
+let selectedMarket = null;
+
+let unsubscribe = null;
+
+let endAt = 0;
+
+
+window.show = function(page){
+
+[
+"home",
+"trade",
+"rank",
+"account"
+].forEach(
+p=>{
+$(p).classList.add("hidden");
+}
+);
+
+$(page).classList.remove("hidden");
+
+if(page==="rank"){
+loadLeaderboard();
+}
+
+};
+
+
+$("loginBtn").onclick =
+async function(){
 
 try{
 
 await signInWithEmailAndPassword(
 auth,
-$("email").value,
+$("email").value.trim(),
 $("password").value
 );
 
-}catch(e){
+}catch(error){
 
-$("message").textContent=e.message;
+$("message").textContent =
+error.message;
 
 }
 
 };
 
 
-$("signupBtn").onclick=async()=>{
+$("signupBtn").onclick =
+async function(){
 
 try{
 
 await createUserWithEmailAndPassword(
 auth,
-$("email").value,
+$("email").value.trim(),
 $("password").value
 );
 
-}catch(e){
+}catch(error){
 
-$("message").textContent=e.message;
+$("message").textContent =
+error.message;
 
 }
 
 };
 
 
-$("logout").onclick=()=>signOut(auth);
+$("logout").onclick =
+function(){
+
+signOut(auth);
+
+};
 
 
-/* PLAYER */
-
-function ref(){
+function playerRef(){
 
 return doc(
 db,
@@ -261,44 +603,105 @@ user.uid
 }
 
 
-async function load(){
+async function loadPlayer(){
 
-const s=await getDoc(ref());
+const snapshot =
+await getDoc(
+playerRef()
+);
 
-if(s.exists()){
 
-let d=s.data();
+if(snapshot.exists()){
 
-balance=Number(d.balance??500);
-positions=d.positions||[];
+const data =
+snapshot.data();
+
+balance =
+Number(data.balance ?? 500);
+
+positions =
+data.positions || [];
+
+endAt =
+Number(data.endAt || 0);
 
 }else{
 
-balance=500;
-positions=[];
+balance = 500;
 
-}
+positions = [];
 
-ui();
+endAt =
+Date.now() +
+tournaments[tournament].days *
+86400000;
 
-}
 
-
-/* SAVE */
-
-async function save(){
-
-await setDoc(ref(),{
+await setDoc(
+playerRef(),
+{
 
 uid:user.uid,
-trader:user.email.split("@")[0],
+
+trader:
+user.email.split("@")[0],
+
 email:user.email,
-balance:balance,
+
+balance:500,
+
 startingBalance:500,
-positions:positions,
+
+positions:[],
+
+endAt:endAt,
+
 updatedAt:Date.now()
 
-},{merge:true});
+},
+{merge:true}
+);
+
+}
+
+
+updateUI();
+
+drawPositions();
+
+}
+
+
+async function savePlayer(){
+
+await setDoc(
+
+playerRef(),
+
+{
+
+uid:user.uid,
+
+trader:
+user.email.split("@")[0],
+
+email:user.email,
+
+balance:balance,
+
+startingBalance:500,
+
+positions:positions,
+
+endAt:endAt,
+
+updatedAt:Date.now()
+
+},
+
+{merge:true}
+
+);
 
 
 await setDoc(
@@ -313,390 +716,803 @@ user.uid
 
 {
 
-trader:user.email.split("@")[0],
+uid:user.uid,
+
+trader:
+user.email.split("@")[0],
+
 email:user.email,
+
 balance:balance,
+
 startingBalance:500,
+
 updatedAt:Date.now()
 
-},{merge:true});
+},
+
+{merge:true}
+
+);
 
 }
 
 
-/* UI */
+function updateUI(){
 
-function ui(){
+$("balance").textContent =
+balance.toFixed(2);
 
-$("balance").textContent=balance.toFixed(2);
-$("accountBalance").textContent=balance.toFixed(2);
-$("userEmail").textContent=user.email;
+$("accountBalance").textContent =
+balance.toFixed(2);
+
+$("userEmail").textContent =
+user ? user.email : "";
+
+$("tname").textContent =
+tournaments[tournament].name;
 
 }
 
-
-/* TOURNAMENTS */
 
 function drawTournaments(){
 
-$("tournaments").innerHTML=
-Object.entries(T).map(([id,t])=>`
+let html = "";
+
+for(
+const id in tournaments
+){
+
+const t =
+tournaments[id];
+
+html += `
 
 <div class="market">
 
 <b>${t.name}</b>
 
-<p>Demo Entry: $${t.entry}</p>
-<p>Duration: ${t.days} day(s)</p>
+<p>
+Demo Entry:
+$${t.entry}
+</p>
 
-<button onclick="join('${id}')">
+<p>
+Duration:
+${t.days} day(s)
+</p>
+
+<button
+onclick="joinTournament('${id}')">
+
 Open
+
 </button>
 
 </div>
 
-`).join("");
+`;
+
+}
+
+$("tournaments").innerHTML =
+html;
 
 }
 
 
-window.join=async id=>{
+window.joinTournament =
+async function(id){
 
-tournament=id;
+tournament = id;
 
-await load();
-
-$("tname").textContent=T[id].name;
+await loadPlayer();
 
 show("trade");
 
 };
 
-
-/* MARKETS */
 
 function drawMarkets(){
 
-$("markets").innerHTML=
-Object.keys(M).map(x=>`
+let html = "";
+
+for(
+const name in markets
+){
+
+html += `
 
 <div class="market">
 
-<b>${x}</b>
+<b>${name}</b>
 
 <div class="price">
-$${M[x].toFixed(2)}
+
+$${markets[name].toFixed(2)}
+
 </div>
 
-<button onclick="trade('${x}')">
+<button
+onclick="openMarket('${name}')">
+
 Trade
+
 </button>
 
 </div>
 
-`).join("");
+`;
+
+}
+
+$("markets").innerHTML =
+html;
 
 }
 
 
-window.trade=x=>{
+window.openMarket =
+function(name){
 
-market=x;
+selectedMarket = name;
 
-$("marketName").textContent=x;
-$("price").textContent=M[x].toFixed(2);
+$("marketName").textContent =
+name;
+
+$("price").textContent =
+markets[name].toFixed(2);
+
+drawChart();
 
 show("trade");
 
 };
 
 
-/* PRICE MOVEMENT */
+function drawChart(){
 
-setInterval(()=>{
+if(!selectedMarket)
+return;
 
-for(let x in M){
+const canvas =
+$("chart");
 
-old[x]=M[x];
+const ctx =
+canvas.getContext("2d");
 
-M[x]+=M[x]*(Math.random()-.5)*.003;
+const width =
+canvas.clientWidth;
+
+const height =
+canvas.clientHeight;
+
+canvas.width =
+width;
+
+canvas.height =
+height;
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+
+const values =
+historyPrices[selectedMarket];
+
+let min =
+Math.min(...values);
+
+let max =
+Math.max(...values);
+
+let range =
+max-min;
+
+if(range===0)
+range=1;
+
+
+ctx.beginPath();
+
+ctx.lineWidth = 3;
+
+ctx.strokeStyle =
+markets[selectedMarket]
+>=oldPrices[selectedMarket]
+?
+"#22c55e"
+:
+"#ef4444";
+
+
+values.forEach(
+(value,index)=>{
+
+const x =
+5 +
+index /
+(values.length-1) *
+(width-10);
+
+const y =
+height-5 -
+(value-min) /
+range *
+(height-10);
+
+
+if(index===0)
+ctx.moveTo(x,y);
+else
+ctx.lineTo(x,y);
 
 }
+);
+
+
+ctx.stroke();
+
+}
+
+
+setInterval(
+function(){
+
+for(
+const name in markets
+){
+
+oldPrices[name] =
+markets[name];
+
+markets[name] +=
+markets[name] *
+(Math.random()-0.5) *
+0.003;
+
+historyPrices[name].push(
+markets[name]
+);
+
+if(
+historyPrices[name].length>60
+){
+
+historyPrices[name].shift();
+
+}
+
+}
+
 
 drawMarkets();
 
-if(market){
 
-$("price").textContent=
-M[market].toFixed(2);
+if(selectedMarket){
 
-let c=(M[market]-old[market])/
-old[market]*100;
+$("price").textContent =
+markets[selectedMarket]
+.toFixed(2);
 
-$("movement").textContent=
-(c>=0?"+":"")+c.toFixed(3)+"%";
+const change =
+(
+markets[selectedMarket] -
+oldPrices[selectedMarket]
+) /
+oldPrices[selectedMarket] *
+100;
 
-$("movement").className=
-c>=0?"green":"redtext";
+
+$("movement").textContent =
+(change>=0?"+":"") +
+change.toFixed(3) +
+"%";
+
+
+$("movement").className =
+change>=0
+?
+"green"
+:
+"redtext";
+
+
+drawChart();
 
 }
 
-},1000);
+},
+1000
+);
 
-
-/* BUY / SELL */
 
 async function openTrade(type){
 
-let amount=Number($("amount").value);
+const amount =
+Number(
+$("amount").value
+);
 
-if(!market){
 
-$("tradeMessage").textContent=
+if(!selectedMarket){
+
+$("tradeMessage").textContent =
 "Select a market.";
 
 return;
 
 }
 
-if(!amount||amount<=0){
 
-$("tradeMessage").textContent=
+if(
+!amount ||
+amount<=0
+){
+
+$("tradeMessage").textContent =
 "Enter an amount.";
 
 return;
 
 }
 
+
 if(amount>balance){
 
-$("tradeMessage").textContent=
+$("tradeMessage").textContent =
 "Not enough demo balance.";
 
 return;
 
 }
 
-balance-=amount;
+
+balance -= amount;
+
 
 positions.push({
 
-market:market,
+market:selectedMarket,
+
 type:type,
+
 amount:amount,
-entry:M[market]
+
+entry:markets[selectedMarket]
 
 });
 
-$("amount").value="";
 
-$("tradeMessage").textContent=
+$("amount").value = "";
+
+$("tradeMessage").textContent =
 "✅ Demo trade opened.";
 
-await save();
+
+await savePlayer();
 
 drawPositions();
 
-ui();
+updateUI();
 
 }
 
 
-$("buy").onclick=
-()=>openTrade("BUY");
+$("buy").onclick =
+function(){
 
-$("sell").onclick=
-()=>openTrade("SELL");
+openTrade("BUY");
+
+};
 
 
-/* POSITIONS */
+$("sell").onclick =
+function(){
+
+openTrade("SELL");
+
+};
+
 
 function drawPositions(){
 
 if(!positions.length){
 
-$("positions").textContent="None";
+$("positions").textContent =
+"None";
 
 return;
 
 }
 
-$("positions").innerHTML=
-positions.map((p,i)=>`
+
+let html = "";
+
+positions.forEach(
+(p,index)=>{
+
+html += `
 
 <div class="market">
 
-<b>${p.type} ${p.market}</b>
+<b>
+${p.type}
+${p.market}
+</b>
 
 <p>
-Amount: $${p.amount.toFixed(2)}
+Amount:
+$${p.amount.toFixed(2)}
 </p>
 
 <p>
-Entry: $${p.entry.toFixed(2)}
+Entry:
+$${p.entry.toFixed(2)}
 </p>
 
-<button class="red"
-onclick="closeTrade(${i})">
+<button
+class="red"
+onclick="closeTrade(${index})">
+
 Close
+
 </button>
 
 </div>
 
-`).join("");
+`;
+
+}
+);
+
+
+$("positions").innerHTML =
+html;
 
 }
 
 
-window.closeTrade=async i=>{
+window.closeTrade =
+async function(index){
 
-let p=positions[i];
+const p =
+positions[index];
 
-let now=M[p.market];
+if(!p)
+return;
 
-let diff=now-p.entry;
 
-let profit=
-p.type=="BUY"
-?diff/p.entry*p.amount
-:-diff/p.entry*p.amount;
+const current =
+markets[p.market];
 
-balance+=p.amount+profit;
+const difference =
+current-p.entry;
 
-positions.splice(i,1);
 
-await save();
+let profit;
+
+
+if(p.type==="BUY"){
+
+profit =
+difference /
+p.entry *
+p.amount;
+
+}else{
+
+profit =
+-difference /
+p.entry *
+p.amount;
+
+}
+
+
+balance +=
+p.amount +
+profit;
+
+
+positions.splice(
+index,
+1
+);
+
+
+await savePlayer();
 
 drawPositions();
 
-ui();
+updateUI();
 
 };
 
 
-/* LEADERBOARD SELECT */
-
-$("boardSelect").innerHTML=
-Object.entries(T).map(([id,t])=>
-`<option value="${id}">
+$("boardSelect").innerHTML =
+Object.entries(tournaments)
+.map(
+([id,t])=>
+`
+<option value="${id}">
 ${t.name}
-</option>`
-).join("");
+</option>
+`
+)
+.join("");
 
-$("boardSelect").onchange=
-leaderboard;
+
+$("boardSelect").onchange =
+function(){
+
+loadLeaderboard();
+
+};
 
 
-/* LIVE LEADERBOARD */
+function loadLeaderboard(){
 
-function leaderboard(){
+if(!user)
+return;
 
-if(unsubscribe)
+
+if(unsubscribe){
+
 unsubscribe();
 
-let id=$("boardSelect").value;
+unsubscribe = null;
 
-let q=query(
+}
+
+
+const id =
+$("boardSelect").value;
+
+
+const leaderboardQuery =
+query(
+
 collection(
 db,
 "leaderboards",
 id,
 "players"
 ),
-orderBy("balance","desc")
+
+orderBy(
+"balance",
+"desc"
+)
+
 );
 
-unsubscribe=onSnapshot(q,snap=>{
 
-let html="";
-let rank=0;
+unsubscribe =
+onSnapshot(
 
-snap.forEach(d=>{
+leaderboardQuery,
+
+snapshot=>{
+
+let html = "";
+
+let rank = 0;
+
+
+snapshot.forEach(
+docSnap=>{
 
 rank++;
 
-let x=d.data();
 
-let profit=
-Number(x.balance||0)-
-Number(x.startingBalance||500);
+const data =
+docSnap.data();
 
-html+=`
+
+const current =
+Number(
+data.balance || 0
+);
+
+
+const starting =
+Number(
+data.startingBalance || 500
+);
+
+
+const profit =
+current-starting;
+
+
+html += `
 
 <tr>
 
-<td>${rank}</td>
+<td>
+${rank}
+</td>
 
-<td>${x.trader||"Trader"}</td>
+<td>
+${data.trader || "Trader"}
+</td>
 
-<td>$${Number(x.balance||0).toFixed(2)}</td>
+<td>
+$${current.toFixed(2)}
+</td>
 
 <td class="${
-profit>=0?"green":"redtext"
+profit>=0
+?
+"green"
+:
+"redtext"
 }">
-${profit>=0?"+":""}$
-${profit.toFixed(2)}
+
+${profit>=0?"+":""}
+$${profit.toFixed(2)}
+
 </td>
 
 </tr>
 
 `;
 
-});
+}
+);
 
-$("board").innerHTML=
-html||
-`<tr><td colspan="4">
+
+$("board").innerHTML =
+html ||
+`
+<tr>
+<td colspan="4">
 No players yet.
-</td></tr>`;
+</td>
+</tr>
+`;
 
-$("boardStatus").textContent=
+
+$("boardStatus").textContent =
 "🔴 LIVE — updates automatically.";
 
-},e=>{
+},
 
-console.error(e);
+error=>{
 
-$("boardStatus").textContent=
-"Leaderboard permission error.";
+console.error(error);
 
-});
+$("boardStatus").textContent =
+"Leaderboard permission error: " +
+error.code;
+
+}
+
+);
 
 }
 
 
-/* AUTH RESTORE */
+setInterval(
+function(){
 
-onAuthStateChanged(auth,async u=>{
+if(!endAt)
+return;
 
-if(u){
 
-user=u;
+const remaining =
+Math.max(
+0,
+endAt-Date.now()
+);
 
-$("loading").classList.add("hidden");
-$("login").classList.add("hidden");
-$("app").classList.remove("hidden");
-$("nav").classList.remove("hidden");
 
-await load();
+const seconds =
+Math.floor(
+remaining/1000
+);
+
+
+const days =
+Math.floor(
+seconds/86400
+);
+
+
+const hours =
+Math.floor(
+(seconds%86400)/3600
+);
+
+
+const minutes =
+Math.floor(
+(seconds%3600)/60
+);
+
+
+const secs =
+seconds%60;
+
+
+const text =
+days+"d "+
+String(hours).padStart(2,"0")+":"+
+String(minutes).padStart(2,"0")+":"+
+String(secs).padStart(2,"0");
+
+
+$("timer").textContent =
+text;
+
+$("boardTimer").textContent =
+text;
+
+},
+1000
+);
+
+
+onAuthStateChanged(
+auth,
+async function(currentUser){
+
+if(currentUser){
+
+user =
+currentUser;
+
+
+$("loading")
+.classList.add("hidden");
+
+$("login")
+.classList.add("hidden");
+
+$("app")
+.classList.remove("hidden");
+
+$("nav")
+.classList.remove("hidden");
+
+
+await loadPlayer();
 
 drawTournaments();
+
 drawMarkets();
 
 show("home");
 
+
 }else{
 
-user=null;
+user = null;
 
-$("loading").classList.add("hidden");
-$("app").classList.add("hidden");
-$("nav").classList.add("hidden");
-$("login").classList.remove("hidden");
+
+$("loading")
+.classList.add("hidden");
+
+$("app")
+.classList.add("hidden");
+
+$("nav")
+.classList.add("hidden");
+
+$("login")
+.classList.remove("hidden");
 
 }
 
-});
+}
+);
 
-</script></body>
+</script>
+
+</body>
   </html>
