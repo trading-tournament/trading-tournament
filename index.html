@@ -2,99 +2,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TradeLeague</title><style>
+<title>TradeLeague</title>
+<style>
 *{box-sizing:border-box}
 body{margin:0;background:#07111f;color:#fff;font-family:Arial}
-header{padding:25px;text-align:center;background:linear-gradient(135deg,#0f172a,#064e3b)}
+header{text-align:center;padding:25px;background:linear-gradient(135deg,#0f172a,#064e3b)}
 h1{margin:0;color:#22c55e}
-.container{max-width:800px;margin:auto;padding:15px}
+main{max-width:800px;margin:auto;padding:15px}
 .card{background:#111c2d;border:1px solid #26354a;border-radius:14px;padding:18px;margin-bottom:15px}
 input,button{width:100%;padding:13px;margin:6px 0;border-radius:8px}
-input{background:#08111f;border:1px solid #334155;color:white}
-button{border:0;background:#22c55e;font-weight:bold;font-size:15px}
-.secondary{background:#334155;color:white}
-.logout{background:#ef4444;color:white}
-.hidden{display:none}
-.msg{padding:10px;margin-top:8px;background:#1e293b;border-radius:8px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.tour{background:#0b1422;padding:15px;border-radius:10px;border:1px solid #26354a}
+input{background:#08111f;border:1px solid #334155;color:#fff}
+button{border:0;background:#22c55e;font-weight:bold}
+.red{background:#ef4444;color:#fff}
+.gray{background:#334155;color:#fff}
 .green{color:#22c55e}
 .yellow{color:#facc15}
-.small{color:#94a3b8;font-size:14px}
-table{width:100%;border-collapse:collapse}
-td,th{padding:9px;border-bottom:1px solid #26354a;text-align:left}
-</style></head><body><header>
+.hidden{display:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.box{background:#0b1422;padding:15px;border-radius:10px}
+.msg{padding:10px;background:#1e293b;border-radius:8px;margin-top:8px}
+</style>
+</head><body><header>
 <h1>🔥 TradeLeague</h1>
 <p>Compete. Trade. Climb.</p>
-</header><div class="container"><!-- LOGIN --><div id="loginBox" class="card">
-<h2>🔐 Account</h2><input id="email" type="email" placeholder="Email">
-<input id="password" type="password" placeholder="Password"><button id="signup">Create Account</button>
-<button id="login" class="secondary">Login</button>
-
+</header><main><div id="auth" class="card">
+<h2>🔐 Account</h2>
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+<button id="signup">Create Account</button>
+<button id="login" class="gray">Login</button>
 <div id="msg" class="msg">Not logged in.</div>
-</div><!-- DASHBOARD --><div id="dashboard" class="hidden"><div class="card">
+</div><div id="app" class="hidden"><div class="card">
 <h2>👤 My Account</h2>
 <p>Email: <b id="userEmail"></b></p>
-<p>UID: <span id="uid" class="small"></span></p>
-<button id="logout" class="logout">Logout</button>
+<p>Payment: <b id="payment">Not verified</b></p>
+<p>Demo Balance: <b class="green">$<span id="balance">0</span></b></p>
+<button id="testPay">Verify Demo Payment</button>
+<button id="logout" class="red">Logout</button>
+</div><div id="locked" class="card">
+<h2>🔒 Tournament Locked</h2>
+<p>Payment verification is required before receiving the $500 demo starting balance.</p>
+</div><div id="game" class="hidden"><div class="card">
+<h2>🏆 Starter Tournament</h2>
+<p>Starting balance: <b>$500</b></p>
+<p>Time remaining: <b class="yellow" id="timer">30:00</b></p>
 </div><div class="card">
-<h2>💰 Demo Trading Balance</h2>
-<h1 class="green">$10,000.00</h1>
-<p class="small">
-Demo balance only. No real money is stored here.
-</p>
+<h2>📈 Demo Trading</h2><div class="grid">
+<div class="box">
+Asset<br><b>Demo Asset</b>
+</div>
+<div class="box">
+Price<br><b>$100.00</b>
+</div>
+</div><button id="buy">🟢 BUY</button>
+<button id="sell" class="red">🔴 SELL</button>
+
+<div id="tradeMsg" class="msg">
+Choose BUY or SELL.
+</div>
 </div><div class="card">
-<h2>🏆 Tournament Lobby</h2><div class="grid"><div class="tour">
-<h3>🥉 Starter</h3>
-<p class="green">$2 Entry</p>
-<p class="small">6 Days</p>
-<button onclick="join('Starter')">View</button>
-</div><div class="tour">
-<h3>🥈 Pro</h3>
-<p class="green">$5 Entry</p>
-<p class="small">3 Days</p>
-<button onclick="join('Pro')">View</button>
-</div><div class="tour">
-<h3>🏆 Elite</h3>
-<p class="green">$10 Entry</p>
-<p class="small">2 Days</p>
-<button onclick="join('Elite')">View</button>
-</div><div class="tour">
-<h3>💎 High Roller</h3>
-<p class="green">$20 Entry</p>
-<p class="small">7 Hours</p>
-<button onclick="join('High Roller')">View</button>
-</div></div>
-</div><div class="card">
-<h2>📊 Leaderboard</h2><table>
-<tr>
-<th>Rank</th>
-<th>Trader</th>
-<th>Profit</th>
-</tr><tr>
-<td>1</td>
-<td>Demo Trader</td>
-<td class="green">+$2,450</td>
-</tr><tr>
-<td>2</td>
-<td>Demo Trader 2</td>
-<td class="green">+$1,980</td>
-</tr><tr>
-<td>3</td>
-<td>Demo Trader 3</td>
-<td class="green">+$1,520</td>
-</tr></table><p class="small">
-Leaderboard shown here is demo data.
-</p>
-</div><div class="card">
-<h2>⚠️ TradeLeague</h2>
-<p class="small">
-This version uses demo trading funds and demo tournament
-information. Real deposits, withdrawals and prize payments
-are not enabled.
-</p>
-</div></div>
-</div><script type="module">
+<h2>🏆 Leaderboard</h2>
+<p>🥇 You: <b>$<span id="rankBalance">500</span></b></p>
+<p class="green">Highest final balance wins.</p>
+</div></div></div></main><script type="module">
 
 import{initializeApp}from"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
@@ -110,9 +80,9 @@ import{
 getFirestore,
 doc,
 setDoc,
-serverTimestamp
+getDoc,
+updateDoc
 }from"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
 
 const firebaseConfig={
 apiKey:"AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
@@ -127,118 +97,108 @@ const app=initializeApp(firebaseConfig);
 const auth=getAuth(app);
 const db=getFirestore(app);
 
-const email=document.getElementById("email");
-const password=document.getElementById("password");
-const msg=document.getElementById("msg");
+const $=id=>document.getElementById(id);
 
-
-/* CREATE ACCOUNT */
-
-document.getElementById("signup").onclick=async()=>{
-
+$("signup").onclick=async()=>{
 try{
+const r=await createUserWithEmailAndPassword(
+auth,$("email").value.trim(),$("password").value);
+await setDoc(doc(db,"users",r.user.uid),{
+uid:r.user.uid,
+email:r.user.email,
+paymentVerified:false,
+demoBalance:0
+});
+$("msg").textContent="✅ Account created.";
+}catch(e){$("msg").textContent="❌ "+e.message}
+};
 
-const result=await createUserWithEmailAndPassword(
-auth,
-email.value.trim(),
-password.value
-);
+$("login").onclick=async()=>{
+try{
+await signInWithEmailAndPassword(
+auth,$("email").value.trim(),$("password").value);
+}catch(e){$("msg").textContent="❌ "+e.message}
+};
 
-const user=result.user;
+$("logout").onclick=()=>signOut(auth);
 
-await setDoc(
-doc(db,"users",user.uid),
-{
+async function loadUser(user){
+
+$("userEmail").textContent=user.email;
+
+const ref=doc(db,"users",user.uid);
+const snap=await getDoc(ref);
+
+if(!snap.exists()){
+await setDoc(ref,{
 uid:user.uid,
 email:user.email,
-createdAt:serverTimestamp()
-}
-);
-
-msg.textContent="✅ Account created successfully.";
-
-}catch(error){
-
-msg.textContent="❌ "+error.message;
-
+paymentVerified:false,
+demoBalance:0
+});
+return loadUser(user);
 }
 
-};
+const data=snap.data();
+const paid=data.paymentVerified===true;
 
+$("payment").textContent=paid?"✅ Verified":"❌ Not verified";
+$("balance").textContent=paid?"500":"0";
+$("rankBalance").textContent=paid?"500":"0";
 
-/* LOGIN */
-
-document.getElementById("login").onclick=async()=>{
-
-try{
-
-await signInWithEmailAndPassword(
-auth,
-email.value.trim(),
-password.value
-);
-
-msg.textContent="✅ Login successful.";
-
-}catch(error){
-
-msg.textContent="❌ "+error.message;
-
+$("locked").classList.toggle("hidden",paid);
+$("game").classList.toggle("hidden",!paid);
 }
 
-};
+$("testPay").onclick=async()=>{
+const user=auth.currentUser;
+if(!user)return;
 
-
-/* LOGOUT */
-
-document.getElementById("logout").onclick=()=>{
-signOut(auth);
-};
-
-
-/* LOGIN STATE */
-
-onAuthStateChanged(auth,user=>{
-
-if(user){
-
-document.getElementById("loginBox")
-.classList.add("hidden");
-
-document.getElementById("dashboard")
-.classList.remove("hidden");
-
-document.getElementById("userEmail")
-.textContent=user.email;
-
-document.getElementById("uid")
-.textContent=user.uid;
-
-}else{
-
-document.getElementById("loginBox")
-.classList.remove("hidden");
-
-document.getElementById("dashboard")
-.classList.add("hidden");
-
-}
-
+await updateDoc(doc(db,"users",user.uid),{
+paymentVerified:true,
+demoBalance:500
 });
 
-
-/* TOURNAMENT BUTTON */
-
-window.join=function(name){
-
-alert(
-name+
-" Tournament\n\n"+
-"This is currently a demo. "+
-"Real-money entry is not enabled."
-);
-
+loadUser(user);
+$("testPay").textContent="✅ Demo payment verified";
 };
+
+$("buy").onclick=()=>{
+$("tradeMsg").textContent=
+"🟢 Demo BUY placed. Trading results will be added next.";
+};
+
+$("sell").onclick=()=>{
+$("tradeMsg").textContent=
+"🔴 Demo SELL placed. Trading results will be added next.";
+};
+
+onAuthStateChanged(auth,user=>{
+if(user){
+$("auth").classList.add("hidden");
+$("app").classList.remove("hidden");
+loadUser(user);
+}else{
+$("auth").classList.remove("hidden");
+$("app").classList.add("hidden");
+}
+});
+
+let seconds=1800;
+
+setInterval(()=>{
+if(seconds<=0){
+$("timer").textContent="TOURNAMENT ENDED";
+$("buy").disabled=true;
+$("sell").disabled=true;
+return;
+}
+seconds--;
+let m=Math.floor(seconds/60);
+let s=seconds%60;
+$("timer").textContent=
+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+},1000);
 
 </script></body>
 </html>
