@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Ozie Tournaments</title>
-
-  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>TradeLeague</title>  <style>
     * {
       box-sizing: border-box;
     }
@@ -244,508 +239,484 @@
         font-size: 21px;
       }
     }
-  </style>
-</head>
-
-<body>
-
-<header>
-  <h1>🔥 Ozie Tournaments</h1>
+  </style></head><body><header>
+  <h1>🔥 TradeLeague</h1>
   <p>Compete. Trade. Climb the leaderboard.</p>
-</header>
+</header><div class="container">  <!-- LOGIN / SIGN UP -->  <section id="authSection" class="card auth"><h2>🔐 TradeLeague Account</h2>
 
-<div class="container">
+<p>
+  Create an account or login to enter the TradeLeague demo.
+</p>
 
-  <!-- LOGIN / SIGN UP -->
-  <section id="authSection" class="card auth">
+<input
+  type="email"
+  id="email"
+  placeholder="Enter your email"
+  autocomplete="email"
+>
 
-    <h2>🔐 Account</h2>
+<input
+  type="password"
+  id="password"
+  placeholder="Enter password"
+  autocomplete="new-password"
+>
 
-    <p>
-      Create an account or login to join tournaments.
-    </p>
+<button id="signupBtn">
+  Create Account
+</button>
 
-    <input
-      type="email"
-      id="email"
-      placeholder="Enter your email"
+<button id="loginBtn" class="secondary">
+  Login
+</button>
+
+<div id="authMessage" class="message">
+  You are not logged in.
+</div>
+
+  </section>  <!-- LOGGED-IN APPLICATION -->  <section id="appSection" class="hidden"><div class="card">
+
+  <div class="user-bar">
+
+    <div>
+      👤 Logged in as:
+      <span id="userEmail" class="user-email"></span>
+    </div>
+
+    <button
+      id="logoutBtn"
+      class="logout"
+      style="width:auto;padding:10px 18px;"
     >
-
-    <input
-      type="password"
-      id="password"
-      placeholder="Enter password"
-    >
-
-    <button id="signupBtn">
-      Create Account
+      Logout
     </button>
 
-    <button id="loginBtn" class="secondary">
-      Login
-    </button>
-
-    <div id="authMessage" class="message">
-      You are not logged in.
-    </div>
-
-  </section>
-
-
-  <!-- LOGGED-IN APPLICATION -->
-  <section id="appSection" class="hidden">
-
-    <div class="card">
-
-      <div class="user-bar">
-
-        <div>
-          👤 Logged in as:
-          <span id="userEmail" class="user-email"></span>
-        </div>
-
-        <button
-          id="logoutBtn"
-          class="logout"
-          style="width:auto;padding:10px 18px;"
-        >
-          Logout
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- TOURNAMENT LOBBY -->
-
-    <h2>🏆 Tournament Lobby</h2>
-
-    <div class="tournament-grid">
-
-      <!-- $2 TOURNAMENT -->
-
-      <div class="tournament">
-
-        <h3>🥉 Starter Tournament</h3>
-
-        <div class="entry">
-          $2
-        </div>
-
-        <div class="duration">
-          Duration: 6 Days
-        </div>
-
-        <div
-          class="timer"
-          id="timer-t2"
-        >
-          Loading...
-        </div>
-
-        <div class="stats">
-
-          <div class="stat">
-            <span>Players</span>
-            <strong id="players-t2">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Total Pool</span>
-            <strong id="pool-t2">$0.00</strong>
-          </div>
-
-        </div>
-
-        <div class="prizes">
-
-          <div class="prize gold">
-            <span>🥇 1st</span>
-            <strong id="first-t2">$0.00</strong>
-          </div>
-
-          <div class="prize silver">
-            <span>🥈 2nd</span>
-            <strong id="second-t2">$0.00</strong>
-          </div>
-
-          <div class="prize bronze">
-            <span>🥉 3rd</span>
-            <strong id="third-t2">$0.00</strong>
-          </div>
-
-        </div>
-
-        <button onclick="joinTournament('t2')">
-          Join $2 Tournament
-        </button>
-
-      </div>
-
-
-      <!-- $5 TOURNAMENT -->
-
-      <div class="tournament">
-
-        <h3>🥈 Pro Tournament</h3>
-
-        <div class="entry">
-          $5
-        </div>
-
-        <div class="duration">
-          Duration: 3 Days
-        </div>
-
-        <div
-          class="timer"
-          id="timer-t5"
-        >
-          Loading...
-        </div>
-
-        <div class="stats">
-
-          <div class="stat">
-            <span>Players</span>
-            <strong id="players-t5">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Total Pool</span>
-            <strong id="pool-t5">$0.00</strong>
-          </div>
-
-        </div>
-
-        <div class="prizes">
-
-          <div class="prize gold">
-            <span>🥇 1st</span>
-            <strong id="first-t5">$0.00</strong>
-          </div>
-
-          <div class="prize silver">
-            <span>🥈 2nd</span>
-            <strong id="second-t5">$0.00</strong>
-          </div>
-
-          <div class="prize bronze">
-            <span>🥉 3rd</span>
-            <strong id="third-t5">$0.00</strong>
-          </div>
-
-        </div>
-
-        <button onclick="joinTournament('t5')">
-          Join $5 Tournament
-        </button>
-
-      </div>
-
-
-      <!-- $10 TOURNAMENT -->
-
-      <div class="tournament">
-
-        <h3>🏆 Elite Tournament</h3>
-
-        <div class="entry">
-          $10
-        </div>
-
-        <div class="duration">
-          Duration: 2 Days
-        </div>
-
-        <div
-          class="timer"
-          id="timer-t10"
-        >
-          Loading...
-        </div>
-
-        <div class="stats">
-
-          <div class="stat">
-            <span>Players</span>
-            <strong id="players-t10">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Total Pool</span>
-            <strong id="pool-t10">$0.00</strong>
-          </div>
-
-        </div>
-
-        <div class="prizes">
-
-          <div class="prize gold">
-            <span>🥇 1st</span>
-            <strong id="first-t10">$0.00</strong>
-          </div>
-
-          <div class="prize silver">
-            <span>🥈 2nd</span>
-            <strong id="second-t10">$0.00</strong>
-          </div>
-
-          <div class="prize bronze">
-            <span>🥉 3rd</span>
-            <strong id="third-t10">$0.00</strong>
-          </div>
-
-        </div>
-
-        <button onclick="joinTournament('t10')">
-          Join $10 Tournament
-        </button>
-
-      </div>
-
-
-      <!-- $20 TOURNAMENT -->
-
-      <div class="tournament">
-
-        <h3>💎 High Roller Tournament</h3>
-
-        <div class="entry">
-          $20
-        </div>
-
-        <div class="duration">
-          Duration: 7 Hours
-        </div>
-
-        <div
-          class="timer"
-          id="timer-t20"
-        >
-          Loading...
-        </div>
-
-        <div class="stats">
-
-          <div class="stat">
-            <span>Players</span>
-            <strong id="players-t20">0</strong>
-          </div>
-
-          <div class="stat">
-            <span>Total Pool</span>
-            <strong id="pool-t20">$0.00</strong>
-          </div>
-
-        </div>
-
-        <div class="prizes">
-
-          <div class="prize gold">
-            <span>🥇 1st</span>
-            <strong id="first-t20">$0.00</strong>
-          </div>
-
-          <div class="prize silver">
-            <span>🥈 2nd</span>
-            <strong id="second-t20">$0.00</strong>
-          </div>
-
-          <div class="prize bronze">
-            <span>🥉 3rd</span>
-            <strong id="third-t20">$0.00</strong>
-          </div>
-
-        </div>
-
-        <button onclick="joinTournament('t20')">
-          Join $20 Tournament
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- LEADERBOARDS -->
-
-    <h2 style="margin-top:35px;">
-      📊 Live Leaderboards
-    </h2>
-
-
-    <div id="leaderboards">
-
-      <div class="card leaderboard-card">
-
-        <h3>🥉 $2 Tournament</h3>
-
-        <div class="leaderboard">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Profit</th>
-                <th>Live Prize</th>
-              </tr>
-            </thead>
-
-            <tbody id="leaderboard-t2">
-
-              <tr>
-                <td colspan="4" class="empty">
-                  Waiting for players...
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-      <div class="card leaderboard-card">
-
-        <h3>🥈 $5 Tournament</h3>
-
-        <div class="leaderboard">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Profit</th>
-                <th>Live Prize</th>
-              </tr>
-            </thead>
-
-            <tbody id="leaderboard-t5">
-
-              <tr>
-                <td colspan="4" class="empty">
-                  Waiting for players...
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-      <div class="card leaderboard-card">
-
-        <h3>🏆 $10 Tournament</h3>
-
-        <div class="leaderboard">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Profit</th>
-                <th>Live Prize</th>
-              </tr>
-            </thead>
-
-            <tbody id="leaderboard-t10">
-
-              <tr>
-                <td colspan="4" class="empty">
-                  Waiting for players...
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-
-      <div class="card leaderboard-card">
-
-        <h3>💎 $20 Tournament</h3>
-
-        <div class="leaderboard">
-
-          <table>
-
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Username</th>
-                <th>Profit</th>
-                <th>Live Prize</th>
-              </tr>
-            </thead>
-
-            <tbody id="leaderboard-t20">
-
-              <tr>
-                <td colspan="4" class="empty">
-                  Waiting for players...
-                </td>
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="card warning">
-
-      <strong>⚠️ Tournament information</strong>
-
-      <p>
-        Tournament entry payments and prize payouts will only be
-        processed after the secure Paystack backend is connected.
-      </p>
-
-      <p>
-        Demo trading balances and tournament results must be
-        calculated securely on the server.
-      </p>
-
-    </div>
-
-  </section>
+  </div>
 
 </div>
 
 
-<footer>
-  © 2026 Ozie Tournaments
-</footer>
+<!-- TOURNAMENT LOBBY -->
+
+<h2>🏆 TradeLeague Tournament Lobby</h2>
+
+<div class="tournament-grid">
+
+  <!-- $2 -->
+
+  <div class="tournament">
+
+    <h3>🥉 Starter Tournament</h3>
+
+    <div class="entry">
+      $2
+    </div>
+
+    <div class="duration">
+      Duration: 6 Days
+    </div>
+
+    <div
+      class="timer"
+      id="timer-t2"
+    >
+      Demo
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <span>Players</span>
+        <strong id="players-t2">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Total Pool</span>
+        <strong id="pool-t2">$0.00</strong>
+      </div>
+
+    </div>
+
+    <div class="prizes">
+
+      <div class="prize gold">
+        <span>🥇 1st</span>
+        <strong id="first-t2">$0.00</strong>
+      </div>
+
+      <div class="prize silver">
+        <span>🥈 2nd</span>
+        <strong id="second-t2">$0.00</strong>
+      </div>
+
+      <div class="prize bronze">
+        <span>🥉 3rd</span>
+        <strong id="third-t2">$0.00</strong>
+      </div>
+
+    </div>
+
+    <button onclick="joinTournament('t2')">
+      View $2 Tournament
+    </button>
+
+  </div>
 
 
-<script type="module">
+  <!-- $5 -->
+
+  <div class="tournament">
+
+    <h3>🥈 Pro Tournament</h3>
+
+    <div class="entry">
+      $5
+    </div>
+
+    <div class="duration">
+      Duration: 3 Days
+    </div>
+
+    <div
+      class="timer"
+      id="timer-t5"
+    >
+      Demo
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <span>Players</span>
+        <strong id="players-t5">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Total Pool</span>
+        <strong id="pool-t5">$0.00</strong>
+      </div>
+
+    </div>
+
+    <div class="prizes">
+
+      <div class="prize gold">
+        <span>🥇 1st</span>
+        <strong id="first-t5">$0.00</strong>
+      </div>
+
+      <div class="prize silver">
+        <span>🥈 2nd</span>
+        <strong id="second-t5">$0.00</strong>
+      </div>
+
+      <div class="prize bronze">
+        <span>🥉 3rd</span>
+        <strong id="third-t5">$0.00</strong>
+      </div>
+
+    </div>
+
+    <button onclick="joinTournament('t5')">
+      View $5 Tournament
+    </button>
+
+  </div>
+
+
+  <!-- $10 -->
+
+  <div class="tournament">
+
+    <h3>🏆 Elite Tournament</h3>
+
+    <div class="entry">
+      $10
+    </div>
+
+    <div class="duration">
+      Duration: 2 Days
+    </div>
+
+    <div
+      class="timer"
+      id="timer-t10"
+    >
+      Demo
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <span>Players</span>
+        <strong id="players-t10">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Total Pool</span>
+        <strong id="pool-t10">$0.00</strong>
+      </div>
+
+    </div>
+
+    <div class="prizes">
+
+      <div class="prize gold">
+        <span>🥇 1st</span>
+        <strong id="first-t10">$0.00</strong>
+      </div>
+
+      <div class="prize silver">
+        <span>🥈 2nd</span>
+        <strong id="second-t10">$0.00</strong>
+      </div>
+
+      <div class="prize bronze">
+        <span>🥉 3rd</span>
+        <strong id="third-t10">$0.00</strong>
+      </div>
+
+    </div>
+
+    <button onclick="joinTournament('t10')">
+      View $10 Tournament
+    </button>
+
+  </div>
+
+
+  <!-- $20 -->
+
+  <div class="tournament">
+
+    <h3>💎 High Roller Tournament</h3>
+
+    <div class="entry">
+      $20
+    </div>
+
+    <div class="duration">
+      Duration: 7 Hours
+    </div>
+
+    <div
+      class="timer"
+      id="timer-t20"
+    >
+      Demo
+    </div>
+
+    <div class="stats">
+
+      <div class="stat">
+        <span>Players</span>
+        <strong id="players-t20">0</strong>
+      </div>
+
+      <div class="stat">
+        <span>Total Pool</span>
+        <strong id="pool-t20">$0.00</strong>
+      </div>
+
+    </div>
+
+    <div class="prizes">
+
+      <div class="prize gold">
+        <span>🥇 1st</span>
+        <strong id="first-t20">$0.00</strong>
+      </div>
+
+      <div class="prize silver">
+        <span>🥈 2nd</span>
+        <strong id="second-t20">$0.00</strong>
+      </div>
+
+      <div class="prize bronze">
+        <span>🥉 3rd</span>
+        <strong id="third-t20">$0.00</strong>
+      </div>
+
+    </div>
+
+    <button onclick="joinTournament('t20')">
+      View $20 Tournament
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- LEADERBOARDS -->
+
+<h2 style="margin-top:35px;">
+  📊 Live Leaderboards
+</h2>
+
+
+<div id="leaderboards">
+
+  <div class="card leaderboard-card">
+
+    <h3>🥉 $2 Tournament</h3>
+
+    <div class="leaderboard">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Profit</th>
+            <th>Live Prize</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboard-t2">
+
+          <tr>
+            <td colspan="4" class="empty">
+              Waiting for players...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <div class="card leaderboard-card">
+
+    <h3>🥈 $5 Tournament</h3>
+
+    <div class="leaderboard">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Profit</th>
+            <th>Live Prize</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboard-t5">
+
+          <tr>
+            <td colspan="4" class="empty">
+              Waiting for players...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <div class="card leaderboard-card">
+
+    <h3>🏆 $10 Tournament</h3>
+
+    <div class="leaderboard">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Profit</th>
+            <th>Live Prize</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboard-t10">
+
+          <tr>
+            <td colspan="4" class="empty">
+              Waiting for players...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <div class="card leaderboard-card">
+
+    <h3>💎 $20 Tournament</h3>
+
+    <div class="leaderboard">
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Profit</th>
+            <th>Live Prize</th>
+          </tr>
+        </thead>
+
+        <tbody id="leaderboard-t20">
+
+          <tr>
+            <td colspan="4" class="empty">
+              Waiting for players...
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="card warning">
+
+  <strong>⚠️ TradeLeague Demo</strong>
+
+  <p>
+    Tournament fees and prize payouts are not processed by this demo.
+  </p>
+
+  <p>
+    Real-money tournaments require a secure server-side system,
+    payment integration, fraud controls, and appropriate legal
+    and regulatory review before launch.
+  </p>
+
+</div>
+
+  </section></div><footer>
+  © 2026 TradeLeague
+</footer><script type="module">
 
   /* ==========================================
-     FIREBASE
+     FIREBASE IMPORTS
   ========================================== */
 
   import {
@@ -762,12 +733,19 @@
 
   import {
     getFirestore,
+    doc,
+    setDoc,
     collection,
     query,
     orderBy,
-    onSnapshot
+    onSnapshot,
+    serverTimestamp
   } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
+
+  /* ==========================================
+     FIREBASE CONFIG
+  ========================================== */
 
   const firebaseConfig = {
 
@@ -810,48 +788,40 @@
 
     t2: {
       name: "$2 Tournament",
-      fee: 2,
-      duration: 6 * 24 * 60 * 60 * 1000
+      fee: 2
     },
 
     t5: {
       name: "$5 Tournament",
-      fee: 5,
-      duration: 3 * 24 * 60 * 60 * 1000
+      fee: 5
     },
 
     t10: {
       name: "$10 Tournament",
-      fee: 10,
-      duration: 2 * 24 * 60 * 60 * 1000
+      fee: 10
     },
 
     t20: {
       name: "$20 Tournament",
-      fee: 20,
-      duration: 7 * 60 * 60 * 1000
+      fee: 20
     }
 
   };
 
 
   /* ==========================================
-     HELPER
+     HELPERS
   ========================================== */
 
   function money(amount) {
 
     return "$" +
-      Number(amount || 0)
-        .toFixed(2);
+      Number(amount || 0).toFixed(2);
 
   }
 
 
-  function calculatePrizes(
-    players,
-    entryFee
-  ) {
+  function calculatePrizes(players, entryFee) {
 
     const totalPool =
       players * entryFee;
@@ -878,7 +848,7 @@
 
 
   /* ==========================================
-     AUTH
+     AUTH ELEMENTS
   ========================================== */
 
   const emailInput =
@@ -891,6 +861,11 @@
     document.getElementById("authMessage");
 
 
+  /* ==========================================
+     CREATE ACCOUNT
+     AUTH + FIRESTORE
+  ========================================== */
+
   document
     .getElementById("signupBtn")
     .addEventListener("click", async () => {
@@ -901,13 +876,16 @@
       const password =
         passwordInput.value;
 
+
       if (!email || !password) {
 
         authMessage.textContent =
           "Enter your email and password.";
 
         return;
+
       }
+
 
       if (password.length < 6) {
 
@@ -915,28 +893,61 @@
           "Password must contain at least 6 characters.";
 
         return;
+
       }
+
 
       try {
 
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
+        authMessage.textContent =
+          "Creating your account...";
+
+
+        /* Create Firebase Authentication account */
+
+        const userCredential =
+          await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+
+
+        const user =
+          userCredential.user;
+
+
+        /* Save user to Firestore */
+
+        await setDoc(
+          doc(db, "users", user.uid),
+          {
+            uid: user.uid,
+            email: user.email,
+            createdAt: serverTimestamp()
+          }
         );
 
+
         authMessage.textContent =
-          "✅ Account created successfully.";
+          "✅ Account created and saved successfully.";
+
 
       } catch (error) {
 
+        console.error(error);
+
         authMessage.textContent =
-          error.message;
+          "❌ " + error.message;
 
       }
 
     });
 
+
+  /* ==========================================
+     LOGIN
+  ========================================== */
 
   document
     .getElementById("loginBtn")
@@ -948,15 +959,22 @@
       const password =
         passwordInput.value;
 
+
       if (!email || !password) {
 
         authMessage.textContent =
           "Enter your email and password.";
 
         return;
+
       }
 
+
       try {
+
+        authMessage.textContent =
+          "Logging in...";
+
 
         await signInWithEmailAndPassword(
           auth,
@@ -964,24 +982,39 @@
           password
         );
 
+
         authMessage.textContent =
           "🔥 Login successful.";
 
       } catch (error) {
 
+        console.error(error);
+
         authMessage.textContent =
-          error.message;
+          "❌ " + error.message;
 
       }
 
     });
 
 
+  /* ==========================================
+     LOGOUT
+  ========================================== */
+
   document
     .getElementById("logoutBtn")
     .addEventListener("click", async () => {
 
-      await signOut(auth);
+      try {
+
+        await signOut(auth);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
 
     });
 
@@ -995,14 +1028,11 @@
     (user) => {
 
       const authSection =
-        document.getElementById(
-          "authSection"
-        );
+        document.getElementById("authSection");
 
       const appSection =
-        document.getElementById(
-          "appSection"
-        );
+        document.getElementById("appSection");
+
 
       if (user) {
 
@@ -1014,12 +1044,15 @@
           .classList
           .remove("hidden");
 
+
         document
           .getElementById("userEmail")
           .textContent =
-          user.email;
+          user.email || "";
+
 
         startFirestoreListeners();
+
 
       } else {
 
@@ -1046,41 +1079,17 @@
     Object.keys(tournaments)
       .forEach((tournamentId) => {
 
-        listenToTournament(
-          tournamentId
-        );
+        listenToTournament(tournamentId);
 
       });
 
   }
 
 
-  function listenToTournament(
-    tournamentId
-  ) {
-
-    const tournament =
-      tournaments[tournamentId];
-
-
-    /*
-      Tournament document:
-
-      tournaments/{tournamentId}
-
-      Example:
-
-      {
-        endAt: Timestamp,
-        totalPlayers: 100
-      }
-    */
+  function listenToTournament(tournamentId) {
 
     const tournamentRef =
-      collection(
-        db,
-        "tournaments"
-      );
+      collection(db, "tournaments");
 
 
     const tournamentQuery =
@@ -1094,24 +1103,22 @@
       tournamentQuery,
       (snapshot) => {
 
-        let tournamentData =
-          null;
+        let tournamentData = null;
 
-        snapshot.forEach(
-          (doc) => {
 
-            if (
-              doc.id ===
-              tournamentId
-            ) {
+        snapshot.forEach((documentSnapshot) => {
 
-              tournamentData =
-                doc.data();
+          if (
+            documentSnapshot.id ===
+            tournamentId
+          ) {
 
-            }
+            tournamentData =
+              documentSnapshot.data();
 
           }
-        );
+
+        });
 
 
         if (!tournamentData) {
@@ -1147,8 +1154,13 @@
       (error) => {
 
         console.error(
-          "Firestore error:",
+          "Tournament Firestore error:",
           error
+        );
+
+        updateTournamentDisplay(
+          tournamentId,
+          0
         );
 
       }
@@ -1173,4 +1185,33 @@
 
     const prizes =
       calculatePrizes(
-        play
+        players,
+        tournament.fee
+      );
+
+
+    const playersElement =
+      document.getElementById(
+        "players-" + tournamentId
+      );
+
+
+    const poolElement =
+      document.getElementById(
+        "pool-" + tournamentId
+      );
+
+
+    const firstElement =
+      document.getElementById(
+        "first-" + tournamentId
+      );
+
+
+    const secondElement =
+      document.getElementById(
+        "second-" + tournamentId
+      );
+
+
+    const third
