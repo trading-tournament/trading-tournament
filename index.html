@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Trading League | Trade. Compete. Win.</title>
-  <meta name="description" content="Trading League - compete in trading tournaments and follow global markets.">
+  <title>Trading League — Tournament</title>
 
   <style>
     * {
@@ -15,24 +14,23 @@
     }
 
     :root {
-      --bg: #07100d;
-      --bg2: #0b1713;
-      --card: #0e1d18;
-      --card2: #12251e;
-      --border: rgba(255,255,255,0.08);
-      --text: #f5f7f6;
-      --muted: #8e9c96;
-      --green: #19d889;
-      --green2: #0fae6d;
-      --red: #ff5c67;
-      --gold: #f5c451;
+      --bg: #06130f;
+      --panel: #0c1e18;
+      --panel2: #102720;
+      --border: rgba(255,255,255,.08);
+      --text: #f4f7f6;
+      --muted: #94a6a0;
+      --green: #19e39a;
+      --green-dark: #0b8f63;
+      --red: #ff6875;
+      --gold: #ffc94a;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at 80% 0%, rgba(25,216,137,0.12), transparent 30%),
-        linear-gradient(180deg, var(--bg), #050a08);
+        radial-gradient(circle at 50% 0%, rgba(25,227,154,.12), transparent 35%),
+        var(--bg);
       color: var(--text);
       min-height: 100vh;
     }
@@ -44,28 +42,26 @@
 
     button {
       font-family: inherit;
+      cursor: pointer;
     }
 
-    /* NAVBAR */
-
     .navbar {
-      width: 100%;
-      border-bottom: 1px solid var(--border);
-      background: rgba(5,12,9,0.88);
-      backdrop-filter: blur(14px);
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
+      background: rgba(5,16,13,.92);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-inner {
       max-width: 1200px;
       margin: auto;
-      padding: 17px 22px;
+      padding: 16px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 15px;
     }
 
     .brand {
@@ -74,538 +70,305 @@
       gap: 11px;
       font-size: 20px;
       font-weight: 800;
-      letter-spacing: -0.5px;
     }
 
     .brand-icon {
       width: 38px;
       height: 38px;
-      border-radius: 11px;
+      border-radius: 12px;
+      background: var(--green);
+      color: #03130d;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--green), #08794c);
-      color: #03150e;
       font-weight: 900;
-      box-shadow: 0 8px 30px rgba(25,216,137,0.2);
     }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .nav-buttons {
-      display: flex;
-      gap: 9px;
-    }
-
-    .btn {
-      border: 0;
-      cursor: pointer;
-      padding: 11px 17px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 13px;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      background: transparent;
+    .back {
       border: 1px solid var(--border);
-      color: white;
+      background: transparent;
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 10px;
     }
 
-    .btn-green {
-      background: var(--green);
-      color: #03150e;
+    .back:hover {
+      border-color: var(--green);
     }
 
-    .btn-green:hover {
-      background: #35e79c;
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 45px 20px 80px;
     }
-
-    /* HERO */
 
     .hero {
-      max-width: 1200px;
-      margin: auto;
-      padding: 82px 22px 60px;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 55px;
-      align-items: center;
+      text-align: center;
+      margin-bottom: 35px;
     }
 
-    .eyebrow {
+    .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 11px;
-      border: 1px solid rgba(25,216,137,0.2);
-      background: rgba(25,216,137,0.06);
-      border-radius: 999px;
+      border: 1px solid rgba(25,227,154,.25);
+      background: rgba(25,227,154,.07);
       color: var(--green);
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 20px;
+      border-radius: 999px;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
     }
 
-    .live-dot {
-      width: 7px;
-      height: 7px;
+    .dot {
+      width: 8px;
+      height: 8px;
       background: var(--green);
       border-radius: 50%;
       box-shadow: 0 0 12px var(--green);
     }
 
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 0.98;
-      letter-spacing: -4px;
-      max-width: 750px;
-      margin-bottom: 22px;
-    }
-
-    .hero h1 span {
-      color: var(--green);
-    }
-
-    .hero-text {
-      max-width: 600px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .hero-actions .btn {
-      padding: 14px 21px;
-      font-size: 14px;
-    }
-
-    /* HERO MARKET PANEL */
-
-    .market-preview {
-      background: linear-gradient(145deg, rgba(20,40,32,0.9), rgba(7,16,13,0.95));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 20px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-    }
-
-    .panel-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .panel-title {
-      font-weight: 800;
-    }
-
-    .live-label {
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .btc-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    h1 {
+      font-size: clamp(34px, 7vw, 64px);
+      line-height: 1;
       margin-bottom: 16px;
     }
 
-    .asset {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .asset-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #f7931a;
-      color: white;
-      font-weight: 900;
-    }
-
-    .asset-name {
-      font-weight: 800;
-    }
-
-    .asset-symbol {
-      font-size: 11px;
+    .hero p {
       color: var(--muted);
-      margin-top: 3px;
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.7;
     }
 
-    .price {
-      text-align: right;
-      font-weight: 800;
-    }
-
-    .positive {
-      color: var(--green);
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    .chart {
-      height: 190px;
+    .account {
+      margin: 25px auto;
+      max-width: 600px;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
       border-radius: 14px;
-      background:
-        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
-      background-size: 38px 38px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .account strong {
+      color: var(--text);
+    }
+
+    .tournaments {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 35px;
+    }
+
+    .tournament-card {
+      background: linear-gradient(145deg, var(--panel2), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
       position: relative;
       overflow: hidden;
     }
 
-    .chart svg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0;
-      top: 0;
+    .tournament-card.active {
+      border-color: rgba(25,227,154,.45);
+      box-shadow: 0 0 35px rgba(25,227,154,.07);
     }
 
-    .chart-line {
-      fill: none;
-      stroke: var(--green);
-      stroke-width: 3;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    /* SECTION */
-
-    .section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 45px 22px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-
-    .section-title {
-      font-size: 28px;
-      letter-spacing: -1px;
-    }
-
-    .section-description {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 7px;
-    }
-
-    .view-link {
+    .status {
+      font-size: 11px;
+      font-weight: 800;
       color: var(--green);
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    /* MARKET CARDS */
-
-    .markets {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 13px;
-    }
-
-    .market-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 17px;
-      transition: 0.2s;
-    }
-
-    .market-card:hover {
-      border-color: rgba(25,216,137,0.3);
-      transform: translateY(-2px);
-    }
-
-    .market-card .asset-logo {
-      width: 34px;
-      height: 34px;
-      font-size: 13px;
-    }
-
-    .market-info {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .market-price {
-      margin-top: 20px;
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .market-change {
-      font-size: 12px;
-      margin-top: 5px;
-    }
-
-    .eth {
-      background: #627eea;
-    }
-
-    .usdt {
-      background: #26a17b;
-    }
-
-    .eur {
-      background: #2454a6;
-    }
-
-    /* TOURNAMENT */
-
-    .tournament-wrap {
-      background:
-        radial-gradient(circle at 90% 10%, rgba(25,216,137,0.16), transparent 35%),
-        linear-gradient(135deg, #0d2119, #09130f);
-      border: 1px solid rgba(25,216,137,0.13);
-      border-radius: 22px;
-      padding: 27px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-      align-items: center;
-    }
-
-    .tournament-badge {
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 800;
       margin-bottom: 12px;
     }
 
-    .tournament-wrap h2 {
-      font-size: 34px;
-      letter-spacing: -1.5px;
-      margin-bottom: 10px;
-    }
-
-    .tournament-wrap p {
+    .status.locked {
       color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
     }
 
-    .tournament-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-
-    .stat {
-      background: rgba(0,0,0,0.2);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .stat-label {
-      color: var(--muted);
-      font-size: 11px;
+    .entry {
+      font-size: 28px;
+      font-weight: 900;
       margin-bottom: 7px;
     }
 
-    .stat-value {
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .active-tag {
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    /* ENTRY OPTIONS */
-
-    .entry-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 13px;
-    }
-
-    .entry-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-    }
-
-    .entry-card.active {
-      border-color: rgba(25,216,137,0.45);
-      box-shadow: 0 15px 50px rgba(25,216,137,0.06);
-    }
-
-    .entry-card.locked {
-      opacity: 0.55;
-    }
-
-    .entry-price {
-      font-size: 28px;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .entry-card p {
+    .prize {
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
-      min-height: 37px;
-      margin-bottom: 16px;
+      font-size: 13px;
+      margin-bottom: 15px;
     }
 
-    .entry-btn {
+    .join {
       width: 100%;
       border: 0;
-      border-radius: 9px;
+      border-radius: 10px;
       padding: 11px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .entry-btn.active-btn {
       background: var(--green);
-      color: #03150e;
+      color: #03130d;
+      font-weight: 900;
     }
 
-    .entry-btn.locked-btn {
-      background: #18251f;
-      color: #718078;
+    .join.locked {
+      background: #1a2924;
+      color: #6f817a;
       cursor: not-allowed;
     }
 
-    /* FOOTER */
-
-    footer {
-      border-top: 1px solid var(--border);
-      margin-top: 50px;
+    .leaderboard {
+      background: linear-gradient(145deg, #0d211a, #091812);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
     }
 
-    .footer-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: 28px 22px;
+    .leader-head {
+      padding: 22px;
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
-      gap: 20px;
-      color: var(--muted);
+      align-items: center;
+      gap: 15px;
+    }
+
+    .leader-title {
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .live {
+      color: var(--green);
       font-size: 12px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 7px;
     }
 
-    /* MOBILE */
+    .live .dot {
+      width: 7px;
+      height: 7px;
+    }
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 55px;
-      }
+    .table-wrap {
+      overflow-x: auto;
+    }
 
-      .markets {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 520px;
+    }
+
+    th {
+      text-align: left;
+      color: #71847d;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 15px 22px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 17px 22px;
+      border-bottom: 1px solid rgba(255,255,255,.045);
+      font-size: 14px;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .rank {
+      font-weight: 900;
+      width: 70px;
+    }
+
+    .player {
+      font-weight: 800;
+    }
+
+    .profit {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .loss {
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .empty {
+      padding: 45px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .message {
+      margin: 20px auto;
+      max-width: 700px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      display: none;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.error {
+      background: rgba(255,104,117,.08);
+      border: 1px solid rgba(255,104,117,.2);
+      color: #ff9aa3;
+    }
+
+    .message.info {
+      background: rgba(25,227,154,.07);
+      border: 1px solid rgba(25,227,154,.2);
+      color: var(--green);
+    }
+
+    .footer {
+      text-align: center;
+      color: #65766f;
+      font-size: 12px;
+      margin-top: 45px;
+    }
+
+    @media (max-width: 800px) {
+      .tournaments {
         grid-template-columns: repeat(2, 1fr);
-      }
-
-      .entry-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .tournament-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .nav-links {
-        display: none;
       }
     }
 
-    @media (max-width: 600px) {
-      .nav-inner {
-        padding: 13px 15px;
+    @media (max-width: 500px) {
+      .container {
+        padding: 30px 14px 60px;
       }
 
-      .brand {
-        font-size: 17px;
-      }
-
-      .brand-icon {
-        width: 34px;
-        height: 34px;
-      }
-
-      .nav-buttons .btn-outline {
-        display: none;
-      }
-
-      .hero {
-        padding: 48px 16px 30px;
-      }
-
-      .hero h1 {
-        font-size: 46px;
-        letter-spacing: -2.5px;
-      }
-
-      .hero-text {
-        font-size: 15px;
-      }
-
-      .section {
-        padding: 32px 16px;
-      }
-
-      .markets {
+      .tournaments {
         grid-template-columns: 1fr 1fr;
       }
 
-      .entry-grid {
-        grid-template-columns: 1fr 1fr;
+      .tournament-card {
+        padding: 16px;
       }
 
-      .tournament-wrap {
-        padding: 20px;
+      .entry {
+        font-size: 23px;
       }
 
-      .tournament-wrap h2 {
-        font-size: 28px;
+      .leader-head {
+        padding: 18px;
       }
 
-      .footer-inner {
-        flex-direction: column;
+      th,
+      td {
+        padding: 14px 15px;
       }
     }
   </style>
@@ -613,400 +376,424 @@
 
 <body>
 
-  <!-- NAVIGATION -->
-  <header class="navbar">
+  <nav class="navbar">
     <div class="nav-inner">
-
-      <a href="index.html" class="brand">
-        <div class="brand-icon">TL</div>
-        <span>Trading League</span>
+      <a class="brand" href="index.html">
+        <span class="brand-icon">TL</span>
+        Trading League
       </a>
 
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="markets.html">Markets</a>
-        <a href="tournament.html">Tournaments</a>
-      </nav>
-
-      <div class="nav-buttons">
-        <a href="login.html" class="btn btn-outline">Log in</a>
-        <a href="signup.html" class="btn btn-green">Get Started</a>
-      </div>
-
+      <a class="back" href="index.html">
+        ← Home
+      </a>
     </div>
-  </header>
+  </nav>
 
-
-  <!-- HERO -->
-  <main>
+  <main class="container">
 
     <section class="hero">
-
-      <div>
-        <div class="eyebrow">
-          <span class="live-dot"></span>
-          GLOBAL TRADING COMPETITION
-        </div>
-
-        <h1>
-          Trade the market.<br>
-          <span>Compete to win.</span>
-        </h1>
-
-        <p class="hero-text">
-          Trading League brings markets and competitive trading together.
-          Explore digital assets, follow market movements and compete
-          against other traders in organized tournaments.
-        </p>
-
-        <div class="hero-actions">
-          <a href="tournament.html" class="btn btn-green">
-            Enter Tournament →
-          </a>
-
-          <a href="markets.html" class="btn btn-outline">
-            Explore Markets
-          </a>
-        </div>
+      <div class="badge">
+        <span class="dot"></span>
+        LIVE TOURNAMENT
       </div>
 
+      <h1>Trading Tournament</h1>
 
-      <!-- MARKET PREVIEW -->
-      <div class="market-preview">
+      <p>
+        Compete against other registered traders and climb the live
+        leaderboard based on your verified tournament performance.
+      </p>
 
-        <div class="panel-top">
-          <span class="panel-title">Market Overview</span>
-          <span class="live-label">● LIVE</span>
-        </div>
+      <div class="account" id="accountBox">
+        Checking your account...
+      </div>
+    </section>
 
-        <div class="btc-row">
+    <div id="message" class="message"></div>
 
-          <div class="asset">
-            <div class="asset-logo">₿</div>
+    <section class="tournaments">
 
-            <div>
-              <div class="asset-name">Bitcoin</div>
-              <div class="asset-symbol">BTC / USD</div>
-            </div>
-          </div>
+      <div class="tournament-card active">
+        <div class="status">● ACTIVE</div>
+        <div class="entry">$2</div>
+        <div class="prize">Current tournament</div>
+        <button class="join" id="join2">
+          Enter $2 Tournament
+        </button>
+      </div>
 
-          <div class="price">
-            <div id="btcPrice">$—</div>
-            <div class="positive">Market data loading</div>
-          </div>
+      <div class="tournament-card">
+        <div class="status locked">● LOCKED</div>
+        <div class="entry">$5</div>
+        <div class="prize">Coming later</div>
+        <button class="join locked" disabled>
+          Coming Soon
+        </button>
+      </div>
 
-        </div>
+      <div class="tournament-card">
+        <div class="status locked">● LOCKED</div>
+        <div class="entry">$10</div>
+        <div class="prize">Coming later</div>
+        <button class="join locked" disabled>
+          Coming Soon
+        </button>
+      </div>
 
-        <div class="chart">
-
-          <svg viewBox="0 0 500 190" preserveAspectRatio="none">
-            <polyline
-              class="chart-line"
-              points="
-              0,145
-              25,150
-              50,130
-              75,138
-              100,110
-              125,118
-              150,92
-              175,105
-              200,82
-              225,88
-              250,70
-              275,84
-              300,58
-              325,66
-              350,48
-              375,62
-              400,39
-              425,53
-              450,28
-              475,38
-              500,18
-              ">
-            </polyline>
-          </svg>
-
-        </div>
-
+      <div class="tournament-card">
+        <div class="status locked">● LOCKED</div>
+        <div class="entry">$15</div>
+        <div class="prize">Coming later</div>
+        <button class="join locked" disabled>
+          Coming Soon
+        </button>
       </div>
 
     </section>
 
+    <section class="leaderboard">
 
-    <!-- MARKETS -->
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-          <h2 class="section-title">Popular Markets</h2>
-          <p class="section-description">
-            Explore the assets available on Trading League.
-          </p>
+      <div class="leader-head">
+        <div class="leader-title">
+          🏆 Live Leaderboard
         </div>
 
-        <a href="markets.html" class="view-link">
-          View all →
-        </a>
-
+        <div class="live">
+          <span class="dot"></span>
+          LIVE
+        </div>
       </div>
 
+      <div class="table-wrap">
+        <table>
 
-      <div class="markets">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Trader</th>
+              <th>Profit / Score</th>
+            </tr>
+          </thead>
 
-        <div class="market-card">
+          <tbody id="leaderboardBody">
+            <tr>
+              <td colspan="3">
+                <div class="empty">
+                  Loading live leaderboard...
+                </div>
+              </td>
+            </tr>
+          </tbody>
 
-          <div class="market-info">
-            <div class="asset">
-              <div class="asset-logo">₿</div>
-
-              <div>
-                <div class="asset-name">Bitcoin</div>
-                <div class="asset-symbol">BTC / USD</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="market-price" id="btcCardPrice">$—</div>
-          <div class="market-change positive">Live market</div>
-
-        </div>
-
-
-        <div class="market-card">
-
-          <div class="market-info">
-            <div class="asset">
-              <div class="asset-logo eth">◆</div>
-
-              <div>
-                <div class="asset-name">Ethereum</div>
-                <div class="asset-symbol">ETH / USD</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="market-price" id="ethCardPrice">$—</div>
-          <div class="market-change positive">Live market</div>
-
-        </div>
-
-
-        <div class="market-card">
-
-          <div class="market-info">
-            <div class="asset">
-              <div class="asset-logo usdt">₮</div>
-
-              <div>
-                <div class="asset-name">Tether</div>
-                <div class="asset-symbol">USDT / USD</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="market-price">$1.00</div>
-          <div class="market-change positive">Stable asset</div>
-
-        </div>
-
-
-        <div class="market-card">
-
-          <div class="market-info">
-            <div class="asset">
-              <div class="asset-logo eur">€</div>
-
-              <div>
-                <div class="asset-name">Euro</div>
-                <div class="asset-symbol">EUR / USD</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="market-price">EUR/USD</div>
-          <div class="market-change positive">Market</div>
-
-        </div>
-
+        </table>
       </div>
 
     </section>
 
-
-    <!-- TOURNAMENT -->
-    <section class="section">
-
-      <div class="tournament-wrap">
-
-        <div>
-
-          <div class="tournament-badge">
-            🏆 TRADING LEAGUE TOURNAMENT
-          </div>
-
-          <h2>Compete. Climb. Win.</h2>
-
-          <p>
-            Join the active tournament, compete against other traders
-            and climb the leaderboard based on your tournament performance.
-          </p>
-
-          <br>
-
-          <a href="tournament.html" class="btn btn-green">
-            View Tournament
-          </a>
-
-        </div>
-
-
-        <div class="tournament-stats">
-
-          <div class="stat">
-            <div class="stat-label">ENTRY FEE</div>
-            <div class="stat-value">$2</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">STATUS</div>
-            <div class="active-tag">● ACTIVE</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">HIGHER TIERS</div>
-            <div class="stat-value">Locked</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-label">LEADERBOARD</div>
-            <div class="stat-value">Live</div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- TOURNAMENT ENTRY OPTIONS -->
-    <section class="section">
-
-      <div class="section-header">
-
-        <div>
-          <h2 class="section-title">Tournament Levels</h2>
-
-          <p class="section-description">
-            Start with the active tournament. Higher levels will become
-            available when activated by the platform.
-          </p>
-        </div>
-
-      </div>
-
-
-      <div class="entry-grid">
-
-        <!-- $2 ACTIVE -->
-        <div class="entry-card active">
-
-          <div class="entry-price">$2</div>
-
-          <p>
-            Current entry level. Join the active Trading League tournament.
-          </p>
-
-          <button
-            class="entry-btn active-btn"
-            onclick="joinTwoDollarTournament()">
-            Join Tournament
-          </button>
-
-        </div>
-
-
-        <!-- $5 LOCKED -->
-        <div class="entry-card locked">
-
-          <div class="entry-price">$5</div>
-
-          <p>
-            This tournament level is currently unavailable.
-          </p>
-
-          <button class="entry-btn locked-btn" disabled>
-            🔒 Coming Soon
-          </button>
-
-        </div>
-
-
-        <!-- $10 LOCKED -->
-        <div class="entry-card locked">
-
-          <div class="entry-price">$10</div>
-
-          <p>
-            This tournament level is currently unavailable.
-          </p>
-
-          <button class="entry-btn locked-btn" disabled>
-            🔒 Coming Soon
-          </button>
-
-        </div>
-
-
-        <!-- $15 LOCKED -->
-        <div class="entry-card locked">
-
-          <div class="entry-price">$15</div>
-
-          <p>
-            This tournament level is currently unavailable.
-          </p>
-
-          <button class="entry-btn locked-btn" disabled>
-            🔒 Coming Soon
-          </button>
-
-        </div>
-
-      </div>
-
-    </section>
+    <div class="footer">
+      Trading League © 2026
+    </div>
 
   </main>
 
 
-  <!-- FOOTER -->
-  <footer>
+  <!-- FIREBASE -->
 
-    <div class="footer-inner">
+  <script type="module">
 
-      <div>
-        © 2026 Trading League. All rights reserved.
-      </div>
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
 
-      <div>
-        Markets • Tournaments • Account
-      </div>
+    import {
+      getAuth,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-    </div>
+    import {
+      getFirestore,
+      collection,
+      query,
+      orderBy,
+      limit,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-  </footer>
+
+    /* YOUR TRADING LEAGUE FIREBASE PROJECT */
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+      authDomain: "project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+      projectId: "project-57e2c805-1b30-40ea-a94",
+      storageBucket: "project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+      messagingSenderId: "567705081329",
+      appId: "1:567705081329:web:dd697fe1ed61f56045e050",
+      measurementId: "G-J26580N9L2"
+    };
 
 
-  <script>
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+    const db = getFirestore(app);
+
+
+    const accountBox =
+      document.getElementById("accountBox");
+
+    const leaderboardBody =
+      document.getElementById("leaderboardBody");
+
+    const message =
+      document.getElementById("message");
+
+
+    function showMessage(text, type = "info") {
+
+      message.textContent = text;
+
+      message.className =
+        "message show " + type;
+
+    }
+
 
     /*
-      IMPORTANT:
-      This front page does NOT process real payments.
+      AUTHENTICATION
 
-      The $2 button only sends the user to the tournament page.
-      Real DPay payment processing must happen through a secure
-      backend, not inside this HTML file
+      The page does not create fake accounts.
+      It checks the real Firebase account.
+    */
+
+    onAuthStateChanged(auth, (user) => {
+
+      if (user) {
+
+        const email =
+          user.email || "Registered trader";
+
+        accountBox.innerHTML =
+          "Signed in as <strong>" +
+          escapeHtml(email) +
+          "</strong>";
+
+      } else {
+
+        accountBox.innerHTML =
+          'You are not signed in. <a href="login.html" style="color:#19e39a;font-weight:800;">Login</a> to enter the tournament.';
+
+      }
+
+    });
+
+
+    /*
+      LIVE FIRESTORE LEADERBOARD
+
+      Firestore collection:
+
+      leaderboard
+
+      Each document should contain:
+
+      {
+        displayName: "Trader",
+        profit: 125.50,
+        tournament: "2"
+      }
+
+      IMPORTANT:
+      Profit should be written by a trusted backend/admin
+      process, NOT by the user's browser.
+    */
+
+    const leaderboardQuery = query(
+      collection(db, "leaderboard"),
+      orderBy("profit", "desc"),
+      limit(100)
+    );
+
+
+    onSnapshot(
+      leaderboardQuery,
+
+      (snapshot) => {
+
+        leaderboardBody.innerHTML = "";
+
+        const players = [];
+
+        snapshot.forEach((doc) => {
+
+          const data = doc.data();
+
+          if (data.tournament !== "2") {
+            return;
+          }
+
+          players.push({
+            name:
+              data.displayName ||
+              "Trader",
+
+            profit:
+              Number(data.profit) || 0
+          });
+
+        });
+
+
+        if (players.length === 0) {
+
+          leaderboardBody.innerHTML = `
+            <tr>
+              <td colspan="3">
+                <div class="empty">
+                  No tournament results yet.
+                  The leaderboard will update automatically when
+                  verified results are added.
+                </div>
+              </td>
+            </tr>
+          `;
+
+          return;
+        }
+
+
+        players.forEach((player, index) => {
+
+          const row =
+            document.createElement("tr");
+
+          const rank =
+            index + 1;
+
+          const profitClass =
+            player.profit >= 0
+              ? "profit"
+              : "loss";
+
+          const sign =
+            player.profit >= 0
+              ? "+"
+              : "";
+
+          row.innerHTML = `
+
+            <td class="rank">
+              ${getRank(rank)}
+            </td>
+
+            <td class="player">
+              ${escapeHtml(player.name)}
+            </td>
+
+            <td class="${profitClass}">
+              ${sign}$${player.profit.toFixed(2)}
+            </td>
+
+          `;
+
+          leaderboardBody.appendChild(row);
+
+        });
+
+      },
+
+      (error) => {
+
+        console.error(error);
+
+        leaderboardBody.innerHTML = `
+          <tr>
+            <td colspan="3">
+              <div class="empty">
+                Unable to load the leaderboard.
+                Check your Firestore setup and security rules.
+              </div>
+            </td>
+          </tr>
+        `;
+
+      }
+
+    );
+
+
+    function getRank(rank) {
+
+      if (rank === 1) return "🥇 1";
+
+      if (rank === 2) return "🥈 2";
+
+      if (rank === 3) return "🥉 3";
+
+      return rank;
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    /*
+      $2 TOURNAMENT
+
+      For now this only checks whether the user is logged in.
+      It does NOT pretend that a payment has happened.
+
+      Real DPay payment must be connected through a secure
+      backend after your DPay account/API setup is ready.
+    */
+
+    document
+      .getElementById("join2")
+      .addEventListener("click", () => {
+
+        const user = auth.currentUser;
+
+        if (!user) {
+
+          showMessage(
+            "Please log in or create an account before entering the tournament.",
+            "error"
+          );
+
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 1200);
+
+          return;
+        }
+
+
+        /*
+          Payment is intentionally not processed here.
+
+          When your secure DPay backend is ready,
+          this button will start the real payment session.
+        */
+
+        showMessage(
+          "You are logged in. The $2 entry payment will be connected to DPay when the secure payment backend is activated.",
+          "info"
+        );
+
+      });
+
+  </script>
+
+</body>
+  </html>
