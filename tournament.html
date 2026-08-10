@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trading League — Tournament</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #06130f;
+      --panel: #0c1e18;
+      --panel2: #102720;
+      --border: rgba(255,255,255,.08);
+      --text: #f4f7f6;
+      --muted: #94a6a0;
+      --green: #19e39a;
+      --red: #ff6875;
+      --gold: #ffc94a;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(25,227,154,.12), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    .navbar {
+      border-bottom: 1px solid var(--border);
+      background: rgba(5,16,13,.95);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--green);
+      color: #03130d;
+      font-weight: 900;
+    }
+
+    .back {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 45px 20px 70px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 30px;
+      color: var(--green);
+      background: rgba(25,227,154,.07);
+      border: 1px solid rgba(25,227,154,.2);
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    h1 {
+      font-size: clamp(36px, 7vw, 64px);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .account {
+      max-width: 600px;
+      margin: 22px auto;
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .account strong {
+      color: var(--text);
+    }
+
+    .tournaments {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+      margin-bottom: 35px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, var(--panel2), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    .tournament {
+      padding: 19px;
+    }
+
+    .tournament.active {
+      border-color: rgba(25,227,154,.4);
+    }
+
+    .status {
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 900;
+      margin-bottom: 13px;
+    }
+
+    .locked {
+      color: #77857f;
+    }
+
+    .entry {
+      font-size: 27px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .description {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .join {
+      width: 100%;
+      padding: 11px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--green);
+      color: #03130d;
+      font-weight: 900;
+    }
+
+    .join:disabled {
+      background: #192a24;
+      color: #6d7b75;
+    }
+
+    .leaderboard {
+      overflow: hidden;
+    }
+
+    .leader-header {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .leader-title {
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .live {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      text-align: left;
+      padding: 14px 20px;
+      color: #71817b;
+      font-size: 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.04);
+      font-size: 14px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .rank {
+      width: 80px;
+      font-weight: 900;
+    }
+
+    .name {
+      font-weight: 800;
+    }
+
+    .profit {
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .message {
+      display: none;
+      margin: 15px auto 25px;
+      max-width: 700px;
+      padding: 13px 16px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .message.show {
+      display: block;
+    }
+
+    .message.info {
+      color: var(--green);
+      background: rgba(25,227,154,.07);
+      border: 1px solid rgba(25,227,154,.2);
+    }
+
+    .message.error {
+      color: #ff929a;
+      background: rgba(255,104,117,.07);
+      border: 1px solid rgba(255,104,117,.2);
+    }
+
+    .footer {
+      text-align: center;
+      color: #63736d;
+      font-size: 11px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 800px) {
+      .tournaments {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 30px 14px 60px;
+      }
+
+      .tournaments {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      th,
+      td {
+        padding: 13px 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="nav-inner">
+
+    <a href="index.html" class="brand">
+      <span class="brand-icon">TL</span>
+      Trading League
+    </a>
+
+    <a href="index.html" class="back">
+      ← Home
+    </a>
+
+  </div>
+</header>
+
+
+<main class="container">
+
+  <section class="hero">
+
+    <div class="badge">
+      <span class="dot"></span>
+      LIVE TOURNAMENT
+    </div>
+
+    <h1>Trading Tournament</h1>
+
+    <p>
+      Compete against other registered traders and climb the
+      leaderboard based on verified tournament performance.
+    </p>
+
+    <div class="account" id="accountBox">
+      Checking account...
+    </div>
+
+  </section>
+
+
+  <div id="message" class="message"></div>
+
+
+  <section class="tournaments">
+
+    <!-- $2 ACTIVE -->
+
+    <div class="card tournament active">
+
+      <div class="status">
+        ● ACTIVE
+      </div>
+
+      <div class="entry">
+        $2
+      </div>
+
+      <div class="description">
+        Current tournament
+      </div>
+
+      <button class="join" id="join2">
+        Enter $2 Tournament
+      </button>
+
+    </div>
+
+
+    <!-- $5 LOCKED -->
+
+    <div class="card tournament">
+
+      <div class="status locked">
+        🔒 LOCKED
+      </div>
+
+      <div class="entry">
+        $5
+      </div>
+
+      <div class="description">
+        Coming soon
+      </div>
+
+      <button class="join" disabled>
+        Coming Soon
+      </button>
+
+    </div>
+
+
+    <!-- $10 LOCKED -->
+
+    <div class="card tournament">
+
+      <div class="status locked">
+        🔒 LOCKED
+      </div>
+
+      <div class="entry">
+        $10
+      </div>
+
+      <div class="description">
+        Coming soon
+      </div>
+
+      <button class="join" disabled>
+        Coming Soon
+      </button>
+
+    </div>
+
+
+    <!-- $15 LOCKED -->
+
+    <div class="card tournament">
+
+      <div class="status locked">
+        🔒 LOCKED
+      </div>
+
+      <div class="entry">
+        $15
+      </div>
+
+      <div class="description">
+        Coming soon
+      </div>
+
+      <button class="join" disabled>
+        Coming Soon
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- LIVE LEADERBOARD -->
+
+  <section class="card leaderboard">
+
+    <div class="leader-header">
+
+      <div class="leader-title">
+        🏆 Live Leaderboard
+      </div>
+
+      <div class="live">
+        <span class="dot"></span>
+        LIVE
+      </div>
+
+    </div>
+
+
+    <div style="overflow-x:auto">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Rank</th>
+            <th>Trader</th>
+            <th>Profit / Score</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="leaderboardBody">
+
+          <tr>
+            <td colspan="3">
+
+              <div class="empty">
+                Loading live leaderboard...
+              </div>
+
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
+
+  <div class="footer">
+    Trading League © 2026
+  </div>
+
+</main>
+
+
+<script type="module">
+
+  import {
+    initializeApp
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
+
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+
+  import {
+    getFirestore,
+    collection,
+    query,
+    where,
+    orderBy,
+    limit,
+    onSnapshot
+  } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+
+  /*
+   * TRADING LEAGUE FIREBASE
+   */
+
+  const firebaseConfig = {
+
+    apiKey:
+      "AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+
+    authDomain:
+      "project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+
+    projectId:
+      "project-57e2c805-1b30-40ea-a94",
+
+    storageBucket:
+      "project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+
+    messagingSenderId:
+      "567705081329",
+
+    appId:
+      "1:567705081329:web:dd697fe1ed61f56045e050",
+
+    measurementId:
+      "G-J26580N9L2"
+  };
+
+
+  const app =
+    initializeApp(firebaseConfig);
+
+
+  const auth =
+    getAuth(app);
+
+
+  const db =
+    getFirestore(app);
+
+
+  const accountBox =
+    document.getElementById("accountBox");
+
+
+  const leaderboardBody =
+    document.getElementById("leaderboardBody");
+
+
+  const message =
+    document.getElementById("message");
+
+
+  /*
+   * CHECK LOGIN
+   */
+
+  onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+      accountBox.innerHTML =
+        "Signed in as <strong>" +
+        escapeHtml(user.email || "Trader") +
+        "</strong>";
+
+    } else {
+
+      accountBox.innerHTML =
+        'You are not signed in. ' +
+        '<a href="login.html" style="color:#19e39a;font-weight:800;">Login</a>';
+
+    }
+
+  });
+
+
+  /*
+   * LIVE FIRESTORE LEADERBOARD
+   *
+   * Collection:
+   *
+   * leaderboard
+   *
+   * Example document:
+   *
+   * displayName: "John"
+   * profit: 125.50
+   * tournament: "2"
+   *
+   */
+
+  const leaderboardQuery = query(
+
+    collection(db, "leaderboard"),
+
+    where("tournament", "==", "2"),
+
+    orderBy("profit", "desc"),
+
+    limit(100)
+
+  );
+
+
+  onSnapshot(
+
+    leaderboardQuery,
+
+    (snapshot) => {
+
+      leaderboardBody.innerHTML = "";
+
+
+      if (snapshot.empty) {
+
+        leaderboardBody.innerHTML = `
+
+          <tr>
+
+            <td colspan="3">
+
+              <div class="empty">
+
+                No verified tournament results yet.<br>
+
+                The leaderboard will update automatically
+                when results are added.
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        `;
+
+        return;
+
+      }
+
+
+      let rank = 0;
+
+
+      snapshot.forEach((doc) => {
+
+        rank++;
+
+
+        const data =
+          doc.data();
+
+
+        const name =
+          data.displayName || "Trader";
+
+
+        const profit =
+          Number(data.profit) || 0;
+
+
+        let medal = "";
+
+
+        if (rank === 1) medal = "🥇 ";
+
+        if (rank === 2) medal = "🥈 ";
+
+        if (rank === 3) medal = "🥉 ";
+
+
+        const row =
+          document.createElement("tr");
+
+
+        row.innerHTML = `
+
+          <td class="rank">
+            ${medal}${rank}
+          </td>
+
+          <td class="name">
+            ${escapeHtml(name)}
+          </td>
+
+          <td class="profit">
+            ${profit >= 0 ? "+" : ""}$${profit.toFixed(2)}
+          </td>
+
+        `;
+
+
+        leaderboardBody.appendChild(row);
+
+      });
+
+    },
+
+
+    (error) => {
+
+      console.error(
+        "Leaderboard error:",
+        error
+      );
+
+
+      leaderboardBody.innerHTML = `
+
+        <tr>
+
+          <td colspan="3">
+
+            <div class="empty">
+
+              Leaderboard could not be loaded yet.<br>
+
+              Make sure Firestore is enabled
+              and the database rules/index are configured.
+
+            </div>
+
+          </td>
+
+        </tr>
+
+      `;
+
+    }
+
+  );
+
+
+  /*
+   * $2 BUTTON
+   *
+   * This does NOT fake a payment.
+   */
+
+  document
+    .getElementById("join2")
+    .addEventListener("click", () => {
+
+      const user =
+        auth.currentUser;
+
+
+      if (!user) {
+
+        showMessage(
+          "Please create an account or log in first.",
+          "error"
+        );
+
+
+        setTimeout(() => {
+
+          window.location.href =
+            "signup.html";
+
+        }, 1000);
+
+
+        return;
+
+      }
+
+
+      showMessage(
+        "Your account is ready. The secure $2 payment connection will be activated when the payment backend is connected.",
+        "info"
+      );
+
+    });
+
+
+  function showMessage(text, type) {
+
+    message.textContent =
+      text;
+
+    message.className =
+      "message show " + type;
+
+  }
+
+
+  function escapeHtml(value) {
+
+    return String(value)
+
+      .replaceAll("&", "&amp;")
+
+      .replaceAll("<", "&lt;")
+
+      .replaceAll(">", "&gt;")
+
+      .replaceAll('"', "&quot;")
+
+      .replaceAll("'", "&#039;");
+
+  }
+
+</script>
+
+</body>
+  </html>
