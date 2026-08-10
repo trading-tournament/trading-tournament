@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading League | Markets</title>
+<title>Trading League | Market</title>
 
 <style>
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
 }
 
 body{
@@ -76,180 +76,269 @@ nav{
 main{
   max-width:1100px;
   margin:auto;
-  padding:30px 15px 60px;
+  padding:25px 15px 60px;
 }
 
-.eyebrow{
-  color:#18df98;
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:10px;
-}
-
-h1{
-  font-size:42px;
-  margin-bottom:10px;
-}
-
-.intro{
+.back{
+  display:inline-block;
   color:#91a39c;
-  font-size:13px;
-  line-height:1.7;
-}
-
-.guide{
-  margin:22px 0 30px;
-  padding:20px;
-  background:linear-gradient(145deg,#10251c,#0c1d16);
-  border:1px solid #183027;
-  border-radius:16px;
-}
-
-.guide h2{
-  font-size:20px;
-  margin-bottom:8px;
-}
-
-.guide p{
-  color:#91a39c;
-  font-size:12px;
-  line-height:1.7;
-}
-
-.steps{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:15px;
-}
-
-.step{
-  padding:14px;
-  background:#06110d;
-  border:1px solid #183027;
-  border-radius:11px;
-}
-
-.step b{
-  display:block;
-  color:#18df98;
-  font-size:12px;
-  margin-bottom:6px;
-}
-
-.step span{
-  color:#91a39c;
-  font-size:10px;
-  line-height:1.5;
-}
-
-.section{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:25px 0 14px;
-}
-
-.section h2{
-  font-size:20px;
-}
-
-.live{
-  color:#18df98;
-  font-size:10px;
+  font-size:11px;
   font-weight:bold;
+  margin-bottom:20px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+.back:hover{
+  color:#18df98;
 }
 
-.market{
-  display:block;
-  padding:17px;
-  background:linear-gradient(145deg,#10251c,#0c1d16);
-  border:1px solid #183027;
-  border-radius:15px;
-  transition:.15s;
-}
-
-.market:hover{
-  border-color:#18df98;
-  transform:translateY(-2px);
-}
-
-.market:active{
-  transform:scale(.98);
-}
-
-.top{
+.market-header{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  gap:10px;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
 }
 
 .asset{
   display:flex;
   align-items:center;
-  gap:11px;
+  gap:13px;
 }
 
 .icon{
-  width:46px;
-  height:46px;
-  border-radius:13px;
+  width:58px;
+  height:58px;
+  border-radius:15px;
+  background:#10251c;
+  border:1px solid #183027;
   display:grid;
   place-items:center;
-  background:#06110d;
-  border:1px solid #183027;
-  overflow:hidden;
-  flex-shrink:0;
-}
-
-.icon svg{
-  width:30px;
-  height:30px;
-}
-
-.logo-text{
+  font-size:22px;
+  font-weight:900;
   color:#18df98;
-  font-size:12px;
+}
+
+.market-name{
+  font-size:26px;
   font-weight:900;
 }
 
-.name{
-  font-size:14px;
-  font-weight:900;
+.market-symbol{
+  color:#91a39c;
+  font-size:11px;
+  margin-top:5px;
 }
 
-.symbol{
+.badge{
+  color:#18df98;
+  background:#0c2118;
+  border:1px solid #183027;
+  border-radius:20px;
+  padding:8px 11px;
+  font-size:9px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.price-card{
+  background:linear-gradient(145deg,#10251c,#0c1d16);
+  border:1px solid #183027;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.price-label{
   color:#91a39c;
   font-size:10px;
-  margin-top:4px;
+  font-weight:bold;
+  margin-bottom:7px;
 }
 
-.arrow{
+.price{
+  font-size:32px;
+  font-weight:900;
+}
+
+.change{
   color:#18df98;
-  font-size:22px;
+  font-size:11px;
+  margin-top:5px;
 }
 
-.type{
-  margin-top:15px;
-  padding-top:11px;
-  border-top:1px solid #183027;
-  color:#60716a;
+.chart-card{
+  background:linear-gradient(145deg,#10251c,#0c1d16);
+  border:1px solid #183027;
+  border-radius:16px;
+  padding:15px;
+  overflow:hidden;
+}
+
+.chart-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+}
+
+.chart-title{
+  font-size:13px;
+  font-weight:900;
+}
+
+.chart-live{
+  color:#18df98;
   font-size:9px;
   font-weight:bold;
 }
 
-.notice{
-  margin-top:22px;
-  padding:15px;
+canvas{
+  width:100%;
+  height:330px;
+  display:block;
+  background:#06110d;
+  border-radius:12px;
+}
+
+.timeframes{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+  overflow-x:auto;
+}
+
+.timeframes button{
+  background:#06110d;
+  border:1px solid #183027;
+  color:#91a39c;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.timeframes button.active,
+.timeframes button:hover{
+  color:#06110d;
+  background:#18df98;
+}
+
+.trade-card{
+  margin-top:15px;
+  background:linear-gradient(145deg,#10251c,#0c1d16);
+  border:1px solid #183027;
+  border-radius:16px;
+  padding:18px;
+}
+
+.trade-title{
+  font-size:18px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.trade-sub{
+  color:#91a39c;
+  font-size:10px;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+
+.amount-label{
+  color:#91a39c;
+  font-size:10px;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+.amount{
+  width:100%;
+  background:#06110d;
   border:1px solid #183027;
   border-radius:10px;
+  color:#f5f8f7;
+  padding:13px;
+  outline:none;
+  font-size:14px;
+}
+
+.amount:focus{
+  border-color:#18df98;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:13px;
+}
+
+.trade-btn{
+  border:0;
+  border-radius:11px;
+  padding:14px;
+  color:#06110d;
+  font-weight:900;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.buy{
+  background:#18df98;
+}
+
+.sell{
+  background:#ff5c73;
+  color:white;
+}
+
+.trade-btn:active{
+  transform:scale(.98);
+}
+
+.status{
+  display:none;
+  margin-top:13px;
+  padding:12px;
+  border-radius:9px;
+  background:#06110d;
+  border:1px solid #183027;
+  color:#18df98;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.info{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.info-box{
+  background:#06110d;
+  border:1px solid #183027;
+  border-radius:10px;
+  padding:13px;
+}
+
+.info-box span{
+  display:block;
+  color:#60716a;
+  font-size:9px;
+  margin-bottom:5px;
+}
+
+.info-box b{
+  font-size:11px;
+}
+
+.notice{
+  margin-top:15px;
+  padding:15px;
+  border:1px solid #183027;
+  border-radius:11px;
   color:#91a39c;
   font-size:10px;
   line-height:1.7;
@@ -269,19 +358,35 @@ footer{
     align-items:flex-start;
   }
 
-  .grid{
-    grid-template-columns:1fr;
+  .market-header{
+    align-items:flex-start;
   }
 
-  .steps{
+  .market-name{
+    font-size:22px;
+  }
+
+  canvas{
+    height:260px;
+  }
+
+  .info{
     grid-template-columns:1fr;
   }
 }
 
 @media(max-width:450px){
 
-  h1{
-    font-size:34px;
+  .market-header{
+    flex-direction:column;
+  }
+
+  .badge{
+    align-self:flex-start;
+  }
+
+  .buttons{
+    grid-template-columns:1fr;
   }
 
 }
@@ -314,963 +419,160 @@ Trading League
 
 <main>
 
-<div class="eyebrow">
-TRADING LEAGUE / LEARN & TRADE
-</div>
-
-<h1>Markets</h1>
-
-<p class="intro">
-Not familiar with trading? That's okay. Start with
-the simple guide below, then choose a market to
-practice with demo money.
-</p>
-
-
-<div class="guide">
-
-<h2>New to trading?</h2>
-
-<p>
-Trading means making a decision about whether you
-think a market price may rise or fall. Trading League
-lets you practice with demo money.
-</p>
-
-<div class="steps">
-
-<div class="step">
-<b>1. Choose a market</b>
-<span>
-Pick something like Apple, Tesla or Bitcoin.
-</span>
-</div>
-
-<div class="step">
-<b>2. Look at the chart</b>
-<span>
-The chart shows how the price has moved over time.
-</span>
-</div>
-
-<div class="step">
-<b>3. Choose BUY or SELL</b>
-<span>
-BUY means you expect the price to rise.
-SELL means you expect the price to fall.
-</span>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= STOCKS ================= -->
-
-<div class="section">
-<h2>Stocks</h2>
-<div class="live">14 MARKETS</div>
-</div>
-
-<div class="grid">
-
-
-<!-- APPLE -->
-
-<a class="market"
-href="market.html?type=stock&symbol=AAPL&name=Apple">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64" fill="none">
-<path
-d="M43 34c0-6 5-9 5-9-3-4-8-5-10-5-4-1-7 2-9 2-2 0-5-2-8-2-4 0-8 2-10 5-5 7-1 18 3 24 2 3 5 7 9 7 4 0 5-2 9-2s5 2 9 2c4 0 6-4 8-7 2-3 3-6 4-9-1 0-10-4-10-13Z"
-fill="#f5f8f7"/>
-<path
-d="M39 16c2-2 3-5 3-8-3 0-6 2-8 4-2 2-3 5-3 7 3 0 6-1 8-3Z"
-fill="#f5f8f7"/>
-</svg>
-
-</div>
-
-<div>
-<div class="name">Apple</div>
-<div class="symbol">AAPL / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
+<a href="markets.html" class="back">
+← Back to Markets
 </a>
 
 
-<!-- MICROSOFT -->
-
-<a class="market"
-href="market.html?type=stock&symbol=MSFT&name=Microsoft">
-
-<div class="top">
+<div class="market-header">
 
 <div class="asset">
 
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-<rect x="7" y="7" width="23" height="23" fill="#18df98"/>
-<rect x="34" y="7" width="23" height="23" fill="#18df98"/>
-<rect x="7" y="34" width="23" height="23" fill="#18df98"/>
-<rect x="34" y="34" width="23" height="23" fill="#18df98"/>
-</svg>
-
+<div class="icon" id="assetIcon">
+TL
 </div>
 
 <div>
-<div class="name">Microsoft</div>
-<div class="symbol">MSFT / USD</div>
+<div class="market-name" id="marketName">
+Loading...
 </div>
 
+<div class="market-symbol" id="marketSymbol">
+Loading...
 </div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- NVIDIA -->
-
-<a class="market"
-href="market.html?type=stock&symbol=NVDA&name=NVIDIA">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M7 32c12-17 28-22 50-18"
-stroke="#18df98"
-stroke-width="5"
-fill="none"/>
-
-<path
-d="M10 39c13-14 27-17 43-13"
-stroke="#f5f8f7"
-stroke-width="5"
-fill="none"/>
-
-<path
-d="M20 46c9-8 18-10 29-8"
-stroke="#18df98"
-stroke-width="5"
-fill="none"/>
-
-<circle
-cx="32"
-cy="32"
-r="5"
-fill="#18df98"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">NVIDIA</div>
-<div class="symbol">NVDA / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- AMAZON -->
-
-<a class="market"
-href="market.html?type=stock&symbol=AMZN&name=Amazon">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<text
-x="32"
-y="34"
-text-anchor="middle"
-font-size="25"
-font-weight="900"
-fill="#f5f8f7">a</text>
-
-<path
-d="M13 45c12 8 27 10 39 3"
-stroke="#18df98"
-stroke-width="4"
-fill="none"
-stroke-linecap="round"/>
-
-<path
-d="M45 44l7 1-4 6"
-fill="#18df98"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Amazon</div>
-<div class="symbol">AMZN / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- GOOGLE -->
-
-<a class="market"
-href="market.html?type=stock&symbol=GOOGL&name=Alphabet">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M52 32c0-2-.2-4-.7-6H32v11h11.3c-1.1 3.5-3.2 6.4-6.2 8.4v7h10c5.9-5.4 8.9-13.3 8.9-20.4Z"
-fill="#18df98"/>
-
-<path
-d="M32 53c8.1 0 14.9-2.7 19.9-7.4l-10-7c-2.8 1.9-6.2 3-9.9 3-7.6 0-14.1-5.1-16.4-12H5.2v7.2C10.2 46.3 20.3 53 32 53Z"
-fill="#f5f8f7"/>
-
-<path
-d="M15.6 29.6c-.6-1.9-.9-3.9-.9-6s.3-4.1.9-6v-7.2H5.2A27.9 27.9 0 0 0 2 23.6c0 4.8 1.1 9.4 3.2 13.2l10.4-7.2Z"
-fill="#18df98"/>
-
-<path
-d="M32 11c4.4 0 8.4 1.5 11.5 4.5l8.6-8.6C46.9 2.2 40.1-.4 32-.4 20.3-.4 10.2 6.3 5.2 16.4l10.4 7.2C17.9 16.1 24.4 11 32 11Z"
-fill="#f5f8f7"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Alphabet</div>
-<div class="symbol">GOOGL / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- META -->
-
-<a class="market"
-href="market.html?type=stock&symbol=META&name=Meta">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M9 40V27c0-7 4-12 10-12 6 0 10 5 13 11 3-6 7-11 13-11 6 0 10 5 10 12v13"
-stroke="#18df98"
-stroke-width="7"
-fill="none"
-stroke-linecap="round"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Meta</div>
-<div class="symbol">META / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- TESLA -->
-
-<a class="market"
-href="market.html?type=stock&symbol=TSLA&name=Tesla">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M8 18c8-5 15-7 24-7s16 2 24 7"
-stroke="#18df98"
-stroke-width="5"
-fill="none"/>
-
-<path
-d="M17 21c5-3 10-4 15-4s10 1 15 4"
-stroke="#f5f8f7"
-stroke-width="4"
-fill="none"/>
-
-<path
-d="M32 20v31"
-stroke="#18df98"
-stroke-width="5"/>
-
-<path
-d="M22 26l10-5 10 5"
-stroke="#18df98"
-stroke-width="4"
-fill="none"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Tesla</div>
-<div class="symbol">TSLA / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- NETFLIX -->
-
-<a class="market"
-href="market.html?type=stock&symbol=NFLX&name=Netflix">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M14 9h10v38l-10 8V9Z"
-fill="#18df98"/>
-
-<path
-d="M40 9h10v47l-10-8V9Z"
-fill="#f5f8f7"/>
-
-<path
-d="M24 9h16v12H24z"
-fill="#f5f8f7"
-opacity=".55"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Netflix</div>
-<div class="symbol">NFLX / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- AMD -->
-
-<a class="market"
-href="market.html?type=stock&symbol=AMD&name=AMD">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-<span class="logo-text">AMD</span>
-</div>
-
-<div>
-<div class="name">AMD</div>
-<div class="symbol">AMD / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- INTEL -->
-
-<a class="market"
-href="market.html?type=stock&symbol=INTC&name=Intel">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<rect
-x="7"
-y="18"
-width="50"
-height="28"
-rx="8"
-fill="none"
-stroke="#18df98"
-stroke-width="5"/>
-
-<text
-x="32"
-y="38"
-text-anchor="middle"
-font-size="13"
-font-weight="900"
-fill="#f5f8f7">intel</text>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Intel</div>
-<div class="symbol">INTC / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- COCA COLA -->
-
-<a class="market"
-href="market.html?type=stock&symbol=KO&name=Coca-Cola">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<circle
-cx="32"
-cy="32"
-r="25"
-fill="#18df98"/>
-
-<text
-x="32"
-y="37"
-text-anchor="middle"
-font-size="20"
-font-weight="900"
-fill="#06110d">C</text>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Coca-Cola</div>
-<div class="symbol">KO / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NYSE</div>
-
-</a>
-
-
-<!-- PEPSI -->
-
-<a class="market"
-href="market.html?type=stock&symbol=PEP&name=PepsiCo">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<circle
-cx="32"
-cy="32"
-r="25"
-fill="#f5f8f7"/>
-
-<path
-d="M10 32h44"
-stroke="#18df98"
-stroke-width="18"/>
-
-<path
-d="M12 22c9-9 25-11 39-3"
-stroke="#06110d"
-stroke-width="7"
-fill="none"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">PepsiCo</div>
-<div class="symbol">PEP / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<!-- MCDONALDS -->
-
-<a class="market"
-href="market.html?type=stock&symbol=MCD&name=McDonalds">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M10 49V27c0-12 5-18 11-18 5 0 9 4 11 11 2-7 6-11 11-11 6 0 11 6 11 18v22h-8V28c0-7-1-10-4-10s-5 5-6 13h-8c-1-8-3-13-6-13s-4 3-4 10v21Z"
-fill="#18df98"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">McDonald's</div>
-<div class="symbol">MCD / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
-</div>
-
-<div class="type">STOCK · NYSE</div>
-
-</a>
-
-
-<!-- NIKE -->
-
-<a class="market"
-href="market.html?type=stock&symbol=NKE&name=Nike">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="M7 39c13-2 27-7 46-18-8 12-18 22-29 27-8 3-14 1-17-3Z"
-fill="#18df98"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Nike</div>
-<div class="symbol">NKE / USD</div>
-</div>
-
 </div>
-
-<div class="arrow">›</div>
 
 </div>
 
-<div class="type">STOCK · NYSE</div>
-
-</a>
-
+<div class="badge" id="marketType">
+DEMO MARKET
 </div>
-
 
-<!-- ================= CRYPTO ================= -->
-
-<div class="section">
-<h2>Crypto</h2>
-<div class="live">6 MARKETS</div>
 </div>
-
-<div class="grid">
-
-
-<!-- BITCOIN -->
-
-<a class="market"
-href="market.html?type=crypto&symbol=bitcoin&name=Bitcoin">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<circle
-cx="32"
-cy="32"
-r="27"
-fill="#18df98"/>
 
-<path
-d="M39 16c7 2 10 7 7 12-1 2-3 3-5 3 5 2 7 6 5 10-2 5-8 7-15 6l-1 5h-5l1-5-5-1 1-5 5 1 4-20-5-1 1-5 5 1 1-5h5l-1 5Zm-8 10-2 7c5 1 8 0 9-3 1-3-2-4-7-4Zm-3 12-2 7c5 1 9 0 10-3 1-3-2-4-8-4Z"
-fill="#06110d"/>
 
-</svg>
+<div class="price-card">
 
+<div class="price-label">
+DEMO MARKET PRICE
 </div>
 
-<div>
-<div class="name">Bitcoin</div>
-<div class="symbol">BTC / USD</div>
+<div class="price" id="price">
+$100.00
 </div>
 
+<div class="change" id="change">
++0.00%
 </div>
 
-<div class="arrow">›</div>
-
 </div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<!-- ETHEREUM -->
-
-<a class="market"
-href="market.html?type=crypto&symbol=ethereum&name=Ethereum">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
 
-<path
-d="M32 5 14 33l18 10 18-10L32 5Z"
-fill="#18df98"/>
 
-<path
-d="M32 43 14 33l18 26 18-26-18 10Z"
-fill="#f5f8f7"/>
+<div class="chart-card">
 
-<path
-d="M32 5v38l18-10L32 5Z"
-fill="#06110d"
-opacity=".45"/>
+<div class="chart-top">
 
-</svg>
-
-</div>
-
-<div>
-<div class="name">Ethereum</div>
-<div class="symbol">ETH / USD</div>
+<div class="chart-title">
+Price Chart
 </div>
 
+<div class="chart-live">
+● DEMO LIVE
 </div>
 
-<div class="arrow">›</div>
-
 </div>
-
-<div class="type">CRYPTO</div>
 
-</a>
+<canvas id="chart"></canvas>
 
+<div class="timeframes">
 
-<!-- BNB -->
+<button class="active" data-points="30">
+1H
+</button>
 
-<a class="market"
-href="market.html?type=crypto&symbol=binancecoin&name=BNB">
+<button data-points="45">
+4H
+</button>
 
-<div class="top">
+<button data-points="60">
+1D
+</button>
 
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<path
-d="m32 5 7 7-7 7-7-7 7-7Zm-14 14 7 7-7 7-7-7 7-7Zm28 0 7 7-7 7-7-7 7-7ZM32 33l7 7-7 7-7-7 7-7Zm-14 0 7 7-7 7-7-7 7-7Zm28 0 7 7-7 7-7-7 7-7Z"
-fill="#18df98"/>
-
-</svg>
-
-</div>
+<button data-points="80">
+1W
+</button>
 
-<div>
-<div class="name">BNB</div>
-<div class="symbol">BNB / USD</div>
-</div>
+<button data-points="100">
+1M
+</button>
 
 </div>
-
-<div class="arrow">›</div>
 
 </div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<!-- SOLANA -->
-
-<a class="market"
-href="market.html?type=crypto&symbol=solana&name=Solana">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
 
-<svg viewBox="0 0 64 64">
 
-<path
-d="M10 18h38l7 7H17l-7-7Z"
-fill="#18df98"/>
+<div class="trade-card">
 
-<path
-d="M16 29h38l-7 7H9l7-7Z"
-fill="#f5f8f7"/>
-
-<path
-d="M10 40h38l7 7H17l-7-7Z"
-fill="#18df98"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">Solana</div>
-<div class="symbol">SOL / USD</div>
+<div class="trade-title">
+Practice Trade
 </div>
 
+<div class="trade-sub">
+Use demo money to practice. No real money is being
+deposited or withdrawn from this page.
 </div>
 
-<div class="arrow">›</div>
-
+<div class="amount-label">
+TRADE AMOUNT
 </div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<!-- XRP -->
-
-<a class="market"
-href="market.html?type=crypto&symbol=ripple&name=XRP">
 
-<div class="top">
+<input
+class="amount"
+id="amount"
+type="number"
+min="1"
+value="100"
+placeholder="Enter demo amount"
+>
 
-<div class="asset">
 
-<div class="icon">
+<div class="buttons">
 
-<svg viewBox="0 0 64 64">
+<button
+class="trade-btn buy"
+onclick="placeTrade('BUY')">
+BUY
+</button>
 
-<path
-d="M11 18h9l12 12 12-12h9L37 35v9h-10v-9L11 18Z"
-fill="#18df98"/>
+<button
+class="trade-btn sell"
+onclick="placeTrade('SELL')">
+SELL
+</button>
 
-<path
-d="M11 46h9l12-12 12 12h9L37 29v-9h-10v9L11 46Z"
-fill="#f5f8f7"
-opacity=".8"/>
-
-</svg>
-
-</div>
-
-<div>
-<div class="name">XRP</div>
-<div class="symbol">XRP / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-
 </div>
-
-<div class="type">CRYPTO</div>
 
-</a>
+<div class="status" id="status"></div>
 
 
-<!-- DOGECOIN -->
+<div class="info">
 
-<a class="market"
-href="market.html?type=crypto&symbol=dogecoin&name=Dogecoin">
-
-<div class="top">
-
-<div class="asset">
-
-<div class="icon">
-
-<svg viewBox="0 0 64 64">
-
-<circle
-cx="32"
-cy="32"
-r="27"
-fill="#18df98"/>
-
-<text
-x="32"
-y="40"
-text-anchor="middle"
-font-size="30"
-font-weight="900"
-fill="#06110d">Ð</text>
-
-</svg>
-
+<div class="info-box">
+<span>MARKET</span>
+<b id="infoMarket">--</b>
 </div>
 
-<div>
-<div class="name">Dogecoin</div>
-<div class="symbol">DOGE / USD</div>
+<div class="info-box">
+<span>PRICE</span>
+<b id="infoPrice">$100.00</b>
 </div>
 
+<div class="info-box">
+<span>MODE</span>
+<b>DEMO</b>
 </div>
 
-<div class="arrow">›</div>
-
 </div>
-
-<div class="type">CRYPTO</div>
-
-</a>
 
 </div>
 
@@ -1278,10 +580,10 @@ fill="#06110d">Ð</text>
 <div class="notice">
 
 <strong>Important:</strong>
-Trading League is currently a demo trading
-experience. Demo money is not real money.
-Market charts are provided for educational
-purposes and do not guarantee future results.
+Trading League is currently a demo trading experience.
+The chart and prices on this page are simulated for
+practice and education. They are not real market prices
+and do not represent an investment recommendation.
 
 </div>
 
@@ -1291,6 +593,586 @@ Trading League © 2026
 </footer>
 
 </main>
+
+
+<script>
+
+/* =========================================
+   READ MARKET FROM URL
+========================================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const type = params.get("type") || "stock";
+const symbol = params.get("symbol") || "AAPL";
+const name = params.get("name") || "Apple";
+
+
+/* =========================================
+   DISPLAY MARKET INFORMATION
+========================================= */
+
+document.getElementById("marketName").textContent = name;
+
+document.getElementById("marketSymbol").textContent =
+symbol.toUpperCase() + " / USD";
+
+document.getElementById("marketType").textContent =
+type.toUpperCase() + " · DEMO";
+
+document.getElementById("infoMarket").textContent =
+symbol.toUpperCase();
+
+
+/* =========================================
+   BUILT-IN MARKET ICONS
+========================================= */
+
+const icons = {
+
+  AAPL:"",
+
+  MSFT:"▦",
+
+  NVDA:"N",
+
+  AMZN:"a",
+
+  GOOGL:"G",
+
+  META:"∞",
+
+  TSLA:"T",
+
+  NFLX:"N",
+
+  AMD:"AMD",
+
+  INTC:"intel",
+
+  KO:"C",
+
+  PEP:"P",
+
+  MCD:"M",
+
+  NKE:"✓",
+
+  BITCOIN:"₿",
+
+  ETHEREUM:"◆",
+
+  BINANCECOIN:"◆",
+
+  SOLANA:"≋",
+
+  RIPPLE:"X",
+
+  DOGECOIN:"Ð"
+
+};
+
+const icon = icons[symbol.toUpperCase()] || "TL";
+
+document.getElementById("assetIcon").textContent = icon;
+
+
+/* =========================================
+   DEMO STARTING PRICES
+========================================= */
+
+const startingPrices = {
+
+  AAPL:227.00,
+  MSFT:510.00,
+  NVDA:182.00,
+  AMZN:225.00,
+  GOOGL:205.00,
+  META:760.00,
+  TSLA:340.00,
+  NFLX:1180.00,
+  AMD:170.00,
+  INTC:23.00,
+  KO:70.00,
+  PEP:145.00,
+  MCD:305.00,
+  NKE:75.00,
+
+  BITCOIN:116000,
+  ETHEREUM:4300,
+  BINANCECOIN:690,
+  SOLANA:190,
+  RIPPLE:3.10,
+  DOGECOIN:0.24
+
+};
+
+let currentPrice =
+startingPrices[symbol.toUpperCase()] || 100;
+
+
+/* =========================================
+   PRICE FORMAT
+========================================= */
+
+function formatPrice(value){
+
+  if(value < 1){
+    return "$" + value.toFixed(4);
+  }
+
+  if(value < 1000){
+    return "$" + value.toFixed(2);
+  }
+
+  return "$" + value.toLocaleString(
+    "en-US",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
+
+}
+
+
+/* =========================================
+   CHART
+========================================= */
+
+const canvas =
+document.getElementById("chart");
+
+const ctx =
+canvas.getContext("2d");
+
+let pointsCount = 60;
+
+let chartPoints = [];
+
+
+function createChartPoints(){
+
+  chartPoints = [];
+
+  let price = currentPrice;
+
+  for(let i=0;i<pointsCount;i++){
+
+    let movement =
+      (Math.random() - 0.48) *
+      currentPrice *
+      0.012;
+
+    price += movement;
+
+    if(price <= 0){
+      price = currentPrice;
+    }
+
+    chartPoints.push(price);
+
+  }
+
+}
+
+
+function resizeCanvas(){
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  const ratio =
+    window.devicePixelRatio || 1;
+
+  canvas.width =
+    rect.width * ratio;
+
+  canvas.height =
+    rect.height * ratio;
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+  drawChart();
+
+}
+
+
+function drawChart(){
+
+  const width =
+    canvas.clientWidth;
+
+  const height =
+    canvas.clientHeight;
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  /* background */
+
+  ctx.fillStyle = "#06110d";
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  /* grid */
+
+  ctx.strokeStyle =
+    "rgba(24,223,152,.08)";
+
+  ctx.lineWidth = 1;
+
+  for(let i=1;i<5;i++){
+
+    const y =
+      (height / 5) * i;
+
+    ctx.beginPath();
+
+    ctx.moveTo(0,y);
+
+    ctx.lineTo(width,y);
+
+    ctx.stroke();
+
+  }
+
+
+  for(let i=1;i<6;i++){
+
+    const x =
+      (width / 6) * i;
+
+    ctx.beginPath();
+
+    ctx.moveTo(x,0);
+
+    ctx.lineTo(x,height);
+
+    ctx.stroke();
+
+  }
+
+
+  if(chartPoints.length < 2){
+    return;
+  }
+
+
+  const min =
+    Math.min(...chartPoints);
+
+  const max =
+    Math.max(...chartPoints);
+
+  const range =
+    max - min || 1;
+
+
+  const padding = 18;
+
+
+  /* filled area */
+
+  ctx.beginPath();
+
+  chartPoints.forEach((value,index)=>{
+
+    const x =
+      padding +
+      (index /
+      (chartPoints.length - 1)) *
+      (width - padding * 2);
+
+    const y =
+      height -
+      padding -
+      ((value - min) / range) *
+      (height - padding * 2);
+
+    if(index === 0){
+      ctx.moveTo(x,y);
+    }else{
+      ctx.lineTo(x,y);
+    }
+
+  });
+
+
+  ctx.lineTo(
+    width - padding,
+    height - padding
+  );
+
+  ctx.lineTo(
+    padding,
+    height - padding
+  );
+
+  ctx.closePath();
+
+  ctx.fillStyle =
+    "rgba(24,223,152,.08)";
+
+  ctx.fill();
+
+
+  /* price line */
+
+  ctx.beginPath();
+
+  chartPoints.forEach((value,index)=>{
+
+    const x =
+      padding +
+      (index /
+      (chartPoints.length - 1)) *
+      (width - padding * 2);
+
+    const y =
+      height -
+      padding -
+      ((value - min) / range) *
+      (height - padding * 2);
+
+    if(index === 0){
+      ctx.moveTo(x,y);
+    }else{
+      ctx.lineTo(x,y);
+    }
+
+  });
+
+
+  ctx.strokeStyle =
+    "#18df98";
+
+  ctx.lineWidth = 3;
+
+  ctx.lineJoin = "round";
+
+  ctx.lineCap = "round";
+
+  ctx.stroke();
+
+
+  /* latest point */
+
+  const last =
+    chartPoints[chartPoints.length - 1];
+
+  const lastX =
+    width - padding;
+
+  const lastY =
+    height -
+    padding -
+    ((last - min) / range) *
+    (height - padding * 2);
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    lastX,
+    lastY,
+    5,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.fillStyle =
+    "#18df98";
+
+  ctx.fill();
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    lastX,
+    lastY,
+    10,
+    0,
+    Math.PI * 2
+  );
+
+  ctx.strokeStyle =
+    "rgba(24,223,152,.25)";
+
+  ctx.lineWidth = 2;
+
+  ctx.stroke();
+
+}
+
+
+/* =========================================
+   UPDATE PRICE
+========================================= */
+
+function updatePrice(){
+
+  const previous =
+    currentPrice;
+
+  const movement =
+    (Math.random() - 0.5) *
+    currentPrice *
+    0.0015;
+
+  currentPrice += movement;
+
+  if(currentPrice <= 0){
+    currentPrice = previous;
+  }
+
+  const percentage =
+    ((currentPrice - previous) /
+    previous) * 100;
+
+  document.getElementById("price")
+    .textContent =
+    formatPrice(currentPrice);
+
+  document.getElementById("infoPrice")
+    .textContent =
+    formatPrice(currentPrice);
+
+  document.getElementById("change")
+    .textContent =
+    (percentage >= 0 ? "+" : "") +
+    percentage.toFixed(2) +
+    "%";
+
+  chartPoints.push(currentPrice);
+
+  if(chartPoints.length > pointsCount){
+    chartPoints.shift();
+  }
+
+  drawChart();
+
+}
+
+
+/* =========================================
+   BUY / SELL
+========================================= */
+
+function placeTrade(side){
+
+  const amount =
+    Number(
+      document.getElementById("amount").value
+    );
+
+  const status =
+    document.getElementById("status");
+
+
+  if(!amount || amount <= 0){
+
+    status.style.display = "block";
+
+    status.textContent =
+      "Please enter a valid demo amount.";
+
+    return;
+
+  }
+
+
+  status.style.display = "block";
+
+  status.innerHTML =
+    "<strong>" +
+    side +
+    " order opened</strong><br>" +
+
+    symbol.toUpperCase() +
+    " at " +
+    formatPrice(currentPrice) +
+
+    "<br>Demo amount: $" +
+    amount.toFixed(2);
+
+
+}
+
+
+/* =========================================
+   TIMEFRAME BUTTONS
+========================================= */
+
+document
+.querySelectorAll(".timeframes button")
+.forEach(button => {
+
+  button.addEventListener(
+    "click",
+    function(){
+
+      document
+      .querySelectorAll(".timeframes button")
+      .forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+      this.classList.add("active");
+
+      pointsCount =
+        Number(
+          this.dataset.points
+        );
+
+      createChartPoints();
+
+      drawChart();
+
+    }
+  );
+
+});
+
+
+/* =========================================
+   START
+========================================= */
+
+createChartPoints();
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+setInterval(
+  updatePrice,
+  3000
+);
+
+</script>
 
 </body>
   </html>
