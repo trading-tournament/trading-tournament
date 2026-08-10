@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Trading League - Market</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#07111f;
+color:white;
+}
+
+header{
+background:#0d1b2e;
+padding:20px;
+text-align:center;
+border-bottom:1px solid #1d3557;
+}
+
+header h1{
+color:#00ff99;
+}
+
+nav{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+padding:15px;
+background:#091525;
+}
+
+nav a{
+text-decoration:none;
+color:white;
+background:#13263f;
+padding:10px 15px;
+border-radius:8px;
+}
+
+nav a:hover{
+background:#00ff99;
+color:black;
+}
+
+.container{
+padding:20px;
+}
+
+.back{
+margin-bottom:20px;
+}
+
+.back button{
+background:#00ff99;
+border:none;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.market-box{
+background:#102238;
+padding:25px;
+border-radius:15px;
+border:1px solid #1d3557;
+margin-bottom:20px;
+}
+
+.coin-title{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#00ff99;
+color:#07111f;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+font-weight:bold;
+}
+
+.price{
+font-size:30px;
+margin-top:20px;
+color:#00ff99;
+}
+
+
+.chart{
+height:250px;
+background:#081625;
+border-radius:10px;
+margin-top:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#aaa;
+border:1px solid #1d3557;
+}
+
+
+.trade-buttons{
+display:flex;
+gap:15px;
+margin-top:20px;
+}
+
+
+.trade-buttons button{
+flex:1;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+
+.buy{
+background:#00ff99;
+color:#07111f;
+}
+
+.sell{
+background:#ff4d4d;
+color:white;
+}
+
+
+.lock{
+margin-top:20px;
+background:#3b1d1d;
+padding:15px;
+border-radius:10px;
+color:#ffaaaa;
+text-align:center;
+font-weight:bold;
+}
+
+
+table{
+width:100%;
+margin-top:15px;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #1d3557;
+text-align:center;
+}
+
+
+footer{
+text-align:center;
+padding:20px;
+background:#0d1b2e;
+color:#aaa;
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>Trading League</h1>
+
+<p>Demo Trading Market</p>
+
+</header>
+
+
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="markets.html">Markets</a>
+<a href="games.html">Games</a>
+<a href="tournament.html">Tournament</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="withdraw.html">Withdraw</a>
+<a href="account.html">Account</a>
+
+</nav>
+
+
+
+<div class="container">
+
+
+<div class="back">
+
+<button onclick="goBack()">← Back to Markets</button>
+
+</div>
+
+
+
+<div class="market-box">
+
+<div class="coin-title">
+
+<div class="logo" id="coinLogo">?</div>
+
+<div>
+<h2 id="coinName">Loading...</h2>
+<p id="coinSymbol"></p>
+</div>
+
+</div>
+
+
+<div class="price" id="price">
+
+Loading price...
+
+</div>
+
+
+
+<div class="chart">
+
+Demo Live Chart Area
+
+</div>
+
+
+
+<div class="trade-buttons">
+
+<button class="buy" onclick="buyTrade()">
+BUY
+</button>
+
+
+<button class="sell" onclick="sellTrade()">
+SELL
+</button>
+
+
+</div>
+
+
+
+<div class="lock">
+
+PAYMENT NOT CONFIRMED<br>
+
+Demo balance is locked until secure backend payment confirmation.
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="market-box">
+
+<h2>Open Trades</h2>
+
+
+<table>
+
+<thead>
+
+<tr>
+<th>Type</th>
+<th>Symbol</th>
+<th>Status</th>
+</tr>
+
+</thead>
+
+
+<tbody id="openTrades">
+
+<tr>
+<td colspan="3">
+No open trades
+</td>
+</tr>
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+
+
+
+<div class="market-box">
+
+
+<h2>Trade History</h2>
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>Action</th>
+<th>Symbol</th>
+<th>Time</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody id="history">
+
+
+<tr>
+
+<td colspan="3">
+No trade history
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+<footer>
+
+Trading League © 2026
+
+</footer>
+
+
+
+
+<script>
+
+
+const coins={
+
+BTC:"Bitcoin",
+ETH:"Ethereum",
+BNB:"BNB",
+SOL:"Solana",
+XRP:"XRP",
+DOGE:"Dogecoin",
+ADA:"Cardano",
+AVAX:"Avalanche",
+LINK:"Chainlink",
+DOT:"Polkadot",
+TRX:"TRON",
+POL:"Polygon",
+LTC:"Litecoin",
+BCH:"Bitcoin Cash",
+XLM:"Stellar",
+UNI:"Uniswap",
+ATOM:"Cosmos",
+NEAR:"NEAR Protocol",
+ICP:"Internet Computer",
+APT:"Aptos"
+
+};
+
+
+
+const prices={
+
+BTC:68000,
+ETH:3500,
+BNB:600,
+SOL:170,
+XRP:0.60,
+DOGE:0.12,
+ADA:0.45,
+AVAX:35,
+LINK:15,
+DOT:7,
+TRX:0.12,
+POL:0.55,
+LTC:80,
+BCH:400,
+XLM:0.10,
+UNI:8,
+ATOM:9,
+NEAR:5,
+ICP:10,
+APT:7
+
+};
+
+
+
+const params=new URLSearchParams(window.location.search);
+
+const symbol=params.get("symbol") || "BTC";
+
+
+document.getElementById("coinName").textContent=coins[symbol] || "Unknown Crypto";
+
+document.getElementById("coinSymbol").textContent=symbol;
+
+document.getElementById("coinLogo").textContent=symbol.substring(0,1);
+
+
+let currentPrice=prices[symbol] || 0;
+
+
+document.getElementById("price").textContent=
+"$"+currentPrice.toLocaleString();
+
+
+
+function goBack(){
+
+window.location.href="markets.html";
+
+}
+
+
+
+function buyTrade(){
+
+alert("Demo BUY created. Real trading will require secure backend.");
+
+addHistory("BUY");
+
+}
+
+
+
+function sellTrade(){
+
+alert("Demo SELL created. Real trading will require secure backend.");
+
+addHistory("SELL");
+
+}
+
+
+
+
+function addHistory(action){
+
+const history=document.getElementById("history");
+
+history.innerHTML=`
+
+<tr>
+
+<td>${action}</td>
+
+<td>${symbol}</td>
+
+<td>${new Date().toLocaleTimeString()}</td>
+
+</tr>
+
+`;
+
+}
+
+
+
+</script>
+
+
+</body>
+
+  </html>
