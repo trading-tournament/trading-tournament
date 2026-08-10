@@ -2,204 +2,140 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading League | Markets</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading League - Markets</title>
 
 <style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-background:#06110d;
-color:white;
-font-family:Arial,sans-serif;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
 }
 
-a{
-text-decoration:none;
-color:inherit;
+body{
+    background:#07111f;
+    color:white;
+}
+
+header{
+    background:#0d1b2e;
+    padding:20px;
+    text-align:center;
+    border-bottom:1px solid #1d3557;
+}
+
+header h1{
+    color:#00ff99;
 }
 
 nav{
-background:#040e0a;
-border-bottom:1px solid #183027;
-padding:12px 15px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    padding:15px;
+    background:#091525;
 }
 
-.nav{
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
+nav a{
+    color:white;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:8px;
+    background:#13263f;
 }
 
-.brand{
-font-weight:900;
+nav a:hover{
+    background:#00ff99;
+    color:black;
+}
+
+.container{
+    padding:20px;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.title h2{
+    color:#00ff99;
+}
+
+.market-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.coin-card{
+    background:#102238;
+    border:1px solid #1d3557;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.coin-card:hover{
+    transform:translateY(-5px);
+    border-color:#00ff99;
 }
 
 .logo{
-display:inline-grid;
-place-items:center;
-width:34px;
-height:34px;
-background:#18df98;
-color:#03110b;
-border-radius:9px;
-margin-right:6px;
+    width:60px;
+    height:60px;
+    margin:auto;
+    border-radius:50%;
+    background:#00ff99;
+    color:#07111f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:15px;
 }
 
-.links{
-display:flex;
-gap:10px;
-overflow-x:auto;
+.coin-card h3{
+    margin-bottom:10px;
 }
 
-.links a{
-font-size:11px;
-color:#91a39c;
+.coin-card button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#00ff99;
+    color:#07111f;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.links a:hover{
-color:#18df98;
+.coin-card button:hover{
+    background:white;
 }
-
-
-main{
-max-width:1100px;
-margin:auto;
-padding:25px 15px;
-}
-
-
-h1{
-font-size:28px;
-}
-
-
-.subtitle{
-color:#91a39c;
-font-size:12px;
-}
-
-
-.search{
-width:100%;
-margin:20px 0;
-padding:14px;
-background:#10251c;
-border:1px solid #183027;
-border-radius:10px;
-color:white;
-outline:none;
-}
-
-
-.grid{
-
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:12px;
-
-}
-
-
-.coin{
-
-background:#10251c;
-border:1px solid #183027;
-border-radius:14px;
-padding:16px;
-cursor:pointer;
-transition:.2s;
-
-}
-
-
-.coin:hover{
-
-border-color:#18df98;
-transform:translateY(-2px);
-
-}
-
-
-.icon{
-
-width:45px;
-height:45px;
-border-radius:12px;
-background:#06110d;
-display:grid;
-place-items:center;
-color:#18df98;
-font-size:20px;
-font-weight:bold;
-margin-bottom:12px;
-
-}
-
-
-.name{
-
-font-weight:900;
-font-size:14px;
-
-}
-
-
-.symbol{
-
-color:#91a39c;
-font-size:11px;
-margin-top:5px;
-
-}
-
 
 footer{
-
-text-align:center;
-color:#60716a;
-font-size:11px;
-margin:40px;
-
+    margin-top:30px;
+    padding:20px;
+    text-align:center;
+    background:#0d1b2e;
+    color:#aaa;
 }
-
-
-@media(max-width:700px){
-
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.nav{
-flex-direction:column;
-align-items:flex-start;
-}
-
-}
-
 </style>
-
 </head>
 
 <body>
 
+<header>
+<h1>Trading League</h1>
+<p>Crypto Markets</p>
+</header>
 
 <nav>
-
-<div class="nav">
-
-<a href="index.html" class="brand">
-<span class="logo">TL</span>
-Trading League
-</a>
-
-
-<div class="links">
-
 <a href="index.html">Home</a>
 <a href="markets.html">Markets</a>
 <a href="games.html">Games</a>
@@ -207,155 +143,87 @@ Trading League
 <a href="leaderboard.html">Leaderboard</a>
 <a href="withdraw.html">Withdraw</a>
 <a href="account.html">Account</a>
-
-</div>
-
-</div>
-
 </nav>
 
+<div class="container">
 
+<div class="title">
+<h2>Markets</h2>
+<p>Select a cryptocurrency to start demo trading</p>
+</div>
 
-<main>
+<div class="market-grid" id="marketGrid"></div>
 
-<h1>Markets</h1>
-
-<p class="subtitle">
-Select a cryptocurrency market to view live price and trading.
-</p>
-
-
-<input 
-class="search"
-id="search"
-placeholder="Search crypto..."
->
-
-
-<div class="grid" id="marketGrid"></div>
-
-
-</main>
-
-
+</div>
 
 <footer>
 Trading League © 2026
 </footer>
 
 
-
 <script>
 
-
-const markets={
-
-BTC:["Bitcoin","₿"],
-ETH:["Ethereum","Ξ"],
-BNB:["BNB","B"],
-SOL:["Solana","S"],
-XRP:["XRP","X"],
-DOGE:["Dogecoin","Ð"],
-ADA:["Cardano","A"],
-AVAX:["Avalanche","A"],
-LINK:["Chainlink","L"],
-DOT:["Polkadot","●"],
-TRX:["TRON","T"],
-POL:["Polygon","M"],
-LTC:["Litecoin","Ł"],
-BCH:["Bitcoin Cash","₿"],
-XLM:["Stellar","X"],
-UNI:["Uniswap","U"],
-ATOM:["Cosmos","A"],
-NEAR:["NEAR Protocol","N"],
-ICP:["Internet Computer","I"],
-APT:["Aptos","A"]
-
-};
+const cryptocurrencies = [
+{name:"Bitcoin", symbol:"BTC"},
+{name:"Ethereum", symbol:"ETH"},
+{name:"BNB", symbol:"BNB"},
+{name:"Solana", symbol:"SOL"},
+{name:"XRP", symbol:"XRP"},
+{name:"Dogecoin", symbol:"DOGE"},
+{name:"Cardano", symbol:"ADA"},
+{name:"Avalanche", symbol:"AVAX"},
+{name:"Chainlink", symbol:"LINK"},
+{name:"Polkadot", symbol:"DOT"},
+{name:"TRON", symbol:"TRX"},
+{name:"Polygon", symbol:"POL"},
+{name:"Litecoin", symbol:"LTC"},
+{name:"Bitcoin Cash", symbol:"BCH"},
+{name:"Stellar", symbol:"XLM"},
+{name:"Uniswap", symbol:"UNI"},
+{name:"Cosmos", symbol:"ATOM"},
+{name:"NEAR Protocol", symbol:"NEAR"},
+{name:"Internet Computer", symbol:"ICP"},
+{name:"Aptos", symbol:"APT"}
+];
 
 
-
-const grid=document.getElementById("marketGrid");
-
-
-function showMarkets(filter=""){
+const marketGrid = document.getElementById("marketGrid");
 
 
-grid.innerHTML="";
+cryptocurrencies.forEach(coin=>{
 
+const card=document.createElement("div");
 
-Object.keys(markets).forEach(symbol=>{
+card.className="coin-card";
 
+card.innerHTML=`
 
-let coin=markets[symbol];
+<div class="logo">${coin.symbol.substring(0,1)}</div>
 
+<h3>${coin.name}</h3>
 
-if(
-!symbol.toLowerCase().includes(filter) &&
-!coin[0].toLowerCase().includes(filter)
-){
-return;
-}
+<p>${coin.symbol}</p>
 
+<br>
 
-
-let div=document.createElement("div");
-
-div.className="coin";
-
-
-div.onclick=function(){
-
-window.location.href=
-"market.html?symbol="+symbol;
-
-};
-
-
-
-div.innerHTML=`
-
-<div class="icon">
-${coin[1]}
-</div>
-
-<div class="name">
-${coin[0]}
-</div>
-
-<div class="symbol">
-${symbol}/USDT
-</div>
+<button onclick="openMarket('${coin.symbol}')">
+Trade ${coin.symbol}
+</button>
 
 `;
 
-
-grid.appendChild(div);
-
+marketGrid.appendChild(card);
 
 });
 
+
+function openMarket(symbol){
+
+window.location.href="market.html?symbol="+symbol;
 
 }
 
-
-
-document
-.getElementById("search")
-.addEventListener("input",function(){
-
-showMarkets(
-this.value.toLowerCase()
-);
-
-});
-
-
-showMarkets();
-
-
 </script>
-
 
 </body>
 </html>
