@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trading League - Market</title>
 
-<script src="https://s3.tradingview.com/tv.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 *{
@@ -16,744 +16,540 @@
 }
 
 body{
-    background:#07111f;
-    color:#fff;
-    min-height:100vh;
+    background:#050d18;
+    color:white;
 }
 
 header{
-    background:#0d1b2e;
-    padding:20px;
+    background:#0b1728;
+    padding:22px;
     text-align:center;
-    border-bottom:1px solid #1d3557;
+    border-bottom:1px solid #1b3352;
 }
 
 header h1{
     color:#00ff99;
     font-size:28px;
-    margin-bottom:5px;
-}
-
-header p{
-    color:#9fb0c5;
 }
 
 nav{
     display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
     gap:10px;
-    padding:14px;
-    background:#091525;
-    border-bottom:1px solid #1d3557;
+    flex-wrap:wrap;
+    justify-content:center;
+    padding:15px;
+    background:#071220;
 }
 
 nav a{
-    color:#fff;
+    color:white;
     text-decoration:none;
-    background:#13263f;
     padding:10px 14px;
+    background:#12243b;
     border-radius:8px;
     font-size:14px;
 }
 
-nav a:hover,
-nav a.active{
+nav a:hover{
     background:#00ff99;
-    color:#07111f;
+    color:#000;
 }
 
 .container{
-    width:100%;
     max-width:1200px;
     margin:auto;
     padding:20px;
 }
 
-.back-button{
-    margin-bottom:20px;
-}
-
-.back-button button{
-    border:0;
-    background:#13263f;
-    color:#fff;
-    padding:12px 18px;
-    border-radius:9px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.back-button button:hover{
-    background:#00ff99;
-    color:#07111f;
-}
-
 .card{
-    background:#102238;
-    border:1px solid #1d3557;
-    border-radius:16px;
+    background:#0d1c30;
+    border:1px solid #1c3554;
+    border-radius:18px;
     padding:20px;
     margin-bottom:20px;
 }
 
-.coin-header{
+.back button{
+    background:#00ff99;
+    border:0;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.coin{
     display:flex;
     align-items:center;
     gap:15px;
 }
 
-.coin-logo{
-    width:64px;
-    height:64px;
-    min-width:64px;
+.logo{
+    width:65px;
+    height:65px;
     border-radius:50%;
     background:#00ff99;
-    color:#07111f;
+    color:#05101d;
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:18px;
-    font-weight:900;
-    text-align:center;
-    padding:5px;
-}
-
-.coin-info h2{
-    font-size:25px;
-    margin-bottom:5px;
-}
-
-.coin-info p{
-    color:#9fb0c5;
-    font-size:14px;
-}
-
-.price-row{
-    margin-top:20px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:15px;
-    flex-wrap:wrap;
+    align-items:center;
+    font-weight:bold;
+    font-size:20px;
 }
 
 .price{
-    font-size:32px;
-    font-weight:bold;
+    margin-top:20px;
+    font-size:35px;
     color:#00ff99;
 }
 
-.price-status{
-    color:#9fb0c5;
-    font-size:13px;
-}
-
-.live-dot{
-    display:inline-block;
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#00ff99;
-    margin-right:6px;
+.status{
+    color:#8fa4bb;
+    margin-top:5px;
 }
 
 .chart-box{
-    margin-top:20px;
-    width:100%;
-    height:460px;
-    background:#081625;
-    border:1px solid #1d3557;
-    border-radius:12px;
-    overflow:hidden;
-}
-
-#chart{
-    width:100%;
-    height:100%;
-}
-
-.chart-loading{
-    height:100%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#9fb0c5;
-}
-
-.trade-area{
-    margin-top:20px;
+    margin-top:25px;
+    height:350px;
 }
 
 .trade-buttons{
     display:flex;
     gap:15px;
+    margin-top:20px;
 }
 
 .trade-buttons button{
     flex:1;
-    border:0;
     padding:15px;
+    border:0;
     border-radius:10px;
-    font-size:17px;
+    font-size:18px;
     font-weight:bold;
     cursor:pointer;
 }
 
 .buy{
     background:#00ff99;
-    color:#07111f;
 }
 
 .sell{
-    background:#ff4d4d;
-    color:#fff;
+    background:#ff4040;
+    color:white;
 }
 
-.trade-buttons button:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-}
-
-.payment-lock{
-    margin-top:18px;
-    padding:16px;
-    border-radius:10px;
-    background:#3a1c1c;
-    border:1px solid #713737;
-    color:#ffb0b0;
+.lock{
+    margin-top:20px;
+    padding:18px;
     text-align:center;
-    line-height:1.6;
+    background:#351b1b;
+    border-radius:10px;
+    color:#ffb0b0;
     font-weight:bold;
-}
-
-.lock-title{
-    font-size:16px;
-    margin-bottom:5px;
-}
-
-.section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-}
-
-.section-title h2{
-    font-size:20px;
-}
-
-.table-wrap{
-    overflow-x:auto;
 }
 
 table{
     width:100%;
     border-collapse:collapse;
     margin-top:15px;
-    min-width:500px;
 }
 
-th,
-td{
-    padding:13px 10px;
+th,td{
+    padding:12px;
     text-align:center;
-    border-bottom:1px solid #1d3557;
+    border-bottom:1px solid #1b3352;
 }
 
 th{
     color:#9fb0c5;
-    font-size:13px;
 }
 
 .empty{
-    color:#8fa0b5;
-    padding:25px;
-}
-
-.notice{
-    margin-top:10px;
-    color:#9fb0c5;
-    font-size:13px;
+    color:#8999aa;
 }
 
 footer{
-    background:#0d1b2e;
-    border-top:1px solid #1d3557;
-    text-align:center;
     padding:20px;
-    color:#718096;
-    margin-top:30px;
+    text-align:center;
+    background:#0b1728;
+    color:#8999aa;
 }
+
 
 @media(max-width:600px){
 
-    header h1{
-        font-size:24px;
-    }
-
-    nav{
-        justify-content:flex-start;
-        overflow-x:auto;
-        flex-wrap:nowrap;
-    }
-
-    nav a{
-        white-space:nowrap;
-    }
-
-    .container{
-        padding:14px;
-    }
-
-    .card{
-        padding:15px;
-    }
-
-    .coin-logo{
-        width:55px;
-        height:55px;
-        min-width:55px;
-        font-size:15px;
-    }
-
-    .coin-info h2{
-        font-size:21px;
-    }
-
-    .price{
-        font-size:27px;
-    }
-
-    .chart-box{
-        height:380px;
-    }
-
-    .trade-buttons{
-        gap:10px;
-    }
-
-    .trade-buttons button{
-        padding:13px 8px;
-    }
+nav{
+    justify-content:flex-start;
+    overflow-x:auto;
+    flex-wrap:nowrap;
 }
+
+.chart-box{
+    height:250px;
+}
+
+.price{
+    font-size:28px;
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
 
+
 <header>
-    <h1>Trading League</h1>
-    <p>Crypto Trading Market</p>
+<h1>Trading League</h1>
+<p>Crypto Trading Market</p>
 </header>
 
+
 <nav>
-    <a href="index.html">Home</a>
-    <a href="markets.html" class="active">Markets</a>
-    <a href="games.html">Games</a>
-    <a href="tournament.html">Tournament</a>
-    <a href="leaderboard.html">Leaderboard</a>
-    <a href="withdraw.html">Withdraw</a>
-    <a href="account.html">Account</a>
+<a href="index.html">Home</a>
+<a href="markets.html">Markets</a>
+<a href="games.html">Games</a>
+<a href="tournament.html">Tournament</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="withdraw.html">Withdraw</a>
+<a href="account.html">Account</a>
 </nav>
 
-<main class="container">
 
-    <div class="back-button">
-        <button type="button" onclick="goToMarkets()">← Back to Markets</button>
-    </div>
+<div class="container">
 
-    <section class="card">
 
-        <div class="coin-header">
-            <div class="coin-logo" id="coinLogo">BTC</div>
+<div class="back">
+<br>
+<button onclick="location.href='markets.html'">
+← Markets
+</button>
+<br><br>
+</div>
 
-            <div class="coin-info">
-                <h2 id="coinName">Bitcoin</h2>
-                <p id="coinSymbol">BTC / USDT</p>
-            </div>
-        </div>
 
-        <div class="price-row">
-            <div>
-                <div class="price" id="livePrice">Loading...</div>
-                <div class="price-status">
-                    <span class="live-dot"></span>
-                    Live market price
-                </div>
-            </div>
-        </div>
 
-        <div class="chart-box">
-            <div id="chart">
-                <div class="chart-loading">
-                    Loading live chart...
-                </div>
-            </div>
-        </div>
+<div class="card">
 
-        <div class="trade-area">
+<div class="coin">
 
-            <div class="trade-buttons">
-                <button class="buy" type="button" onclick="demoTrade('BUY')">
-                    BUY
-                </button>
+<div class="logo" id="logo">
+BTC
+</div>
 
-                <button class="sell" type="button" onclick="demoTrade('SELL')">
-                    SELL
-                </button>
-            </div>
+<div>
+<h2 id="name">
+Bitcoin
+</h2>
 
-            <div class="payment-lock">
-                <div class="lock-title">PAYMENT NOT CONFIRMED</div>
-                The $500 demo balance is locked.
-                Trading funds will only become available after secure backend payment confirmation.
-            </div>
+<p id="symbol">
+BTC / USDT
+</p>
 
-            <div class="notice">
-                Demo trading only. No real money is processed by this page.
-            </div>
+</div>
 
-        </div>
+</div>
 
-    </section>
 
-    <section class="card">
+<div class="price" id="price">
+Loading...
+</div>
 
-        <div class="section-title">
-            <h2>Open Trades</h2>
-        </div>
 
-        <div class="table-wrap">
+<div class="status">
+Live market price
+</div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Symbol</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
 
-                <tbody id="openTrades">
-                    <tr>
-                        <td colspan="4" class="empty">
-                            No open trades
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="chart-box">
 
-        </div>
+<canvas id="marketChart"></canvas>
 
-    </section>
+</div>
 
-    <section class="card">
 
-        <div class="section-title">
-            <h2>Trade History</h2>
-        </div>
 
-        <div class="table-wrap">
+<div class="trade-buttons">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Action</th>
-                        <th>Symbol</th>
-                        <th>Price</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
+<button class="buy" onclick="trade('BUY')">
+BUY
+</button>
 
-                <tbody id="tradeHistory">
-                    <tr>
-                        <td colspan="4" class="empty">
-                            No trade history
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+<button class="sell" onclick="trade('SELL')">
+SELL
+</button>
 
-        </div>
+</div>
 
-    </section>
 
-</main>
+<div class="lock">
+
+PAYMENT NOT CONFIRMED<br>
+
+Balance is locked until secure backend payment confirmation.
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>Open Trades</h2>
+
+<table>
+
+<tr>
+<th>Type</th>
+<th>Symbol</th>
+<th>Status</th>
+</tr>
+
+
+<tbody id="openTrades">
+
+<tr>
+<td colspan="3" class="empty">
+No open trades
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>Trade History</h2>
+
+
+<table>
+
+<tr>
+<th>Action</th>
+<th>Symbol</th>
+<th>Time</th>
+</tr>
+
+
+<tbody id="history">
+
+<tr>
+<td colspan="3" class="empty">
+No trade history
+</td>
+</tr>
+
+</tbody>
+
+
+</table>
+
+</div>
+
+
+</div>
+
+
 
 <footer>
-    Trading League © 2026
+
+Trading League © 2026
+
 </footer>
 
+
+
+
 <script>
-const cryptoData = {
-    BTC: {
-        name: "Bitcoin",
-        icon: "₿",
-        tv: "BINANCE:BTCUSDT",
-        apiId: "bitcoin"
-    },
-    ETH: {
-        name: "Ethereum",
-        icon: "Ξ",
-        tv: "BINANCE:ETHUSDT",
-        apiId: "ethereum"
-    },
-    BNB: {
-        name: "BNB",
-        icon: "BNB",
-        tv: "BINANCE:BNBUSDT",
-        apiId: "binancecoin"
-    },
-    SOL: {
-        name: "Solana",
-        icon: "SOL",
-        tv: "BINANCE:SOLUSDT",
-        apiId: "solana"
-    },
-    XRP: {
-        name: "XRP",
-        icon: "XRP",
-        tv: "BINANCE:XRPUSDT",
-        apiId: "ripple"
-    },
-    DOGE: {
-        name: "Dogecoin",
-        icon: "Ð",
-        tv: "BINANCE:DOGEUSDT",
-        apiId: "dogecoin"
-    },
-    ADA: {
-        name: "Cardano",
-        icon: "ADA",
-        tv: "BINANCE:ADAUSDT",
-        apiId: "cardano"
-    },
-    AVAX: {
-        name: "Avalanche",
-        icon: "AVAX",
-        tv: "BINANCE:AVAXUSDT",
-        apiId: "avalanche-2"
-    },
-    LINK: {
-        name: "Chainlink",
-        icon: "LINK",
-        tv: "BINANCE:LINKUSDT",
-        apiId: "chainlink"
-    },
-    DOT: {
-        name: "Polkadot",
-        icon: "DOT",
-        tv: "BINANCE:DOTUSDT",
-        apiId: "polkadot"
-    },
-    TRX: {
-        name: "TRON",
-        icon: "TRX",
-        tv: "BINANCE:TRXUSDT",
-        apiId: "tron"
-    },
-    POL: {
-        name: "Polygon",
-        icon: "POL",
-        tv: "BINANCE:POLUSDT",
-        apiId: "polygon-ecosystem-token"
-    },
-    LTC: {
-        name: "Litecoin",
-        icon: "Ł",
-        tv: "BINANCE:LTCUSDT",
-        apiId: "litecoin"
-    },
-    BCH: {
-        name: "Bitcoin Cash",
-        icon: "BCH",
-        tv: "BINANCE:BCHUSDT",
-        apiId: "bitcoin-cash"
-    },
-    XLM: {
-        name: "Stellar",
-        icon: "XLM",
-        tv: "BINANCE:XLMUSDT",
-        apiId: "stellar"
-    },
-    UNI: {
-        name: "Uniswap",
-        icon: "UNI",
-        tv: "BINANCE:UNIUSDT",
-        apiId: "uniswap"
-    },
-    ATOM: {
-        name: "Cosmos",
-        icon: "ATOM",
-        tv: "BINANCE:ATOMUSDT",
-        apiId: "cosmos"
-    },
-    NEAR: {
-        name: "NEAR Protocol",
-        icon: "NEAR",
-        tv: "BINANCE:NEARUSDT",
-        apiId: "near"
-    },
-    ICP: {
-        name: "Internet Computer",
-        icon: "ICP",
-        tv: "BINANCE:ICPUSDT",
-        apiId: "internet-computer"
-    },
-    APT: {
-        name: "Aptos",
-        icon: "APT",
-        tv: "BINANCE:APTUSDT",
-        apiId: "aptos"
-    }
+
+
+const coins={
+
+BTC:{name:"Bitcoin",icon:"₿",id:"bitcoin"},
+ETH:{name:"Ethereum",icon:"Ξ",id:"ethereum"},
+BNB:{name:"BNB",icon:"BNB",id:"binancecoin"},
+SOL:{name:"Solana",icon:"SOL",id:"solana"},
+XRP:{name:"XRP",icon:"XRP",id:"ripple"},
+DOGE:{name:"Dogecoin",icon:"Ð",id:"dogecoin"},
+ADA:{name:"Cardano",icon:"ADA",id:"cardano"},
+AVAX:{name:"Avalanche",icon:"AVAX",id:"avalanche-2"},
+LINK:{name:"Chainlink",icon:"LINK",id:"chainlink"},
+DOT:{name:"Polkadot",icon:"DOT",id:"polkadot"},
+TRX:{name:"TRON",icon:"TRX",id:"tron"},
+POL:{name:"Polygon",icon:"POL",id:"polygon-ecosystem-token"},
+LTC:{name:"Litecoin",icon:"Ł",id:"litecoin"},
+BCH:{name:"Bitcoin Cash",icon:"BCH",id:"bitcoin-cash"},
+XLM:{name:"Stellar",icon:"XLM",id:"stellar"},
+UNI:{name:"Uniswap",icon:"UNI",id:"uniswap"},
+ATOM:{name:"Cosmos",icon:"ATOM",id:"cosmos"},
+NEAR:{name:"NEAR",icon:"NEAR",id:"near"},
+ICP:{name:"Internet Computer",icon:"ICP",id:"internet-computer"},
+APT:{name:"Aptos",icon:"APT",id:"aptos"}
+
 };
 
-const params = new URLSearchParams(window.location.search);
-const requestedSymbol = (params.get("symbol") || "BTC").toUpperCase();
 
-const symbol = cryptoData[requestedSymbol]
-    ? requestedSymbol
-    : "BTC";
 
-const coin = cryptoData[symbol];
+const params=new URLSearchParams(location.search);
 
-let currentPrice = null;
+const symbol=params.get("symbol") || "BTC";
 
-function initialisePage(){
-    document.getElementById("coinLogo").textContent = coin.icon;
-    document.getElementById("coinName").textContent = coin.name;
-    document.getElementById("coinSymbol").textContent = symbol + " / USDT";
+const coin=coins[symbol] || coins.BTC;
 
-    loadLivePrice();
-    loadTradingViewChart();
+
+document.getElementById("logo").innerHTML=coin.icon;
+
+document.getElementById("name").innerHTML=coin.name;
+
+document.getElementById("symbol").innerHTML=symbol+" / USDT";
+
+
+
+let price=0;
+
+
+
+async function loadPrice(){
+
+try{
+
+let response=await fetch(
+"https://api.coingecko.com/api/v3/simple/price?ids="+coin.id+"&vs_currencies=usd"
+);
+
+
+let data=await response.json();
+
+price=data[coin.id].usd;
+
+
+document.getElementById("price").innerHTML=
+"$"+price.toLocaleString();
+
+
+}catch{
+
+document.getElementById("price").innerHTML=
+"Unavailable";
+
 }
 
-async function loadLivePrice(){
-    const priceElement = document.getElementById("livePrice");
-
-    try{
-        const response = await fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=" +
-            encodeURIComponent(coin.apiId) +
-            "&vs_currencies=usd",
-            {
-                cache:"no-store"
-            }
-        );
-
-        if(!response.ok){
-            throw new Error("Price request failed");
-        }
-
-        const data = await response.json();
-
-        if(
-            !data[coin.apiId] ||
-            typeof data[coin.apiId].usd !== "number"
-        ){
-            throw new Error("Price unavailable");
-        }
-
-        currentPrice = data[coin.apiId].usd;
-
-        priceElement.textContent = formatPrice(currentPrice);
-
-    }catch(error){
-        priceElement.textContent = "Price unavailable";
-    }
 }
 
-function formatPrice(value){
-    if(value >= 1000){
-        return "$" + value.toLocaleString("en-US",{
-            minimumFractionDigits:2,
-            maximumFractionDigits:2
-        });
-    }
 
-    if(value >= 1){
-        return "$" + value.toLocaleString("en-US",{
-            minimumFractionDigits:2,
-            maximumFractionDigits:4
-        });
-    }
 
-    return "$" + value.toLocaleString("en-US",{
-        minimumFractionDigits:4,
-        maximumFractionDigits:8
-    });
+function createChart(){
+
+let values=[];
+
+let labels=[];
+
+
+let start=price || 100;
+
+
+for(let i=0;i<30;i++){
+
+values.push(
+start+(Math.random()*200-100)
+);
+
+labels.push(i+"m");
+
 }
 
-function loadTradingViewChart(){
 
-    const chart = document.getElementById("chart");
 
-    chart.innerHTML = "";
+new Chart(
+document.getElementById("marketChart"),
+{
 
-    if(typeof TradingView === "undefined"){
-        chart.innerHTML =
-            '<div class="chart-loading">Live chart could not be loaded.</div>';
-        return;
-    }
+type:"line",
 
-    try{
+data:{
 
-        new TradingView.widget({
-            autosize:true,
-            symbol:coin.tv,
-            interval:"15",
-            timezone:"Etc/UTC",
-            theme:"dark",
-            style:"1",
-            locale:"en",
-            enable_publishing:false,
-            allow_symbol_change:false,
-            hide_top_toolbar:false,
-            hide_legend:false,
-            save_image:false,
-            container_id:"chart"
-        });
+labels:labels,
 
-    }catch(error){
+datasets:[{
 
-        chart.innerHTML =
-            '<div class="chart-loading">Live chart could not be loaded.</div>';
+data:values,
 
-    }
+borderWidth:2,
+
+fill:true
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+plugins:{
+
+legend:{
+display:false
 }
 
-function goToMarkets(){
-    window.location.href = "markets.html";
+},
+
+scales:{
+
+x:{
+display:false
+},
+
+y:{
+display:false
 }
 
-function demoTrade(type){
-
-    if(currentPrice === null){
-        alert("Live price is not available yet.");
-        return;
-    }
-
-    /*
-      IMPORTANT:
-      No balance is created here.
-      No payment is confirmed here.
-      No localStorage is used for payment.
-      Real trading/payment confirmation must be handled
-      by a secure backend later.
-    */
-
-    alert(
-        "PAYMENT NOT CONFIRMED\n\n" +
-        "Your trading balance is locked.\n\n" +
-        "This is demo mode only. No real trade was submitted."
-    );
 }
 
-initialisePage();
+}
+
+}
+
+);
+
+
+}
+
+
+
+function trade(type){
+
+alert(
+"PAYMENT NOT CONFIRMED\n\nDemo trading only. No real trade submitted."
+);
+
+}
+
+
+
+loadPrice().then(()=>{
+
+createChart();
+
+});
+
+
 </script>
 
+
 </body>
-  </html>
+</html>
