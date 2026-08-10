@@ -6,19 +6,29 @@
 <title>Trading League | Markets</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0
+}
+
 body{
   background:#06110d;
   color:#f5f8f7;
   font-family:Arial,sans-serif;
 }
-a{text-decoration:none;color:inherit}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
 nav{
   background:#040e0a;
   border-bottom:1px solid #183027;
   padding:13px 15px;
 }
+
 .nav{
   max-width:1100px;
   margin:auto;
@@ -27,11 +37,13 @@ nav{
   align-items:center;
   gap:15px;
 }
+
 .brand{
   font-size:17px;
   font-weight:900;
   white-space:nowrap;
 }
+
 .logo{
   display:inline-grid;
   place-items:center;
@@ -42,17 +54,23 @@ nav{
   background:#18df98;
   color:#03110b;
 }
+
 .links{
   display:flex;
   gap:6px;
   overflow-x:auto;
 }
+
 .links a{
   color:#91a39c;
   font-size:11px;
   font-weight:bold;
   padding:8px;
   white-space:nowrap;
+}
+
+.links a:hover{
+  color:#18df98;
 }
 
 main{
@@ -67,10 +85,12 @@ main{
   font-weight:900;
   margin-bottom:10px;
 }
+
 h1{
   font-size:42px;
   margin-bottom:10px;
 }
+
 .intro{
   color:#91a39c;
   font-size:13px;
@@ -84,33 +104,39 @@ h1{
   border:1px solid #183027;
   border-radius:16px;
 }
+
 .guide h2{
   font-size:20px;
   margin-bottom:8px;
 }
+
 .guide p{
   color:#91a39c;
   font-size:12px;
   line-height:1.7;
 }
+
 .steps{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
   margin-top:15px;
 }
+
 .step{
   padding:14px;
   background:#06110d;
   border:1px solid #183027;
   border-radius:11px;
 }
+
 .step b{
   display:block;
   color:#18df98;
   font-size:12px;
   margin-bottom:6px;
 }
+
 .step span{
   color:#91a39c;
   font-size:10px;
@@ -123,7 +149,11 @@ h1{
   align-items:center;
   margin:25px 0 14px;
 }
-.section h2{font-size:20px}
+
+.section h2{
+  font-size:20px;
+}
+
 .live{
   color:#18df98;
   font-size:10px;
@@ -144,11 +174,15 @@ h1{
   border-radius:15px;
   transition:.15s;
 }
+
 .market:hover{
   border-color:#18df98;
   transform:translateY(-2px);
 }
-.market:active{transform:scale(.98)}
+
+.market:active{
+  transform:scale(.98);
+}
 
 .top{
   display:flex;
@@ -156,15 +190,17 @@ h1{
   justify-content:space-between;
   gap:10px;
 }
+
 .asset{
   display:flex;
   align-items:center;
   gap:11px;
 }
+
 .icon{
-  width:44px;
-  height:44px;
-  border-radius:12px;
+  width:46px;
+  height:46px;
+  border-radius:13px;
   display:grid;
   place-items:center;
   background:#06110d;
@@ -172,29 +208,34 @@ h1{
   overflow:hidden;
   flex-shrink:0;
 }
-.icon img{
-  width:27px;
-  height:27px;
-  object-fit:contain;
+
+.icon svg{
+  width:30px;
+  height:30px;
 }
-.fallback{
+
+.logo-text{
   color:#18df98;
   font-size:12px;
   font-weight:900;
 }
+
 .name{
   font-size:14px;
   font-weight:900;
 }
+
 .symbol{
   color:#91a39c;
   font-size:10px;
   margin-top:4px;
 }
+
 .arrow{
   color:#18df98;
   font-size:22px;
 }
+
 .type{
   margin-top:15px;
   padding-top:11px;
@@ -222,15 +263,27 @@ footer{
 }
 
 @media(max-width:700px){
+
   .nav{
     flex-direction:column;
     align-items:flex-start;
   }
-  .grid{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr}
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
 }
+
 @media(max-width:450px){
-  h1{font-size:34px}
+
+  h1{
+    font-size:34px;
+  }
+
 }
 </style>
 </head>
@@ -248,6 +301,7 @@ Trading League
 <div class="links">
 <a href="index.html">Home</a>
 <a href="markets.html">Markets</a>
+<a href="games.html">Games</a>
 <a href="tournament.html">Tournament</a>
 <a href="leaderboard.html">Leaderboard</a>
 <a href="withdraw.html">Withdraw</a>
@@ -257,15 +311,19 @@ Trading League
 </div>
 </nav>
 
+
 <main>
 
-<div class="eyebrow">TRADING LEAGUE / LEARN & TRADE</div>
+<div class="eyebrow">
+TRADING LEAGUE / LEARN & TRADE
+</div>
 
 <h1>Markets</h1>
 
 <p class="intro">
-Not familiar with trading? That's okay. Start with the
-simple guide below, then choose a market to practice.
+Not familiar with trading? That's okay. Start with
+the simple guide below, then choose a market to
+practice with demo money.
 </p>
 
 
@@ -274,9 +332,9 @@ simple guide below, then choose a market to practice.
 <h2>New to trading?</h2>
 
 <p>
-Trading means choosing whether you think the price of
-something will go up or down. Trading League lets you
-practice with demo money before using real money.
+Trading means making a decision about whether you
+think a market price may rise or fall. Trading League
+lets you practice with demo money.
 </p>
 
 <div class="steps">
@@ -308,6 +366,8 @@ SELL means you expect the price to fall.
 </div>
 
 
+<!-- ================= STOCKS ================= -->
+
 <div class="section">
 <h2>Stocks</h2>
 <div class="live">14 MARKETS</div>
@@ -316,287 +376,634 @@ SELL means you expect the price to fall.
 <div class="grid">
 
 
+<!-- APPLE -->
+
 <a class="market"
 href="market.html?type=stock&symbol=AAPL&name=Apple">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/apple"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">A</span>
+
+<svg viewBox="0 0 64 64" fill="none">
+<path
+d="M43 34c0-6 5-9 5-9-3-4-8-5-10-5-4-1-7 2-9 2-2 0-5-2-8-2-4 0-8 2-10 5-5 7-1 18 3 24 2 3 5 7 9 7 4 0 5-2 9-2s5 2 9 2c4 0 6-4 8-7 2-3 3-6 4-9-1 0-10-4-10-13Z"
+fill="#f5f8f7"/>
+<path
+d="M39 16c2-2 3-5 3-8-3 0-6 2-8 4-2 2-3 5-3 7 3 0 6-1 8-3Z"
+fill="#f5f8f7"/>
+</svg>
+
 </div>
+
 <div>
 <div class="name">Apple</div>
 <div class="symbol">AAPL / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- MICROSOFT -->
+
 <a class="market"
 href="market.html?type=stock&symbol=MSFT&name=Microsoft">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/microsoft"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">M</span>
+
+<svg viewBox="0 0 64 64">
+<rect x="7" y="7" width="23" height="23" fill="#18df98"/>
+<rect x="34" y="7" width="23" height="23" fill="#18df98"/>
+<rect x="7" y="34" width="23" height="23" fill="#18df98"/>
+<rect x="34" y="34" width="23" height="23" fill="#18df98"/>
+</svg>
+
 </div>
+
 <div>
 <div class="name">Microsoft</div>
 <div class="symbol">MSFT / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- NVIDIA -->
+
 <a class="market"
 href="market.html?type=stock&symbol=NVDA&name=NVIDIA">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/nvidia"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">N</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M7 32c12-17 28-22 50-18"
+stroke="#18df98"
+stroke-width="5"
+fill="none"/>
+
+<path
+d="M10 39c13-14 27-17 43-13"
+stroke="#f5f8f7"
+stroke-width="5"
+fill="none"/>
+
+<path
+d="M20 46c9-8 18-10 29-8"
+stroke="#18df98"
+stroke-width="5"
+fill="none"/>
+
+<circle
+cx="32"
+cy="32"
+r="5"
+fill="#18df98"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">NVIDIA</div>
 <div class="symbol">NVDA / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- AMAZON -->
+
 <a class="market"
 href="market.html?type=stock&symbol=AMZN&name=Amazon">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/amazon"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">AM</span>
+
+<svg viewBox="0 0 64 64">
+
+<text
+x="32"
+y="34"
+text-anchor="middle"
+font-size="25"
+font-weight="900"
+fill="#f5f8f7">a</text>
+
+<path
+d="M13 45c12 8 27 10 39 3"
+stroke="#18df98"
+stroke-width="4"
+fill="none"
+stroke-linecap="round"/>
+
+<path
+d="M45 44l7 1-4 6"
+fill="#18df98"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Amazon</div>
 <div class="symbol">AMZN / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- GOOGLE -->
+
 <a class="market"
 href="market.html?type=stock&symbol=GOOGL&name=Alphabet">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/google"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">G</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M52 32c0-2-.2-4-.7-6H32v11h11.3c-1.1 3.5-3.2 6.4-6.2 8.4v7h10c5.9-5.4 8.9-13.3 8.9-20.4Z"
+fill="#18df98"/>
+
+<path
+d="M32 53c8.1 0 14.9-2.7 19.9-7.4l-10-7c-2.8 1.9-6.2 3-9.9 3-7.6 0-14.1-5.1-16.4-12H5.2v7.2C10.2 46.3 20.3 53 32 53Z"
+fill="#f5f8f7"/>
+
+<path
+d="M15.6 29.6c-.6-1.9-.9-3.9-.9-6s.3-4.1.9-6v-7.2H5.2A27.9 27.9 0 0 0 2 23.6c0 4.8 1.1 9.4 3.2 13.2l10.4-7.2Z"
+fill="#18df98"/>
+
+<path
+d="M32 11c4.4 0 8.4 1.5 11.5 4.5l8.6-8.6C46.9 2.2 40.1-.4 32-.4 20.3-.4 10.2 6.3 5.2 16.4l10.4 7.2C17.9 16.1 24.4 11 32 11Z"
+fill="#f5f8f7"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Alphabet</div>
 <div class="symbol">GOOGL / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- META -->
+
 <a class="market"
 href="market.html?type=stock&symbol=META&name=Meta">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/meta"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">M</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M9 40V27c0-7 4-12 10-12 6 0 10 5 13 11 3-6 7-11 13-11 6 0 10 5 10 12v13"
+stroke="#18df98"
+stroke-width="7"
+fill="none"
+stroke-linecap="round"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Meta</div>
 <div class="symbol">META / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- TESLA -->
+
 <a class="market"
 href="market.html?type=stock&symbol=TSLA&name=Tesla">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/tesla"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">T</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M8 18c8-5 15-7 24-7s16 2 24 7"
+stroke="#18df98"
+stroke-width="5"
+fill="none"/>
+
+<path
+d="M17 21c5-3 10-4 15-4s10 1 15 4"
+stroke="#f5f8f7"
+stroke-width="4"
+fill="none"/>
+
+<path
+d="M32 20v31"
+stroke="#18df98"
+stroke-width="5"/>
+
+<path
+d="M22 26l10-5 10 5"
+stroke="#18df98"
+stroke-width="4"
+fill="none"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Tesla</div>
 <div class="symbol">TSLA / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- NETFLIX -->
+
 <a class="market"
 href="market.html?type=stock&symbol=NFLX&name=Netflix">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/netflix"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">N</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M14 9h10v38l-10 8V9Z"
+fill="#18df98"/>
+
+<path
+d="M40 9h10v47l-10-8V9Z"
+fill="#f5f8f7"/>
+
+<path
+d="M24 9h16v12H24z"
+fill="#f5f8f7"
+opacity=".55"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Netflix</div>
 <div class="symbol">NFLX / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- AMD -->
+
 <a class="market"
 href="market.html?type=stock&symbol=AMD&name=AMD">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/amd"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">A</span>
+<span class="logo-text">AMD</span>
 </div>
+
 <div>
 <div class="name">AMD</div>
 <div class="symbol">AMD / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- INTEL -->
+
 <a class="market"
 href="market.html?type=stock&symbol=INTC&name=Intel">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/intel"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">I</span>
+
+<svg viewBox="0 0 64 64">
+
+<rect
+x="7"
+y="18"
+width="50"
+height="28"
+rx="8"
+fill="none"
+stroke="#18df98"
+stroke-width="5"/>
+
+<text
+x="32"
+y="38"
+text-anchor="middle"
+font-size="13"
+font-weight="900"
+fill="#f5f8f7">intel</text>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Intel</div>
 <div class="symbol">INTC / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- COCA COLA -->
+
 <a class="market"
 href="market.html?type=stock&symbol=KO&name=Coca-Cola">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/coca-cola"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">C</span>
+
+<svg viewBox="0 0 64 64">
+
+<circle
+cx="32"
+cy="32"
+r="25"
+fill="#18df98"/>
+
+<text
+x="32"
+y="37"
+text-anchor="middle"
+font-size="20"
+font-weight="900"
+fill="#06110d">C</text>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Coca-Cola</div>
 <div class="symbol">KO / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NYSE</div>
+
 </a>
 
 
+<!-- PEPSI -->
+
 <a class="market"
 href="market.html?type=stock&symbol=PEP&name=PepsiCo">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/pepsi"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">P</span>
+
+<svg viewBox="0 0 64 64">
+
+<circle
+cx="32"
+cy="32"
+r="25"
+fill="#f5f8f7"/>
+
+<path
+d="M10 32h44"
+stroke="#18df98"
+stroke-width="18"/>
+
+<path
+d="M12 22c9-9 25-11 39-3"
+stroke="#06110d"
+stroke-width="7"
+fill="none"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">PepsiCo</div>
 <div class="symbol">PEP / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NASDAQ</div>
+
 </a>
 
 
+<!-- MCDONALDS -->
+
 <a class="market"
 href="market.html?type=stock&symbol=MCD&name=McDonalds">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/mcdonalds"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">M</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M10 49V27c0-12 5-18 11-18 5 0 9 4 11 11 2-7 6-11 11-11 6 0 11 6 11 18v22h-8V28c0-7-1-10-4-10s-5 5-6 13h-8c-1-8-3-13-6-13s-4 3-4 10v21Z"
+fill="#18df98"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">McDonald's</div>
 <div class="symbol">MCD / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NYSE</div>
+
 </a>
 
 
+<!-- NIKE -->
+
 <a class="market"
 href="market.html?type=stock&symbol=NKE&name=Nike">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/nike"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">N</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M7 39c13-2 27-7 46-18-8 12-18 22-29 27-8 3-14 1-17-3Z"
+fill="#18df98"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Nike</div>
 <div class="symbol">NKE / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">STOCK · NYSE</div>
+
 </a>
 
 </div>
 
+
+<!-- ================= CRYPTO ================= -->
 
 <div class="section">
 <h2>Crypto</h2>
@@ -606,134 +1013,278 @@ onerror="this.style.display='none';this.nextElementSibling.style.display='block'
 <div class="grid">
 
 
+<!-- BITCOIN -->
+
 <a class="market"
 href="market.html?type=crypto&symbol=bitcoin&name=Bitcoin">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/bitcoin"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">₿</span>
+
+<svg viewBox="0 0 64 64">
+
+<circle
+cx="32"
+cy="32"
+r="27"
+fill="#18df98"/>
+
+<path
+d="M39 16c7 2 10 7 7 12-1 2-3 3-5 3 5 2 7 6 5 10-2 5-8 7-15 6l-1 5h-5l1-5-5-1 1-5 5 1 4-20-5-1 1-5 5 1 1-5h5l-1 5Zm-8 10-2 7c5 1 8 0 9-3 1-3-2-4-7-4Zm-3 12-2 7c5 1 9 0 10-3 1-3-2-4-8-4Z"
+fill="#06110d"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Bitcoin</div>
 <div class="symbol">BTC / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">CRYPTO</div>
+
 </a>
 
 
+<!-- ETHEREUM -->
+
 <a class="market"
 href="market.html?type=crypto&symbol=ethereum&name=Ethereum">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/ethereum"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">Ξ</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M32 5 14 33l18 10 18-10L32 5Z"
+fill="#18df98"/>
+
+<path
+d="M32 43 14 33l18 26 18-26-18 10Z"
+fill="#f5f8f7"/>
+
+<path
+d="M32 5v38l18-10L32 5Z"
+fill="#06110d"
+opacity=".45"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Ethereum</div>
 <div class="symbol">ETH / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">CRYPTO</div>
+
 </a>
 
 
+<!-- BNB -->
+
 <a class="market"
 href="market.html?type=crypto&symbol=binancecoin&name=BNB">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/binance"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">BNB</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="m32 5 7 7-7 7-7-7 7-7Zm-14 14 7 7-7 7-7-7 7-7Zm28 0 7 7-7 7-7-7 7-7ZM32 33l7 7-7 7-7-7 7-7Zm-14 0 7 7-7 7-7-7 7-7Zm28 0 7 7-7 7-7-7 7-7Z"
+fill="#18df98"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">BNB</div>
 <div class="symbol">BNB / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">CRYPTO</div>
+
 </a>
 
 
+<!-- SOLANA -->
+
 <a class="market"
 href="market.html?type=crypto&symbol=solana&name=Solana">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/solana"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">SOL</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M10 18h38l7 7H17l-7-7Z"
+fill="#18df98"/>
+
+<path
+d="M16 29h38l-7 7H9l7-7Z"
+fill="#f5f8f7"/>
+
+<path
+d="M10 40h38l7 7H17l-7-7Z"
+fill="#18df98"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Solana</div>
 <div class="symbol">SOL / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">CRYPTO</div>
+
 </a>
 
 
+<!-- XRP -->
+
 <a class="market"
 href="market.html?type=crypto&symbol=ripple&name=XRP">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/xrp"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">X</span>
+
+<svg viewBox="0 0 64 64">
+
+<path
+d="M11 18h9l12 12 12-12h9L37 35v9h-10v-9L11 18Z"
+fill="#18df98"/>
+
+<path
+d="M11 46h9l12-12 12 12h9L37 29v-9h-10v9L11 46Z"
+fill="#f5f8f7"
+opacity=".8"/>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">XRP</div>
 <div class="symbol">XRP / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">CRYPTO</div>
+
 </a>
 
 
+<!-- DOGECOIN -->
+
 <a class="market"
 href="market.html?type=crypto&symbol=dogecoin&name=Dogecoin">
+
 <div class="top">
+
 <div class="asset">
+
 <div class="icon">
-<img src="https://cdn.simpleicons.org/dogecoin"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-<span class="fallback" style="display:none">Ð</span>
+
+<svg viewBox="0 0 64 64">
+
+<circle
+cx="32"
+cy="32"
+r="27"
+fill="#18df98"/>
+
+<text
+x="32"
+y="40"
+text-anchor="middle"
+font-size="30"
+font-weight="900"
+fill="#06110d">Ð</text>
+
+</svg>
+
 </div>
+
 <div>
 <div class="name">Dogecoin</div>
 <div class="symbol">DOGE / USD</div>
 </div>
+
 </div>
+
 <div class="arrow">›</div>
+
 </div>
+
 <div class="type">CRYPTO</div>
+
 </a>
 
 </div>
 
 
 <div class="notice">
+
 <strong>Important:</strong>
-Trading League is currently a demo trading experience.
-Demo money is not real money. Market charts are provided
-for educational purposes and do not guarantee future results.
+Trading League is currently a demo trading
+experience. Demo money is not real money.
+Market charts are provided for educational
+purposes and do not guarantee future results.
+
 </div>
+
 
 <footer>
 Trading League © 2026
