@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trading League - Aviator</title>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#050d18;
+color:white;
+}
+
+header{
+background:#0d1b2e;
+padding:20px;
+text-align:center;
+}
+
+header h1{
+color:#00ff99;
+}
+
+nav{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:10px;
+padding:15px;
+background:#071220;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+background:#13263f;
+padding:10px 14px;
+border-radius:8px;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:#102238;
+border:1px solid #1d3557;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.multiplier{
+font-size:70px;
+font-weight:bold;
+color:#00ff99;
+margin:30px 0;
+}
+
+button{
+padding:15px 25px;
+border:0;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+margin:10px;
+}
+
+.start{
+background:#00ff99;
+}
+
+.cash{
+background:#ffcc00;
+}
+
+.info{
+color:#aaa;
+margin-top:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+td,th{
+padding:12px;
+border-bottom:1px solid #1d3557;
+}
+
+footer{
+text-align:center;
+padding:20px;
+color:#aaa;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Trading League</h1>
+<p>Aviator Demo Game</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="markets.html">Markets</a>
+<a href="games.html">Games</a>
+<a href="tournament.html">Tournament</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="withdraw.html">Withdraw</a>
+<a href="account.html">Account</a>
+</nav>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2>✈ Aviator</h2>
+
+<p class="info">
+Demo game only. No real money is used.
+</p>
+
+<div class="multiplier" id="multiplier">
+1.00x
+</div>
+
+
+<button class="start" onclick="startGame()">
+Start Flight
+</button>
+
+
+<button class="cash" onclick="cashOut()">
+Cash Out
+</button>
+
+
+<p id="message" class="info">
+Waiting for game...
+</p>
+
+
+</div>
+
+
+<div class="card">
+
+<h2>Recent Players</h2>
+
+<table>
+
+<tr>
+<th>Player</th>
+<th>Multiplier</th>
+</tr>
+
+<tbody id="players">
+
+<tr>
+<td>Player One</td>
+<td>3.50x</td>
+</tr>
+
+<tr>
+<td>Trader King</td>
+<td>8.20x</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</div>
+
+
+<footer>
+Trading League © 2026
+</footer>
+
+
+
+<script>
+
+let multiplier = 1;
+let timer;
+let playing = false;
+
+
+function startGame(){
+
+if(playing) return;
+
+playing=true;
+multiplier=1;
+
+document.getElementById("message").innerHTML=
+"Flight started...";
+
+
+timer=setInterval(()=>{
+
+multiplier += Math.random()*0.25;
+
+document.getElementById("multiplier").innerHTML=
+multiplier.toFixed(2)+"x";
+
+
+if(Math.random()<0.03){
+
+crash();
+
+}
+
+},500);
+
+}
+
+
+
+function cashOut(){
+
+if(!playing){
+
+document.getElementById("message").innerHTML=
+"Start a flight first.";
+
+return;
+
+}
+
+
+document.getElementById("message").innerHTML=
+"You cashed out at "+multiplier.toFixed(2)+"x";
+
+
+clearInterval(timer);
+
+playing=false;
+
+}
+
+
+
+function crash(){
+
+clearInterval(timer);
+
+playing=false;
+
+document.getElementById("message").innerHTML=
+"Plane crashed!";
+
+document.getElementById("multiplier").innerHTML=
+"💥 "+multiplier.toFixed(2)+"x";
+
+}
+
+</script>
+
+</body>
+  </html>
