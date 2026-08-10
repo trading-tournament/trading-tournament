@@ -3,15 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Trading League | Markets</title>
+<title>Trading League | Market</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   background:#06110d;
@@ -20,8 +15,8 @@ body{
 }
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 nav{
@@ -73,156 +68,209 @@ nav{
 main{
   max-width:1100px;
   margin:auto;
-  padding:30px 15px 60px;
+  padding:25px 15px 60px;
 }
 
-.eyebrow{
-  color:#18df98;
-  font-size:10px;
-  font-weight:900;
-  margin-bottom:10px;
+.back{
+  color:#91a39c;
+  font-size:12px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:15px;
+  margin:20px 0;
 }
 
 h1{
-  font-size:42px;
-  margin-bottom:10px;
-}
-
-.intro{
-  color:#91a39c;
-  font-size:12px;
-  line-height:1.6;
-  margin-bottom:28px;
-}
-
-.section{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:14px;
-  margin-top:25px;
-}
-
-.section h2{
-  font-size:20px;
-}
-
-.live{
-  color:#18df98;
-  font-size:10px;
-  font-weight:bold;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-}
-
-.market{
-  display:block;
-  padding:17px;
-  background:linear-gradient(145deg,#10251c,#0c1d16);
-  border:1px solid #183027;
-  border-radius:15px;
-  transition:.15s;
-}
-
-.market:active{
-  transform:scale(.98);
-}
-
-.market:hover{
-  border-color:#18df98;
-}
-
-.top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.asset{
-  display:flex;
-  align-items:center;
-  gap:11px;
-}
-
-.icon{
-  width:42px;
-  height:42px;
-  border-radius:12px;
-  display:grid;
-  place-items:center;
-  background:#06110d;
-  border:1px solid #183027;
-  font-size:12px;
-  font-weight:900;
-  color:#18df98;
-}
-
-.name{
-  font-size:14px;
-  font-weight:900;
+  font-size:36px;
 }
 
 .symbol{
   color:#91a39c;
-  font-size:10px;
-  margin-top:4px;
+  font-size:12px;
+  margin-top:6px;
 }
 
-.arrow{
-  color:#18df98;
-  font-size:22px;
+.balance{
+  background:#0c1d16;
+  border:1px solid #183027;
+  border-radius:12px;
+  padding:12px;
 }
 
-.type{
-  margin-top:15px;
-  padding-top:11px;
-  border-top:1px solid #183027;
-  color:#60716a;
+.balance small{
+  color:#91a39c;
   font-size:9px;
-  font-weight:bold;
+}
+
+.balance strong{
+  display:block;
+  color:#18df98;
+  font-size:20px;
+  margin-top:5px;
+}
+
+.chart{
+  height:500px;
+  position:relative;
+  overflow:hidden;
+  background:#0a1712;
+  border:1px solid #183027;
+  border-radius:15px;
+}
+
+.loading{
+  position:absolute;
+  inset:0;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:12px;
+  background:#0a1712;
+  color:#91a39c;
+  font-size:13px;
+}
+
+.spinner{
+  width:30px;
+  height:30px;
+  border:3px solid #183027;
+  border-top-color:#18df98;
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.card{
+  margin-top:15px;
+  padding:17px;
+  background:#0c1d16;
+  border:1px solid #183027;
+  border-radius:15px;
+}
+
+.card h2{
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+.sub{
+  color:#91a39c;
+  font-size:11px;
+  line-height:1.5;
+  margin-bottom:14px;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  background:#06110d;
+  color:white;
+  border:1px solid #183027;
+  border-radius:9px;
+  outline:none;
+  font-size:15px;
+}
+
+.quick{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+
+.quick button{
+  padding:8px 11px;
+  background:#10251c;
+  color:#91a39c;
+  border:1px solid #183027;
+  border-radius:7px;
+  font-size:10px;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:14px;
+}
+
+.buy,.sell{
+  border:0;
+  padding:14px;
+  border-radius:9px;
+  color:white;
+  font-weight:900;
+}
+
+.buy{background:#079b69}
+.sell{background:#c83e4c}
+
+.message{
+  margin-top:10px;
+  font-size:11px;
+}
+
+.trade{
+  display:flex;
+  justify-content:space-between;
+  padding:11px 0;
+  border-bottom:1px solid #183027;
+  font-size:11px;
+}
+
+.buytext{color:#18df98}
+.selltext{color:#ff6875}
+
+.empty{
+  color:#91a39c;
+  font-size:11px;
 }
 
 .notice{
-  margin-top:22px;
-  padding:14px;
+  margin-top:15px;
+  padding:13px;
+  color:#91a39c;
   border:1px solid #183027;
   border-radius:10px;
-  color:#91a39c;
   font-size:10px;
-  line-height:1.6;
+  line-height:1.5;
 }
 
 footer{
   text-align:center;
   color:#60716a;
   font-size:10px;
-  margin-top:35px;
+  margin-top:30px;
 }
 
 @media(max-width:700px){
-
   .nav{
     flex-direction:column;
     align-items:flex-start;
   }
 
-  .grid{
-    grid-template-columns:1fr;
+  .header{
+    flex-direction:column;
+    align-items:stretch;
   }
 
+  .chart{
+    height:400px;
+  }
 }
 
 @media(max-width:450px){
-
-  h1{
-    font-size:34px;
-  }
-
+  .chart{height:360px}
+  h1{font-size:30px}
 }
 </style>
 </head>
@@ -230,7 +278,6 @@ footer{
 <body>
 
 <nav>
-
 <div class="nav">
 
 <a href="index.html" class="brand">
@@ -239,544 +286,517 @@ Trading League
 </a>
 
 <div class="links">
-
 <a href="index.html">Home</a>
 <a href="markets.html">Markets</a>
 <a href="tournament.html">Tournament</a>
 <a href="leaderboard.html">Leaderboard</a>
 <a href="withdraw.html">Withdraw</a>
 <a href="account.html">Account</a>
-
 </div>
 
 </div>
-
 </nav>
-
 
 <main>
 
-<div class="eyebrow">
-TRADING LEAGUE / MARKETS
+<a href="markets.html" class="back">
+← Back to Markets
+</a>
+
+<div class="header">
+
+<div>
+<h1 id="name">Loading...</h1>
+<div class="symbol" id="symbol">Loading...</div>
 </div>
 
-<h1>Markets</h1>
+<div class="balance">
+<small>DEMO BALANCE</small>
+<strong id="balance">$1,000.00</strong>
+</div>
 
-<p class="intro">
-Choose a stock or cryptocurrency to open its
-chart and trading screen.
+</div>
+
+<div class="chart" id="chart">
+
+<div class="loading" id="loading">
+<div class="spinner"></div>
+<div>Loading chart...</div>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Enter Trade</h2>
+
+<p class="sub">
+Choose an amount and make a BUY or SELL demo entry.
+You can make multiple entries until your demo balance is finished.
 </p>
 
+<input
+id="amount"
+type="number"
+min="1"
+step="0.01"
+placeholder="Enter amount">
 
-<!-- STOCKS -->
+<div class="quick">
 
-<div class="section">
+<button onclick="setAmount(10)">$10</button>
+<button onclick="setAmount(25)">$25</button>
+<button onclick="setAmount(50)">$50</button>
+<button onclick="setAmount(100)">$100</button>
+<button onclick="setMax()">MAX</button>
 
-<h2>Stocks</h2>
-
-<div class="live">14 MARKETS</div>
-
-</div>
-
-
-<div class="grid">
-
-
-<a class="market"
-href="market.html?type=stock&symbol=AAPL&name=Apple">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">A</div>
-
-<div>
-<div class="name">Apple</div>
-<div class="symbol">AAPL / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=MSFT&name=Microsoft">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">M</div>
-
-<div>
-<div class="name">Microsoft</div>
-<div class="symbol">MSFT / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=NVDA&name=NVIDIA">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">N</div>
-
-<div>
-<div class="name">NVIDIA</div>
-<div class="symbol">NVDA / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=AMZN&name=Amazon">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">AM</div>
-
-<div>
-<div class="name">Amazon</div>
-<div class="symbol">AMZN / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=GOOGL&name=Alphabet">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">G</div>
-
-<div>
-<div class="name">Alphabet</div>
-<div class="symbol">GOOGL / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=META&name=Meta">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">M</div>
-
-<div>
-<div class="name">Meta</div>
-<div class="symbol">META / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=TSLA&name=Tesla">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">T</div>
-
-<div>
-<div class="name">Tesla</div>
-<div class="symbol">TSLA / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=NFLX&name=Netflix">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">N</div>
-
-<div>
-<div class="name">Netflix</div>
-<div class="symbol">NFLX / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=AMD&name=AMD">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">A</div>
-
-<div>
-<div class="name">AMD</div>
-<div class="symbol">AMD / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=INTC&name=Intel">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">I</div>
-
-<div>
-<div class="name">Intel</div>
-<div class="symbol">INTC / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=KO&name=Coca-Cola">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">C</div>
-
-<div>
-<div class="name">Coca-Cola</div>
-<div class="symbol">KO / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NYSE</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=PEP&name=PepsiCo">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">P</div>
-
-<div>
-<div class="name">PepsiCo</div>
-<div class="symbol">PEP / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NASDAQ</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=MCD&name=McDonalds">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">M</div>
-
-<div>
-<div class="name">McDonald's</div>
-<div class="symbol">MCD / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NYSE</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=stock&symbol=NKE&name=Nike">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">N</div>
-
-<div>
-<div class="name">Nike</div>
-<div class="symbol">NKE / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">STOCK · NYSE</div>
-
-</a>
-
-
-</div>
-
-
-<!-- CRYPTO -->
-
-<div class="section">
-
-<h2>Crypto</h2>
-
-<div class="live">6 MARKETS</div>
-
-</div>
-
-
-<div class="grid">
-
-
-<a class="market"
-href="market.html?type=crypto&symbol=bitcoin&name=Bitcoin">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">₿</div>
-
-<div>
-<div class="name">Bitcoin</div>
-<div class="symbol">BTC / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=crypto&symbol=ethereum&name=Ethereum">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">Ξ</div>
-
-<div>
-<div class="name">Ethereum</div>
-<div class="symbol">ETH / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=crypto&symbol=binancecoin&name=BNB">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">BNB</div>
-
-<div>
-<div class="name">BNB</div>
-<div class="symbol">BNB / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=crypto&symbol=solana&name=Solana">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">SOL</div>
-
-<div>
-<div class="name">Solana</div>
-<div class="symbol">SOL / USD</div>
-</div>
-
-</div>
-
-<div class="arrow">›</div>
 </div>
 
-<div class="type">CRYPTO</div>
+<div class="buttons">
 
-</a>
+<button class="buy" onclick="trade('BUY')">
+BUY
+</button>
 
+<button class="sell" onclick="trade('SELL')">
+SELL
+</button>
 
-<a class="market"
-href="market.html?type=crypto&symbol=ripple&name=XRP">
-
-<div class="top">
-<div class="asset">
-
-<div class="icon">X</div>
-
-<div>
-<div class="name">XRP</div>
-<div class="symbol">XRP / USD</div>
 </div>
 
-</div>
+<div id="message" class="message"></div>
 
-<div class="arrow">›</div>
 </div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-<a class="market"
-href="market.html?type=crypto&symbol=dogecoin&name=Dogecoin">
 
-<div class="top">
-<div class="asset">
+<div class="card">
 
-<div class="icon">Ð</div>
+<h2>Trade History</h2>
 
-<div>
-<div class="name">Dogecoin</div>
-<div class="symbol">DOGE / USD</div>
+<div id="history">
+<div class="empty">No trades for this market yet.</div>
 </div>
 
 </div>
-
-<div class="arrow">›</div>
-</div>
-
-<div class="type">CRYPTO</div>
-
-</a>
-
-
-</div>
-
 
 <div class="notice">
-
-<strong>Demo trading:</strong>
-Choose a market to open its chart and
-demo trading screen. No real money is
-used by this page.
-
+<strong>Demo Trading:</strong>
+This is simulated trading only. No real money is
+deposited, withdrawn, or used to execute trades.
 </div>
-
 
 <footer>
 Trading League © 2026
 </footer>
 
 </main>
+
+<script>
+
+/* GET SELECTED MARKET */
+
+const params = new URLSearchParams(window.location.search);
+
+const type = params.get("type");
+const id = params.get("symbol");
+const marketName = params.get("name");
+
+
+/* DO NOT DEFAULT TO BITCOIN */
+
+if(!id){
+
+document.getElementById("name").textContent =
+"Market not selected";
+
+document.getElementById("symbol").textContent =
+"Please return to Markets and choose a market.";
+
+document.getElementById("loading").innerHTML =
+"";
+
+}else{
+
+document.getElementById("name").textContent =
+marketName || getName(id);
+
+document.getElementById("symbol").textContent =
+type === "stock"
+? id + " / USD"
+: id.toUpperCase() + " / USD";
+
+loadChart();
+
+}
+
+
+/* MARKET NAMES */
+
+function getName(id){
+
+const names={
+
+AAPL:"Apple",
+MSFT:"Microsoft",
+NVDA:"NVIDIA",
+AMZN:"Amazon",
+GOOGL:"Alphabet",
+META:"Meta",
+TSLA:"Tesla",
+NFLX:"Netflix",
+AMD:"AMD",
+INTC:"Intel",
+KO:"Coca-Cola",
+PEP:"PepsiCo",
+MCD:"McDonald's",
+NKE:"Nike",
+
+bitcoin:"Bitcoin",
+ethereum:"Ethereum",
+binancecoin:"BNB",
+solana:"Solana",
+ripple:"XRP",
+dogecoin:"Dogecoin"
+
+};
+
+return names[id] || id;
+
+}
+
+
+/* TRADINGVIEW SYMBOL */
+
+function getChartSymbol(){
+
+const stocks={
+
+AAPL:"NASDAQ:AAPL",
+MSFT:"NASDAQ:MSFT",
+NVDA:"NASDAQ:NVDA",
+AMZN:"NASDAQ:AMZN",
+GOOGL:"NASDAQ:GOOGL",
+META:"NASDAQ:META",
+TSLA:"NASDAQ:TSLA",
+NFLX:"NASDAQ:NFLX",
+AMD:"NASDAQ:AMD",
+INTC:"NASDAQ:INTC",
+KO:"NYSE:KO",
+PEP:"NASDAQ:PEP",
+MCD:"NYSE:MCD",
+NKE:"NYSE:NKE"
+
+};
+
+const crypto={
+
+bitcoin:"COINBASE:BTCUSD",
+ethereum:"COINBASE:ETHUSD",
+binancecoin:"BINANCE:BNBUSDT",
+solana:"COINBASE:SOLUSD",
+ripple:"COINBASE:XRPUSD",
+dogecoin:"COINBASE:DOGEUSD"
+
+};
+
+if(type === "stock"){
+return stocks[id] || null;
+}
+
+return crypto[id] || null;
+
+}
+
+
+/* LOAD CHART */
+
+function loadChart(){
+
+const symbol = getChartSymbol();
+
+if(!symbol){
+
+document.getElementById("loading").innerHTML =
+"Chart unavailable for this market.";
+
+return;
+
+}
+
+const chart =
+document.getElementById("chart");
+
+const script =
+document.createElement("script");
+
+script.src =
+"https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+
+script.async=true;
+
+script.innerHTML=JSON.stringify({
+
+autosize:true,
+
+symbol:symbol,
+
+interval:"D",
+
+timezone:"Etc/UTC",
+
+theme:"dark",
+
+style:"1",
+
+locale:"en",
+
+allow_symbol_change:false,
+
+hide_top_toolbar:false,
+
+hide_legend:false,
+
+withdateranges:true,
+
+save_image:false,
+
+support_host:"https://www.tradingview.com"
+
+});
+
+chart.appendChild(script);
+
+
+/* Hide loading after chart starts */
+
+setTimeout(function(){
+
+const loading =
+document.getElementById("loading");
+
+if(loading){
+
+loading.style.display="none";
+
+}
+
+},2000);
+
+}
+
+
+/* BALANCE */
+
+const BALANCE_KEY =
+"tradingLeagueDemoBalance";
+
+const HISTORY_KEY =
+"tradingLeagueTradeHistory";
+
+function getBalance(){
+
+const value =
+Number(localStorage.getItem(BALANCE_KEY));
+
+return Number.isFinite(value)
+? value
+: 1000;
+
+}
+
+function saveBalance(value){
+
+localStorage.setItem(
+BALANCE_KEY,
+value
+);
+
+}
+
+function updateBalance(){
+
+document.getElementById("balance")
+.textContent =
+"$" +
+getBalance().toLocaleString(
+"en-US",
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
+
+}
+
+updateBalance();
+
+
+/* QUICK AMOUNTS */
+
+function setAmount(value){
+
+document.getElementById("amount").value =
+Math.min(value,getBalance()).toFixed(2);
+
+}
+
+function setMax(){
+
+document.getElementById("amount").value =
+getBalance().toFixed(2);
+
+}
+
+
+/* TRADES */
+
+function trade(direction){
+
+const amount =
+Number(document.getElementById("amount").value);
+
+const balance =
+getBalance();
+
+const message =
+document.getElementById("message");
+
+if(!Number.isFinite(amount) || amount<=0){
+
+message.style.color="#ff6875";
+message.textContent="Enter a valid amount.";
+return;
+
+}
+
+if(amount>balance){
+
+message.style.color="#ff6875";
+message.textContent="Insufficient demo balance.";
+return;
+
+}
+
+const newBalance =
+balance-amount;
+
+saveBalance(newBalance);
+updateBalance();
+
+let history=[];
+
+try{
+
+history =
+JSON.parse(
+localStorage.getItem(HISTORY_KEY)
+) || [];
+
+}catch(e){
+
+history=[];
+
+}
+
+history.unshift({
+
+market:marketName || getName(id),
+symbol:id,
+direction:direction,
+amount:amount,
+time:new Date().toLocaleString()
+
+});
+
+localStorage.setItem(
+HISTORY_KEY,
+JSON.stringify(history)
+);
+
+document.getElementById("amount").value="";
+
+message.style.color="#18df98";
+
+message.textContent =
+direction +
+" entered for $" +
+amount.toFixed(2) +
+". Remaining balance: $" +
+newBalance.toFixed(2);
+
+showHistory();
+
+}
+
+
+/* HISTORY */
+
+function showHistory(){
+
+const box =
+document.getElementById("history");
+
+let history=[];
+
+try{
+
+history =
+JSON.parse(
+localStorage.getItem(HISTORY_KEY)
+) || [];
+
+}catch(e){
+
+history=[];
+
+}
+
+const current =
+history.filter(
+t => t.symbol === id
+);
+
+if(!current.length){
+
+box.innerHTML =
+'<div class="empty">No trades for this market yet.</div>';
+
+return;
+
+}
+
+box.innerHTML="";
+
+current.slice(0,20).forEach(t=>{
+
+const row =
+document.createElement("div");
+
+row.className="trade";
+
+row.innerHTML =
+'<span><b class="' +
+(t.direction==="BUY"
+? "buytext"
+: "selltext") +
+'">' +
+t.direction +
+'</b> · ' +
+t.symbol +
+'</span>' +
+
+'<span>$' +
+Number(t.amount).toFixed(2) +
+'</span>';
+
+box.appendChild(row);
+
+});
+
+}
+
+showHistory();
+
+</script>
 
 </body>
   </html>
