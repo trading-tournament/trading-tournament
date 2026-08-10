@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trading League - Aviator</title>
+
+<title>Trading League - Games</title>
 
 <style>
+
 *{
 box-sizing:border-box;
 margin:0;
 padding:0;
-font-family:Arial,sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
@@ -20,8 +22,9 @@ color:white;
 
 header{
 background:#0d1b2e;
-padding:20px;
+padding:22px;
 text-align:center;
+border-bottom:1px solid #1d3557;
 }
 
 header h1{
@@ -40,9 +43,14 @@ background:#071220;
 nav a{
 color:white;
 text-decoration:none;
-background:#13263f;
 padding:10px 14px;
+background:#13263f;
 border-radius:8px;
+}
+
+nav a:hover{
+background:#00ff99;
+color:#07111f;
 }
 
 .container{
@@ -54,95 +62,182 @@ padding:20px;
 .card{
 background:#102238;
 border:1px solid #1d3557;
-border-radius:16px;
+border-radius:18px;
 padding:20px;
 margin-bottom:20px;
+}
+
+.game-title{
 text-align:center;
 }
 
-.multiplier{
-font-size:70px;
-font-weight:bold;
+.game-title h2{
 color:#00ff99;
-margin:30px 0;
+font-size:30px;
 }
 
+
+.flight-area{
+height:400px;
+background:#081625;
+border-radius:15px;
+position:relative;
+overflow:hidden;
+border:1px solid #1d3557;
+margin-top:20px;
+}
+
+
+.plane{
+position:absolute;
+font-size:50px;
+left:50px;
+bottom:40px;
+transition:all .3s linear;
+}
+
+
+.multiplier{
+text-align:center;
+font-size:65px;
+font-weight:bold;
+color:#00ff99;
+margin:20px;
+}
+
+
+.buttons{
+display:flex;
+gap:15px;
+}
+
+
 button{
-padding:15px 25px;
+flex:1;
+padding:15px;
 border:0;
 border-radius:10px;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
-margin:10px;
 }
+
 
 .start{
 background:#00ff99;
 }
 
+
 .cash{
-background:#ffcc00;
+background:#ffc107;
 }
 
-.info{
-color:#aaa;
+
+.status{
+text-align:center;
 margin-top:15px;
+color:#aaa;
 }
+
 
 table{
 width:100%;
 border-collapse:collapse;
+margin-top:15px;
 }
 
-td,th{
+
+th,td{
 padding:12px;
+text-align:center;
 border-bottom:1px solid #1d3557;
 }
+
 
 footer{
 text-align:center;
 padding:20px;
-color:#aaa;
+color:#888;
 }
 
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
 <h1>Trading League</h1>
-<p>Aviator Demo Game</p>
+
+<p>Games</p>
+
 </header>
 
+
+
 <nav>
+
 <a href="index.html">Home</a>
+
 <a href="markets.html">Markets</a>
+
 <a href="games.html">Games</a>
+
 <a href="tournament.html">Tournament</a>
+
 <a href="leaderboard.html">Leaderboard</a>
+
 <a href="withdraw.html">Withdraw</a>
+
 <a href="account.html">Account</a>
+
 </nav>
+
 
 
 <div class="container">
 
+
 <div class="card">
+
+
+<div class="game-title">
 
 <h2>✈ Aviator</h2>
 
-<p class="info">
-Demo game only. No real money is used.
+<p>
+Demo game only. No real money.
 </p>
+
+</div>
+
+
 
 <div class="multiplier" id="multiplier">
 1.00x
 </div>
 
 
-<button class="start" onclick="startGame()">
+
+<div class="flight-area">
+
+
+<div class="plane" id="plane">
+✈️
+</div>
+
+
+</div>
+
+
+
+<div class="buttons">
+
+<button class="start" onclick="startFlight()">
 Start Flight
 </button>
 
@@ -152,86 +247,139 @@ Cash Out
 </button>
 
 
-<p id="message" class="info">
-Waiting for game...
-</p>
+</div>
+
+
+
+<div class="status" id="status">
+Waiting for flight...
+</div>
+
 
 
 </div>
 
 
+
+
 <div class="card">
 
-<h2>Recent Players</h2>
+<h2>Recent Results</h2>
+
 
 <table>
 
 <tr>
 <th>Player</th>
-<th>Multiplier</th>
+<th>Result</th>
 </tr>
 
-<tbody id="players">
 
-<tr>
-<td>Player One</td>
-<td>3.50x</td>
-</tr>
+<tbody>
 
 <tr>
-<td>Trader King</td>
-<td>8.20x</td>
+<td>Trader One</td>
+<td>4.20x</td>
 </tr>
+
+
+<tr>
+<td>League Player</td>
+<td>8.50x</td>
+</tr>
+
 
 </tbody>
 
+
 </table>
 
+
 </div>
 
 
 </div>
+
+
 
 
 <footer>
+
 Trading League © 2026
+
 </footer>
 
 
 
 <script>
 
-let multiplier = 1;
-let timer;
-let playing = false;
+
+let multiplier=1;
+
+let running=false;
+
+let interval;
+
+let crashPoint=0;
 
 
-function startGame(){
+function startFlight(){
 
-if(playing) return;
 
-playing=true;
+if(running) return;
+
+
+running=true;
+
 multiplier=1;
 
-document.getElementById("message").innerHTML=
-"Flight started...";
+
+crashPoint=(Math.random()*8)+1.5;
 
 
-timer=setInterval(()=>{
+document.getElementById("status").innerHTML=
+"Plane flying...";
 
-multiplier += Math.random()*0.25;
+
+let plane=document.getElementById("plane");
+
+
+plane.style.left="50px";
+
+plane.style.bottom="40px";
+
+
+
+interval=setInterval(()=>{
+
+
+multiplier+=0.05;
+
 
 document.getElementById("multiplier").innerHTML=
 multiplier.toFixed(2)+"x";
 
 
-if(Math.random()<0.03){
+
+plane.style.left=
+(50 + multiplier*35)+"px";
+
+
+plane.style.bottom=
+(40 + multiplier*25)+"px";
+
+
+
+if(multiplier>=crashPoint){
 
 crash();
 
 }
 
-},500);
+
+},100);
+
+
 
 }
 
@@ -239,23 +387,23 @@ crash();
 
 function cashOut(){
 
-if(!playing){
 
-document.getElementById("message").innerHTML=
-"Start a flight first.";
+if(!running){
 
 return;
 
 }
 
 
-document.getElementById("message").innerHTML=
-"You cashed out at "+multiplier.toFixed(2)+"x";
+clearInterval(interval);
+
+running=false;
 
 
-clearInterval(timer);
+document.getElementById("status").innerHTML=
+"You cashed out at "+
+multiplier.toFixed(2)+"x";
 
-playing=false;
 
 }
 
@@ -263,19 +411,27 @@ playing=false;
 
 function crash(){
 
-clearInterval(timer);
 
-playing=false;
+clearInterval(interval);
 
-document.getElementById("message").innerHTML=
-"Plane crashed!";
+running=false;
+
+
+document.getElementById("status").innerHTML=
+"💥 Plane crashed at "+
+multiplier.toFixed(2)+"x";
+
 
 document.getElementById("multiplier").innerHTML=
 "💥 "+multiplier.toFixed(2)+"x";
 
+
 }
+
+
 
 </script>
 
+
 </body>
-  </html>
+</html>
