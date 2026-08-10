@@ -27,11 +27,9 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(
-          circle at 50% -10%,
-          rgba(24,223,152,.14),
-          transparent 38%
-        ),
+        radial-gradient(circle at 50% -10%,
+        rgba(24,223,152,.14),
+        transparent 38%),
         var(--bg);
       color: var(--text);
       font-family: Arial, Helvetica, sans-serif;
@@ -104,7 +102,7 @@
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
       padding: 42px 18px 70px;
     }
@@ -129,7 +127,7 @@
     }
 
     .hero p {
-      max-width: 650px;
+      max-width: 700px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.7;
@@ -186,6 +184,12 @@
       color: var(--green);
     }
 
+    .category {
+      margin: 30px 0 14px;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
     .market-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -196,12 +200,27 @@
       padding: 20px;
       border-radius: 18px;
       background:
-        linear-gradient(
-          145deg,
-          var(--card2),
-          var(--card)
-        );
+        linear-gradient(145deg,
+        var(--card2),
+        var(--card));
       border: 1px solid var(--border);
+      cursor: pointer;
+      transition: transform .18s ease,
+                  border-color .18s ease,
+                  background .18s ease;
+    }
+
+    .market-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(24,223,152,.35);
+      background:
+        linear-gradient(145deg,
+        #12291f,
+        #0c1d16);
+    }
+
+    .market-card:active {
+      transform: scale(.99);
     }
 
     .market-top {
@@ -228,11 +247,14 @@
       border: 1px solid var(--border);
       overflow: hidden;
       flex-shrink: 0;
+      font-size: 13px;
+      font-weight: 900;
     }
 
     .asset-logo img {
       width: 28px;
       height: 28px;
+      object-fit: contain;
     }
 
     .asset-name {
@@ -348,10 +370,6 @@
         font-size: 11px;
       }
 
-      .toolbar {
-        align-items: flex-start;
-      }
-
       .price {
         font-size: 25px;
       }
@@ -361,490 +379,650 @@
 
 <body>
 
-  <nav class="navbar">
-    <div class="nav">
+<nav class="navbar">
 
-      <a href="index.html" class="brand">
-        <span class="logo">TL</span>
-        Trading League
+  <div class="nav">
+
+    <a href="index.html" class="brand">
+      <span class="logo">TL</span>
+      Trading League
+    </a>
+
+    <div class="nav-links">
+
+      <a href="index.html">Home</a>
+
+      <a href="markets.html" class="active">
+        Markets
       </a>
 
-      <div class="nav-links">
+      <a href="tournament.html">
+        Tournament
+      </a>
 
-        <a href="index.html">Home</a>
+      <a href="leaderboard.html">
+        Leaderboard
+      </a>
 
-        <a href="markets.html" class="active">
-          Markets
-        </a>
+      <a href="withdraw.html">
+        Withdraw
+      </a>
 
-        <a href="tournament.html">
-          Tournament
-        </a>
-
-        <a href="leaderboard.html">
-          Leaderboard
-        </a>
-
-        <a href="withdraw.html">
-          Withdraw
-        </a>
-
-        <a href="account.html">
-          Account
-        </a>
-
-      </div>
-
-    </div>
-  </nav>
-
-
-  <main class="container">
-
-    <section class="hero">
-
-      <div class="eyebrow">
-        TRADING LEAGUE / MARKETS
-      </div>
-
-      <h1>
-        Markets
-      </h1>
-
-      <p>
-        View current cryptocurrency market prices
-        and 24-hour changes from a live public
-        market-data source.
-      </p>
-
-      <div class="status">
-        <span class="dot"></span>
-        LIVE MARKET DATA
-      </div>
-
-    </section>
-
-
-    <div class="toolbar">
-
-      <div class="section-title">
-        Crypto Markets
-      </div>
-
-      <button
-        class="refresh"
-        id="refreshButton"
-      >
-        ↻ Refresh
-      </button>
+      <a href="account.html">
+        Account
+      </a>
 
     </div>
 
+  </div>
 
-    <section
-      class="market-grid"
-      id="marketGrid"
-    >
-
-      <div class="loading">
-        Loading live market data...
-      </div>
-
-    </section>
+</nav>
 
 
-    <div class="notice">
+<main class="container">
 
-      <strong>Important:</strong>
-      These are live market-data prices for
-      information only. This page does not place
-      trades, hold customer funds, or guarantee
-      investment returns. Actual trading execution
-      requires a regulated broker/exchange and a
-      secure backend.
+  <section class="hero">
 
+    <div class="eyebrow">
+      TRADING LEAGUE / MARKETS
     </div>
 
+    <h1>Markets</h1>
 
-    <div class="footer">
-      Trading League © 2026
+    <p>
+      Explore cryptocurrency and stock markets.
+      Tap any market to open its chart and view
+      current market information.
+    </p>
+
+    <div class="status">
+      <span class="dot"></span>
+      LIVE MARKET DATA
     </div>
 
-  </main>
+  </section>
 
 
-  <script>
+  <div class="toolbar">
 
-    const marketGrid =
-      document.getElementById("marketGrid");
+    <div class="section-title">
+      All Markets
+    </div>
 
-    const refreshButton =
-      document.getElementById("refreshButton");
+    <button class="refresh" id="refreshButton">
+      ↻ Refresh
+    </button>
+
+  </div>
 
 
-    const coins = [
+  <div class="category">
+    Cryptocurrency
+  </div>
 
+  <section
+    class="market-grid"
+    id="cryptoGrid"
+  >
+    <div class="loading">
+      Loading crypto markets...
+    </div>
+  </section>
+
+
+  <div class="category">
+    Stocks
+  </div>
+
+  <section
+    class="market-grid"
+    id="stockGrid"
+  >
+    <div class="loading">
+      Loading stocks...
+    </div>
+  </section>
+
+
+  <div class="notice">
+
+    <strong>Important:</strong>
+    Market prices are provided for information
+    and demonstration purposes. This page does
+    not execute trades or hold customer funds.
+
+  </div>
+
+
+  <div class="footer">
+    Trading League © 2026
+  </div>
+
+</main>
+
+
+<script>
+
+const cryptoGrid =
+  document.getElementById("cryptoGrid");
+
+const stockGrid =
+  document.getElementById("stockGrid");
+
+const refreshButton =
+  document.getElementById("refreshButton");
+
+
+/*
+  6 cryptocurrencies
+*/
+
+const cryptoCoins = [
+
+  {
+    id: "bitcoin",
+    name: "Bitcoin",
+    symbol: "BTC / USD"
+  },
+
+  {
+    id: "ethereum",
+    name: "Ethereum",
+    symbol: "ETH / USD"
+  },
+
+  {
+    id: "binancecoin",
+    name: "BNB",
+    symbol: "BNB / USD"
+  },
+
+  {
+    id: "solana",
+    name: "Solana",
+    symbol: "SOL / USD"
+  },
+
+  {
+    id: "ripple",
+    name: "XRP",
+    symbol: "XRP / USD"
+  },
+
+  {
+    id: "dogecoin",
+    name: "Dogecoin",
+    symbol: "DOGE / USD"
+  }
+
+];
+
+
+/*
+  20 stocks
+*/
+
+const stocks = [
+
+  {
+    symbol: "AAPL",
+    name: "Apple"
+  },
+
+  {
+    symbol: "MSFT",
+    name: "Microsoft"
+  },
+
+  {
+    symbol: "NVDA",
+    name: "NVIDIA"
+  },
+
+  {
+    symbol: "AMZN",
+    name: "Amazon"
+  },
+
+  {
+    symbol: "GOOGL",
+    name: "Alphabet"
+  },
+
+  {
+    symbol: "META",
+    name: "Meta Platforms"
+  },
+
+  {
+    symbol: "TSLA",
+    name: "Tesla"
+  },
+
+  {
+    symbol: "NFLX",
+    name: "Netflix"
+  },
+
+  {
+    symbol: "AMD",
+    name: "AMD"
+  },
+
+  {
+    symbol: "INTC",
+    name: "Intel"
+  },
+
+  {
+    symbol: "KO",
+    name: "Coca-Cola"
+  },
+
+  {
+    symbol: "PEP",
+    name: "PepsiCo"
+  },
+
+  {
+    symbol: "MCD",
+    name: "McDonald's"
+  },
+
+  {
+    symbol: "NKE",
+    name: "Nike"
+  },
+
+  {
+    symbol: "WMT",
+    name: "Walmart"
+  },
+
+  {
+    symbol: "JPM",
+    name: "JPMorgan Chase"
+  },
+
+  {
+    symbol: "V",
+    name: "Visa"
+  },
+
+  {
+    symbol: "MA",
+    name: "Mastercard"
+  },
+
+  {
+    symbol: "ADBE",
+    name: "Adobe"
+  },
+
+  {
+    symbol: "ORCL",
+    name: "Oracle"
+  }
+
+];
+
+
+function formatPrice(value) {
+
+  if (!Number.isFinite(value)) {
+    return "—";
+  }
+
+  return "$" +
+    value.toLocaleString(
+      "en-US",
       {
-        id: "bitcoin",
-        name: "Bitcoin",
-        symbol: "BTC / USD",
-        type: "CRYPTO"
-      },
-
-      {
-        id: "ethereum",
-        name: "Ethereum",
-        symbol: "ETH / USD",
-        type: "CRYPTO"
-      },
-
-      {
-        id: "binancecoin",
-        name: "BNB",
-        symbol: "BNB / USD",
-        type: "CRYPTO"
-      },
-
-      {
-        id: "solana",
-        name: "Solana",
-        symbol: "SOL / USD",
-        type: "CRYPTO"
-      },
-
-      {
-        id: "ripple",
-        name: "XRP",
-        symbol: "XRP / USD",
-        type: "CRYPTO"
-      },
-
-      {
-        id: "dogecoin",
-        name: "Dogecoin",
-        symbol: "DOGE / USD",
-        type: "CRYPTO"
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
       }
+    );
 
-    ];
+}
 
 
-    function formatPrice(value) {
+function escapeHtml(value) {
 
-      if (value >= 1000) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
-        return "$" +
-          value.toLocaleString(
-            "en-US",
-            {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2
-            }
-          );
+}
 
-      }
 
-      if (value >= 1) {
+/*
+  Create a market card.
+*/
 
-        return "$" +
-          value.toLocaleString(
-            "en-US",
-            {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 4
-            }
-          );
+function createCard({
+  id,
+  name,
+  symbol,
+  type,
+  price,
+  change,
+  image,
+  extra
+}) {
 
-      }
+  const card =
+    document.createElement("article");
 
-      return "$" +
-        value.toLocaleString(
-          "en-US",
-          {
-            minimumFractionDigits: 4,
-            maximumFractionDigits: 6
-          }
+  card.className =
+    "market-card";
+
+
+  const positive =
+    change >= 0;
+
+
+  const logo =
+    image
+      ? `
+        <img
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(name)}"
+        >
+      `
+      : escapeHtml(
+          symbol.replace(
+            " / USD",
+            ""
+          )
         );
 
-    }
 
+  card.innerHTML = `
 
-    function escapeHtml(value) {
+    <div class="market-top">
 
-      return String(value)
+      <div class="asset">
 
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-    }
-
-
-    async function loadMarkets() {
-
-      marketGrid.innerHTML = `
-        <div class="loading">
-          Loading live market data...
+        <div class="asset-logo">
+          ${logo}
         </div>
-      `;
 
+        <div>
 
-      const ids =
-        coins
-          .map(coin => coin.id)
-          .join(",");
-
-
-      const url =
-        "https://api.coingecko.com/api/v3/coins/markets" +
-        "?vs_currency=usd" +
-        "&ids=" +
-        encodeURIComponent(ids) +
-        "&order=market_cap_desc" +
-        "&per_page=20" +
-        "&page=1" +
-        "&sparkline=false" +
-        "&price_change_percentage=24h";
-
-
-      try {
-
-        const response =
-          await fetch(url);
-
-
-        if (!response.ok) {
-
-          throw new Error(
-            "Market data request failed."
-          );
-
-        }
-
-
-        const data =
-          await response.json();
-
-
-        if (!Array.isArray(data) || data.length === 0) {
-
-          throw new Error(
-            "No market data was returned."
-          );
-
-        }
-
-
-        const coinMap =
-          new Map(
-            data.map(
-              coin => [
-                coin.id,
-                coin
-              ]
-            )
-          );
-
-
-        marketGrid.innerHTML = "";
-
-
-        coins.forEach(
-          info => {
-
-            const coin =
-              coinMap.get(info.id);
-
-
-            if (!coin) {
-              return;
-            }
-
-
-            const change =
-              Number(
-                coin.price_change_percentage_24h
-              ) || 0;
-
-
-            const positive =
-              change >= 0;
-
-
-            const card =
-              document.createElement("article");
-
-
-            card.className =
-              "market-card";
-
-
-            card.innerHTML = `
-
-              <div class="market-top">
-
-                <div class="asset">
-
-                  <div class="asset-logo">
-
-                    <img
-                      src="${escapeHtml(
-                        coin.image
-                      )}"
-                      alt="${escapeHtml(
-                        coin.name
-                      )}"
-                    >
-
-                  </div>
-
-                  <div>
-
-                    <div class="asset-name">
-                      ${escapeHtml(
-                        coin.name
-                      )}
-                    </div>
-
-                    <div class="asset-symbol">
-                      ${escapeHtml(
-                        info.symbol
-                      )}
-                    </div>
-
-                  </div>
-
-                </div>
-
-                <div class="badge">
-                  ${escapeHtml(
-                    info.type
-                  )}
-                </div>
-
-              </div>
-
-
-              <div class="price">
-                ${formatPrice(
-                  Number(
-                    coin.current_price
-                  ) || 0
-                )}
-              </div>
-
-
-              <div class="change ${
-                positive ? "up" : "down"
-              }">
-
-                ${
-                  positive ? "+" : ""
-                }${change.toFixed(2)}%
-
-                · 24H
-
-              </div>
-
-
-              <div class="market-bottom">
-
-                <span>
-                  Market Cap
-                </span>
-
-                <span>
-                  ${
-                    coin.market_cap
-                      ? "$" +
-                        Number(
-                          coin.market_cap
-                        ).toLocaleString(
-                          "en-US",
-                          {
-                            notation: "compact",
-                            maximumFractionDigits: 2
-                          }
-                        )
-                      : "—"
-                  }
-                </span>
-
-              </div>
-
-            `;
-
-
-            marketGrid.appendChild(card);
-
-          }
-        );
-
-
-        if (!marketGrid.children.length) {
-
-          marketGrid.innerHTML = `
-            <div class="error">
-              No supported markets were returned.
-            </div>
-          `;
-
-        }
-
-      } catch (error) {
-
-        console.error(error);
-
-
-        marketGrid.innerHTML = `
-
-          <div class="error">
-
-            <strong>
-              Market data could not be loaded.
-            </strong>
-
-            <br><br>
-
-            Check your internet connection and
-            try the Refresh button again.
-
-            <br><br>
-
-            This page will never display invented
-            prices when the live data source is
-            unavailable.
-
+          <div class="asset-name">
+            ${escapeHtml(name)}
           </div>
 
-        `;
+          <div class="asset-symbol">
+            ${escapeHtml(symbol)}
+          </div>
 
+        </div>
+
+      </div>
+
+      <div class="badge">
+        ${escapeHtml(type)}
+      </div>
+
+    </div>
+
+
+    <div class="price">
+      ${
+        price !== null
+          ? formatPrice(price)
+          : "View Chart"
+      }
+    </div>
+
+
+    <div class="change ${
+      positive ? "up" : "down"
+    }">
+
+      ${
+        price !== null
+          ? (
+              positive ? "+" : ""
+            ) +
+            Number(change).toFixed(2) +
+            "% · 24H"
+          : "Tap to open chart"
       }
 
+    </div>
+
+
+    <div class="market-bottom">
+
+      <span>
+        ${escapeHtml(extra)}
+      </span>
+
+      <span>
+        View →
+      </span>
+
+    </div>
+
+  `;
+
+
+  /*
+    THIS FIXES THE ORIGINAL PROBLEM:
+    tapping a market opens market.html
+  */
+
+  card.addEventListener(
+    "click",
+    () => {
+
+      window.location.href =
+        "market.html?id=" +
+        encodeURIComponent(id);
+
+    }
+  );
+
+
+  return card;
+
+}
+
+
+/*
+  Load cryptocurrency prices.
+*/
+
+async function loadCrypto() {
+
+  cryptoGrid.innerHTML = `
+    <div class="loading">
+      Loading crypto markets...
+    </div>
+  `;
+
+
+  const ids =
+    cryptoCoins
+      .map(coin => coin.id)
+      .join(",");
+
+
+  const url =
+    "https://api.coingecko.com/api/v3/coins/markets" +
+    "?vs_currency=usd" +
+    "&ids=" +
+    encodeURIComponent(ids) +
+    "&order=market_cap_desc" +
+    "&per_page=20" +
+    "&page=1" +
+    "&sparkline=false" +
+    "&price_change_percentage=24h";
+
+
+  try {
+
+    const response =
+      await fetch(url);
+
+
+    if (!response.ok) {
+      throw new Error(
+        "Crypto request failed."
+      );
     }
 
 
-    refreshButton.addEventListener(
-      "click",
-      loadMarkets
+    const data =
+      await response.json();
+
+
+    cryptoGrid.innerHTML = "";
+
+
+    cryptoCoins.forEach(info => {
+
+      const coin =
+        data.find(
+          item => item.id === info.id
+        );
+
+
+      if (!coin) return;
+
+
+      const change =
+        Number(
+          coin.price_change_percentage_24h
+        ) || 0;
+
+
+      cryptoGrid.appendChild(
+
+        createCard({
+
+          id: info.id,
+
+          name: info.name,
+
+          symbol: info.symbol,
+
+          type: "CRYPTO",
+
+          price:
+            Number(
+              coin.current_price
+            ),
+
+          change: change,
+
+          image: coin.image,
+
+          extra: "Market Cap"
+
+        })
+
+      );
+
+    });
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    cryptoGrid.innerHTML = `
+      <div class="error">
+        Crypto market data could not be loaded.
+        Please check your internet connection
+        and try again.
+      </div>
+    `;
+
+  }
+
+}
+
+
+/*
+  Stock data.
+
+  The stock cards open their own chart page.
+  This keeps the website from showing invented
+  stock prices.
+*/
+
+function loadStocks() {
+
+  stockGrid.innerHTML = "";
+
+
+  stocks.forEach(stock => {
+
+    stockGrid.appendChild(
+
+      createCard({
+
+        id:
+          "stock-" +
+          stock.symbol.toLowerCase(),
+
+        name:
+          stock.name,
+
+        symbol:
+          stock.symbol +
+          " / USD",
+
+        type:
+          "STOCK",
+
+        price:
+          null,
+
+        change:
+          0,
+
+        image:
+          null,
+
+        extra:
+          stock.symbol
+
+      })
+
     );
 
+  });
 
-    loadMarkets();
+}
 
 
-    /*
-      Refresh automatically every 60 seconds.
-    */
+refreshButton.addEventListener(
+  "click",
+  () => {
 
-    setInterval(
-      loadMarkets,
-      60000
-    );
+    loadCrypto();
+    loadStocks();
 
-  </script>
+  }
+);
+
+
+loadCrypto();
+loadStocks();
+
+
+setInterval(
+  loadCrypto,
+  60000
+);
+
+</script>
 
 </body>
-          </html>
+  </html>
