@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Trading League | Market</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
 body{
   background:#06110d;
   color:#f5f8f7;
   font-family:Arial,sans-serif;
 }
-a{text-decoration:none;color:inherit}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* NAV */
 
 nav{
-  padding:14px;
+  padding:13px 15px;
   background:#040e0a;
   border-bottom:1px solid #183027;
 }
+
 .nav{
   max-width:1100px;
   margin:auto;
@@ -27,11 +42,13 @@ nav{
   align-items:center;
   gap:15px;
 }
+
 .brand{
-  font-weight:900;
   font-size:17px;
+  font-weight:900;
   white-space:nowrap;
 }
+
 .logo{
   display:inline-grid;
   place-items:center;
@@ -42,11 +59,13 @@ nav{
   background:#18df98;
   color:#03110b;
 }
+
 .links{
   display:flex;
-  gap:7px;
-  overflow:auto;
+  gap:6px;
+  overflow-x:auto;
 }
+
 .links a{
   color:#91a39c;
   font-size:11px;
@@ -54,6 +73,8 @@ nav{
   padding:8px;
   white-space:nowrap;
 }
+
+/* PAGE */
 
 main{
   max-width:1100px;
@@ -69,13 +90,19 @@ main{
 .header{
   display:flex;
   justify-content:space-between;
+  align-items:flex-end;
   gap:15px;
   margin:22px 0;
 }
-h1{font-size:38px}
+
+h1{
+  font-size:38px;
+  line-height:1;
+}
+
 .symbol{
   color:#91a39c;
-  margin-top:5px;
+  margin-top:7px;
   font-size:12px;
 }
 
@@ -84,12 +111,14 @@ h1{font-size:38px}
   border:1px solid #183027;
   border-radius:12px;
   padding:14px;
-  min-width:170px;
+  min-width:175px;
 }
+
 .balance small{
   color:#91a39c;
   font-size:9px;
 }
+
 .balance strong{
   display:block;
   color:#18df98;
@@ -97,13 +126,47 @@ h1{font-size:38px}
   margin-top:5px;
 }
 
+/* CHART */
+
 .chart{
   height:500px;
   background:#0a1712;
   border:1px solid #183027;
   border-radius:15px;
   overflow:hidden;
+  position:relative;
 }
+
+.loading{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:13px;
+  color:#91a39c;
+  font-size:13px;
+  background:#0a1712;
+  z-index:5;
+}
+
+.spinner{
+  width:32px;
+  height:32px;
+  border:3px solid #183027;
+  border-top-color:#18df98;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* TRADE CARD */
 
 .card{
   margin-top:16px;
@@ -136,6 +199,10 @@ input{
   font-size:16px;
 }
 
+input:focus{
+  border-color:#18df98;
+}
+
 .quick{
   display:flex;
   gap:7px;
@@ -149,6 +216,8 @@ input{
   border:1px solid #183027;
   padding:8px 11px;
   border-radius:7px;
+  font-size:10px;
+  font-weight:bold;
 }
 
 .buttons{
@@ -158,7 +227,8 @@ input{
   margin-top:15px;
 }
 
-.buy,.sell{
+.buy,
+.sell{
   border:0;
   padding:14px;
   border-radius:9px;
@@ -167,14 +237,21 @@ input{
   cursor:pointer;
 }
 
-.buy{background:#079b69}
-.sell{background:#c83e4c}
+.buy{
+  background:#079b69;
+}
+
+.sell{
+  background:#c83e4c;
+}
 
 .message{
   margin-top:12px;
   font-size:11px;
   line-height:1.5;
 }
+
+/* HISTORY */
 
 .history{
   margin-top:16px;
@@ -188,13 +265,20 @@ input{
   font-size:12px;
 }
 
-.buytext{color:#18df98}
-.selltext{color:#ff6875}
+.buytext{
+  color:#18df98;
+}
+
+.selltext{
+  color:#ff6875;
+}
 
 .empty{
   color:#91a39c;
   font-size:11px;
 }
+
+/* NOTICE */
 
 .notice{
   margin-top:16px;
@@ -213,187 +297,365 @@ footer{
   margin-top:35px;
 }
 
+/* MOBILE */
+
 @media(max-width:700px){
-  .nav{flex-direction:column;align-items:flex-start}
-  .header{flex-direction:column}
-  .balance{width:100%}
-  .chart{height:400px}
+
+  .nav{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .header{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .balance{
+    width:100%;
+  }
+
+  .chart{
+    height:400px;
+  }
+
 }
 
 @media(max-width:450px){
-  .chart{height:360px}
-  h1{font-size:32px}
+
+  .chart{
+    height:360px;
+  }
+
+  h1{
+    font-size:32px;
+  }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <nav>
+
 <div class="nav">
 
 <a href="index.html" class="brand">
+
 <span class="logo">TL</span>
+
 Trading League
+
 </a>
 
+
 <div class="links">
+
 <a href="index.html">Home</a>
+
 <a href="markets.html">Markets</a>
+
 <a href="tournament.html">Tournament</a>
+
 <a href="leaderboard.html">Leaderboard</a>
+
 <a href="withdraw.html">Withdraw</a>
+
 <a href="account.html">Account</a>
+
 </div>
 
 </div>
+
 </nav>
+
 
 
 <main>
 
-<a href="markets.html" class="back">← Back to Markets</a>
+
+<a
+  href="markets.html"
+  class="back"
+>
+← Back to Markets
+</a>
+
 
 
 <div class="header">
 
+
 <div>
-<h1 id="name">Market</h1>
-<div class="symbol" id="symbol">Loading...</div>
+
+<h1 id="name">
+Market
+</h1>
+
+<div
+  class="symbol"
+  id="symbol"
+>
+Loading...
 </div>
+
+</div>
+
+
 
 <div class="balance">
-<small>DEMO BALANCE</small>
-<strong id="balance">$1,000.00</strong>
-</div>
+
+<small>
+DEMO BALANCE
+</small>
+
+<strong id="balance">
+$1,000.00
+</strong>
 
 </div>
 
 
-<div class="chart" id="chart"></div>
+</div>
 
+
+
+<!-- CHART -->
+
+<div
+  class="chart"
+  id="chart"
+>
+
+<div
+  class="loading"
+  id="loading"
+>
+
+<div class="spinner"></div>
+
+<div>
+Loading chart...
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- TRADING -->
 
 <div class="card">
 
-<h2>Enter Trade</h2>
+<h2>
+Enter Trade
+</h2>
 
 <p class="sub">
+
 Choose an amount and make a BUY or SELL
 demo entry. You can make multiple entries
-until your available balance is finished.
+until your available demo balance is finished.
+
 </p>
 
+
 <input
-id="amount"
-type="number"
-min="1"
-step="0.01"
-placeholder="Enter amount"
+  id="amount"
+  type="number"
+  min="1"
+  step="0.01"
+  placeholder="Enter amount"
 >
+
 
 <div class="quick">
 
-<button onclick="amount(10)">$10</button>
-<button onclick="amount(25)">$25</button>
-<button onclick="amount(50)">$50</button>
-<button onclick="amount(100)">$100</button>
-<button onclick="maxAmount()">MAX</button>
+<button onclick="setAmount(10)">
+$10
+</button>
+
+<button onclick="setAmount(25)">
+$25
+</button>
+
+<button onclick="setAmount(50)">
+$50
+</button>
+
+<button onclick="setAmount(100)">
+$100
+</button>
+
+<button onclick="setMax()">
+MAX
+</button>
 
 </div>
 
+
 <div class="buttons">
 
-<button class="buy" onclick="trade('BUY')">
+<button
+  class="buy"
+  onclick="trade('BUY')"
+>
 BUY
 </button>
 
-<button class="sell" onclick="trade('SELL')">
+<button
+  class="sell"
+  onclick="trade('SELL')"
+>
 SELL
 </button>
 
 </div>
 
-<div id="message" class="message"></div>
+
+<div
+  id="message"
+  class="message"
+></div>
 
 </div>
 
+
+
+<!-- HISTORY -->
 
 <div class="card history">
 
-<h2>Trade History</h2>
+<h2>
+Trade History
+</h2>
 
 <div id="history">
-<div class="empty">No trades yet.</div>
+
+<div class="empty">
+No trades for this market yet.
 </div>
 
 </div>
+
+</div>
+
 
 
 <div class="notice">
+
 <strong>Demo Trading:</strong>
-This page uses simulated money only.
-It does not deposit money, withdraw money,
-or execute real trades.
+
+This is simulated trading only.
+No real money is deposited, withdrawn,
+or used to execute trades.
+
 </div>
+
 
 
 <footer>
 Trading League © 2026
 </footer>
 
+
 </main>
+
 
 
 <script>
 
-/* GET MARKET FROM URL */
+
+/* =========================
+   MARKET INFORMATION
+========================= */
+
 
 const params =
-new URLSearchParams(location.search);
+new URLSearchParams(
+window.location.search
+);
+
 
 const type =
 params.get("type") || "crypto";
 
+
 const id =
 params.get("symbol") || "bitcoin";
 
-const marketName =
+
+const market =
 params.get("name") || getName(id);
 
-document.getElementById("name").textContent =
-marketName;
 
-document.getElementById("symbol").textContent =
+document.getElementById("name")
+.textContent = market;
+
+
+document.getElementById("symbol")
+.textContent =
 type === "stock"
 ? id + " / USD"
 : id.toUpperCase() + " / USD";
 
 
-/* MARKET NAMES */
+
+/* =========================
+   MARKET NAMES
+========================= */
+
 
 function getName(id){
 
 const names={
+
 bitcoin:"Bitcoin",
+
 ethereum:"Ethereum",
+
 binancecoin:"BNB",
+
 solana:"Solana",
+
 ripple:"XRP",
+
 dogecoin:"Dogecoin",
+
 AAPL:"Apple",
+
 MSFT:"Microsoft",
+
 NVDA:"NVIDIA",
+
 AMZN:"Amazon",
+
 GOOGL:"Alphabet",
+
 META:"Meta",
+
 TSLA:"Tesla",
+
 NFLX:"Netflix",
+
 AMD:"AMD",
+
 INTC:"Intel",
+
 KO:"Coca-Cola",
+
 PEP:"PepsiCo",
+
 MCD:"McDonald's",
+
 NKE:"Nike"
+
 };
 
 return names[id] || id;
@@ -401,40 +663,67 @@ return names[id] || id;
 }
 
 
-/* TRADINGVIEW SYMBOL */
 
-function chartSymbol(){
+/* =========================
+   TRADINGVIEW SYMBOL
+========================= */
 
-if(type==="stock"){
+
+function getChartSymbol(){
+
+if(type === "stock"){
 
 const stocks={
+
 AAPL:"NASDAQ:AAPL",
+
 MSFT:"NASDAQ:MSFT",
+
 NVDA:"NASDAQ:NVDA",
+
 AMZN:"NASDAQ:AMZN",
+
 GOOGL:"NASDAQ:GOOGL",
+
 META:"NASDAQ:META",
+
 TSLA:"NASDAQ:TSLA",
+
 NFLX:"NASDAQ:NFLX",
+
 AMD:"NASDAQ:AMD",
+
 INTC:"NASDAQ:INTC",
+
 KO:"NYSE:KO",
+
 PEP:"NASDAQ:PEP",
+
 MCD:"NYSE:MCD",
+
 NKE:"NYSE:NKE"
+
 };
 
 return stocks[id] || "NASDAQ:AAPL";
 
 }
 
+
 const crypto={
+
 bitcoin:"COINBASE:BTCUSD",
+
 ethereum:"COINBASE:ETHUSD",
+
 binancecoin:"BINANCE:BNBUSDT",
+
 solana:"COINBASE:SOLUSD",
+
 ripple:"COINBASE:XRPUSD",
+
 dogecoin:"COINBASE:DOGEUSD"
+
 };
 
 return crypto[id] || "COINBASE:BTCUSD";
@@ -442,31 +731,35 @@ return crypto[id] || "COINBASE:BTCUSD";
 }
 
 
-/* LOAD CHART */
+
+/* =========================
+   LOAD CHART
+========================= */
+
 
 function loadChart(){
 
-const box=document.getElementById("chart");
+const chart =
+document.getElementById("chart");
 
-box.innerHTML="";
 
-const widget=document.createElement("div");
+const script =
+document.createElement("script");
 
-widget.style.width="100%";
-widget.style.height="100%";
 
-const script=document.createElement("script");
-
-script.src=
+script.src =
 "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
 
-script.async=true;
 
-script.innerHTML=JSON.stringify({
+script.async = true;
+
+
+script.innerHTML =
+JSON.stringify({
 
 autosize:true,
 
-symbol:chartSymbol(),
+symbol:getChartSymbol(),
 
 interval:"D",
 
@@ -488,54 +781,108 @@ withdateranges:true,
 
 save_image:false,
 
-support_host:"https://www.tradingview.com"
+support_host:
+"https://www.tradingview.com"
 
 });
 
-widget.appendChild(script);
 
-box.appendChild(widget);
+chart.appendChild(script);
+
+
+/*
+Remove loading screen after
+TradingView has had time to load.
+*/
+
+setTimeout(function(){
+
+const loading =
+document.getElementById("loading");
+
+if(loading){
+
+loading.style.opacity="0";
+
+loading.style.transition=
+"opacity .3s";
+
+setTimeout(function(){
+
+loading.remove();
+
+},300);
 
 }
 
-loadChart();
+},1800);
+
+}
 
 
-/* DEMO BALANCE */
+/*
+Start chart immediately after
+the page is displayed.
+*/
 
-const balanceKey=
+requestAnimationFrame(
+loadChart
+);
+
+
+
+/* =========================
+   BALANCE
+========================= */
+
+
+const BALANCE_KEY =
 "tradingLeagueDemoBalance";
 
-const historyKey=
+
+const HISTORY_KEY =
 "tradingLeagueTradeHistory";
+
 
 function getBalance(){
 
-let b=Number(
-localStorage.getItem(balanceKey)
+let value =
+Number(
+localStorage.getItem(
+BALANCE_KEY
+)
 );
 
-if(!Number.isFinite(b))
-b=1000;
 
-return b;
+if(!Number.isFinite(value))
+value=1000;
+
+
+return value;
 
 }
 
-function saveBalance(b){
+
+function saveBalance(value){
 
 localStorage.setItem(
-balanceKey,
-b.toString()
+BALANCE_KEY,
+value
 );
 
 }
+
 
 function updateBalance(){
 
+const value =
+getBalance();
+
+
 document.getElementById("balance")
-.textContent=
-"$"+getBalance().toLocaleString(
+.textContent =
+"$" +
+value.toLocaleString(
 "en-US",
 {
 minimumFractionDigits:2,
@@ -545,60 +892,84 @@ maximumFractionDigits:2
 
 }
 
+
 updateBalance();
 
 
-/* AMOUNT BUTTONS */
 
-function amount(value){
+/* =========================
+   QUICK AMOUNTS
+========================= */
 
-const balance=getBalance();
+
+function setAmount(value){
+
+const balance =
+getBalance();
+
 
 document.getElementById("amount")
-.value=
-Math.min(value,balance).toFixed(2);
+.value =
+Math.min(
+value,
+balance
+).toFixed(2);
 
 }
 
-function maxAmount(){
+
+function setMax(){
 
 document.getElementById("amount")
-.value=
+.value =
 getBalance().toFixed(2);
 
 }
 
 
-/* TRADE */
+
+/* =========================
+   PLACE TRADE
+========================= */
+
 
 function trade(direction){
 
-const input=
+const input =
 document.getElementById("amount");
 
-const value=
-Number(input.value);
 
-const balance=
-getBalance();
-
-const msg=
+const message =
 document.getElementById("message");
 
-if(!Number.isFinite(value) || value<=0){
 
-msg.style.color="#ff6875";
-msg.textContent=
+const value =
+Number(input.value);
+
+
+const balance =
+getBalance();
+
+
+if(!Number.isFinite(value) || value <= 0){
+
+message.style.color =
+"#ff6875";
+
+message.textContent =
 "Enter a valid amount.";
 
 return;
 
 }
 
-if(value>balance){
 
-msg.style.color="#ff6875";
-msg.textContent=
+if(value > balance){
+
+message.style.color =
+"#ff6875";
+
+message.textContent =
 "Insufficient demo balance.";
 
 return;
@@ -606,36 +977,49 @@ return;
 }
 
 
-/* REMOVE MONEY FROM AVAILABLE BALANCE */
+/*
+Subtract amount from
+available demo balance.
+*/
 
-const newBalance=
-balance-value;
+const newBalance =
+balance - value;
+
 
 saveBalance(newBalance);
 
 updateBalance();
 
 
-/* SAVE TRADE */
+/*
+Load history.
+*/
 
 let history=[];
 
 try{
 
-history=
+history =
 JSON.parse(
-localStorage.getItem(historyKey)
-)||[];
+localStorage.getItem(
+HISTORY_KEY
+)
+) || [];
 
-}catch(e){
+}catch(error){
 
 history=[];
 
 }
 
+
+/*
+Create trade.
+*/
+
 history.unshift({
 
-market:marketName,
+market:market,
 
 symbol:id,
 
@@ -643,12 +1027,18 @@ direction:direction,
 
 amount:value,
 
-time:new Date().toLocaleString()
+time:
+new Date().toLocaleString()
 
 });
 
+
+/*
+Save trade.
+*/
+
 localStorage.setItem(
-historyKey,
+HISTORY_KEY,
 JSON.stringify(history)
 );
 
@@ -656,13 +1046,15 @@ JSON.stringify(history)
 input.value="";
 
 
-msg.style.color="#18df98";
+message.style.color =
+"#18df98";
 
-msg.textContent=
-direction+
-" trade entered: $"+
-value.toFixed(2)+
-". Remaining balance: $"+
+
+message.textContent =
+direction +
+" trade entered for $" +
+value.toFixed(2) +
+". Remaining balance: $" +
 newBalance.toFixed(2);
 
 
@@ -671,82 +1063,121 @@ showHistory();
 }
 
 
-/* HISTORY */
+
+/* =========================
+   HISTORY
+========================= */
+
 
 function showHistory(){
 
-const box=
-document.getElementById("history");
+const box =
+document.getElementById(
+"history"
+);
+
 
 let history=[];
 
 try{
 
-history=
+history =
 JSON.parse(
-localStorage.getItem(historyKey)
-)||[];
+localStorage.getItem(
+HISTORY_KEY
+)
+) || [];
 
-}catch(e){
+}catch(error){
 
 history=[];
 
 }
 
-const current=
+
+const current =
 history.filter(
-t=>t.symbol===id
+trade =>
+trade.symbol === id
 );
 
-if(current.length===0){
 
-box.innerHTML=
+if(current.length === 0){
+
+box.innerHTML =
 '<div class="empty">No trades for this market yet.</div>';
 
 return;
 
 }
 
+
 box.innerHTML="";
 
-current.slice(0,20).forEach(t=>{
 
-const row=
+current
+.slice(0,20)
+.forEach(function(trade){
+
+const row =
 document.createElement("div");
 
-row.className="trade";
 
-const left=
+row.className =
+"trade";
+
+
+const direction =
 document.createElement("span");
 
-left.innerHTML=
-'<b class="'+
-(t.direction==="BUY"
-?"buytext"
-:"selltext")+
-'">'+
-t.direction+
-"</b> · "+
-t.symbol;
 
-const right=
+direction.innerHTML =
+'<b class="' +
+(
+trade.direction === "BUY"
+? "buytext"
+: "selltext"
+) +
+'">' +
+trade.direction +
+"</b> · " +
+trade.symbol;
+
+
+const amount =
 document.createElement("span");
 
-right.textContent=
-"$"+Number(t.amount).toFixed(2);
 
-row.appendChild(left);
-row.appendChild(right);
+amount.textContent =
+"$" +
+Number(
+trade.amount
+).toFixed(2);
 
-box.appendChild(row);
+
+row.appendChild(
+direction
+);
+
+
+row.appendChild(
+amount
+);
+
+
+box.appendChild(
+row
+);
 
 });
 
 }
 
+
 showHistory();
+
 
 </script>
 
 </body>
-</html>
+  </html>
