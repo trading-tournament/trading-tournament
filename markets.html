@@ -2,8 +2,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading League | Market</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
+<title>Trading League | Trade</title><style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   background:#06110d;
@@ -14,6 +18,10 @@ body{
 a{
   color:inherit;
   text-decoration:none;
+}
+
+button{
+  font-family:inherit;
 }
 
 nav{
@@ -84,7 +92,7 @@ main{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
+  gap:20px;
   margin-bottom:20px;
 }
 
@@ -95,20 +103,22 @@ main{
 }
 
 .icon{
-  width:55px;
-  height:55px;
+  width:58px;
+  height:58px;
   border-radius:15px;
   background:#10251c;
   border:1px solid #183027;
   display:grid;
   place-items:center;
-  font-size:20px;
+  font-size:19px;
   font-weight:900;
   color:#18df98;
+  overflow:hidden;
+  text-align:center;
 }
 
 .title{
-  font-size:27px;
+  font-size:28px;
   font-weight:900;
 }
 
@@ -123,14 +133,14 @@ main{
 }
 
 .price{
-  font-size:25px;
+  font-size:27px;
   font-weight:900;
 }
 
 .change{
   color:#18df98;
   font-size:11px;
-  margin-top:4px;
+  margin-top:5px;
 }
 
 .card{
@@ -146,10 +156,39 @@ main{
   margin-bottom:15px;
 }
 
+/* BALANCE */
+
+.balance{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.balanceBox{
+  background:#06110d;
+  border:1px solid #183027;
+  border-radius:11px;
+  padding:14px;
+}
+
+.balanceBox small{
+  display:block;
+  color:#60716a;
+  font-size:9px;
+  margin-bottom:6px;
+}
+
+.balanceBox strong{
+  font-size:17px;
+}
+
+/* CHART */
+
 .chartWrap{
   position:relative;
   width:100%;
-  height:350px;
+  height:360px;
 }
 
 canvas{
@@ -166,17 +205,58 @@ canvas{
   font-size:10px;
 }
 
-.trade{
+/* TRADING */
+
+.tradeGrid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px;
+  gap:15px;
 }
 
-.trade button{
+.tradeBox{
+  background:#06110d;
+  border:1px solid #183027;
+  border-radius:13px;
+  padding:15px;
+}
+
+.tradeBox label{
+  display:block;
+  color:#91a39c;
+  font-size:10px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.tradeBox input,
+.tradeBox select{
+  width:100%;
+  background:#10251c;
+  color:#f5f8f7;
+  border:1px solid #183027;
+  border-radius:9px;
+  padding:13px;
+  outline:none;
+  font-size:13px;
+}
+
+.tradeBox input:focus,
+.tradeBox select:focus{
+  border-color:#18df98;
+}
+
+.tradeButtons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.tradeButtons button{
   border:0;
+  border-radius:11px;
   padding:16px;
-  border-radius:12px;
-  font-size:15px;
+  font-size:14px;
   font-weight:900;
   cursor:pointer;
 }
@@ -191,13 +271,15 @@ canvas{
   color:white;
 }
 
-.trade button:active{
+.tradeButtons button:active{
   transform:scale(.98);
 }
 
+/* POSITION */
+
 .position{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
   gap:10px;
 }
 
@@ -219,9 +301,9 @@ canvas{
   font-size:13px;
 }
 
-.status{
+.positionStatus{
   margin-top:15px;
-  padding:12px;
+  padding:13px;
   border-radius:10px;
   background:#06110d;
   border:1px solid #183027;
@@ -230,42 +312,76 @@ canvas{
   line-height:1.6;
 }
 
-.game{
-  text-align:center;
-}
-
-.gameTitle{
-  color:#18df98;
-  font-size:11px;
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.gamePrice{
-  font-size:28px;
-  font-weight:900;
-  margin-bottom:5px;
-}
-
-.timer{
-  color:#91a39c;
-  font-size:11px;
-  margin-bottom:15px;
-}
-
-.result{
-  min-height:25px;
-  color:#18df98;
-  font-size:12px;
-  font-weight:bold;
+.closeButton{
+  width:100%;
   margin-top:12px;
+  padding:14px;
+  border:1px solid #183027;
+  border-radius:10px;
+  background:#10251c;
+  color:#f5f8f7;
+  font-weight:900;
+  cursor:pointer;
 }
+
+.closeButton:hover{
+  border-color:#18df98;
+}
+
+/* ORDERS */
+
+.orders{
+  overflow-x:auto;
+}
+
+.orders table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:550px;
+}
+
+.orders th{
+  color:#60716a;
+  font-size:9px;
+  text-align:left;
+  padding:10px;
+  border-bottom:1px solid #183027;
+}
+
+.orders td{
+  color:#91a39c;
+  font-size:10px;
+  padding:11px 10px;
+  border-bottom:1px solid #183027;
+}
+
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#60716a;
+  font-size:11px;
+}
+
+/* NOTICE */
 
 .notice{
   color:#91a39c;
   font-size:10px;
   line-height:1.7;
 }
+
+.demo{
+  display:inline-block;
+  margin-bottom:10px;
+  padding:6px 9px;
+  border-radius:7px;
+  background:#183027;
+  color:#18df98;
+  font-size:9px;
+  font-weight:900;
+}
+
+/* FOOTER */
 
 footer{
   text-align:center;
@@ -274,7 +390,8 @@ footer{
   margin-top:30px;
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
+
   .nav{
     flex-direction:column;
     align-items:flex-start;
@@ -284,11 +401,11 @@ footer{
     align-items:flex-start;
   }
 
-  .priceBox{
-    text-align:left;
+  .position{
+    grid-template-columns:1fr 1fr;
   }
 
-  .position{
+  .tradeGrid{
     grid-template-columns:1fr;
   }
 
@@ -298,8 +415,21 @@ footer{
 }
 
 @media(max-width:450px){
+
   .header{
     flex-direction:column;
+  }
+
+  .priceBox{
+    text-align:left;
+  }
+
+  .balance{
+    grid-template-columns:1fr;
+  }
+
+  .position{
+    grid-template-columns:1fr;
   }
 
   .title{
@@ -307,581 +437,1114 @@ footer{
   }
 }
 </style></head><body><nav>
-  <div class="nav"><a href="index.html" class="brand">
-  <span class="logo">TL</span>
-  Trading League
-</a>
-
-<div class="links">
-  <a href="index.html">Home</a>
-  <a href="markets.html">Markets</a>
-  <a href="games.html">Games</a>
-  <a href="tournament.html">Tournament</a>
-  <a href="leaderboard.html">Leaderboard</a>
-  <a href="withdraw.html">Withdraw</a>
-  <a href="account.html">Account</a>
-</div>
-
-  </div>
+<div class="nav"><a href="index.html" class="brand">
+<span class="logo">TL</span>
+Trading League
+</a><div class="links">
+<a href="index.html">Home</a>
+<a href="markets.html">Markets</a>
+<a href="games.html">Games</a>
+<a href="tournament.html">Tournament</a>
+<a href="leaderboard.html">Leaderboard</a>
+<a href="withdraw.html">Withdraw</a>
+<a href="account.html">Account</a>
+</div></div>
 </nav><main><a class="back" href="markets.html">← Back to Markets</a>
 
-<div class="header">  <div class="asset"><div class="icon" id="assetIcon">TL</div>
+<!-- MARKET HEADER --><div class="header"><div class="asset"><div class="icon" id="assetIcon">TL</div><div>
+<div class="title" id="assetName">Loading...</div>
+<div class="symbol" id="assetSymbol">---</div>
+</div></div><div class="priceBox"><div class="price" id="price">$100.00</div><div class="change" id="change">
++0.00%
+</div></div></div><!-- DEMO BALANCE --><div class="balance"><div class="balanceBox"><small>DEMO BALANCE</small>
 
-<div>
-  <div class="title" id="assetName">Loading...</div>
-  <div class="symbol" id="assetSymbol">---</div>
-</div>
+<strong id="balance">
+$10,000.00
+</strong></div><div class="balanceBox"><small>AVAILABLE</small>
 
-  </div>  <div class="priceBox">
-    <div class="price" id="price">$100.00</div>
-    <div class="change" id="change">+0.00%</div>
-  </div></div><div class="card">  <h2>Price Chart</h2>  <div class="chartWrap">
-    <canvas id="chart"></canvas>
-  </div>  <div class="chartInfo">
-    <span>Demo market</span>
-    <span>Live simulation</span>
-  </div></div><div class="card game">  <div class="gameTitle">TRADING GAME</div>  <div class="gamePrice" id="gamePrice">$100.00</div>  <div class="timer">
-    Make your prediction before the next round.
-  </div>  <div class="trade"><button class="buy" onclick="openPosition('BUY')">
-  BUY ↑
+<strong id="available">
+$10,000.00
+</strong></div></div><!-- CHART --><div class="card"><h2>Price Chart</h2><div class="chartWrap"><canvas id="chart"></canvas>
+
+</div><div class="chartInfo"><span>Demo market</span>
+
+<span>Price simulation</span>
+
+</div></div><!-- TRADE PANEL --><div class="card"><h2>Trade</h2><div class="tradeGrid"><div class="tradeBox"><label>TRADE SIZE</label>
+
+<input
+id="tradeAmount"
+type="number"
+min="1"
+step="1"
+value="100"
+
+«»
+
+</div><div class="tradeBox"><label>ORDER TYPE</label>
+
+<select id="orderType"><option value="market">
+Market Order
+</option></select></div></div><div class="tradeButtons"><button
+class="buy"
+onclick="openTrade('BUY')"
+
+«»
+
+BUY
 </button>
 
-<button class="sell" onclick="openPosition('SELL')">
-  SELL ↓
+<button
+class="sell"
+onclick="openTrade('SELL')"
+
+«»
+
+SELL
 </button>
 
-  </div>  <div class="result" id="result"></div></div><div class="card">  <h2>Your Position</h2>  <div class="position"><div class="info">
-  <small>POSITION</small>
-  <strong id="position">No position</strong>
-</div>
+</div></div><!-- POSITION --><div class="card"><h2>Open Position</h2><div class="position"><div class="info"><small>POSITION</small>
 
-<div class="info">
-  <small>ENTRY PRICE</small>
-  <strong id="entry">$0.00</strong>
-</div>
+<strong id="position">
+No position
+</strong></div><div class="info"><small>ENTRY PRICE</small>
 
-<div class="info">
-  <small>CURRENT PRICE</small>
-  <strong id="current">$0.00</strong>
-</div>
+<strong id="entry">
+$0.00
+</strong></div><div class="info"><small>CURRENT PRICE</small>
 
-  </div>  <div class="status" id="positionStatus">
-    Choose BUY or SELL to start a demo trade.
-  </div></div><div class="card">  <h2>How the game works</h2>  <div class="notice">
-    This is a demo trading game. The price moves automatically
-    on this page. Choose BUY if you think the price will rise,
-    or SELL if you think the price will fall.<br><br>
+<strong id="current">
+$0.00
+</strong></div><div class="info"><small>P/L</small>
 
-No real money is used on this page.
+<strong id="profit">
+$0.00
+</strong></div></div><div class="positionStatus" id="positionStatus">No open trade. Choose BUY or SELL to open a demo position.
 
-  </div></div><footer>
+</div><button
+class="closeButton"
+onclick="closeTrade()"
+
+«»
+
+CLOSE POSITION
+</button>
+
+</div><!-- TRADE HISTORY --><div class="card"><h2>Trade History</h2><div class="orders"><table><thead><tr>
+<th>MARKET</th>
+<th>TYPE</th>
+<th>ENTRY</th>
+<th>EXIT</th>
+<th>P/L</th>
+</tr></thead><tbody id="tradeHistory"><tr>
+<td colspan="5" class="empty">
+No trades yet
+</td>
+</tr></tbody></table></div></div><!-- INFORMATION --><div class="card"><span class="demo">
+DEMO TRADING
+</span><div class="notice">This market page is for practicing trading decisions with
+demo money. BUY means you are taking a simulated long
+position. SELL means you are taking a simulated short
+position.
+
+<br><br>
+
+The price displayed on this page is a simulated market
+price and is not a live exchange price. No real order is
+sent to a broker or exchange.
+
+<br><br>
+
+The prediction game is separate and is available from the
+<strong>Games</strong> page.
+
+</div></div><footer>
 Trading League © 2026
 </footer></main><script>
 
-/* =========================================
-   GET MARKET FROM THE LINK
-   Example:
-   market.html?type=stock&symbol=AAPL&name=Apple
-========================================= */
+/* =====================================================
+   READ THE EXISTING MARKETS.HTML LINK
+   ===================================================== */
 
-const params = new URLSearchParams(window.location.search);
+const params =
+new URLSearchParams(window.location.search);
 
-const marketType = params.get("type") || "stock";
-const symbol = params.get("symbol") || "AAPL";
-const marketName = params.get("name") || "Apple";
+const marketType =
+params.get("type") || "stock";
+
+const symbol =
+params.get("symbol") || "AAPL";
+
+const marketName =
+params.get("name") || "Apple";
 
 
-/* =========================================
-   MARKET LOGOS BUILT INTO THE PAGE
-========================================= */
+/* =====================================================
+   MARKET LOGOS
+   ===================================================== */
 
 const logos = {
 
-  AAPL:"",
+AAPL:"",
+MSFT:"▦",
+NVDA:"N",
+AMZN:"a",
+GOOGL:"G",
+META:"∞",
+TSLA:"T",
+NFLX:"N",
+AMD:"AMD",
+INTC:"intel",
+KO:"C",
+PEP:"P",
+MCD:"M",
+NKE:"✓",
 
-  MSFT:"▦",
-
-  NVDA:"N",
-
-  AMZN:"a",
-
-  GOOGL:"G",
-
-  META:"∞",
-
-  TSLA:"T",
-
-  NFLX:"N",
-
-  AMD:"AMD",
-
-  INTC:"intel",
-
-  KO:"C",
-
-  PEP:"P",
-
-  MCD:"M",
-
-  NKE:"✓",
-
-  bitcoin:"₿",
-
-  ethereum:"◆",
-
-  binancecoin:"◆",
-
-  solana:"≋",
-
-  ripple:"X",
-
-  dogecoin:"Ð"
+bitcoin:"₿",
+ethereum:"◆",
+binancecoin:"◆",
+solana:"≋",
+ripple:"X",
+dogecoin:"Ð"
 
 };
 
 
-/* =========================================
-   STARTING PRICES
-========================================= */
+/* =====================================================
+   DEMO STARTING PRICES
+   ===================================================== */
 
 const prices = {
 
-  AAPL:210,
-  MSFT:520,
-  NVDA:180,
-  AMZN:230,
-  GOOGL:190,
-  META:750,
-  TSLA:330,
-  NFLX:1200,
-  AMD:170,
-  INTC:25,
-  KO:70,
-  PEP:150,
-  MCD:310,
-  NKE:75,
+AAPL:210,
+MSFT:520,
+NVDA:180,
+AMZN:230,
+GOOGL:190,
+META:750,
+TSLA:330,
+NFLX:1200,
+AMD:170,
+INTC:25,
+KO:70,
+PEP:150,
+MCD:310,
+NKE:75,
 
-  bitcoin:115000,
-  ethereum:3900,
-  binancecoin:800,
-  solana:180,
-  ripple:3,
-  dogecoin:0.22
+bitcoin:115000,
+ethereum:3900,
+binancecoin:800,
+solana:180,
+ripple:3,
+dogecoin:0.22
 
 };
 
 
-/* =========================================
-   PAGE SETUP
-========================================= */
+/* =====================================================
+   PAGE VARIABLES
+   ===================================================== */
 
-let currentPrice = prices[symbol] || 100;
+let currentPrice =
+prices[symbol] || 100;
 
-let previousPrice = currentPrice;
-
-let positionType = null;
-
-let entryPrice = 0;
+let previousPrice =
+currentPrice;
 
 let history = [];
 
+let demoBalance =
+10000;
+
+let positionType =
+null;
+
+let entryPrice =
+0;
+
+let positionSize =
+0;
+
+let trades = [];
+
+
+/* =====================================================
+   CREATE INITIAL CHART HISTORY
+   ===================================================== */
+
 for(let i=0;i<60;i++){
 
-  let movement =
-    (Math.random() - 0.5) *
-    currentPrice *
-    0.008;
+let movement =
+(Math.random() - 0.5) *
+currentPrice *
+0.008;
 
-  history.push(
-    Math.max(
-      0.01,
-      currentPrice + movement
-    )
-  );
+history.push(
+Math.max(
+0.0001,
+currentPrice + movement
+)
+);
 
 }
 
 
-/* =========================================
-   DISPLAY MARKET
-========================================= */
+/* =====================================================
+   PAGE INFORMATION
+   ===================================================== */
 
-document.getElementById("assetName").textContent =
-  marketName;
+document.getElementById(
+"assetName"
+).textContent =
+marketName;
 
-document.getElementById("assetSymbol").textContent =
-  symbol.toUpperCase() + " / USD";
+document.getElementById(
+"assetSymbol"
+).textContent =
+symbol.toUpperCase() + " / USD";
 
-document.getElementById("assetIcon").textContent =
-  logos[symbol] || marketName.charAt(0).toUpperCase();
+document.getElementById(
+"assetIcon"
+).textContent =
+logos[symbol] ||
+marketName.charAt(0).toUpperCase();
 
 
-/* =========================================
-   FORMAT PRICE
-========================================= */
+/* =====================================================
+   PRICE FORMAT
+   ===================================================== */
 
 function formatPrice(value){
 
-  if(value < 1){
-    return "$" + value.toFixed(4);
-  }
+if(value < 1){
 
-  if(value < 100){
-    return "$" + value.toFixed(2);
-  }
+return "$" +
+value.toFixed(4);
 
-  return "$" + value.toLocaleString(
-    undefined,
-    {
-      minimumFractionDigits:2,
-      maximumFractionDigits:2
-    }
-  );
+}
+
+if(value < 100){
+
+return "$" +
+value.toFixed(2);
+
+}
+
+return "$" +
+value.toLocaleString(
+undefined,
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
+);
 
 }
 
 
-/* =========================================
-   UPDATE PRICE
-========================================= */
+/* =====================================================
+   UPDATE BALANCE DISPLAY
+   ===================================================== */
+
+function updateBalance(){
+
+document.getElementById(
+"balance"
+).textContent =
+formatPrice(demoBalance);
+
+let available =
+demoBalance;
+
+if(positionType){
+
+available =
+demoBalance -
+positionSize;
+
+}
+
+document.getElementById(
+"available"
+).textContent =
+formatPrice(
+Math.max(0,available)
+);
+
+}
+
+
+/* =====================================================
+   UPDATE MARKET PRICE
+   ===================================================== */
 
 function updatePrice(){
 
-  previousPrice = currentPrice;
+previousPrice =
+currentPrice;
 
-  const movement =
-    (Math.random() - 0.5) *
-    currentPrice *
-    0.012;
+let movement =
+(Math.random() - 0.5) *
+currentPrice *
+0.012;
 
-  currentPrice =
-    Math.max(
-      0.01,
-      currentPrice + movement
-    );
+currentPrice =
+Math.max(
+0.0001,
+currentPrice + movement
+);
 
-  history.push(currentPrice);
+history.push(
+currentPrice
+);
 
-  if(history.length > 60){
-    history.shift();
-  }
+if(history.length > 60){
 
-  document.getElementById("price").textContent =
-    formatPrice(currentPrice);
-
-  document.getElementById("gamePrice").textContent =
-    formatPrice(currentPrice);
-
-  document.getElementById("current").textContent =
-    formatPrice(currentPrice);
-
-  const change =
-    ((currentPrice - previousPrice) /
-    previousPrice) * 100;
-
-  const changeElement =
-    document.getElementById("change");
-
-  changeElement.textContent =
-    (change >= 0 ? "+" : "") +
-    change.toFixed(2) +
-    "%";
-
-  if(positionType){
-    updatePosition();
-  }
-
-  drawChart();
-}
-
-
-/* =========================================
-   OPEN BUY / SELL POSITION
-========================================= */
-
-function openPosition(type){
-
-  positionType = type;
-
-  entryPrice = currentPrice;
-
-  document.getElementById("position").textContent =
-    positionType;
-
-  document.getElementById("entry").textContent =
-    formatPrice(entryPrice);
-
-  document.getElementById("current").textContent =
-    formatPrice(currentPrice);
-
-  document.getElementById("result").textContent =
-    "Position opened: " + type;
-
-  updatePosition();
+history.shift();
 
 }
 
 
-/* =========================================
-   UPDATE POSITION
-========================================= */
+/* PRICE */
+
+document.getElementById(
+"price"
+).textContent =
+formatPrice(
+currentPrice
+);
+
+
+/* CHANGE */
+
+let change =
+(
+(currentPrice -
+previousPrice) /
+previousPrice
+) * 100;
+
+document.getElementById(
+"change"
+).textContent =
+(change >= 0 ? "+" : "") +
+change.toFixed(2) +
+"%";
+
+
+/* CURRENT POSITION */
+
+document.getElementById(
+"current"
+).textContent =
+formatPrice(
+currentPrice
+);
+
+if(positionType){
+
+updatePosition();
+
+}
+
+drawChart();
+
+}
+
+
+/* =====================================================
+   OPEN TRADE
+   ===================================================== */
+
+function openTrade(type){
+
+if(positionType){
+
+alert(
+"You already have an open position. Close it before opening another trade."
+);
+
+return;
+
+}
+
+let amount =
+Number(
+document.getElementById(
+"tradeAmount"
+).value
+);
+
+if(!amount || amount <= 0){
+
+alert(
+"Enter a valid trade size."
+);
+
+return;
+
+}
+
+if(amount > demoBalance){
+
+alert(
+"Your demo balance is not enough for this trade."
+);
+
+return;
+
+}
+
+
+/* SAVE POSITION */
+
+positionType =
+type;
+
+entryPrice =
+currentPrice;
+
+positionSize =
+amount;
+
+
+/* UPDATE PAGE */
+
+document.getElementById(
+"position"
+).textContent =
+type;
+
+document.getElementById(
+"entry"
+).textContent =
+formatPrice(
+entryPrice
+);
+
+document.getElementById(
+"current"
+).textContent =
+formatPrice(
+currentPrice
+);
+
+document.getElementById(
+"profit"
+).textContent =
+"$0.00";
+
+document.getElementById(
+"positionStatus"
+).textContent =
+type +
+" position opened at " +
+formatPrice(entryPrice) +
+".";
+
+updateBalance();
+
+}
+
+
+/* =====================================================
+   UPDATE OPEN POSITION
+   ===================================================== */
 
 function updatePosition(){
 
-  if(!positionType){
-    return;
-  }
+if(!positionType){
 
-  document.getElementById("position").textContent =
-    positionType;
+return;
 
-  document.getElementById("entry").textContent =
-    formatPrice(entryPrice);
+}
 
-  document.getElementById("current").textContent =
-    formatPrice(currentPrice);
+let difference =
+currentPrice -
+entryPrice;
 
-  let difference =
-    currentPrice - entryPrice;
+let percentage =
+(difference /
+entryPrice) *
+100;
 
-  let profit = 0;
+let profit;
 
-  if(positionType === "BUY"){
-    profit = difference;
-  }
 
-  if(positionType === "SELL"){
-    profit = -difference;
-  }
+/*
+BUY profits when price rises.
+SELL profits when price falls.
+*/
 
-  const status =
-    document.getElementById("positionStatus");
+if(positionType === "BUY"){
 
-  if(profit > 0){
+profit =
+positionSize *
+percentage /
+100;
 
-    status.textContent =
-      "Position is currently PROFITABLE: +" +
-      formatPrice(Math.abs(profit));
+}else{
 
-  }else if(profit < 0){
-
-    status.textContent =
-      "Position is currently DOWN: -" +
-      formatPrice(Math.abs(profit));
-
-  }else{
-
-    status.textContent =
-      "Position is currently at break-even.";
-
-  }
+profit =
+positionSize *
+(-percentage) /
+100;
 
 }
 
 
-/* =========================================
-   DRAW CHART
-========================================= */
+document.getElementById(
+"profit"
+).textContent =
+(profit >= 0 ? "+" : "-") +
+formatPrice(
+Math.abs(profit)
+);
+
+
+if(profit > 0){
+
+document.getElementById(
+"positionStatus"
+).textContent =
+positionType +
+" position is currently PROFITABLE: +" +
+formatPrice(profit);
+
+}else if(profit < 0){
+
+document.getElementById(
+"positionStatus"
+).textContent =
+positionType +
+" position is currently DOWN: -" +
+formatPrice(
+Math.abs(profit)
+);
+
+}else{
+
+document.getElementById(
+"positionStatus"
+).textContent =
+"Position is currently at break-even.";
+
+}
+
+}
+
+
+/* =====================================================
+   CLOSE TRADE
+   ===================================================== */
+
+function closeTrade(){
+
+if(!positionType){
+
+alert(
+"There is no open position."
+);
+
+return;
+
+}
+
+let difference =
+currentPrice -
+entryPrice;
+
+let percentage =
+(difference /
+entryPrice) *
+100;
+
+let profit;
+
+if(positionType === "BUY"){
+
+profit =
+positionSize *
+percentage /
+100;
+
+}else{
+
+profit =
+positionSize *
+(-percentage) /
+100;
+
+}
+
+
+/* UPDATE DEMO BALANCE */
+
+demoBalance +=
+profit;
+
+
+/* SAVE HISTORY */
+
+trades.unshift({
+
+market:
+symbol.toUpperCase(),
+
+type:
+positionType,
+
+entry:
+entryPrice,
+
+exit:
+currentPrice,
+
+profit:
+profit
+
+});
+
+
+/* RESET POSITION */
+
+positionType =
+null;
+
+entryPrice =
+0;
+
+positionSize =
+0;
+
+
+/* UPDATE PAGE */
+
+document.getElementById(
+"position"
+).textContent =
+"No position";
+
+document.getElementById(
+"entry"
+).textContent =
+"$0.00";
+
+document.getElementById(
+"current"
+).textContent =
+formatPrice(
+currentPrice
+);
+
+document.getElementById(
+"profit"
+).textContent =
+"$0.00";
+
+document.getElementById(
+"positionStatus"
+).textContent =
+"Trade closed. Result: " +
+(profit >= 0 ? "+" : "-") +
+formatPrice(
+Math.abs(profit)
+);
+
+updateBalance();
+
+renderHistory();
+
+}
+
+
+/* =====================================================
+   TRADE HISTORY
+   ===================================================== */
+
+function renderHistory(){
+
+const table =
+document.getElementById(
+"tradeHistory"
+);
+
+if(trades.length === 0){
+
+table.innerHTML =
+`
+<tr>
+<td colspan="5" class="empty">
+No trades yet
+</td>
+</tr>
+`;
+
+return;
+
+}
+
+
+table.innerHTML =
+trades.map(
+trade => {
+
+let profitText =
+(trade.profit >= 0 ? "+" : "-") +
+formatPrice(
+Math.abs(trade.profit)
+);
+
+return `
+<tr>
+
+<td>
+${trade.market}
+</td>
+
+<td>
+${trade.type}
+</td>
+
+<td>
+${formatPrice(
+trade.entry
+)}
+</td>
+
+<td>
+${formatPrice(
+trade.exit
+)}
+</td>
+
+<td>
+${profitText}
+</td>
+
+</tr>
+`;
+
+}
+).join("");
+
+}
+
+
+/* =====================================================
+   CANVAS CHART
+   ===================================================== */
 
 const canvas =
-  document.getElementById("chart");
+document.getElementById(
+"chart"
+);
 
 const ctx =
-  canvas.getContext("2d");
+canvas.getContext(
+"2d"
+);
 
+
+/* =====================================================
+   RESIZE CHART
+   ===================================================== */
 
 function resizeCanvas(){
 
-  const rect =
-    canvas.getBoundingClientRect();
+const rect =
+canvas.getBoundingClientRect();
 
-  const dpr =
-    window.devicePixelRatio || 1;
+const dpr =
+window.devicePixelRatio || 1;
 
-  canvas.width =
-    rect.width * dpr;
+canvas.width =
+rect.width * dpr;
 
-  canvas.height =
-    rect.height * dpr;
+canvas.height =
+rect.height * dpr;
 
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
+ctx.setTransform(
+dpr,
+0,
+0,
+dpr,
+0,
+0
+);
 
-  drawChart();
+drawChart();
 
 }
 
+
+/* =====================================================
+   DRAW CHART
+   ===================================================== */
 
 function drawChart(){
 
-  const width =
-    canvas.clientWidth;
+const width =
+canvas.clientWidth;
 
-  const height =
-    canvas.clientHeight;
+const height =
+canvas.clientHeight;
 
-  if(!width || !height){
-    return;
-  }
+if(!width || !height){
 
-  ctx.clearRect(
-    0,
-    0,
-    width,
-    height
-  );
+return;
 
+}
 
-  /* GRID */
-
-  ctx.strokeStyle =
-    "#183027";
-
-  ctx.lineWidth = 1;
-
-  for(let i=1;i<5;i++){
-
-    const y =
-      (height / 5) * i;
-
-    ctx.beginPath();
-
-    ctx.moveTo(0,y);
-
-    ctx.lineTo(width,y);
-
-    ctx.stroke();
-
-  }
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
 
 
-  if(history.length < 2){
-    return;
-  }
+/* GRID */
 
+ctx.strokeStyle =
+"#183027";
 
-  let min =
-    Math.min(...history);
+ctx.lineWidth =
+1;
 
-  let max =
-    Math.max(...history);
+for(let i=1;i<6;i++){
 
-  if(max === min){
-    max += 1;
-    min -= 1;
-  }
+let y =
+(height / 6) * i;
 
+ctx.beginPath();
 
-  /* CHART LINE */
+ctx.moveTo(
+0,
+y
+);
 
-  ctx.beginPath();
+ctx.lineTo(
+width,
+y
+);
 
-  history.forEach((value,index)=>{
-
-    const x =
-      (index /
-      (history.length - 1)) *
-      width;
-
-    const y =
-      height -
-      ((value - min) /
-      (max - min)) *
-      (height - 20) -
-      10;
-
-    if(index === 0){
-      ctx.moveTo(x,y);
-    }else{
-      ctx.lineTo(x,y);
-    }
-
-  });
-
-
-  ctx.strokeStyle =
-    "#18df98";
-
-  ctx.lineWidth = 3;
-
-  ctx.stroke();
-
-
-  /* AREA */
-
-  const lastX =
-    width;
-
-  ctx.lineTo(
-    lastX,
-    height
-  );
-
-  ctx.lineTo(
-    0,
-    height
-  );
-
-  ctx.closePath();
-
-  const gradient =
-    ctx.createLinearGradient(
-      0,
-      0,
-      0,
-      height
-    );
-
-  gradient.addColorStop(
-    0,
-    "rgba(24,223,152,.20)"
-  );
-
-  gradient.addColorStop(
-    1,
-    "rgba(24,223,152,0)"
-  );
-
-  ctx.fillStyle =
-    gradient;
-
-  ctx.fill();
+ctx.stroke();
 
 }
 
 
-/* =========================================
+/* PRICE RANGE */
+
+let min =
+Math.min(
+...history
+);
+
+let max =
+Math.max(
+...history
+);
+
+if(max === min){
+
+max += 1;
+
+min -= 1;
+
+}
+
+
+/* AREA */
+
+ctx.beginPath();
+
+history.forEach(
+(value,index)=>{
+
+let x =
+(index /
+(history.length - 1)) *
+width;
+
+let y =
+height -
+(
+(value - min) /
+(max - min)
+) *
+(height - 25) -
+12;
+
+if(index === 0){
+
+ctx.moveTo(
+x,
+y
+);
+
+}else{
+
+ctx.lineTo(
+x,
+y
+);
+
+}
+
+}
+);
+
+ctx.lineTo(
+width,
+height
+);
+
+ctx.lineTo(
+0,
+height
+);
+
+ctx.closePath();
+
+let gradient =
+ctx.createLinearGradient(
+0,
+0,
+0,
+height
+);
+
+gradient.addColorStop(
+0,
+"rgba(24,223,152,.20)"
+);
+
+gradient.addColorStop(
+1,
+"rgba(24,223,152,0)"
+);
+
+ctx.fillStyle =
+gradient;
+
+ctx.fill();
+
+
+/* LINE */
+
+ctx.beginPath();
+
+history.forEach(
+(value,index)=>{
+
+let x =
+(index /
+(history.length - 1)) *
+width;
+
+let y =
+height -
+(
+(value - min) /
+(max - min)
+) *
+(height - 25) -
+12;
+
+if(index === 0){
+
+ctx.moveTo(
+x,
+y
+);
+
+}else{
+
+ctx.lineTo(
+x,
+y
+);
+
+}
+
+}
+);
+
+ctx.strokeStyle =
+"#18df98";
+
+ctx.lineWidth =
+3;
+
+ctx.stroke();
+
+
+/* CURRENT PRICE DOT */
+
+let last =
+history.length - 1;
+
+let lastX =
+width;
+
+let lastY =
+height -
+(
+(history[last] - min) /
+(max - min)
+) *
+(height - 25) -
+12;
+
+ctx.beginPath();
+
+ctx.arc(
+lastX,
+lastY,
+5,
+0,
+Math.PI * 2
+);
+
+ctx.fillStyle =
+"#18df98";
+
+ctx.fill();
+
+}
+
+
+/* =====================================================
    START
-========================================= */
+   ===================================================== */
 
 window.addEventListener(
-  "resize",
-  resizeCanvas
+"resize",
+resizeCanvas
 );
 
 resizeCanvas();
 
-document.getElementById("price").textContent =
-  formatPrice(currentPrice);
+document.getElementById(
+"price"
+).textContent =
+formatPrice(
+currentPrice
+);
 
-document.getElementById("gamePrice").textContent =
-  formatPrice(currentPrice);
+document.getElementById(
+"current"
+).textContent =
+formatPrice(
+currentPrice
+);
 
-document.getElementById("current").textContent =
-  formatPrice(currentPrice);
-
-
-/* PRICE MOVES EVERY 2 SECONDS */
+updateBalance();
 
 setInterval(
-  updatePrice,
-  2000
+updatePrice,
+2000
 );
 
 </script></body>
