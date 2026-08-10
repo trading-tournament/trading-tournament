@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Trading League — Tournament</title>
+  <title>Trading League | Home</title>
 
   <style>
     * {
@@ -14,50 +14,56 @@
     }
 
     :root {
-      --bg: #06130f;
-      --panel: #0c1e18;
-      --panel2: #102720;
+      --bg: #06110d;
+      --card: #0c1d16;
+      --card2: #10251c;
       --border: rgba(255,255,255,.08);
-      --text: #f4f7f6;
-      --muted: #94a6a0;
-      --green: #19e39a;
-      --green-dark: #0b8f63;
+      --text: #f5f8f7;
+      --muted: #91a39c;
+      --green: #18df98;
+      --green-dark: #0d9d69;
+      --gold: #ffc94d;
       --red: #ff6875;
-      --gold: #ffc94a;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
       background:
-        radial-gradient(circle at 50% 0%, rgba(25,227,154,.12), transparent 35%),
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(24,223,152,.16),
+          transparent 38%
+        ),
         var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
     button {
       font-family: inherit;
-      cursor: pointer;
     }
+
+    /* NAVIGATION */
 
     .navbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(5,16,13,.92);
-      backdrop-filter: blur(15px);
+      z-index: 1000;
+      background: rgba(4,14,10,.95);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
 
-    .nav-inner {
-      max-width: 1200px;
+    .nav {
+      max-width: 1150px;
       margin: auto;
-      padding: 16px 22px;
+      padding: 13px 18px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -67,308 +73,405 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
-      font-size: 20px;
-      font-weight: 800;
+      gap: 9px;
+
+      font-size: 18px;
+      font-weight: 900;
+      white-space: nowrap;
     }
 
-    .brand-icon {
+    .logo {
       width: 38px;
       height: 38px;
-      border-radius: 12px;
-      background: var(--green);
-      color: #03130d;
+
       display: grid;
       place-items: center;
+
+      border-radius: 11px;
+      background: var(--green);
+      color: #03110b;
+
+      font-size: 13px;
       font-weight: 900;
     }
 
-    .back {
-      border: 1px solid var(--border);
-      background: transparent;
-      color: var(--text);
-      padding: 10px 15px;
-      border-radius: 10px;
+    .nav-links {
+      display: flex;
+      gap: 5px;
+      overflow-x: auto;
     }
 
-    .back:hover {
-      border-color: var(--green);
+    .nav-links a {
+      padding: 9px 10px;
+      border-radius: 8px;
+
+      color: var(--muted);
+
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
     }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--green);
+      background: rgba(24,223,152,.07);
+    }
+
+    /* MAIN */
 
     .container {
       max-width: 1100px;
       margin: auto;
-      padding: 45px 20px 80px;
+      padding: 42px 18px 70px;
     }
 
+    /* HERO */
+
     .hero {
+      padding: 25px 0 35px;
       text-align: center;
-      margin-bottom: 35px;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid rgba(25,227,154,.25);
-      background: rgba(25,227,154,.07);
-      color: var(--green);
-      border-radius: 999px;
-      padding: 9px 15px;
-      font-size: 13px;
-      font-weight: 800;
+
+      padding: 8px 13px;
       margin-bottom: 18px;
+
+      border-radius: 30px;
+
+      color: var(--green);
+      background: rgba(24,223,152,.07);
+      border: 1px solid rgba(24,223,152,.2);
+
+      font-size: 10px;
+      font-weight: 900;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
+    .live-dot {
+      width: 7px;
+      height: 7px;
+
       border-radius: 50%;
+      background: var(--green);
+
       box-shadow: 0 0 12px var(--green);
     }
 
     h1 {
-      font-size: clamp(34px, 7vw, 64px);
+      max-width: 800px;
+      margin: auto;
+
+      font-size: clamp(38px, 8vw, 70px);
       line-height: 1;
-      margin-bottom: 16px;
+      letter-spacing: -2px;
     }
 
-    .hero p {
-      color: var(--muted);
+    .hero-text {
       max-width: 650px;
-      margin: auto;
+      margin: 20px auto 0;
+
+      color: var(--muted);
+      font-size: 14px;
       line-height: 1.7;
     }
 
-    .account {
-      margin: 25px auto;
-      max-width: 600px;
-      padding: 14px 18px;
+    /* ACCOUNT */
+
+    .account-card {
+      margin: 25px auto 0;
+      max-width: 650px;
+
+      padding: 15px 18px;
+
       border: 1px solid var(--border);
+      border-radius: 13px;
+
       background: rgba(255,255,255,.025);
-      border-radius: 14px;
+
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .account strong {
+    .account-card strong {
       color: var(--text);
     }
 
-    .tournaments {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 35px;
+    /* BALANCE */
+
+    .balance-card {
+      margin-bottom: 18px;
+
+      padding: 25px;
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #123025,
+          #0b1c15
+        );
+
+      border: 1px solid rgba(24,223,152,.18);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.18);
     }
 
-    .tournament-card {
-      background: linear-gradient(145deg, var(--panel2), var(--panel));
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .tournament-card.active {
-      border-color: rgba(25,227,154,.45);
-      box-shadow: 0 0 35px rgba(25,227,154,.07);
-    }
-
-    .status {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--green);
-      margin-bottom: 12px;
-    }
-
-    .status.locked {
+    .balance-label {
       color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 9px;
     }
 
-    .entry {
-      font-size: 28px;
+    .balance {
+      font-size: clamp(36px, 8vw, 54px);
       font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .balance-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 17px;
+
+      font-size: 12px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: var(--green);
+      color: #03110b;
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* QUICK CARDS */
+
+    .section-title {
+      margin: 30px 0 13px;
+
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .quick-card {
+      display: block;
+
+      padding: 20px;
+
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          145deg,
+          var(--card2),
+          var(--card)
+        );
+
+      border: 1px solid var(--border);
+
+      transition: transform .15s ease,
+                  border-color .15s ease;
+    }
+
+    .quick-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(24,223,152,.28);
+    }
+
+    .quick-icon {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      margin-bottom: 15px;
+
+      border-radius: 12px;
+
+      background: rgba(24,223,152,.08);
+
+      font-size: 20px;
+    }
+
+    .quick-card h3 {
+      font-size: 16px;
       margin-bottom: 7px;
     }
 
-    .prize {
+    .quick-card p {
       color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 15px;
-    }
-
-    .join {
-      width: 100%;
-      border: 0;
-      border-radius: 10px;
-      padding: 11px;
-      background: var(--green);
-      color: #03130d;
-      font-weight: 900;
-    }
-
-    .join.locked {
-      background: #1a2924;
-      color: #6f817a;
-      cursor: not-allowed;
-    }
-
-    .leaderboard {
-      background: linear-gradient(145deg, #0d211a, #091812);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      overflow: hidden;
-    }
-
-    .leader-head {
-      padding: 22px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .leader-title {
-      font-size: 21px;
-      font-weight: 900;
-    }
-
-    .live {
-      color: var(--green);
       font-size: 12px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      gap: 7px;
+      line-height: 1.6;
     }
 
-    .live .dot {
-      width: 7px;
-      height: 7px;
+    /* TOURNAMENT PREVIEW */
+
+    .tournament-preview {
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap: 15px;
+
+      padding: 22px;
+
+      border-radius: 19px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #102a20,
+          #0b1b15
+        );
+
+      border: 1px solid rgba(24,223,152,.16);
     }
 
-    .table-wrap {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 520px;
-    }
-
-    th {
-      text-align: left;
-      color: #71847d;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      padding: 15px 22px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    td {
-      padding: 17px 22px;
-      border-bottom: 1px solid rgba(255,255,255,.045);
-      font-size: 14px;
-    }
-
-    tbody tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .rank {
-      font-weight: 900;
-      width: 70px;
-    }
-
-    .player {
-      font-weight: 800;
-    }
-
-    .profit {
+    .small-label {
       color: var(--green);
+      font-size: 10px;
       font-weight: 900;
+      margin-bottom: 10px;
     }
 
-    .loss {
-      color: var(--red);
-      font-weight: 900;
+    .tournament-preview h2 {
+      font-size: 27px;
+      margin-bottom: 9px;
     }
 
-    .empty {
-      padding: 45px 20px;
-      text-align: center;
+    .tournament-preview p {
       color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
     }
 
-    .message {
-      margin: 20px auto;
-      max-width: 700px;
-      padding: 14px 18px;
+    .entry-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      padding: 15px;
+
+      border-radius: 14px;
+
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+    }
+
+    .entry-box span {
+      color: var(--muted);
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .entry-box strong {
+      font-size: 31px;
+    }
+
+    /* NOTICE */
+
+    .notice {
+      margin-top: 16px;
+
+      padding: 15px 17px;
+
       border-radius: 12px;
-      display: none;
-      text-align: center;
-      font-size: 14px;
+
+      color: var(--muted);
+
+      background: rgba(255,255,255,.025);
+      border: 1px solid var(--border);
+
+      font-size: 11px;
+      line-height: 1.6;
     }
 
-    .message.show {
-      display: block;
-    }
-
-    .message.error {
-      background: rgba(255,104,117,.08);
-      border: 1px solid rgba(255,104,117,.2);
-      color: #ff9aa3;
-    }
-
-    .message.info {
-      background: rgba(25,227,154,.07);
-      border: 1px solid rgba(25,227,154,.2);
-      color: var(--green);
-    }
+    /* FOOTER */
 
     .footer {
       text-align: center;
-      color: #65766f;
-      font-size: 12px;
+
       margin-top: 45px;
+
+      color: #60716a;
+
+      font-size: 11px;
     }
 
+    /* MOBILE */
+
     @media (max-width: 800px) {
-      .tournaments {
-        grid-template-columns: repeat(2, 1fr);
+
+      .nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tournament-preview {
+        grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 500px) {
+
       .container {
-        padding: 30px 14px 60px;
+        padding: 28px 13px 60px;
       }
 
-      .tournaments {
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .balance-card {
+        padding: 20px;
+      }
+
+      .balance-actions {
+        display: grid;
         grid-template-columns: 1fr 1fr;
       }
 
-      .tournament-card {
-        padding: 16px;
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
       }
 
-      .entry {
-        font-size: 23px;
-      }
-
-      .leader-head {
-        padding: 18px;
-      }
-
-      th,
-      td {
-        padding: 14px 15px;
+      .nav-links a {
+        padding: 8px;
+        font-size: 11px;
       }
     }
   </style>
@@ -376,122 +479,260 @@
 
 <body>
 
+  <!-- NAVIGATION -->
+
   <nav class="navbar">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-icon">TL</span>
+
+    <div class="nav">
+
+      <a href="index.html" class="brand">
+        <span class="logo">TL</span>
         Trading League
       </a>
 
-      <a class="back" href="index.html">
-        ← Home
-      </a>
+      <div class="nav-links">
+
+        <a href="index.html" class="active">
+          Home
+        </a>
+
+        <a href="markets.html">
+          Markets
+        </a>
+
+        <a href="tournament.html">
+          Tournament
+        </a>
+
+        <a href="leaderboard.html">
+          Leaderboard
+        </a>
+
+        <a href="withdraw.html">
+          Withdraw
+        </a>
+
+        <a href="account.html">
+          Account
+        </a>
+
+      </div>
+
     </div>
+
   </nav>
+
 
   <main class="container">
 
+    <!-- HERO -->
+
     <section class="hero">
+
       <div class="badge">
-        <span class="dot"></span>
-        LIVE TOURNAMENT
+
+        <span class="live-dot"></span>
+
+        TRADING LEAGUE
+
       </div>
 
-      <h1>Trading Tournament</h1>
+      <h1>
+        Trade. Compete.<br>
+        Climb the League.
+      </h1>
 
-      <p>
-        Compete against other registered traders and climb the live
-        leaderboard based on your verified tournament performance.
+      <p class="hero-text">
+
+        Welcome to Trading League — a platform
+        where registered traders can explore markets
+        and participate in competitive tournaments.
+
       </p>
 
-      <div class="account" id="accountBox">
+
+      <div
+        class="account-card"
+        id="accountBox"
+      >
+
         Checking your account...
-      </div>
-    </section>
 
-    <div id="message" class="message"></div>
-
-    <section class="tournaments">
-
-      <div class="tournament-card active">
-        <div class="status">● ACTIVE</div>
-        <div class="entry">$2</div>
-        <div class="prize">Current tournament</div>
-        <button class="join" id="join2">
-          Enter $2 Tournament
-        </button>
-      </div>
-
-      <div class="tournament-card">
-        <div class="status locked">● LOCKED</div>
-        <div class="entry">$5</div>
-        <div class="prize">Coming later</div>
-        <button class="join locked" disabled>
-          Coming Soon
-        </button>
-      </div>
-
-      <div class="tournament-card">
-        <div class="status locked">● LOCKED</div>
-        <div class="entry">$10</div>
-        <div class="prize">Coming later</div>
-        <button class="join locked" disabled>
-          Coming Soon
-        </button>
-      </div>
-
-      <div class="tournament-card">
-        <div class="status locked">● LOCKED</div>
-        <div class="entry">$15</div>
-        <div class="prize">Coming later</div>
-        <button class="join locked" disabled>
-          Coming Soon
-        </button>
       </div>
 
     </section>
 
-    <section class="leaderboard">
 
-      <div class="leader-head">
-        <div class="leader-title">
-          🏆 Live Leaderboard
+    <!-- BALANCE -->
+
+    <section class="balance-card">
+
+      <div class="balance-label">
+        Available Balance
+      </div>
+
+      <div
+        class="balance"
+        id="balance"
+      >
+        $0.00
+      </div>
+
+      <div class="balance-actions">
+
+        <a
+          href="withdraw.html"
+          class="primary-btn"
+        >
+          Withdraw
+        </a>
+
+        <a
+          href="account.html"
+          class="secondary-btn"
+        >
+          My Account
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUICK ACCESS -->
+
+    <div class="section-title">
+      Quick Access
+    </div>
+
+
+    <section class="quick-grid">
+
+      <a
+        href="markets.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+          📈
         </div>
 
-        <div class="live">
-          <span class="dot"></span>
-          LIVE
+        <h3>
+          Markets
+        </h3>
+
+        <p>
+          Explore available trading markets
+          and market information.
+        </p>
+
+      </a>
+
+
+      <a
+        href="tournament.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+          🏆
         </div>
+
+        <h3>
+          Tournament
+        </h3>
+
+        <p>
+          Enter the active tournament
+          and compete for a ranking.
+        </p>
+
+      </a>
+
+
+      <a
+        href="leaderboard.html"
+        class="quick-card"
+      >
+
+        <div class="quick-icon">
+          🥇
+        </div>
+
+        <h3>
+          Leaderboard
+        </h3>
+
+        <p>
+          View verified tournament rankings
+          and performance.
+        </p>
+
+      </a>
+
+    </section>
+
+
+    <!-- TOURNAMENT -->
+
+    <div class="section-title">
+      Featured Tournament
+    </div>
+
+
+    <section class="tournament-preview">
+
+      <div>
+
+        <div class="small-label">
+          ● ACTIVE NOW
+        </div>
+
+        <h2>
+          $2 Trading Tournament
+        </h2>
+
+        <p>
+          The current entry-level tournament.
+          The $5, $10 and $15 tournaments remain
+          locked until they are activated.
+        </p>
+
       </div>
 
-      <div class="table-wrap">
-        <table>
 
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Trader</th>
-              <th>Profit / Score</th>
-            </tr>
-          </thead>
+      <div class="entry-box">
 
-          <tbody id="leaderboardBody">
-            <tr>
-              <td colspan="3">
-                <div class="empty">
-                  Loading live leaderboard...
-                </div>
-              </td>
-            </tr>
-          </tbody>
+        <span>
+          ENTRY
+        </span>
 
-        </table>
+        <strong>
+          $2
+        </strong>
+
       </div>
 
     </section>
+
+
+    <!-- IMPORTANT NOTICE -->
+
+    <div class="notice">
+
+      <strong>Important:</strong>
+      Tournament payments, balances, winnings and
+      withdrawals must be verified through a secure
+      backend. This front page does not pretend that
+      a payment has been completed.
+
+    </div>
+
 
     <div class="footer">
+
       Trading League © 2026
+
     </div>
 
   </main>
@@ -503,295 +744,115 @@
 
     import {
       initializeApp
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+    } from
+      "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+
 
     import {
       getAuth,
       onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+    } from
+      "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
 
-    import {
-      getFirestore,
-      collection,
-      query,
-      orderBy,
-      limit,
-      onSnapshot
-    } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
-
-    /* YOUR TRADING LEAGUE FIREBASE PROJECT */
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
-      authDomain: "project-57e2c805-1b30-40ea-a94.firebaseapp.com",
-      projectId: "project-57e2c805-1b30-40ea-a94",
-      storageBucket: "project-57e2c805-1b30-40ea-a94.firebasestorage.app",
-      messagingSenderId: "567705081329",
-      appId: "1:567705081329:web:dd697fe1ed61f56045e050",
-      measurementId: "G-J26580N9L2"
+
+      apiKey:
+        "AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+
+      authDomain:
+        "project-57e2c805-1b30-40ea-a94.firebaseapp.com",
+
+      projectId:
+        "project-57e2c805-1b30-40ea-a94",
+
+      storageBucket:
+        "project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+
+      messagingSenderId:
+        "567705081329",
+
+      appId:
+        "1:567705081329:web:dd697fe1ed61f56045e050",
+
+      measurementId:
+        "G-J26580N9L2"
+
     };
 
 
-    const app = initializeApp(firebaseConfig);
+    const app =
+      initializeApp(firebaseConfig);
 
-    const auth = getAuth(app);
 
-    const db = getFirestore(app);
+    const auth =
+      getAuth(app);
 
 
     const accountBox =
-      document.getElementById("accountBox");
-
-    const leaderboardBody =
-      document.getElementById("leaderboardBody");
-
-    const message =
-      document.getElementById("message");
+      document.getElementById(
+        "accountBox"
+      );
 
 
-    function showMessage(text, type = "info") {
+    onAuthStateChanged(
+      auth,
+      (user) => {
 
-      message.textContent = text;
+        if (user) {
 
-      message.className =
-        "message show " + type;
+          accountBox.innerHTML =
+            "Signed in as <strong>" +
+            escapeHtml(
+              user.email || "Trader"
+            ) +
+            "</strong>";
 
-    }
+        } else {
 
+          accountBox.innerHTML =
+            'You are not signed in. ' +
+            '<a href="login.html" ' +
+            'style="color:#18df98;font-weight:800;">' +
+            'Login or create an account' +
+            '</a>';
 
-    /*
-      AUTHENTICATION
-
-      The page does not create fake accounts.
-      It checks the real Firebase account.
-    */
-
-    onAuthStateChanged(auth, (user) => {
-
-      if (user) {
-
-        const email =
-          user.email || "Registered trader";
-
-        accountBox.innerHTML =
-          "Signed in as <strong>" +
-          escapeHtml(email) +
-          "</strong>";
-
-      } else {
-
-        accountBox.innerHTML =
-          'You are not signed in. <a href="login.html" style="color:#19e39a;font-weight:800;">Login</a> to enter the tournament.';
-
-      }
-
-    });
-
-
-    /*
-      LIVE FIRESTORE LEADERBOARD
-
-      Firestore collection:
-
-      leaderboard
-
-      Each document should contain:
-
-      {
-        displayName: "Trader",
-        profit: 125.50,
-        tournament: "2"
-      }
-
-      IMPORTANT:
-      Profit should be written by a trusted backend/admin
-      process, NOT by the user's browser.
-    */
-
-    const leaderboardQuery = query(
-      collection(db, "leaderboard"),
-      orderBy("profit", "desc"),
-      limit(100)
-    );
-
-
-    onSnapshot(
-      leaderboardQuery,
-
-      (snapshot) => {
-
-        leaderboardBody.innerHTML = "";
-
-        const players = [];
-
-        snapshot.forEach((doc) => {
-
-          const data = doc.data();
-
-          if (data.tournament !== "2") {
-            return;
-          }
-
-          players.push({
-            name:
-              data.displayName ||
-              "Trader",
-
-            profit:
-              Number(data.profit) || 0
-          });
-
-        });
-
-
-        if (players.length === 0) {
-
-          leaderboardBody.innerHTML = `
-            <tr>
-              <td colspan="3">
-                <div class="empty">
-                  No tournament results yet.
-                  The leaderboard will update automatically when
-                  verified results are added.
-                </div>
-              </td>
-            </tr>
-          `;
-
-          return;
         }
 
-
-        players.forEach((player, index) => {
-
-          const row =
-            document.createElement("tr");
-
-          const rank =
-            index + 1;
-
-          const profitClass =
-            player.profit >= 0
-              ? "profit"
-              : "loss";
-
-          const sign =
-            player.profit >= 0
-              ? "+"
-              : "";
-
-          row.innerHTML = `
-
-            <td class="rank">
-              ${getRank(rank)}
-            </td>
-
-            <td class="player">
-              ${escapeHtml(player.name)}
-            </td>
-
-            <td class="${profitClass}">
-              ${sign}$${player.profit.toFixed(2)}
-            </td>
-
-          `;
-
-          leaderboardBody.appendChild(row);
-
-        });
-
-      },
-
-      (error) => {
-
-        console.error(error);
-
-        leaderboardBody.innerHTML = `
-          <tr>
-            <td colspan="3">
-              <div class="empty">
-                Unable to load the leaderboard.
-                Check your Firestore setup and security rules.
-              </div>
-            </td>
-          </tr>
-        `;
-
       }
-
     );
-
-
-    function getRank(rank) {
-
-      if (rank === 1) return "🥇 1";
-
-      if (rank === 2) return "🥈 2";
-
-      if (rank === 3) return "🥉 3";
-
-      return rank;
-
-    }
 
 
     function escapeHtml(value) {
 
       return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
 
-    }
+        .replaceAll(
+          "&",
+          "&amp;"
+        )
 
+        .replaceAll(
+          "<",
+          "&lt;"
+        )
 
-    /*
-      $2 TOURNAMENT
+        .replaceAll(
+          ">",
+          "&gt;"
+        )
 
-      For now this only checks whether the user is logged in.
-      It does NOT pretend that a payment has happened.
+        .replaceAll(
+          '"',
+          "&quot;"
+        )
 
-      Real DPay payment must be connected through a secure
-      backend after your DPay account/API setup is ready.
-    */
-
-    document
-      .getElementById("join2")
-      .addEventListener("click", () => {
-
-        const user = auth.currentUser;
-
-        if (!user) {
-
-          showMessage(
-            "Please log in or create an account before entering the tournament.",
-            "error"
-          );
-
-          setTimeout(() => {
-            window.location.href = "login.html";
-          }, 1200);
-
-          return;
-        }
-
-
-        /*
-          Payment is intentionally not processed here.
-
-          When your secure DPay backend is ready,
-          this button will start the real payment session.
-        */
-
-        showMessage(
-          "You are logged in. The $2 entry payment will be connected to DPay when the secure payment backend is activated.",
-          "info"
+        .replaceAll(
+          "'",
+          "&#039;"
         );
 
-      });
+    }
 
   </script>
 
