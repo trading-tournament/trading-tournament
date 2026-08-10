@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading League | Market</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+<title>Trading League | Market</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
   background:#06110d;
@@ -19,8 +12,8 @@ body{
 }
 
 a{
-  text-decoration:none;
   color:inherit;
+  text-decoration:none;
 }
 
 nav{
@@ -81,17 +74,13 @@ main{
 
 .back{
   display:inline-block;
-  color:#91a39c;
-  font-size:11px;
+  color:#18df98;
+  font-size:12px;
   font-weight:bold;
   margin-bottom:20px;
 }
 
-.back:hover{
-  color:#18df98;
-}
-
-.market-header{
+.header{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -102,243 +91,177 @@ main{
 .asset{
   display:flex;
   align-items:center;
-  gap:13px;
+  gap:12px;
 }
 
 .icon{
-  width:58px;
-  height:58px;
+  width:55px;
+  height:55px;
   border-radius:15px;
   background:#10251c;
   border:1px solid #183027;
   display:grid;
   place-items:center;
-  font-size:22px;
+  font-size:20px;
   font-weight:900;
   color:#18df98;
 }
 
-.market-name{
-  font-size:26px;
+.title{
+  font-size:27px;
   font-weight:900;
 }
 
-.market-symbol{
+.symbol{
   color:#91a39c;
   font-size:11px;
   margin-top:5px;
 }
 
-.badge{
-  color:#18df98;
-  background:#0c2118;
-  border:1px solid #183027;
-  border-radius:20px;
-  padding:8px 11px;
-  font-size:9px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-.price-card{
-  background:linear-gradient(145deg,#10251c,#0c1d16);
-  border:1px solid #183027;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:15px;
-}
-
-.price-label{
-  color:#91a39c;
-  font-size:10px;
-  font-weight:bold;
-  margin-bottom:7px;
+.priceBox{
+  text-align:right;
 }
 
 .price{
-  font-size:32px;
+  font-size:25px;
   font-weight:900;
 }
 
 .change{
   color:#18df98;
   font-size:11px;
-  margin-top:5px;
+  margin-top:4px;
 }
 
-.chart-card{
-  background:linear-gradient(145deg,#10251c,#0c1d16);
-  border:1px solid #183027;
-  border-radius:16px;
-  padding:15px;
-  overflow:hidden;
-}
-
-.chart-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:12px;
-}
-
-.chart-title{
-  font-size:13px;
-  font-weight:900;
-}
-
-.chart-live{
-  color:#18df98;
-  font-size:9px;
-  font-weight:bold;
-}
-
-canvas{
-  width:100%;
-  height:330px;
-  display:block;
-  background:#06110d;
-  border-radius:12px;
-}
-
-.timeframes{
-  display:flex;
-  gap:7px;
-  margin-top:12px;
-  overflow-x:auto;
-}
-
-.timeframes button{
-  background:#06110d;
-  border:1px solid #183027;
-  color:#91a39c;
-  padding:8px 12px;
-  border-radius:8px;
-  font-size:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.timeframes button.active,
-.timeframes button:hover{
-  color:#06110d;
-  background:#18df98;
-}
-
-.trade-card{
-  margin-top:15px;
+.card{
   background:linear-gradient(145deg,#10251c,#0c1d16);
   border:1px solid #183027;
   border-radius:16px;
   padding:18px;
-}
-
-.trade-title{
-  font-size:18px;
-  font-weight:900;
-  margin-bottom:5px;
-}
-
-.trade-sub{
-  color:#91a39c;
-  font-size:10px;
-  line-height:1.6;
   margin-bottom:15px;
 }
 
-.amount-label{
-  color:#91a39c;
-  font-size:10px;
-  font-weight:bold;
-  margin-bottom:7px;
+.card h2{
+  font-size:16px;
+  margin-bottom:15px;
 }
 
-.amount{
+.chartWrap{
+  position:relative;
   width:100%;
-  background:#06110d;
-  border:1px solid #183027;
-  border-radius:10px;
-  color:#f5f8f7;
-  padding:13px;
-  outline:none;
-  font-size:14px;
+  height:350px;
 }
 
-.amount:focus{
-  border-color:#18df98;
+canvas{
+  width:100%;
+  height:100%;
+  display:block;
 }
 
-.buttons{
+.chartInfo{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  color:#60716a;
+  font-size:10px;
+}
+
+.trade{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:13px;
+  gap:12px;
 }
 
-.trade-btn{
+.trade button{
   border:0;
-  border-radius:11px;
-  padding:14px;
-  color:#06110d;
+  padding:16px;
+  border-radius:12px;
+  font-size:15px;
   font-weight:900;
-  font-size:12px;
   cursor:pointer;
 }
 
 .buy{
   background:#18df98;
+  color:#03110b;
 }
 
 .sell{
-  background:#ff5c73;
+  background:#e85d75;
   color:white;
 }
 
-.trade-btn:active{
+.trade button:active{
   transform:scale(.98);
 }
 
-.status{
-  display:none;
-  margin-top:13px;
-  padding:12px;
-  border-radius:9px;
-  background:#06110d;
-  border:1px solid #183027;
-  color:#18df98;
-  font-size:10px;
-  line-height:1.6;
-}
-
-.info{
-  margin-top:15px;
+.position{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:10px;
 }
 
-.info-box{
+.info{
   background:#06110d;
   border:1px solid #183027;
-  border-radius:10px;
-  padding:13px;
+  border-radius:11px;
+  padding:14px;
 }
 
-.info-box span{
+.info small{
   display:block;
   color:#60716a;
   font-size:9px;
+  margin-bottom:6px;
+}
+
+.info strong{
+  font-size:13px;
+}
+
+.status{
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#06110d;
+  border:1px solid #183027;
+  color:#91a39c;
+  font-size:11px;
+  line-height:1.6;
+}
+
+.game{
+  text-align:center;
+}
+
+.gameTitle{
+  color:#18df98;
+  font-size:11px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+.gamePrice{
+  font-size:28px;
+  font-weight:900;
   margin-bottom:5px;
 }
 
-.info-box b{
+.timer{
+  color:#91a39c;
   font-size:11px;
+  margin-bottom:15px;
+}
+
+.result{
+  min-height:25px;
+  color:#18df98;
+  font-size:12px;
+  font-weight:bold;
+  margin-top:12px;
 }
 
 .notice{
-  margin-top:15px;
-  padding:15px;
-  border:1px solid #183027;
-  border-radius:11px;
   color:#91a39c;
   font-size:10px;
   line-height:1.7;
@@ -348,287 +271,131 @@ footer{
   text-align:center;
   color:#60716a;
   font-size:10px;
-  margin-top:35px;
+  margin-top:30px;
 }
 
-@media(max-width:700px){
-
+@media(max-width:650px){
   .nav{
     flex-direction:column;
     align-items:flex-start;
   }
 
-  .market-header{
+  .header{
     align-items:flex-start;
   }
 
-  .market-name{
-    font-size:22px;
+  .priceBox{
+    text-align:left;
   }
 
-  canvas{
-    height:260px;
-  }
-
-  .info{
+  .position{
     grid-template-columns:1fr;
+  }
+
+  .chartWrap{
+    height:280px;
   }
 }
 
 @media(max-width:450px){
-
-  .market-header{
+  .header{
     flex-direction:column;
   }
 
-  .badge{
-    align-self:flex-start;
+  .title{
+    font-size:23px;
   }
-
-  .buttons{
-    grid-template-columns:1fr;
-  }
-
 }
-</style>
-</head>
-
-<body>
-
-<nav>
-<div class="nav">
-
-<a href="index.html" class="brand">
-<span class="logo">TL</span>
-Trading League
+</style></head><body><nav>
+  <div class="nav"><a href="index.html" class="brand">
+  <span class="logo">TL</span>
+  Trading League
 </a>
 
 <div class="links">
-<a href="index.html">Home</a>
-<a href="markets.html">Markets</a>
-<a href="games.html">Games</a>
-<a href="tournament.html">Tournament</a>
-<a href="leaderboard.html">Leaderboard</a>
-<a href="withdraw.html">Withdraw</a>
-<a href="account.html">Account</a>
+  <a href="index.html">Home</a>
+  <a href="markets.html">Markets</a>
+  <a href="games.html">Games</a>
+  <a href="tournament.html">Tournament</a>
+  <a href="leaderboard.html">Leaderboard</a>
+  <a href="withdraw.html">Withdraw</a>
+  <a href="account.html">Account</a>
 </div>
 
-</div>
-</nav>
+  </div>
+</nav><main><a class="back" href="markets.html">← Back to Markets</a>
 
-
-<main>
-
-<a href="markets.html" class="back">
-← Back to Markets
-</a>
-
-
-<div class="market-header">
-
-<div class="asset">
-
-<div class="icon" id="assetIcon">
-TL
-</div>
+<div class="header">  <div class="asset"><div class="icon" id="assetIcon">TL</div>
 
 <div>
-<div class="market-name" id="marketName">
-Loading...
+  <div class="title" id="assetName">Loading...</div>
+  <div class="symbol" id="assetSymbol">---</div>
 </div>
 
-<div class="market-symbol" id="marketSymbol">
-Loading...
-</div>
-</div>
-
-</div>
-
-<div class="badge" id="marketType">
-DEMO MARKET
-</div>
-
-</div>
-
-
-<div class="price-card">
-
-<div class="price-label">
-DEMO MARKET PRICE
-</div>
-
-<div class="price" id="price">
-$100.00
-</div>
-
-<div class="change" id="change">
-+0.00%
-</div>
-
-</div>
-
-
-<div class="chart-card">
-
-<div class="chart-top">
-
-<div class="chart-title">
-Price Chart
-</div>
-
-<div class="chart-live">
-● DEMO LIVE
-</div>
-
-</div>
-
-<canvas id="chart"></canvas>
-
-<div class="timeframes">
-
-<button class="active" data-points="30">
-1H
+  </div>  <div class="priceBox">
+    <div class="price" id="price">$100.00</div>
+    <div class="change" id="change">+0.00%</div>
+  </div></div><div class="card">  <h2>Price Chart</h2>  <div class="chartWrap">
+    <canvas id="chart"></canvas>
+  </div>  <div class="chartInfo">
+    <span>Demo market</span>
+    <span>Live simulation</span>
+  </div></div><div class="card game">  <div class="gameTitle">TRADING GAME</div>  <div class="gamePrice" id="gamePrice">$100.00</div>  <div class="timer">
+    Make your prediction before the next round.
+  </div>  <div class="trade"><button class="buy" onclick="openPosition('BUY')">
+  BUY ↑
 </button>
 
-<button data-points="45">
-4H
+<button class="sell" onclick="openPosition('SELL')">
+  SELL ↓
 </button>
 
-<button data-points="60">
-1D
-</button>
-
-<button data-points="80">
-1W
-</button>
-
-<button data-points="100">
-1M
-</button>
-
+  </div>  <div class="result" id="result"></div></div><div class="card">  <h2>Your Position</h2>  <div class="position"><div class="info">
+  <small>POSITION</small>
+  <strong id="position">No position</strong>
 </div>
-
-</div>
-
-
-<div class="trade-card">
-
-<div class="trade-title">
-Practice Trade
-</div>
-
-<div class="trade-sub">
-Use demo money to practice. No real money is being
-deposited or withdrawn from this page.
-</div>
-
-<div class="amount-label">
-TRADE AMOUNT
-</div>
-
-<input
-class="amount"
-id="amount"
-type="number"
-min="1"
-value="100"
-placeholder="Enter demo amount"
->
-
-
-<div class="buttons">
-
-<button
-class="trade-btn buy"
-onclick="placeTrade('BUY')">
-BUY
-</button>
-
-<button
-class="trade-btn sell"
-onclick="placeTrade('SELL')">
-SELL
-</button>
-
-</div>
-
-<div class="status" id="status"></div>
-
 
 <div class="info">
-
-<div class="info-box">
-<span>MARKET</span>
-<b id="infoMarket">--</b>
+  <small>ENTRY PRICE</small>
+  <strong id="entry">$0.00</strong>
 </div>
 
-<div class="info-box">
-<span>PRICE</span>
-<b id="infoPrice">$100.00</b>
+<div class="info">
+  <small>CURRENT PRICE</small>
+  <strong id="current">$0.00</strong>
 </div>
 
-<div class="info-box">
-<span>MODE</span>
-<b>DEMO</b>
-</div>
+  </div>  <div class="status" id="positionStatus">
+    Choose BUY or SELL to start a demo trade.
+  </div></div><div class="card">  <h2>How the game works</h2>  <div class="notice">
+    This is a demo trading game. The price moves automatically
+    on this page. Choose BUY if you think the price will rise,
+    or SELL if you think the price will fall.<br><br>
 
-</div>
+No real money is used on this page.
 
-</div>
-
-
-<div class="notice">
-
-<strong>Important:</strong>
-Trading League is currently a demo trading experience.
-The chart and prices on this page are simulated for
-practice and education. They are not real market prices
-and do not represent an investment recommendation.
-
-</div>
-
-
-<footer>
+  </div></div><footer>
 Trading League © 2026
-</footer>
-
-</main>
-
-
-<script>
+</footer></main><script>
 
 /* =========================================
-   READ MARKET FROM URL
+   GET MARKET FROM THE LINK
+   Example:
+   market.html?type=stock&symbol=AAPL&name=Apple
 ========================================= */
 
 const params = new URLSearchParams(window.location.search);
 
-const type = params.get("type") || "stock";
+const marketType = params.get("type") || "stock";
 const symbol = params.get("symbol") || "AAPL";
-const name = params.get("name") || "Apple";
+const marketName = params.get("name") || "Apple";
 
 
 /* =========================================
-   DISPLAY MARKET INFORMATION
+   MARKET LOGOS BUILT INTO THE PAGE
 ========================================= */
 
-document.getElementById("marketName").textContent = name;
-
-document.getElementById("marketSymbol").textContent =
-symbol.toUpperCase() + " / USD";
-
-document.getElementById("marketType").textContent =
-type.toUpperCase() + " · DEMO";
-
-document.getElementById("infoMarket").textContent =
-symbol.toUpperCase();
-
-
-/* =========================================
-   BUILT-IN MARKET ICONS
-========================================= */
-
-const icons = {
+const logos = {
 
   AAPL:"",
 
@@ -658,61 +425,99 @@ const icons = {
 
   NKE:"✓",
 
-  BITCOIN:"₿",
+  bitcoin:"₿",
 
-  ETHEREUM:"◆",
+  ethereum:"◆",
 
-  BINANCECOIN:"◆",
+  binancecoin:"◆",
 
-  SOLANA:"≋",
+  solana:"≋",
 
-  RIPPLE:"X",
+  ripple:"X",
 
-  DOGECOIN:"Ð"
+  dogecoin:"Ð"
 
 };
 
-const icon = icons[symbol.toUpperCase()] || "TL";
-
-document.getElementById("assetIcon").textContent = icon;
-
 
 /* =========================================
-   DEMO STARTING PRICES
+   STARTING PRICES
 ========================================= */
 
-const startingPrices = {
+const prices = {
 
-  AAPL:227.00,
-  MSFT:510.00,
-  NVDA:182.00,
-  AMZN:225.00,
-  GOOGL:205.00,
-  META:760.00,
-  TSLA:340.00,
-  NFLX:1180.00,
-  AMD:170.00,
-  INTC:23.00,
-  KO:70.00,
-  PEP:145.00,
-  MCD:305.00,
-  NKE:75.00,
+  AAPL:210,
+  MSFT:520,
+  NVDA:180,
+  AMZN:230,
+  GOOGL:190,
+  META:750,
+  TSLA:330,
+  NFLX:1200,
+  AMD:170,
+  INTC:25,
+  KO:70,
+  PEP:150,
+  MCD:310,
+  NKE:75,
 
-  BITCOIN:116000,
-  ETHEREUM:4300,
-  BINANCECOIN:690,
-  SOLANA:190,
-  RIPPLE:3.10,
-  DOGECOIN:0.24
+  bitcoin:115000,
+  ethereum:3900,
+  binancecoin:800,
+  solana:180,
+  ripple:3,
+  dogecoin:0.22
 
 };
 
-let currentPrice =
-startingPrices[symbol.toUpperCase()] || 100;
+
+/* =========================================
+   PAGE SETUP
+========================================= */
+
+let currentPrice = prices[symbol] || 100;
+
+let previousPrice = currentPrice;
+
+let positionType = null;
+
+let entryPrice = 0;
+
+let history = [];
+
+for(let i=0;i<60;i++){
+
+  let movement =
+    (Math.random() - 0.5) *
+    currentPrice *
+    0.008;
+
+  history.push(
+    Math.max(
+      0.01,
+      currentPrice + movement
+    )
+  );
+
+}
 
 
 /* =========================================
-   PRICE FORMAT
+   DISPLAY MARKET
+========================================= */
+
+document.getElementById("assetName").textContent =
+  marketName;
+
+document.getElementById("assetSymbol").textContent =
+  symbol.toUpperCase() + " / USD";
+
+document.getElementById("assetIcon").textContent =
+  logos[symbol] || marketName.charAt(0).toUpperCase();
+
+
+/* =========================================
+   FORMAT PRICE
 ========================================= */
 
 function formatPrice(value){
@@ -721,12 +526,12 @@ function formatPrice(value){
     return "$" + value.toFixed(4);
   }
 
-  if(value < 1000){
+  if(value < 100){
     return "$" + value.toFixed(2);
   }
 
   return "$" + value.toLocaleString(
-    "en-US",
+    undefined,
     {
       minimumFractionDigits:2,
       maximumFractionDigits:2
@@ -737,44 +542,152 @@ function formatPrice(value){
 
 
 /* =========================================
-   CHART
+   UPDATE PRICE
 ========================================= */
 
-const canvas =
-document.getElementById("chart");
+function updatePrice(){
 
-const ctx =
-canvas.getContext("2d");
+  previousPrice = currentPrice;
 
-let pointsCount = 60;
+  const movement =
+    (Math.random() - 0.5) *
+    currentPrice *
+    0.012;
 
-let chartPoints = [];
+  currentPrice =
+    Math.max(
+      0.01,
+      currentPrice + movement
+    );
+
+  history.push(currentPrice);
+
+  if(history.length > 60){
+    history.shift();
+  }
+
+  document.getElementById("price").textContent =
+    formatPrice(currentPrice);
+
+  document.getElementById("gamePrice").textContent =
+    formatPrice(currentPrice);
+
+  document.getElementById("current").textContent =
+    formatPrice(currentPrice);
+
+  const change =
+    ((currentPrice - previousPrice) /
+    previousPrice) * 100;
+
+  const changeElement =
+    document.getElementById("change");
+
+  changeElement.textContent =
+    (change >= 0 ? "+" : "") +
+    change.toFixed(2) +
+    "%";
+
+  if(positionType){
+    updatePosition();
+  }
+
+  drawChart();
+}
 
 
-function createChartPoints(){
+/* =========================================
+   OPEN BUY / SELL POSITION
+========================================= */
 
-  chartPoints = [];
+function openPosition(type){
 
-  let price = currentPrice;
+  positionType = type;
 
-  for(let i=0;i<pointsCount;i++){
+  entryPrice = currentPrice;
 
-    let movement =
-      (Math.random() - 0.48) *
-      currentPrice *
-      0.012;
+  document.getElementById("position").textContent =
+    positionType;
 
-    price += movement;
+  document.getElementById("entry").textContent =
+    formatPrice(entryPrice);
 
-    if(price <= 0){
-      price = currentPrice;
-    }
+  document.getElementById("current").textContent =
+    formatPrice(currentPrice);
 
-    chartPoints.push(price);
+  document.getElementById("result").textContent =
+    "Position opened: " + type;
+
+  updatePosition();
+
+}
+
+
+/* =========================================
+   UPDATE POSITION
+========================================= */
+
+function updatePosition(){
+
+  if(!positionType){
+    return;
+  }
+
+  document.getElementById("position").textContent =
+    positionType;
+
+  document.getElementById("entry").textContent =
+    formatPrice(entryPrice);
+
+  document.getElementById("current").textContent =
+    formatPrice(currentPrice);
+
+  let difference =
+    currentPrice - entryPrice;
+
+  let profit = 0;
+
+  if(positionType === "BUY"){
+    profit = difference;
+  }
+
+  if(positionType === "SELL"){
+    profit = -difference;
+  }
+
+  const status =
+    document.getElementById("positionStatus");
+
+  if(profit > 0){
+
+    status.textContent =
+      "Position is currently PROFITABLE: +" +
+      formatPrice(Math.abs(profit));
+
+  }else if(profit < 0){
+
+    status.textContent =
+      "Position is currently DOWN: -" +
+      formatPrice(Math.abs(profit));
+
+  }else{
+
+    status.textContent =
+      "Position is currently at break-even.";
 
   }
 
 }
+
+
+/* =========================================
+   DRAW CHART
+========================================= */
+
+const canvas =
+  document.getElementById("chart");
+
+const ctx =
+  canvas.getContext("2d");
 
 
 function resizeCanvas(){
@@ -782,20 +695,20 @@ function resizeCanvas(){
   const rect =
     canvas.getBoundingClientRect();
 
-  const ratio =
+  const dpr =
     window.devicePixelRatio || 1;
 
   canvas.width =
-    rect.width * ratio;
+    rect.width * dpr;
 
   canvas.height =
-    rect.height * ratio;
+    rect.height * dpr;
 
   ctx.setTransform(
-    ratio,
+    dpr,
     0,
     0,
-    ratio,
+    dpr,
     0,
     0
   );
@@ -813,6 +726,10 @@ function drawChart(){
   const height =
     canvas.clientHeight;
 
+  if(!width || !height){
+    return;
+  }
+
   ctx.clearRect(
     0,
     0,
@@ -821,22 +738,10 @@ function drawChart(){
   );
 
 
-  /* background */
-
-  ctx.fillStyle = "#06110d";
-
-  ctx.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-
-  /* grid */
+  /* GRID */
 
   ctx.strokeStyle =
-    "rgba(24,223,152,.08)";
+    "#183027";
 
   ctx.lineWidth = 1;
 
@@ -856,102 +761,40 @@ function drawChart(){
   }
 
 
-  for(let i=1;i<6;i++){
-
-    const x =
-      (width / 6) * i;
-
-    ctx.beginPath();
-
-    ctx.moveTo(x,0);
-
-    ctx.lineTo(x,height);
-
-    ctx.stroke();
-
-  }
-
-
-  if(chartPoints.length < 2){
+  if(history.length < 2){
     return;
   }
 
 
-  const min =
-    Math.min(...chartPoints);
+  let min =
+    Math.min(...history);
 
-  const max =
-    Math.max(...chartPoints);
+  let max =
+    Math.max(...history);
 
-  const range =
-    max - min || 1;
-
-
-  const padding = 18;
-
-
-  /* filled area */
-
-  ctx.beginPath();
-
-  chartPoints.forEach((value,index)=>{
-
-    const x =
-      padding +
-      (index /
-      (chartPoints.length - 1)) *
-      (width - padding * 2);
-
-    const y =
-      height -
-      padding -
-      ((value - min) / range) *
-      (height - padding * 2);
-
-    if(index === 0){
-      ctx.moveTo(x,y);
-    }else{
-      ctx.lineTo(x,y);
-    }
-
-  });
+  if(max === min){
+    max += 1;
+    min -= 1;
+  }
 
 
-  ctx.lineTo(
-    width - padding,
-    height - padding
-  );
-
-  ctx.lineTo(
-    padding,
-    height - padding
-  );
-
-  ctx.closePath();
-
-  ctx.fillStyle =
-    "rgba(24,223,152,.08)";
-
-  ctx.fill();
-
-
-  /* price line */
+  /* CHART LINE */
 
   ctx.beginPath();
 
-  chartPoints.forEach((value,index)=>{
+  history.forEach((value,index)=>{
 
     const x =
-      padding +
       (index /
-      (chartPoints.length - 1)) *
-      (width - padding * 2);
+      (history.length - 1)) *
+      width;
 
     const y =
       height -
-      padding -
-      ((value - min) / range) *
-      (height - padding * 2);
+      ((value - min) /
+      (max - min)) *
+      (height - 20) -
+      10;
 
     if(index === 0){
       ctx.moveTo(x,y);
@@ -967,198 +810,55 @@ function drawChart(){
 
   ctx.lineWidth = 3;
 
-  ctx.lineJoin = "round";
-
-  ctx.lineCap = "round";
-
   ctx.stroke();
 
 
-  /* latest point */
-
-  const last =
-    chartPoints[chartPoints.length - 1];
+  /* AREA */
 
   const lastX =
-    width - padding;
+    width;
 
-  const lastY =
-    height -
-    padding -
-    ((last - min) / range) *
-    (height - padding * 2);
-
-
-  ctx.beginPath();
-
-  ctx.arc(
+  ctx.lineTo(
     lastX,
-    lastY,
-    5,
+    height
+  );
+
+  ctx.lineTo(
     0,
-    Math.PI * 2
+    height
+  );
+
+  ctx.closePath();
+
+  const gradient =
+    ctx.createLinearGradient(
+      0,
+      0,
+      0,
+      height
+    );
+
+  gradient.addColorStop(
+    0,
+    "rgba(24,223,152,.20)"
+  );
+
+  gradient.addColorStop(
+    1,
+    "rgba(24,223,152,0)"
   );
 
   ctx.fillStyle =
-    "#18df98";
+    gradient;
 
   ctx.fill();
 
-
-  ctx.beginPath();
-
-  ctx.arc(
-    lastX,
-    lastY,
-    10,
-    0,
-    Math.PI * 2
-  );
-
-  ctx.strokeStyle =
-    "rgba(24,223,152,.25)";
-
-  ctx.lineWidth = 2;
-
-  ctx.stroke();
-
 }
-
-
-/* =========================================
-   UPDATE PRICE
-========================================= */
-
-function updatePrice(){
-
-  const previous =
-    currentPrice;
-
-  const movement =
-    (Math.random() - 0.5) *
-    currentPrice *
-    0.0015;
-
-  currentPrice += movement;
-
-  if(currentPrice <= 0){
-    currentPrice = previous;
-  }
-
-  const percentage =
-    ((currentPrice - previous) /
-    previous) * 100;
-
-  document.getElementById("price")
-    .textContent =
-    formatPrice(currentPrice);
-
-  document.getElementById("infoPrice")
-    .textContent =
-    formatPrice(currentPrice);
-
-  document.getElementById("change")
-    .textContent =
-    (percentage >= 0 ? "+" : "") +
-    percentage.toFixed(2) +
-    "%";
-
-  chartPoints.push(currentPrice);
-
-  if(chartPoints.length > pointsCount){
-    chartPoints.shift();
-  }
-
-  drawChart();
-
-}
-
-
-/* =========================================
-   BUY / SELL
-========================================= */
-
-function placeTrade(side){
-
-  const amount =
-    Number(
-      document.getElementById("amount").value
-    );
-
-  const status =
-    document.getElementById("status");
-
-
-  if(!amount || amount <= 0){
-
-    status.style.display = "block";
-
-    status.textContent =
-      "Please enter a valid demo amount.";
-
-    return;
-
-  }
-
-
-  status.style.display = "block";
-
-  status.innerHTML =
-    "<strong>" +
-    side +
-    " order opened</strong><br>" +
-
-    symbol.toUpperCase() +
-    " at " +
-    formatPrice(currentPrice) +
-
-    "<br>Demo amount: $" +
-    amount.toFixed(2);
-
-
-}
-
-
-/* =========================================
-   TIMEFRAME BUTTONS
-========================================= */
-
-document
-.querySelectorAll(".timeframes button")
-.forEach(button => {
-
-  button.addEventListener(
-    "click",
-    function(){
-
-      document
-      .querySelectorAll(".timeframes button")
-      .forEach(btn =>
-        btn.classList.remove("active")
-      );
-
-      this.classList.add("active");
-
-      pointsCount =
-        Number(
-          this.dataset.points
-        );
-
-      createChartPoints();
-
-      drawChart();
-
-    }
-  );
-
-});
 
 
 /* =========================================
    START
 ========================================= */
-
-createChartPoints();
 
 window.addEventListener(
   "resize",
@@ -1167,12 +867,22 @@ window.addEventListener(
 
 resizeCanvas();
 
+document.getElementById("price").textContent =
+  formatPrice(currentPrice);
+
+document.getElementById("gamePrice").textContent =
+  formatPrice(currentPrice);
+
+document.getElementById("current").textContent =
+  formatPrice(currentPrice);
+
+
+/* PRICE MOVES EVERY 2 SECONDS */
+
 setInterval(
   updatePrice,
-  3000
+  2000
 );
 
-</script>
-
-</body>
+</script></body>
   </html>
