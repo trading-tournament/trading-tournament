@@ -10,17 +10,25 @@
 body{
 margin:0;
 background:#06110d;
-color:#f5f8f7;
+color:#fff;
 font-family:Arial,sans-serif
 }
-a{text-decoration:none;color:inherit}
-button,input{font-family:inherit}
+
+a{
+text-decoration:none;
+color:inherit
+}
+
+button,input{
+font-family:inherit
+}
 
 nav{
 background:#040e0a;
 border-bottom:1px solid #183027;
 padding:12px 15px
 }
+
 .nav{
 max-width:1100px;
 margin:auto;
@@ -29,46 +37,69 @@ justify-content:space-between;
 align-items:center;
 gap:12px
 }
+
 .brand{
 font-weight:900;
 white-space:nowrap
 }
+
 .logo{
 display:inline-grid;
 place-items:center;
-background:#18df98;
-color:#03110b;
 width:34px;
 height:34px;
+background:#18df98;
+color:#03110b;
 border-radius:9px;
 margin-right:6px
 }
+
 .links{
 display:flex;
-gap:4px;
+gap:5px;
 overflow-x:auto
 }
+
 .links a{
 font-size:11px;
 color:#91a39c;
 padding:8px;
 white-space:nowrap
 }
-.links a:hover{color:#18df98}
 
 main{
-max-width:1050px;
+max-width:1100px;
 margin:auto;
-padding:22px 15px 60px
+padding:20px 15px 60px
 }
 
 .back{
-display:inline-block;
 color:#18df98;
 font-size:12px;
-font-weight:900;
-padding:10px 0;
+font-weight:bold
+}
+
+.marketList{
+display:grid;
+grid-template-columns:repeat(10,1fr);
+gap:7px;
+margin:20px 0
+}
+
+.coin{
+background:#10251c;
+border:1px solid #183027;
+color:#91a39c;
+padding:10px 5px;
+border-radius:9px;
+font-size:10px;
+font-weight:bold;
 cursor:pointer
+}
+
+.coin.active{
+border-color:#18df98;
+color:#18df98
 }
 
 .head{
@@ -92,35 +123,37 @@ background:#10251c;
 border:1px solid #183027;
 display:grid;
 place-items:center;
-color:#18df98;
-font-weight:900;
-font-size:22px
+font-size:22px;
+font-weight:bold;
+color:#18df98
 }
 
 .name{
-font-size:26px;
+font-size:25px;
 font-weight:900
 }
 
 .sym{
 font-size:11px;
-color:#91a39c;
-margin-top:5px
+color:#91a39c
 }
 
 .price{
-text-align:right;
-font-size:26px;
+font-size:25px;
 font-weight:900
 }
 
 .change{
-font-size:11px;
-margin-top:5px
+font-size:11px
 }
 
-.up{color:#18df98}
-.down{color:#e85d75}
+.up{
+color:#18df98
+}
+
+.down{
+color:#e85d75
+}
 
 .card{
 background:linear-gradient(145deg,#10251c,#0c1d16);
@@ -128,11 +161,6 @@ border:1px solid #183027;
 border-radius:15px;
 padding:16px;
 margin:14px 0
-}
-
-.card h2{
-font-size:15px;
-margin:0 0 14px
 }
 
 .balance{
@@ -151,37 +179,16 @@ padding:13px
 .box small{
 display:block;
 color:#60716a;
-font-size:9px;
-margin-bottom:5px
-}
-
-.box b{
-font-size:17px
-}
-
-.locked{
-color:#e8c76a!important
+font-size:9px
 }
 
 .chart{
-height:350px
+height:340px
 }
 
 canvas{
 width:100%;
-height:100%;
-display:block
-}
-
-.livebar{
-font-size:10px;
-color:#91a39c;
-margin-top:10px
-}
-
-.liveDot{
-color:#18df98;
-font-weight:900
+height:100%
 }
 
 .tradeGrid{
@@ -190,21 +197,13 @@ grid-template-columns:1fr 1fr;
 gap:10px
 }
 
-label{
-display:block;
-color:#91a39c;
-font-size:9px;
-margin-bottom:6px
-}
-
 input{
 width:100%;
 padding:13px;
 background:#06110d;
 border:1px solid #183027;
 border-radius:9px;
-color:#fff;
-outline:none
+color:white
 }
 
 .buttons{
@@ -215,111 +214,24 @@ margin-top:12px
 }
 
 .buttons button{
-border:0;
 padding:15px;
+border:0;
 border-radius:10px;
-font-weight:900;
-cursor:pointer
+font-weight:bold
 }
 
 .buy{
-background:#18df98;
-color:#03110b
+background:#18df98
 }
 
 .sell{
 background:#e85d75;
-color:#fff
+color:white
 }
 
-.buttons button:disabled{
-opacity:.35;
-cursor:not-allowed
+button:disabled{
+opacity:.35
 }
-
-.notice{
-background:#06110d;
-border:1px solid #183027;
-border-radius:10px;
-padding:14px;
-color:#91a39c;
-font-size:11px;
-line-height:1.6
-}
-
-.payTitle{
-color:#e8c76a;
-font-weight:900;
-margin-bottom:5px
-}
-
-.row{
-background:#06110d;
-border:1px solid #183027;
-border-radius:10px;
-padding:12px;
-margin:8px 0
-}
-
-.rowtop{
-display:flex;
-justify-content:space-between;
-font-size:12px;
-font-weight:bold
-}
-
-.green{color:#18df98}
-.red{color:#e85d75}
-
-.details{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:7px;
-margin-top:10px
-}
-
-.detail{
-background:#10251c;
-padding:8px;
-border-radius:7px
-}
-
-.detail small{
-display:block;
-color:#60716a;
-font-size:8px;
-margin-bottom:4px
-}
-
-.detail b{
-font-size:10px
-}
-
-.close{
-width:100%;
-margin-top:10px;
-padding:10px;
-border:1px solid #183027;
-background:#10251c;
-color:#fff;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-font-size:10px
-}
-
-th,td{
-text-align:left;
-padding:9px;
-border-bottom:1px solid #183027
-}
-
-th{color:#60716a}
 
 .empty{
 text-align:center;
@@ -334,32 +246,18 @@ font-size:10px;
 margin:30px
 }
 
-@media(max-width:650px){
-.nav{
-flex-direction:column;
-align-items:flex-start
+@media(max-width:700px){
+.marketList{
+grid-template-columns:repeat(5,1fr)
 }
 
 .head{
 flex-direction:column;
-align-items:flex-start;
-gap:12px
-}
-
-.price{text-align:left}
-
-.chart{height:270px}
-
-.tradeGrid{
-grid-template-columns:1fr
+align-items:flex-start
 }
 
 .balance{
 grid-template-columns:1fr
-}
-
-.details{
-grid-template-columns:1fr 1fr
 }
 }
 </style>
@@ -390,12 +288,15 @@ Trading League
 
 <main>
 
-<a class="back" href="markets.html">← Back to Markets</a>
+<a class="back" href="markets.html">
+← Back to Markets
+</a>
+
+<div class="marketList" id="marketList"></div>
 
 <div class="head">
 
 <div class="asset">
-
 <div class="icon" id="icon">₿</div>
 
 <div>
@@ -406,72 +307,51 @@ Trading League
 </div>
 
 <div>
-<div class="price" id="price">Loading...</div>
+<div class="price" id="price">Connecting...</div>
 <div class="change" id="change">Connecting...</div>
 </div>
 
+</div><div class="card">
+
+<div id="paymentBox">
+<span style="color:#e85d75;font-weight:bold">
+● PAYMENT NOT CONFIRMED
+</span>
+<br><br>
+Your demo balance is locked.
+The $500 demo balance appears only after payment confirmation.
 </div>
 
+</div>
 
-<!-- BALANCE -->
 
 <div class="balance">
 
 <div class="box">
 <small>DEMO BALANCE</small>
-<b id="balance" class="locked">PAYMENT REQUIRED</b>
+<b id="balance">LOCKED</b>
 </div>
 
 <div class="box">
 <small>AVAILABLE</small>
-<b id="available" class="locked">PAYMENT REQUIRED</b>
+<b id="available">LOCKED</b>
 </div>
 
 </div>
 
-
-<!-- LIVE CHART -->
 
 <div class="card">
 
-<h2 id="chartTitle">Bitcoin Live Chart</h2>
+<h2 id="chartTitle">
+Bitcoin Live Chart
+</h2>
 
 <div class="chart">
 <canvas id="chart"></canvas>
 </div>
 
-<div class="livebar">
-<span class="liveDot">● LIVE</span>
-&nbsp;
-Live cryptocurrency market price.
 </div>
 
-</div>
-
-
-<!-- PAYMENT LOCK -->
-
-<div class="card" id="paymentCard">
-
-<div class="notice">
-
-<div class="payTitle">
-Demo balance locked
-</div>
-
-Your $500 demo trading balance will appear here only after
-the payment system confirms the user's payment.
-
-<br><br>
-
-Until the payment is confirmed, BUY and SELL are disabled.
-
-</div>
-
-</div>
-
-
-<!-- TRADE -->
 
 <div class="card">
 
@@ -481,7 +361,7 @@ Until the payment is confirmed, BUY and SELL are disabled.
 
 <div>
 <label>TRADE AMOUNT</label>
-<input id="amount" type="number" min="1" value="50">
+<input id="amount" type="number" value="50">
 </div>
 
 <div>
@@ -491,13 +371,14 @@ Until the payment is confirmed, BUY and SELL are disabled.
 
 </div>
 
+
 <div class="buttons">
 
-<button id="buyButton" class="buy" onclick="openTrade('BUY')" disabled>
+<button id="buyBtn" class="buy" disabled>
 BUY
 </button>
 
-<button id="sellButton" class="sell" onclick="openTrade('SELL')" disabled>
+<button id="sellBtn" class="sell" disabled>
 SELL
 </button>
 
@@ -506,28 +387,27 @@ SELL
 </div>
 
 
-<!-- OPEN TRADES -->
-
 <div class="card">
 
 <h2>Open Trades</h2>
 
 <div id="positions">
-<div class="empty">No open trades</div>
+<div class="empty">
+No open trades
+</div>
 </div>
 
 </div>
 
-
-<!-- HISTORY -->
 
 <div class="card">
 
 <h2>Trade History</h2>
 
-<table>
+<table width="100%">
 
 <thead>
+
 <tr>
 <th>MARKET</th>
 <th>TYPE</th>
@@ -535,6 +415,7 @@ SELL
 <th>EXIT</th>
 <th>P/L</th>
 </tr>
+
 </thead>
 
 <tbody id="history">
@@ -552,637 +433,288 @@ No completed trades
 </div>
 
 
-<div class="card">
-
-<div class="notice">
-
-<b>Market</b> is separate from <b>Games</b>.
-
-This page displays live cryptocurrency prices and trading
-positions.
-
-The market page does not automatically give users money.
-
-The $500 demo balance becomes available only after your
-payment-verification system confirms the payment.
-
-</div>
-
-</div>
-
-
 <footer>
 Trading League © 2026
 </footer>
+
 
 </main>
 
 
 <script>
 
-/* =====================================================
-   MARKET SELECTION
-   ===================================================== */
+/* ===============================
+20 CRYPTO MARKETS
+================================ */
 
-const query = new URLSearchParams(window.location.search);
-
-const requested =
-(query.get("symbol") || "BTC").toUpperCase();
-
-
-/* =====================================================
-   20 CRYPTOCURRENCIES
-   ===================================================== */
-
-const markets = {
+const MARKETS={
 
 BTC:["Bitcoin","₿","btcusdt"],
-
 ETH:["Ethereum","Ξ","ethusdt"],
-
-BNB:["BNB","BNB","bnbusdt"],
-
+BNB:["BNB","B","bnbusdt"],
 SOL:["Solana","S","solusdt"],
-
 XRP:["XRP","X","xrpusdt"],
-
 DOGE:["Dogecoin","Ð","dogeusdt"],
-
 ADA:["Cardano","A","adausdt"],
-
 AVAX:["Avalanche","A","avaxusdt"],
-
 LINK:["Chainlink","L","linkusdt"],
-
-DOT:["Polkadot","●","dotusdt"],
-
+DOT:["Polkadot","D","dotusdt"],
 TRX:["TRON","T","trxusdt"],
-
 POL:["Polygon","M","polusdt"],
-
 LTC:["Litecoin","Ł","ltcusdt"],
-
 BCH:["Bitcoin Cash","₿","bchusdt"],
-
 XLM:["Stellar","X","xlmusdt"],
-
 UNI:["Uniswap","U","uniusdt"],
-
 ATOM:["Cosmos","A","atomusdt"],
-
-NEAR:["NEAR Protocol","N","nearusdt"],
-
+NEAR:["NEAR","N","nearusdt"],
 ICP:["Internet Computer","I","icpusdt"],
-
 APT:["Aptos","A","aptusdt"]
 
 };
 
 
-const market =
-markets[requested] || markets.BTC;
+/* ===============================
+SELECT MARKET
+================================ */
 
-const marketName = market[0];
-const marketIcon = market[1];
-const stream = market[2];
+const params=new URLSearchParams(
+window.location.search
+);
 
-
-/* =====================================================
-   PAGE INFORMATION
-   ===================================================== */
-
-document.getElementById("name").textContent =
-marketName;
-
-document.getElementById("icon").textContent =
-marketIcon;
-
-document.getElementById("sym").textContent =
-requested + " / USDT";
-
-document.getElementById("chartTitle").textContent =
-marketName + " Live Chart";
+let selected=
+(params.get("symbol")||"BTC").toUpperCase();
 
 
-/* =====================================================
-   IMPORTANT PAYMENT GATE
-   =====================================================
-
-   DEFAULT = FALSE
-
-   DO NOT CHANGE THIS TO TRUE.
-
-   Your real payment/backend system must set a
-   verified payment state after payment confirmation.
-
-   Example expected backend state:
-
-   window.paymentConfirmed = true;
-
-   This page itself must NEVER pretend payment happened.
-   ===================================================== */
-
-let paymentConfirmed =
-window.paymentConfirmed === true;
-
-
-/* =====================================================
-   TRADING VARIABLES
-   ===================================================== */
-
-let price = 0;
-let previousPrice = 0;
-
-let balance = 500;
-
-let positions = [];
-
-let completedTrades = [];
-
-let nextTradeId = 1;
-
-let points = [];
-
-
-/* =====================================================
-   MONEY FORMAT
-   ===================================================== */
-
-function money(value){
-
-if(!Number.isFinite(value)){
-return "$0.00";
+if(!MARKETS[selected]){
+selected="BTC";
 }
 
-if(value < 1){
-return "$" + value.toFixed(5);
+
+/* ===============================
+CREATE MARKET BUTTONS
+================================ */
+
+const marketList=
+document.getElementById("marketList");
+
+
+Object.keys(MARKETS).forEach(symbol=>{
+
+
+let btn=document.createElement("button");
+
+btn.className="coin";
+
+btn.textContent=symbol;
+
+
+if(symbol===selected){
+btn.classList.add("active");
 }
 
-return "$" +
-value.toLocaleString(undefined,{
-minimumFractionDigits:2,
-maximumFractionDigits:2
+
+btn.onclick=function(){
+
+window.location.href=
+"market.html?symbol="+symbol;
+
+};
+
+
+marketList.appendChild(btn);
+
+
 });
 
+
+/* ===============================
+SET MARKET NAME
+================================ */
+
+const current=MARKETS[selected];
+
+
+document.getElementById("name").textContent=
+current[0];
+
+document.getElementById("icon").textContent=
+current[1];
+
+document.getElementById("sym").textContent=
+selected+" / USDT";
+
+document.getElementById("chartTitle").textContent=
+current[0]+" Live Chart";
+
+
+
+/* ===============================
+PAYMENT LOCK
+================================ */
+
+let paymentConfirmed=false;
+
+
+async function checkPayment(){
+
+paymentConfirmed=false;
+
+
+try{
+
+let res=await fetch(
+"/api/payment-status",
+{
+cache:"no-store"
+}
+);
+
+
+let data=await res.json();
+
+
+if(data.confirmed===true){
+
+paymentConfirmed=true;
+
 }
 
 
-/* =====================================================
-   PAYMENT STATE
-   ===================================================== */
+}catch(e){
 
-function applyPaymentState(){
+paymentConfirmed=false;
 
-const balanceElement =
-document.getElementById("balance");
+}
 
-const availableElement =
-document.getElementById("available");
 
-const buy =
-document.getElementById("buyButton");
+updatePayment();
 
-const sell =
-document.getElementById("sellButton");
+}
+
+
+
+function updatePayment(){
+
+
+let box=
+document.getElementById("paymentBox");
+
 
 if(paymentConfirmed){
 
-balanceElement.textContent =
-money(balance);
 
-balanceElement.className = "";
+box.innerHTML=
+"<span style='color:#18df98;font-weight:bold'>"+
+"● PAYMENT CONFIRMED"+
+"</span><br><br>"+
+"$500 demo balance activated.";
 
-availableElement.textContent =
-money(getAvailable());
 
-availableElement.className = "";
+document.getElementById("balance")
+.textContent="$500.00";
 
-buy.disabled = false;
-sell.disabled = false;
 
-document.getElementById("paymentCard").innerHTML = `
-<div class="notice">
-<div class="payTitle" style="color:#18df98">
-Payment confirmed
-</div>
-Your $500 demo trading balance is now available.
-</div>
-`;
+document.getElementById("available")
+.textContent="$500.00";
+
+
+buyBtn.disabled=false;
+sellBtn.disabled=false;
+
 
 }else{
 
-balanceElement.textContent =
-"PAYMENT REQUIRED";
 
-balanceElement.className =
-"locked";
+box.innerHTML=
+"<span style='color:#e85d75;font-weight:bold'>"+
+"● PAYMENT NOT CONFIRMED"+
+"</span><br><br>"+
+"Your demo balance is locked.";
 
-availableElement.textContent =
-"PAYMENT REQUIRED";
 
-availableElement.className =
-"locked";
+document.getElementById("balance")
+.textContent="LOCKED";
 
-buy.disabled = true;
-sell.disabled = true;
+
+document.getElementById("available")
+.textContent="LOCKED";
+
+
+buyBtn.disabled=true;
+sellBtn.disabled=true;
+
 
 }
 
+
 }
 
 
-/* =====================================================
-   AVAILABLE BALANCE
-   ===================================================== */
+checkPayment();
 
-function getAvailable(){
 
-let used =
-positions.reduce(
-(sum,item)=>sum + item.amount,
-0
+
+/* ===============================
+TRADING VARIABLES
+================================ */
+
+
+let price=0;
+
+let balance=500;
+
+let positions=[];
+
+let history=[];
+
+let nextId=1;
+
+
+
+function money(x){
+
+if(!x||!isFinite(x)){
+return "$0.00";
+}
+
+
+if(x<1){
+return "$"+x.toFixed(5);
+}
+
+
+return "$"+x.toLocaleString(
+undefined,
+{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+}
 );
 
-return Math.max(
-0,
-balance - used
-);
-
-}
-
-
 /* =====================================================
-   POSITION PROFIT
+   LIVE CHART
    ===================================================== */
 
-function getProfit(position){
+const canvas=document.getElementById("chart");
+const ctx=canvas.getContext("2d");
 
-if(!price || !position.entry){
-return 0;
-}
+let price=0;
+let previous=0;
+let points=[];
 
-const percentage =
-(price - position.entry) /
-position.entry;
+function resizeCanvas(){
 
-if(position.type === "BUY"){
-return position.amount * percentage;
-}
+const rect=canvas.getBoundingClientRect();
+const ratio=window.devicePixelRatio||1;
 
-return position.amount * -percentage;
-
-}
-
-
-/* =====================================================
-   OPEN MULTIPLE TRADES
-   ===================================================== */
-
-function openTrade(type){
-
-if(!paymentConfirmed){
-
-alert(
-"Payment has not been confirmed. Your demo balance is locked."
-);
-
-return;
-}
-
-if(!price){
-
-alert(
-"Waiting for the live market price."
-);
-
-return;
-}
-
-const amount =
-Number(
-document.getElementById("amount").value
-);
-
-if(!amount || amount <= 0){
-
-alert(
-"Enter a valid trade amount."
-);
-
-return;
-}
-
-if(amount > getAvailable()){
-
-alert(
-"Not enough available demo balance."
-);
-
-return;
-}
-
-
-/* IMPORTANT:
-   Every click creates a separate position.
-*/
-
-positions.push({
-
-id:nextTradeId++,
-
-market:requested,
-
-type:type,
-
-entry:price,
-
-amount:amount
-
-});
-
-render();
-
-}
-
-
-/* =====================================================
-   CLOSE ONE TRADE
-   ===================================================== */
-
-function closeTrade(index){
-
-if(!paymentConfirmed){
-return;
-}
-
-const position =
-positions[index];
-
-if(!position){
-return;
-}
-
-const pl =
-getProfit(position);
-
-
-/*
-   Demo accounting:
-   The original trade amount was reserved
-   when the position opened.
-
-   Closing returns the reserved amount plus
-   profit/loss.
-*/
-
-balance += pl;
-
-completedTrades.unshift({
-
-market:requested,
-
-type:position.type,
-
-entry:position.entry,
-
-exit:price,
-
-profit:pl
-
-});
-
-positions.splice(index,1);
-
-render();
-
-}
-
-
-/* =====================================================
-   RENDER
-   ===================================================== */
-
-function render(){
-
-applyPaymentState();
-
-const box =
-document.getElementById("positions");
-
-if(!positions.length){
-
-box.innerHTML =
-'<div class="empty">No open trades</div>';
-
-}else{
-
-box.innerHTML =
-positions.map(
-(position,index)=>{
-
-const pl =
-getProfit(position);
-
-return `
-
-<div class="row">
-
-<div class="rowtop">
-
-<span class="${
-position.type === "BUY"
-? "green"
-: "red"
-}">
-
-${position.type} ${requested}
-
-</span>
-
-<span class="${
-pl >= 0
-? "green"
-: "red"
-}">
-
-${pl >= 0 ? "+" : "-"}
-${money(Math.abs(pl))}
-
-</span>
-
-</div>
-
-
-<div class="details">
-
-<div class="detail">
-
-<small>SIZE</small>
-
-<b>
-${money(position.amount)}
-</b>
-
-</div>
-
-
-<div class="detail">
-
-<small>ENTRY</small>
-
-<b>
-${money(position.entry)}
-</b>
-
-</div>
-
-
-<div class="detail">
-
-<small>CURRENT</small>
-
-<b>
-${money(price)}
-</b>
-
-</div>
-
-
-<div class="detail">
-
-<small>P/L</small>
-
-<b class="${
-pl >= 0
-? "green"
-: "red"
-}">
-
-${pl >= 0 ? "+" : "-"}
-${money(Math.abs(pl))}
-
-</b>
-
-</div>
-
-</div>
-
-
-<button
-class="close"
-onclick="closeTrade(${index})">
-
-CLOSE TRADE
-
-</button>
-
-</div>
-
-`;
-
-}
-).join("");
-
-}
-
-
-/* =====================================================
-   TRADE HISTORY
-   ===================================================== */
-
-const historyTable =
-document.getElementById("history");
-
-if(!completedTrades.length){
-
-historyTable.innerHTML =
-`
-<tr>
-<td colspan="5" class="empty">
-No completed trades
-</td>
-</tr>
-`;
-
-}else{
-
-historyTable.innerHTML =
-completedTrades.map(
-trade=>`
-
-<tr>
-
-<td>
-${trade.market}
-</td>
-
-<td>
-${trade.type}
-</td>
-
-<td>
-${money(trade.entry)}
-</td>
-
-<td>
-${money(trade.exit)}
-</td>
-
-<td class="${
-trade.profit >= 0
-? "green"
-: "red"
-}">
-
-${trade.profit >= 0 ? "+" : "-"}
-${money(Math.abs(trade.profit))}
-
-</td>
-
-</tr>
-
-`
-).join("");
-
-}
-
-}
-
-
-/* =====================================================
-   CANVAS
-   ===================================================== */
-
-const canvas =
-document.getElementById("chart");
-
-const ctx =
-canvas.getContext("2d");
-
-
-/* =====================================================
-   RESIZE
-   ===================================================== */
-
-function resizeChart(){
-
-const rect =
-canvas.getBoundingClientRect();
-
-const dpr =
-window.devicePixelRatio || 1;
-
-canvas.width =
-rect.width * dpr;
-
-canvas.height =
-rect.height * dpr;
+canvas.width=rect.width*ratio;
+canvas.height=rect.height*ratio;
 
 ctx.setTransform(
-dpr,
+ratio,
 0,
 0,
-dpr,
+ratio,
 0,
 0
 );
@@ -1192,223 +724,105 @@ drawChart();
 }
 
 
-/* =====================================================
-   DRAW LIVE CHART
-   ===================================================== */
-
 function drawChart(){
 
-const width =
-canvas.clientWidth;
+const width=canvas.clientWidth;
+const height=canvas.clientHeight;
 
-const height =
-canvas.clientHeight;
-
-if(
-!width ||
-!height ||
-points.length < 2
-){
+if(!width||!height||points.length<2){
 return;
 }
 
-ctx.clearRect(
-0,
-0,
-width,
-height
-);
+ctx.clearRect(0,0,width,height);
 
 
 /* GRID */
 
-ctx.strokeStyle =
-"#183027";
-
-ctx.lineWidth = 1;
+ctx.strokeStyle="#183027";
+ctx.lineWidth=1;
 
 for(let i=1;i<6;i++){
 
-const y =
-height * i / 6;
+let y=height*i/6;
 
 ctx.beginPath();
-
-ctx.moveTo(
-0,
-y
-);
-
-ctx.lineTo(
-width,
-y
-);
-
+ctx.moveTo(0,y);
+ctx.lineTo(width,y);
 ctx.stroke();
 
 }
 
 
-/* RANGE */
+/* SCALE */
 
-let min =
-Math.min(...points);
+let min=Math.min(...points);
+let max=Math.max(...points);
 
-let max =
-Math.max(...points);
-
-if(max === min){
-
-max += 1;
-min -= 1;
-
+if(max===min){
+max++;
+min--;
 }
 
 
-/* Y POSITION */
+function chartY(value){
 
-function y(value){
-
-return height -
-(
-(value-min) /
-(max-min)
-) *
-(height-25) -
-12;
+return height-
+((value-min)/(max-min))*
+(height-25)-12;
 
 }
-
-
-/* AREA */
-
-ctx.beginPath();
-
-points.forEach(
-(value,index)=>{
-
-const x =
-index /
-(points.length-1) *
-width;
-
-const yy =
-y(value);
-
-if(index === 0){
-
-ctx.moveTo(x,yy);
-
-}else{
-
-ctx.lineTo(x,yy);
-
-}
-
-});
-
-ctx.lineTo(
-width,
-height
-);
-
-ctx.lineTo(
-0,
-height
-);
-
-ctx.closePath();
-
-
-const gradient =
-ctx.createLinearGradient(
-0,
-0,
-0,
-height
-);
-
-gradient.addColorStop(
-0,
-"rgba(24,223,152,.18)"
-);
-
-gradient.addColorStop(
-1,
-"rgba(24,223,152,0)"
-);
-
-ctx.fillStyle =
-gradient;
-
-ctx.fill();
 
 
 /* LINE */
 
 ctx.beginPath();
 
-points.forEach(
-(value,index)=>{
+points.forEach((value,index)=>{
 
-const x =
-index /
-(points.length-1) *
-width;
+let x=index/(points.length-1)*width;
+let y=chartY(value);
 
-const yy =
-y(value);
-
-if(index === 0){
-
-ctx.moveTo(x,yy);
-
+if(index===0){
+ctx.moveTo(x,y);
 }else{
-
-ctx.lineTo(x,yy);
-
+ctx.lineTo(x,y);
 }
 
 });
 
-ctx.strokeStyle =
-"#18df98";
 
-ctx.lineWidth = 2.5;
-
+ctx.strokeStyle="#18df98";
+ctx.lineWidth=2.5;
 ctx.stroke();
 
 
-/* CURRENT DOT */
+/* PRICE DOT */
 
-const lastY =
-y(points[points.length-1]);
+let last=chartY(points[points.length-1]);
 
 ctx.beginPath();
 
 ctx.arc(
 width,
-lastY,
+last,
 5,
 0,
-Math.PI * 2
+Math.PI*2
 );
 
-ctx.fillStyle =
-"#18df98";
-
+ctx.fillStyle="#18df98";
 ctx.fill();
 
 }
+
 
 
 /* =====================================================
    BINANCE LIVE CONNECTION
    ===================================================== */
 
-let socket = null;
-
-let reconnectTimer = null;
+let socket=null;
+let reconnect=null;
 
 
 function connectLive(){
@@ -1417,73 +831,53 @@ if(socket){
 
 try{
 socket.close();
-}catch(error){}
+}catch(e){}
 
 }
 
-const url =
-"wss://stream.binance.com:9443/ws/" +
-stream +
-"@ticker";
+
+let stream=MARKETS[selected][2];
 
 
-socket =
-new WebSocket(url);
+socket=new WebSocket(
+"wss://stream.binance.com:9443/ws/"
++stream+
+"@ticker"
+);
 
 
-socket.onopen =
-function(){
 
-const change =
-document.getElementById("change");
+socket.onopen=function(){
 
-change.textContent =
-"LIVE";
-
-change.className =
-"change up";
+changeEl.textContent="LIVE";
+changeEl.className="change up";
 
 };
 
 
-socket.onmessage =
-function(event){
 
-try{
+socket.onmessage=function(event){
 
-const data =
-JSON.parse(event.data);
+let data=JSON.parse(event.data);
 
-const newPrice =
-Number(data.c);
+let newPrice=Number(data.c);
 
-if(!Number.isFinite(newPrice)){
+
+if(!newPrice){
 return;
 }
 
-previousPrice =
-price;
 
-price =
-newPrice;
+previous=price;
+price=newPrice;
 
 
-/*
-   Build the initial chart using
-   the real live price.
-*/
 
-if(points.length === 0){
+if(points.length===0){
 
-for(
-let i=0;
-i<60;
-i++
-){
+for(let i=0;i<60;i++){
 
-points.push(
-price
-);
+points.push(price);
 
 }
 
@@ -1491,7 +885,8 @@ price
 
 points.push(price);
 
-if(points.length > 120){
+
+if(points.length>120){
 
 points.shift();
 
@@ -1500,47 +895,31 @@ points.shift();
 }
 
 
-/* PRICE */
 
-document.getElementById(
-"price"
-).textContent =
-money(price);
+priceEl.textContent=money(price);
+
+tradePriceEl.value=money(price);
 
 
-/* TRADE PRICE */
 
-document.getElementById(
-"tradePrice"
-).value =
-money(price);
+if(previous){
+
+let percent=
+((price-previous)/previous)*100;
 
 
-/* CHANGE */
-
-if(previousPrice){
-
-const changePercent =
-(
-(price - previousPrice) /
-previousPrice
-) * 100;
-
-const changeElement =
-document.getElementById("change");
-
-changeElement.textContent =
-(changePercent >= 0 ? "+" : "") +
-changePercent.toFixed(3) +
+changeEl.textContent=
+(percent>=0?"+":"")
++
+percent.toFixed(3)
++
 "%";
 
-changeElement.className =
-"change " +
-(
-changePercent >= 0
-? "up"
-: "down"
-);
+
+changeEl.className=
+"change "
++
+(percent>=0?"up":"down");
 
 }
 
@@ -1549,61 +928,58 @@ render();
 
 drawChart();
 
-}catch(error){
 
-console.log(
-"Market data error:",
-error
-);
+};
+
+
+
+socket.onerror=function(){
+
+changeEl.textContent="LIVE FEED ERROR";
+changeEl.className="change down";
+
+};
+
+
+
+socket.onclose=function(){
+
+changeEl.textContent="RECONNECTING...";
+changeEl.className="change gray";
+
+
+if(reconnect){
+
+clearTimeout(reconnect);
 
 }
 
-};
 
-
-socket.onerror =
-function(){
-
-const change =
-document.getElementById("change");
-
-change.textContent =
-"CONNECTION ERROR";
-
-change.className =
-"change down";
-
-};
-
-
-socket.onclose =
-function(){
-
-clearTimeout(
-reconnectTimer
-);
-
-reconnectTimer =
-setTimeout(
+reconnect=setTimeout(
 connectLive,
 3000
 );
 
 };
 
+
 }
 
 
+
+
 /* =====================================================
-   START
+   START MARKET
    ===================================================== */
+
 
 window.addEventListener(
 "resize",
-resizeChart
+resizeCanvas
 );
 
-resizeChart();
+
+resizeCanvas();
 
 render();
 
@@ -1612,4 +988,5 @@ connectLive();
 </script>
 
 </body>
-   </html>
+</html>
+}
