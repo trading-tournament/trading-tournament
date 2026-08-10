@@ -6,8 +6,9 @@
 
 <title>Trading League - Market</title>
 
-<style>
+<script src="https://s3.tradingview.com/tv.js"></script>
 
+<style>
 *{
 box-sizing:border-box;
 margin:0;
@@ -24,7 +25,6 @@ header{
 background:#0d1b2e;
 padding:20px;
 text-align:center;
-border-bottom:1px solid #1d3557;
 }
 
 header h1{
@@ -41,90 +41,55 @@ background:#091525;
 }
 
 nav a{
-text-decoration:none;
 color:white;
+text-decoration:none;
 background:#13263f;
 padding:10px 15px;
 border-radius:8px;
-}
-
-nav a:hover{
-background:#00ff99;
-color:black;
 }
 
 .container{
 padding:20px;
 }
 
-.back{
-margin-bottom:20px;
-}
-
-.back button{
-background:#00ff99;
-border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.market-box{
+.card{
 background:#102238;
-padding:25px;
-border-radius:15px;
 border:1px solid #1d3557;
+border-radius:15px;
+padding:20px;
 margin-bottom:20px;
 }
 
-.coin-title{
+.coin-header{
 display:flex;
 align-items:center;
 gap:15px;
 }
 
-.logo{
+.coin-logo{
 width:60px;
 height:60px;
 border-radius:50%;
-background:#00ff99;
-color:#07111f;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-font-weight:bold;
 }
 
 .price{
 font-size:30px;
-margin-top:20px;
 color:#00ff99;
-}
-
-
-.chart{
-height:250px;
-background:#081625;
-border-radius:10px;
 margin-top:20px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#aaa;
-border:1px solid #1d3557;
 }
 
+#chart{
+height:450px;
+margin-top:20px;
+}
 
-.trade-buttons{
+.buttons{
 display:flex;
 gap:15px;
 margin-top:20px;
 }
 
-
-.trade-buttons button{
+button{
 flex:1;
 padding:15px;
 border:none;
@@ -134,10 +99,8 @@ font-weight:bold;
 cursor:pointer;
 }
 
-
 .buy{
 background:#00ff99;
-color:#07111f;
 }
 
 .sell{
@@ -145,59 +108,50 @@ background:#ff4d4d;
 color:white;
 }
 
-
 .lock{
 margin-top:20px;
 background:#3b1d1d;
 padding:15px;
 border-radius:10px;
-color:#ffaaaa;
 text-align:center;
+color:#ffaaaa;
 font-weight:bold;
 }
 
-
 table{
 width:100%;
-margin-top:15px;
 border-collapse:collapse;
+margin-top:15px;
 }
 
-th,td{
+td,th{
 padding:12px;
 border-bottom:1px solid #1d3557;
 text-align:center;
 }
 
+.back{
+margin-bottom:20px;
+}
 
-footer{
-text-align:center;
-padding:20px;
-background:#0d1b2e;
-color:#aaa;
-margin-top:30px;
+.back button{
+background:#00ff99;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
 
 <header>
-
 <h1>Trading League</h1>
-
-<p>Demo Trading Market</p>
-
+<p>Crypto Trading Market</p>
 </header>
 
 
-
 <nav>
-
 <a href="index.html">Home</a>
 <a href="markets.html">Markets</a>
 <a href="games.html">Games</a>
@@ -205,7 +159,6 @@ margin-top:30px;
 <a href="leaderboard.html">Leaderboard</a>
 <a href="withdraw.html">Withdraw</a>
 <a href="account.html">Account</a>
-
 </nav>
 
 
@@ -214,54 +167,45 @@ margin-top:30px;
 
 
 <div class="back">
-
-<button onclick="goBack()">← Back to Markets</button>
-
+<button onclick="location.href='markets.html'">
+← Markets
+</button>
 </div>
 
 
 
-<div class="market-box">
+<div class="card">
 
-<div class="coin-title">
+<div class="coin-header">
 
-<div class="logo" id="coinLogo">?</div>
+<img id="logo" class="coin-logo">
 
 <div>
-<h2 id="coinName">Loading...</h2>
-<p id="coinSymbol"></p>
+<h2 id="name">Loading...</h2>
+<p id="symbol"></p>
 </div>
 
 </div>
 
 
 <div class="price" id="price">
-
-Loading price...
-
+Loading live price...
 </div>
 
 
-
-<div class="chart">
-
-Demo Live Chart Area
-
-</div>
+<div id="chart"></div>
 
 
 
-<div class="trade-buttons">
+<div class="buttons">
 
-<button class="buy" onclick="buyTrade()">
+<button class="buy" onclick="buy()">
 BUY
 </button>
 
-
-<button class="sell" onclick="sellTrade()">
+<button class="sell" onclick="sell()">
 SELL
 </button>
-
 
 </div>
 
@@ -270,25 +214,21 @@ SELL
 <div class="lock">
 
 PAYMENT NOT CONFIRMED<br>
-
-Demo balance is locked until secure backend payment confirmation.
-
-</div>
-
+$500 demo balance is locked until secure backend confirmation.
 
 </div>
 
 
+</div>
 
 
-<div class="market-box">
+
+
+<div class="card">
 
 <h2>Open Trades</h2>
 
-
 <table>
-
-<thead>
 
 <tr>
 <th>Type</th>
@@ -296,10 +236,7 @@ Demo balance is locked until secure backend payment confirmation.
 <th>Status</th>
 </tr>
 
-</thead>
-
-
-<tbody id="openTrades">
+<tbody id="open">
 
 <tr>
 <td colspan="3">
@@ -309,207 +246,223 @@ No open trades
 
 </tbody>
 
-
 </table>
-
 
 </div>
 
 
 
-
-
-<div class="market-box">
-
+<div class="card">
 
 <h2>Trade History</h2>
 
-
 <table>
 
-
-<thead>
-
 <tr>
-
 <th>Action</th>
 <th>Symbol</th>
 <th>Time</th>
-
 </tr>
-
-</thead>
-
 
 
 <tbody id="history">
 
-
 <tr>
-
 <td colspan="3">
-No trade history
+No history
 </td>
-
 </tr>
-
 
 </tbody>
 
 
 </table>
 
-
-
 </div>
 
 
-
-
 </div>
-
-
-
-<footer>
-
-Trading League © 2026
-
-</footer>
-
 
 
 
 <script>
 
 
-const coins={
+const cryptoData={
 
-BTC:"Bitcoin",
-ETH:"Ethereum",
-BNB:"BNB",
-SOL:"Solana",
-XRP:"XRP",
-DOGE:"Dogecoin",
-ADA:"Cardano",
-AVAX:"Avalanche",
-LINK:"Chainlink",
-DOT:"Polkadot",
-TRX:"TRON",
-POL:"Polygon",
-LTC:"Litecoin",
-BCH:"Bitcoin Cash",
-XLM:"Stellar",
-UNI:"Uniswap",
-ATOM:"Cosmos",
-NEAR:"NEAR Protocol",
-ICP:"Internet Computer",
-APT:"Aptos"
+BTC:{
+name:"Bitcoin",
+tv:"BINANCE:BTCUSDT",
+id:"bitcoin"
+},
+
+ETH:{
+name:"Ethereum",
+tv:"BINANCE:ETHUSDT",
+id:"ethereum"
+},
+
+BNB:{
+name:"BNB",
+tv:"BINANCE:BNBUSDT",
+id:"binancecoin"
+},
+
+SOL:{
+name:"Solana",
+tv:"BINANCE:SOLUSDT",
+id:"solana"
+},
+
+XRP:{
+name:"XRP",
+tv:"BINANCE:XRPUSDT",
+id:"ripple"
+},
+
+DOGE:{
+name:"Dogecoin",
+tv:"BINANCE:DOGEUSDT",
+id:"dogecoin"
+},
+
+ADA:{
+name:"Cardano",
+tv:"BINANCE:ADAUSDT",
+id:"cardano"
+},
+
+AVAX:{
+name:"Avalanche",
+tv:"BINANCE:AVAXUSDT",
+id:"avalanche-2"
+},
+
+LINK:{
+name:"Chainlink",
+tv:"BINANCE:LINKUSDT",
+id:"chainlink"
+},
+
+DOT:{
+name:"Polkadot",
+tv:"BINANCE:DOTUSDT",
+id:"polkadot"
+}
 
 };
 
 
 
-const prices={
+const url=new URLSearchParams(window.location.search);
 
-BTC:68000,
-ETH:3500,
-BNB:600,
-SOL:170,
-XRP:0.60,
-DOGE:0.12,
-ADA:0.45,
-AVAX:35,
-LINK:15,
-DOT:7,
-TRX:0.12,
-POL:0.55,
-LTC:80,
-BCH:400,
-XLM:0.10,
-UNI:8,
-ATOM:9,
-NEAR:5,
-ICP:10,
-APT:7
+const symbol=url.get("symbol") || "BTC";
 
-};
+
+const coin=cryptoData[symbol] || cryptoData.BTC;
+
+
+document.getElementById("name").textContent=coin.name;
+
+document.getElementById("symbol").textContent=symbol;
+
+
+document.getElementById("logo").src=
+"https://assets.coingecko.com/coins/images/"+coin.id+"/large/"+coin.id+".png";
 
 
 
-const params=new URLSearchParams(window.location.search);
+fetch(
+"https://api.coingecko.com/api/v3/simple/price?ids="+coin.id+"&vs_currencies=usd"
+)
 
-const symbol=params.get("symbol") || "BTC";
+.then(res=>res.json())
 
-
-document.getElementById("coinName").textContent=coins[symbol] || "Unknown Crypto";
-
-document.getElementById("coinSymbol").textContent=symbol;
-
-document.getElementById("coinLogo").textContent=symbol.substring(0,1);
-
-
-let currentPrice=prices[symbol] || 0;
-
+.then(data=>{
 
 document.getElementById("price").textContent=
-"$"+currentPrice.toLocaleString();
+"$"+data[coin.id].usd.toLocaleString();
+
+})
+
+.catch(()=>{
+
+document.getElementById("price").textContent=
+"Price unavailable";
+
+});
 
 
 
-function goBack(){
 
-window.location.href="markets.html";
+
+new TradingView.widget({
+
+container_id:"chart",
+
+width:"100%",
+
+height:450,
+
+symbol:coin.tv,
+
+interval:"15",
+
+timezone:"Etc/UTC",
+
+theme:"dark",
+
+style:"1",
+
+locale:"en",
+
+enable_publishing:false,
+
+allow_symbol_change:false
+
+});
+
+
+
+
+
+function buy(){
+
+addTrade("BUY");
+
+alert("Demo BUY placed. Real trading requires secure backend.");
 
 }
 
 
 
-function buyTrade(){
+function sell(){
 
-alert("Demo BUY created. Real trading will require secure backend.");
+addTrade("SELL");
 
-addHistory("BUY");
-
-}
-
-
-
-function sellTrade(){
-
-alert("Demo SELL created. Real trading will require secure backend.");
-
-addHistory("SELL");
+alert("Demo SELL placed. Real trading requires secure backend.");
 
 }
 
 
 
+function addTrade(type){
 
-function addHistory(action){
+document.getElementById("history").innerHTML=
 
-const history=document.getElementById("history");
-
-history.innerHTML=`
-
+`
 <tr>
-
-<td>${action}</td>
-
+<td>${type}</td>
 <td>${symbol}</td>
-
 <td>${new Date().toLocaleTimeString()}</td>
-
 </tr>
-
 `;
 
 }
-
 
 
 </script>
 
 
 </body>
-
   </html>
