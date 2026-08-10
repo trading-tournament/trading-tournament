@@ -3,30 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trading League | Market</title>
+<title>Trading League | Markets</title>
 
 <style>
 *{box-sizing:border-box}
+
 body{
 margin:0;
 background:#06110d;
-color:#fff;
-font-family:Arial,sans-serif
+color:white;
+font-family:Arial,sans-serif;
 }
 
 a{
 text-decoration:none;
-color:inherit
-}
-
-button,input{
-font-family:inherit
+color:inherit;
 }
 
 nav{
 background:#040e0a;
 border-bottom:1px solid #183027;
-padding:12px 15px
+padding:12px 15px;
 }
 
 .nav{
@@ -35,12 +32,11 @@ margin:auto;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:12px
+gap:15px;
 }
 
 .brand{
 font-weight:900;
-white-space:nowrap
 }
 
 .logo{
@@ -51,221 +47,149 @@ height:34px;
 background:#18df98;
 color:#03110b;
 border-radius:9px;
-margin-right:6px
+margin-right:6px;
 }
 
 .links{
 display:flex;
-gap:5px;
-overflow-x:auto
+gap:10px;
+overflow-x:auto;
 }
 
 .links a{
 font-size:11px;
 color:#91a39c;
-padding:8px;
-white-space:nowrap
 }
+
+.links a:hover{
+color:#18df98;
+}
+
 
 main{
 max-width:1100px;
 margin:auto;
-padding:20px 15px 60px
+padding:25px 15px;
 }
 
-.back{
-color:#18df98;
+
+h1{
+font-size:28px;
+}
+
+
+.subtitle{
+color:#91a39c;
 font-size:12px;
-font-weight:bold
 }
 
-.marketList{
-display:grid;
-grid-template-columns:repeat(10,1fr);
-gap:7px;
-margin:20px 0
+
+.search{
+width:100%;
+margin:20px 0;
+padding:14px;
+background:#10251c;
+border:1px solid #183027;
+border-radius:10px;
+color:white;
+outline:none;
 }
+
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:12px;
+
+}
+
 
 .coin{
+
 background:#10251c;
 border:1px solid #183027;
-color:#91a39c;
-padding:10px 5px;
-border-radius:9px;
-font-size:10px;
-font-weight:bold;
-cursor:pointer
+border-radius:14px;
+padding:16px;
+cursor:pointer;
+transition:.2s;
+
 }
 
-.coin.active{
+
+.coin:hover{
+
 border-color:#18df98;
-color:#18df98
+transform:translateY(-2px);
+
 }
 
-.head{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:18px 0
-}
-
-.asset{
-display:flex;
-align-items:center;
-gap:12px
-}
 
 .icon{
-width:56px;
-height:56px;
-border-radius:14px;
-background:#10251c;
-border:1px solid #183027;
+
+width:45px;
+height:45px;
+border-radius:12px;
+background:#06110d;
 display:grid;
 place-items:center;
-font-size:22px;
+color:#18df98;
+font-size:20px;
 font-weight:bold;
-color:#18df98
+margin-bottom:12px;
+
 }
+
 
 .name{
-font-size:25px;
-font-weight:900
+
+font-weight:900;
+font-size:14px;
+
 }
 
-.sym{
+
+.symbol{
+
+color:#91a39c;
 font-size:11px;
-color:#91a39c
+margin-top:5px;
+
 }
 
-.price{
-font-size:25px;
-font-weight:900
-}
-
-.change{
-font-size:11px
-}
-
-.up{
-color:#18df98
-}
-
-.down{
-color:#e85d75
-}
-
-.card{
-background:linear-gradient(145deg,#10251c,#0c1d16);
-border:1px solid #183027;
-border-radius:15px;
-padding:16px;
-margin:14px 0
-}
-
-.balance{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-.box{
-background:#06110d;
-border:1px solid #183027;
-border-radius:10px;
-padding:13px
-}
-
-.box small{
-display:block;
-color:#60716a;
-font-size:9px
-}
-
-.chart{
-height:340px
-}
-
-canvas{
-width:100%;
-height:100%
-}
-
-.tradeGrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-input{
-width:100%;
-padding:13px;
-background:#06110d;
-border:1px solid #183027;
-border-radius:9px;
-color:white
-}
-
-.buttons{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-margin-top:12px
-}
-
-.buttons button{
-padding:15px;
-border:0;
-border-radius:10px;
-font-weight:bold
-}
-
-.buy{
-background:#18df98
-}
-
-.sell{
-background:#e85d75;
-color:white
-}
-
-button:disabled{
-opacity:.35
-}
-
-.empty{
-text-align:center;
-color:#60716a;
-padding:20px
-}
 
 footer{
+
 text-align:center;
 color:#60716a;
-font-size:10px;
-margin:30px
+font-size:11px;
+margin:40px;
+
 }
+
 
 @media(max-width:700px){
-.marketList{
-grid-template-columns:repeat(5,1fr)
+
+.grid{
+grid-template-columns:repeat(2,1fr);
 }
 
-.head{
+.nav{
 flex-direction:column;
-align-items:flex-start
+align-items:flex-start;
 }
 
-.balance{
-grid-template-columns:1fr
 }
-}
+
 </style>
+
 </head>
 
 <body>
 
+
 <nav>
+
 <div class="nav">
 
 <a href="index.html" class="brand">
@@ -273,7 +197,9 @@ grid-template-columns:1fr
 Trading League
 </a>
 
+
 <div class="links">
+
 <a href="index.html">Home</a>
 <a href="markets.html">Markets</a>
 <a href="games.html">Games</a>
@@ -281,156 +207,36 @@ Trading League
 <a href="leaderboard.html">Leaderboard</a>
 <a href="withdraw.html">Withdraw</a>
 <a href="account.html">Account</a>
+
 </div>
 
 </div>
+
 </nav>
+
+
 
 <main>
 
-<a class="back" href="markets.html">
-← Back to Markets
-</a>
+<h1>Markets</h1>
 
-<div class="marketList" id="marketList"></div>
-
-<div class="head">
-
-<div class="asset">
-<div class="icon" id="icon">₿</div>
-
-<div>
-<div class="name" id="name">Bitcoin</div>
-<div class="sym" id="sym">BTC / USDT</div>
-</div>
-
-</div>
-
-<div>
-<div class="price" id="price">Connecting...</div>
-<div class="change" id="change">Connecting...</div>
-</div>
-
-</div><div class="card">
-
-<div id="paymentBox">
-<span style="color:#e85d75;font-weight:bold">
-● PAYMENT NOT CONFIRMED
-</span>
-<br><br>
-Your demo balance is locked.
-The $500 demo balance appears only after payment confirmation.
-</div>
-
-</div>
+<p class="subtitle">
+Select a cryptocurrency market to view live price and trading.
+</p>
 
 
-<div class="balance">
-
-<div class="box">
-<small>DEMO BALANCE</small>
-<b id="balance">LOCKED</b>
-</div>
-
-<div class="box">
-<small>AVAILABLE</small>
-<b id="available">LOCKED</b>
-</div>
-
-</div>
+<input 
+class="search"
+id="search"
+placeholder="Search crypto..."
+>
 
 
-<div class="card">
-
-<h2 id="chartTitle">
-Bitcoin Live Chart
-</h2>
-
-<div class="chart">
-<canvas id="chart"></canvas>
-</div>
-
-</div>
+<div class="grid" id="marketGrid"></div>
 
 
-<div class="card">
+</main>
 
-<h2>Trade</h2>
-
-<div class="tradeGrid">
-
-<div>
-<label>TRADE AMOUNT</label>
-<input id="amount" type="number" value="50">
-</div>
-
-<div>
-<label>LIVE PRICE</label>
-<input id="tradePrice" readonly>
-</div>
-
-</div>
-
-
-<div class="buttons">
-
-<button id="buyBtn" class="buy" disabled>
-BUY
-</button>
-
-<button id="sellBtn" class="sell" disabled>
-SELL
-</button>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>Open Trades</h2>
-
-<div id="positions">
-<div class="empty">
-No open trades
-</div>
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>Trade History</h2>
-
-<table width="100%">
-
-<thead>
-
-<tr>
-<th>MARKET</th>
-<th>TYPE</th>
-<th>ENTRY</th>
-<th>EXIT</th>
-<th>P/L</th>
-</tr>
-
-</thead>
-
-<tbody id="history">
-
-<tr>
-<td colspan="5" class="empty">
-No completed trades
-</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
 
 
 <footer>
@@ -438,82 +244,67 @@ Trading League © 2026
 </footer>
 
 
-</main>
-
 
 <script>
 
-/* ===============================
-20 CRYPTO MARKETS
-================================ */
 
-const MARKETS={
+const markets={
 
-BTC:["Bitcoin","₿","btcusdt"],
-ETH:["Ethereum","Ξ","ethusdt"],
-BNB:["BNB","B","bnbusdt"],
-SOL:["Solana","S","solusdt"],
-XRP:["XRP","X","xrpusdt"],
-DOGE:["Dogecoin","Ð","dogeusdt"],
-ADA:["Cardano","A","adausdt"],
-AVAX:["Avalanche","A","avaxusdt"],
-LINK:["Chainlink","L","linkusdt"],
-DOT:["Polkadot","D","dotusdt"],
-TRX:["TRON","T","trxusdt"],
-POL:["Polygon","M","polusdt"],
-LTC:["Litecoin","Ł","ltcusdt"],
-BCH:["Bitcoin Cash","₿","bchusdt"],
-XLM:["Stellar","X","xlmusdt"],
-UNI:["Uniswap","U","uniusdt"],
-ATOM:["Cosmos","A","atomusdt"],
-NEAR:["NEAR","N","nearusdt"],
-ICP:["Internet Computer","I","icpusdt"],
-APT:["Aptos","A","aptusdt"]
+BTC:["Bitcoin","₿"],
+ETH:["Ethereum","Ξ"],
+BNB:["BNB","B"],
+SOL:["Solana","S"],
+XRP:["XRP","X"],
+DOGE:["Dogecoin","Ð"],
+ADA:["Cardano","A"],
+AVAX:["Avalanche","A"],
+LINK:["Chainlink","L"],
+DOT:["Polkadot","●"],
+TRX:["TRON","T"],
+POL:["Polygon","M"],
+LTC:["Litecoin","Ł"],
+BCH:["Bitcoin Cash","₿"],
+XLM:["Stellar","X"],
+UNI:["Uniswap","U"],
+ATOM:["Cosmos","A"],
+NEAR:["NEAR Protocol","N"],
+ICP:["Internet Computer","I"],
+APT:["Aptos","A"]
 
 };
 
 
-/* ===============================
-SELECT MARKET
-================================ */
 
-const params=new URLSearchParams(
-window.location.search
-);
-
-let selected=
-(params.get("symbol")||"BTC").toUpperCase();
+const grid=document.getElementById("marketGrid");
 
 
-if(!MARKETS[selected]){
-selected="BTC";
+function showMarkets(filter=""){
+
+
+grid.innerHTML="";
+
+
+Object.keys(markets).forEach(symbol=>{
+
+
+let coin=markets[symbol];
+
+
+if(
+!symbol.toLowerCase().includes(filter) &&
+!coin[0].toLowerCase().includes(filter)
+){
+return;
 }
 
 
-/* ===============================
-CREATE MARKET BUTTONS
-================================ */
 
-const marketList=
-document.getElementById("marketList");
+let div=document.createElement("div");
+
+div.className="coin";
 
 
-Object.keys(MARKETS).forEach(symbol=>{
-
-
-let btn=document.createElement("button");
-
-btn.className="coin";
-
-btn.textContent=symbol;
-
-
-if(symbol===selected){
-btn.classList.add("active");
-}
-
-
-btn.onclick=function(){
+div.onclick=function(){
 
 window.location.href=
 "market.html?symbol="+symbol;
@@ -521,472 +312,50 @@ window.location.href=
 };
 
 
-marketList.appendChild(btn);
+
+div.innerHTML=`
+
+<div class="icon">
+${coin[1]}
+</div>
+
+<div class="name">
+${coin[0]}
+</div>
+
+<div class="symbol">
+${symbol}/USDT
+</div>
+
+`;
+
+
+grid.appendChild(div);
 
 
 });
 
 
-/* ===============================
-SET MARKET NAME
-================================ */
-
-const current=MARKETS[selected];
-
-
-document.getElementById("name").textContent=
-current[0];
-
-document.getElementById("icon").textContent=
-current[1];
-
-document.getElementById("sym").textContent=
-selected+" / USDT";
-
-document.getElementById("chartTitle").textContent=
-current[0]+" Live Chart";
-
-
-
-/* ===============================
-PAYMENT LOCK
-================================ */
-
-let paymentConfirmed=false;
-
-
-async function checkPayment(){
-
-paymentConfirmed=false;
-
-
-try{
-
-let res=await fetch(
-"/api/payment-status",
-{
-cache:"no-store"
 }
+
+
+
+document
+.getElementById("search")
+.addEventListener("input",function(){
+
+showMarkets(
+this.value.toLowerCase()
 );
-
-
-let data=await res.json();
-
-
-if(data.confirmed===true){
-
-paymentConfirmed=true;
-
-}
-
-
-}catch(e){
-
-paymentConfirmed=false;
-
-}
-
-
-updatePayment();
-
-}
-
-
-
-function updatePayment(){
-
-
-let box=
-document.getElementById("paymentBox");
-
-
-if(paymentConfirmed){
-
-
-box.innerHTML=
-"<span style='color:#18df98;font-weight:bold'>"+
-"● PAYMENT CONFIRMED"+
-"</span><br><br>"+
-"$500 demo balance activated.";
-
-
-document.getElementById("balance")
-.textContent="$500.00";
-
-
-document.getElementById("available")
-.textContent="$500.00";
-
-
-buyBtn.disabled=false;
-sellBtn.disabled=false;
-
-
-}else{
-
-
-box.innerHTML=
-"<span style='color:#e85d75;font-weight:bold'>"+
-"● PAYMENT NOT CONFIRMED"+
-"</span><br><br>"+
-"Your demo balance is locked.";
-
-
-document.getElementById("balance")
-.textContent="LOCKED";
-
-
-document.getElementById("available")
-.textContent="LOCKED";
-
-
-buyBtn.disabled=true;
-sellBtn.disabled=true;
-
-
-}
-
-
-}
-
-
-checkPayment();
-
-
-
-/* ===============================
-TRADING VARIABLES
-================================ */
-
-
-let price=0;
-
-let balance=500;
-
-let positions=[];
-
-let history=[];
-
-let nextId=1;
-
-
-
-function money(x){
-
-if(!x||!isFinite(x)){
-return "$0.00";
-}
-
-
-if(x<1){
-return "$"+x.toFixed(5);
-}
-
-
-return "$"+x.toLocaleString(
-undefined,
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-/* =====================================================
-   LIVE CHART
-   ===================================================== */
-
-const canvas=document.getElementById("chart");
-const ctx=canvas.getContext("2d");
-
-let price=0;
-let previous=0;
-let points=[];
-
-function resizeCanvas(){
-
-const rect=canvas.getBoundingClientRect();
-const ratio=window.devicePixelRatio||1;
-
-canvas.width=rect.width*ratio;
-canvas.height=rect.height*ratio;
-
-ctx.setTransform(
-ratio,
-0,
-0,
-ratio,
-0,
-0
-);
-
-drawChart();
-
-}
-
-
-function drawChart(){
-
-const width=canvas.clientWidth;
-const height=canvas.clientHeight;
-
-if(!width||!height||points.length<2){
-return;
-}
-
-ctx.clearRect(0,0,width,height);
-
-
-/* GRID */
-
-ctx.strokeStyle="#183027";
-ctx.lineWidth=1;
-
-for(let i=1;i<6;i++){
-
-let y=height*i/6;
-
-ctx.beginPath();
-ctx.moveTo(0,y);
-ctx.lineTo(width,y);
-ctx.stroke();
-
-}
-
-
-/* SCALE */
-
-let min=Math.min(...points);
-let max=Math.max(...points);
-
-if(max===min){
-max++;
-min--;
-}
-
-
-function chartY(value){
-
-return height-
-((value-min)/(max-min))*
-(height-25)-12;
-
-}
-
-
-/* LINE */
-
-ctx.beginPath();
-
-points.forEach((value,index)=>{
-
-let x=index/(points.length-1)*width;
-let y=chartY(value);
-
-if(index===0){
-ctx.moveTo(x,y);
-}else{
-ctx.lineTo(x,y);
-}
 
 });
 
 
-ctx.strokeStyle="#18df98";
-ctx.lineWidth=2.5;
-ctx.stroke();
+showMarkets();
 
-
-/* PRICE DOT */
-
-let last=chartY(points[points.length-1]);
-
-ctx.beginPath();
-
-ctx.arc(
-width,
-last,
-5,
-0,
-Math.PI*2
-);
-
-ctx.fillStyle="#18df98";
-ctx.fill();
-
-}
-
-
-
-/* =====================================================
-   BINANCE LIVE CONNECTION
-   ===================================================== */
-
-let socket=null;
-let reconnect=null;
-
-
-function connectLive(){
-
-if(socket){
-
-try{
-socket.close();
-}catch(e){}
-
-}
-
-
-let stream=MARKETS[selected][2];
-
-
-socket=new WebSocket(
-"wss://stream.binance.com:9443/ws/"
-+stream+
-"@ticker"
-);
-
-
-
-socket.onopen=function(){
-
-changeEl.textContent="LIVE";
-changeEl.className="change up";
-
-};
-
-
-
-socket.onmessage=function(event){
-
-let data=JSON.parse(event.data);
-
-let newPrice=Number(data.c);
-
-
-if(!newPrice){
-return;
-}
-
-
-previous=price;
-price=newPrice;
-
-
-
-if(points.length===0){
-
-for(let i=0;i<60;i++){
-
-points.push(price);
-
-}
-
-}else{
-
-points.push(price);
-
-
-if(points.length>120){
-
-points.shift();
-
-}
-
-}
-
-
-
-priceEl.textContent=money(price);
-
-tradePriceEl.value=money(price);
-
-
-
-if(previous){
-
-let percent=
-((price-previous)/previous)*100;
-
-
-changeEl.textContent=
-(percent>=0?"+":"")
-+
-percent.toFixed(3)
-+
-"%";
-
-
-changeEl.className=
-"change "
-+
-(percent>=0?"up":"down");
-
-}
-
-
-render();
-
-drawChart();
-
-
-};
-
-
-
-socket.onerror=function(){
-
-changeEl.textContent="LIVE FEED ERROR";
-changeEl.className="change down";
-
-};
-
-
-
-socket.onclose=function(){
-
-changeEl.textContent="RECONNECTING...";
-changeEl.className="change gray";
-
-
-if(reconnect){
-
-clearTimeout(reconnect);
-
-}
-
-
-reconnect=setTimeout(
-connectLive,
-3000
-);
-
-};
-
-
-}
-
-
-
-
-/* =====================================================
-   START MARKET
-   ===================================================== */
-
-
-window.addEventListener(
-"resize",
-resizeCanvas
-);
-
-
-resizeCanvas();
-
-render();
-
-connectLive();
 
 </script>
 
+
 </body>
 </html>
-}
