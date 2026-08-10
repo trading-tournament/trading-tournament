@@ -1,1518 +1,1012 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TradeLeague Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-margin:0;
-background:#07111f;
-color:#fff;
-font-family:Arial,sans-serif
-}
+  <title>Trading League | Trade. Compete. Win.</title>
+  <meta name="description" content="Trading League - compete in trading tournaments and follow global markets.">
 
-header{
-text-align:center;
-background:#111c2d;
-padding:14px
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-h1{
-color:#22c55e;
-margin:0
-}
+    :root {
+      --bg: #07100d;
+      --bg2: #0b1713;
+      --card: #0e1d18;
+      --card2: #12251e;
+      --border: rgba(255,255,255,0.08);
+      --text: #f5f7f6;
+      --muted: #8e9c96;
+      --green: #19d889;
+      --green2: #0fae6d;
+      --red: #ff5c67;
+      --gold: #f5c451;
+    }
 
-main{
-max-width:720px;
-margin:auto;
-padding:10px 10px 70px
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(25,216,137,0.12), transparent 30%),
+        linear-gradient(180deg, var(--bg), #050a08);
+      color: var(--text);
+      min-height: 100vh;
+    }
 
-.card{
-background:#111c2d;
-border:1px solid #26354a;
-border-radius:12px;
-padding:14px;
-margin:10px 0
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-input,button,select{
-width:100%;
-padding:12px;
-margin:5px 0;
-border-radius:8px;
-box-sizing:border-box
-}
+    button {
+      font-family: inherit;
+    }
 
-input,select{
-background:#07111f;
-color:#fff;
-border:1px solid #334155
-}
+    /* NAVBAR */
 
-button{
-background:#22c55e;
-border:0;
-font-weight:bold
-}
+    .navbar {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5,12,9,0.88);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.red{
-background:#ef4444;
-color:#fff
-}
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 17px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.gray{
-background:#334155;
-color:#fff
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
 
-.hidden{
-display:none
-}
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--green), #08794c);
+      color: #03150e;
+      font-weight: 900;
+      box-shadow: 0 8px 30px rgba(25,216,137,0.2);
+    }
 
-.green{
-color:#22c55e
-}
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-.redtext{
-color:#ef4444
-}
+    .nav-links a:hover {
+      color: white;
+    }
 
-.yellow{
-color:#facc15
-}
+    .nav-buttons {
+      display: flex;
+      gap: 9px;
+    }
 
-.balance{
-font-size:30px;
-font-weight:bold
-}
+    .btn {
+      border: 0;
+      cursor: pointer;
+      padding: 11px 17px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 13px;
+      transition: 0.2s;
+    }
 
-.price{
-font-size:21px;
-font-weight:bold
-}
+    .btn:hover {
+      transform: translateY(-1px);
+    }
 
-.market{
-background:#0b1627;
-padding:12px;
-border-radius:9px;
-margin:7px 0
-}
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: white;
+    }
 
-.nav{
-position:fixed;
-bottom:0;
-left:0;
-right:0;
-background:#111827;
-display:flex
-}
+    .btn-green {
+      background: var(--green);
+      color: #03150e;
+    }
 
-.nav button{
-background:none;
-color:#fff;
-font-size:10px;
-margin:0
-}
+    .btn-green:hover {
+      background: #35e79c;
+    }
 
-table{
-width:100%;
-border-collapse:collapse
-}
+    /* HERO */
 
-td,th{
-padding:8px;
-border-bottom:1px solid #26354a;
-text-align:left
-}
+    .hero {
+      max-width: 1200px;
+      margin: auto;
+      padding: 82px 22px 60px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 55px;
+      align-items: center;
+    }
 
-canvas{
-width:100%;
-height:190px;
-background:#07111f;
-border-radius:8px
-}
-</style>
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid rgba(25,216,137,0.2);
+      background: rgba(25,216,137,0.06);
+      border-radius: 999px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      max-width: 750px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-text {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-actions .btn {
+      padding: 14px 21px;
+      font-size: 14px;
+    }
+
+    /* HERO MARKET PANEL */
+
+    .market-preview {
+      background: linear-gradient(145deg, rgba(20,40,32,0.9), rgba(7,16,13,0.95));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+    }
+
+    .panel-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .panel-title {
+      font-weight: 800;
+    }
+
+    .live-label {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .btc-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .asset {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .asset-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #f7931a;
+      color: white;
+      font-weight: 900;
+    }
+
+    .asset-name {
+      font-weight: 800;
+    }
+
+    .asset-symbol {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .price {
+      text-align: right;
+      font-weight: 800;
+    }
+
+    .positive {
+      color: var(--green);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .chart {
+      height: 190px;
+      border-radius: 14px;
+      background:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 38px 38px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chart svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+
+    .chart-line {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* SECTION */
+
+    .section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 45px 22px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      letter-spacing: -1px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    .view-link {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* MARKET CARDS */
+
+    .markets {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .market-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 17px;
+      transition: 0.2s;
+    }
+
+    .market-card:hover {
+      border-color: rgba(25,216,137,0.3);
+      transform: translateY(-2px);
+    }
+
+    .market-card .asset-logo {
+      width: 34px;
+      height: 34px;
+      font-size: 13px;
+    }
+
+    .market-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .market-price {
+      margin-top: 20px;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .market-change {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .eth {
+      background: #627eea;
+    }
+
+    .usdt {
+      background: #26a17b;
+    }
+
+    .eur {
+      background: #2454a6;
+    }
+
+    /* TOURNAMENT */
+
+    .tournament-wrap {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(25,216,137,0.16), transparent 35%),
+        linear-gradient(135deg, #0d2119, #09130f);
+      border: 1px solid rgba(25,216,137,0.13);
+      border-radius: 22px;
+      padding: 27px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .tournament-badge {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .tournament-wrap h2 {
+      font-size: 34px;
+      letter-spacing: -1.5px;
+      margin-bottom: 10px;
+    }
+
+    .tournament-wrap p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .tournament-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .stat {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 7px;
+    }
+
+    .stat-value {
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .active-tag {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* ENTRY OPTIONS */
+
+    .entry-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .entry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    .entry-card.active {
+      border-color: rgba(25,216,137,0.45);
+      box-shadow: 0 15px 50px rgba(25,216,137,0.06);
+    }
+
+    .entry-card.locked {
+      opacity: 0.55;
+    }
+
+    .entry-price {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .entry-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      min-height: 37px;
+      margin-bottom: 16px;
+    }
+
+    .entry-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 9px;
+      padding: 11px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .entry-btn.active-btn {
+      background: var(--green);
+      color: #03150e;
+    }
+
+    .entry-btn.locked-btn {
+      background: #18251f;
+      color: #718078;
+      cursor: not-allowed;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 50px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+      }
+
+      .markets {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .entry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .tournament-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner {
+        padding: 13px 15px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .nav-buttons .btn-outline {
+        display: none;
+      }
+
+      .hero {
+        padding: 48px 16px 30px;
+      }
+
+      .hero h1 {
+        font-size: 46px;
+        letter-spacing: -2.5px;
+      }
+
+      .hero-text {
+        font-size: 15px;
+      }
+
+      .section {
+        padding: 32px 16px;
+      }
+
+      .markets {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .entry-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tournament-wrap {
+        padding: 20px;
+      }
+
+      .tournament-wrap h2 {
+        font-size: 28px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-<h1>🔥 TradeLeague</h1>
-<small>DEMO TEST MODE</small>
-</header>
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <div class="nav-inner">
+
+      <a href="index.html" class="brand">
+        <div class="brand-icon">TL</div>
+        <span>Trading League</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="markets.html">Markets</a>
+        <a href="tournament.html">Tournaments</a>
+      </nav>
+
+      <div class="nav-buttons">
+        <a href="login.html" class="btn btn-outline">Log in</a>
+        <a href="signup.html" class="btn btn-green">Get Started</a>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+
+      <div>
+        <div class="eyebrow">
+          <span class="live-dot"></span>
+          GLOBAL TRADING COMPETITION
+        </div>
+
+        <h1>
+          Trade the market.<br>
+          <span>Compete to win.</span>
+        </h1>
+
+        <p class="hero-text">
+          Trading League brings markets and competitive trading together.
+          Explore digital assets, follow market movements and compete
+          against other traders in organized tournaments.
+        </p>
+
+        <div class="hero-actions">
+          <a href="tournament.html" class="btn btn-green">
+            Enter Tournament →
+          </a>
+
+          <a href="markets.html" class="btn btn-outline">
+            Explore Markets
+          </a>
+        </div>
+      </div>
+
+
+      <!-- MARKET PREVIEW -->
+      <div class="market-preview">
+
+        <div class="panel-top">
+          <span class="panel-title">Market Overview</span>
+          <span class="live-label">● LIVE</span>
+        </div>
+
+        <div class="btc-row">
+
+          <div class="asset">
+            <div class="asset-logo">₿</div>
+
+            <div>
+              <div class="asset-name">Bitcoin</div>
+              <div class="asset-symbol">BTC / USD</div>
+            </div>
+          </div>
+
+          <div class="price">
+            <div id="btcPrice">$—</div>
+            <div class="positive">Market data loading</div>
+          </div>
 
-<main>
+        </div>
 
-<div id="loading" class="card">
-Checking account...
-</div>
+        <div class="chart">
 
-<div id="login" class="card hidden">
+          <svg viewBox="0 0 500 190" preserveAspectRatio="none">
+            <polyline
+              class="chart-line"
+              points="
+              0,145
+              25,150
+              50,130
+              75,138
+              100,110
+              125,118
+              150,92
+              175,105
+              200,82
+              225,88
+              250,70
+              275,84
+              300,58
+              325,66
+              350,48
+              375,62
+              400,39
+              425,53
+              450,28
+              475,38
+              500,18
+              ">
+            </polyline>
+          </svg>
 
-<h2>🔐 Login</h2>
+        </div>
 
-<input
-id="email"
-type="email"
-placeholder="Email">
+      </div>
 
-<input
-id="password"
-type="password"
-placeholder="Password">
+    </section>
 
-<button id="loginBtn">
-Login
-</button>
 
-<button id="signupBtn" class="gray">
-Create Account
-</button>
+    <!-- MARKETS -->
+    <section class="section">
 
-<p id="message"></p>
+      <div class="section-header">
 
-</div>
+        <div>
+          <h2 class="section-title">Popular Markets</h2>
+          <p class="section-description">
+            Explore the assets available on Trading League.
+          </p>
+        </div>
 
+        <a href="markets.html" class="view-link">
+          View all →
+        </a>
 
-<div id="app" class="hidden">
+      </div>
 
-<section id="home">
 
-<div class="card">
+      <div class="markets">
 
-<h2 id="tname">
-Starter Tournament
-</h2>
+        <div class="market-card">
 
-<div class="balance">
-$<span id="balance">500.00</span>
-</div>
+          <div class="market-info">
+            <div class="asset">
+              <div class="asset-logo">₿</div>
 
-<p>
-Time:
-<b id="timer" class="yellow">--</b>
-</p>
+              <div>
+                <div class="asset-name">Bitcoin</div>
+                <div class="asset-symbol">BTC / USD</div>
+              </div>
+            </div>
+          </div>
 
-</div>
+          <div class="market-price" id="btcCardPrice">$—</div>
+          <div class="market-change positive">Live market</div>
 
+        </div>
 
-<div class="card">
 
-<h2>🏆 Tournaments</h2>
+        <div class="market-card">
 
-<div id="tournaments"></div>
+          <div class="market-info">
+            <div class="asset">
+              <div class="asset-logo eth">◆</div>
 
-</div>
+              <div>
+                <div class="asset-name">Ethereum</div>
+                <div class="asset-symbol">ETH / USD</div>
+              </div>
+            </div>
+          </div>
 
+          <div class="market-price" id="ethCardPrice">$—</div>
+          <div class="market-change positive">Live market</div>
 
-<div class="card">
+        </div>
 
-<h2>🌍 Markets</h2>
 
-<div id="markets"></div>
+        <div class="market-card">
 
-</div>
+          <div class="market-info">
+            <div class="asset">
+              <div class="asset-logo usdt">₮</div>
 
-</section>
+              <div>
+                <div class="asset-name">Tether</div>
+                <div class="asset-symbol">USDT / USD</div>
+              </div>
+            </div>
+          </div>
 
+          <div class="market-price">$1.00</div>
+          <div class="market-change positive">Stable asset</div>
 
-<section id="trade" class="hidden">
+        </div>
 
-<div class="card">
 
-<h2>
-📈 <span id="marketName">Market</span>
-</h2>
+        <div class="market-card">
 
-<div class="price">
-$<span id="price">0</span>
-</div>
+          <div class="market-info">
+            <div class="asset">
+              <div class="asset-logo eur">€</div>
 
-<p>
-Movement:
-<b id="movement">0%</b>
-</p>
+              <div>
+                <div class="asset-name">Euro</div>
+                <div class="asset-symbol">EUR / USD</div>
+              </div>
+            </div>
+          </div>
 
-<canvas id="chart"></canvas>
+          <div class="market-price">EUR/USD</div>
+          <div class="market-change positive">Market</div>
 
-<input
-id="amount"
-type="number"
-min="1"
-placeholder="Demo amount">
+        </div>
 
-<button id="buy">
-🟢 BUY
-</button>
+      </div>
 
-<button id="sell" class="red">
-🔴 SELL
-</button>
+    </section>
 
-<p id="tradeMessage"></p>
 
-</div>
+    <!-- TOURNAMENT -->
+    <section class="section">
 
+      <div class="tournament-wrap">
 
-<div class="card">
+        <div>
 
-<h3>Open Trades</h3>
+          <div class="tournament-badge">
+            🏆 TRADING LEAGUE TOURNAMENT
+          </div>
 
-<div id="positions">
-None
-</div>
+          <h2>Compete. Climb. Win.</h2>
 
-</div>
+          <p>
+            Join the active tournament, compete against other traders
+            and climb the leaderboard based on your tournament performance.
+          </p>
 
-</section>
+          <br>
 
+          <a href="tournament.html" class="btn btn-green">
+            View Tournament
+          </a>
 
-<section id="rank" class="hidden">
+        </div>
 
-<div class="card">
 
-<h2>🏆 Live Leaderboard</h2>
+        <div class="tournament-stats">
 
-<select id="boardSelect"></select>
+          <div class="stat">
+            <div class="stat-label">ENTRY FEE</div>
+            <div class="stat-value">$2</div>
+          </div>
 
-<p>
-Time:
-<b id="boardTimer" class="yellow">--</b>
-</p>
+          <div class="stat">
+            <div class="stat-label">STATUS</div>
+            <div class="active-tag">● ACTIVE</div>
+          </div>
 
-<table>
+          <div class="stat">
+            <div class="stat-label">HIGHER TIERS</div>
+            <div class="stat-value">Locked</div>
+          </div>
 
-<thead>
+          <div class="stat">
+            <div class="stat-label">LEADERBOARD</div>
+            <div class="stat-value">Live</div>
+          </div>
 
-<tr>
-<th>#</th>
-<th>Trader</th>
-<th>Balance</th>
-<th>Profit</th>
-</tr>
+        </div>
 
-</thead>
+      </div>
 
-<tbody id="board">
+    </section>
 
-<tr>
-<td colspan="4">
-Loading...
-</td>
-</tr>
 
-</tbody>
+    <!-- TOURNAMENT ENTRY OPTIONS -->
+    <section class="section">
 
-</table>
+      <div class="section-header">
 
-<p id="boardStatus">
-🔴 LIVE — updates automatically.
-</p>
+        <div>
+          <h2 class="section-title">Tournament Levels</h2>
 
-</div>
+          <p class="section-description">
+            Start with the active tournament. Higher levels will become
+            available when activated by the platform.
+          </p>
+        </div>
 
-</section>
+      </div>
 
 
-<section id="account" class="hidden">
+      <div class="entry-grid">
 
-<div class="card">
+        <!-- $2 ACTIVE -->
+        <div class="entry-card active">
 
-<h2>👤 Account</h2>
+          <div class="entry-price">$2</div>
 
-<p id="userEmail"></p>
+          <p>
+            Current entry level. Join the active Trading League tournament.
+          </p>
 
-<p>
-Balance:
-$<b id="accountBalance">500.00</b>
-</p>
+          <button
+            class="entry-btn active-btn"
+            onclick="joinTwoDollarTournament()">
+            Join Tournament
+          </button>
 
-<button id="logout" class="red">
-Logout
-</button>
+        </div>
 
-</div>
 
-</section>
+        <!-- $5 LOCKED -->
+        <div class="entry-card locked">
 
-</div>
+          <div class="entry-price">$5</div>
 
-</main>
+          <p>
+            This tournament level is currently unavailable.
+          </p>
 
+          <button class="entry-btn locked-btn" disabled>
+            🔒 Coming Soon
+          </button>
 
-<nav id="nav" class="nav hidden">
+        </div>
 
-<button onclick="show('home')">
-🏠<br>Home
-</button>
 
-<button onclick="show('trade')">
-📈<br>Trade
-</button>
+        <!-- $10 LOCKED -->
+        <div class="entry-card locked">
 
-<button onclick="show('rank')">
-🏆<br>Rank
-</button>
+          <div class="entry-price">$10</div>
 
-<button onclick="show('account')">
-👤<br>Account
-</button>
+          <p>
+            This tournament level is currently unavailable.
+          </p>
 
-</nav>
+          <button class="entry-btn locked-btn" disabled>
+            🔒 Coming Soon
+          </button>
 
+        </div>
 
-<script type="module">
 
-import {
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+        <!-- $15 LOCKED -->
+        <div class="entry-card locked">
 
+          <div class="entry-price">$15</div>
 
-import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-onAuthStateChanged,
-signOut,
-setPersistence,
-browserLocalPersistence
-}
-from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+          <p>
+            This tournament level is currently unavailable.
+          </p>
 
+          <button class="entry-btn locked-btn" disabled>
+            🔒 Coming Soon
+          </button>
 
-import {
-getFirestore,
-doc,
-getDoc,
-setDoc,
-collection,
-query,
-orderBy,
-onSnapshot
-}
-from
-"https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+        </div>
 
+      </div>
 
-const firebaseConfig = {
+    </section>
 
-apiKey:
-"AIzaSyAV63UmB-gIWfj1lhshPcFqxaRV6j9O-F4",
+  </main>
 
-authDomain:
-"project-57e2c805-1b30-40ea-a94.firebaseapp.com",
 
-projectId:
-"project-57e2c805-1b30-40ea-a94",
+  <!-- FOOTER -->
+  <footer>
 
-storageBucket:
-"project-57e2c805-1b30-40ea-a94.firebasestorage.app",
+    <div class="footer-inner">
 
-messagingSenderId:
-"567705081329",
+      <div>
+        © 2026 Trading League. All rights reserved.
+      </div>
 
-appId:
-"1:567705081329:web:723f968a1eff122945e050",
+      <div>
+        Markets • Tournaments • Account
+      </div>
 
-measurementId:
-"G-9P2H1ZNGSG"
+    </div>
 
-};
+  </footer>
 
 
-const app =
-initializeApp(firebaseConfig);
+  <script>
 
-const auth =
-getAuth(app);
+    /*
+      IMPORTANT:
+      This front page does NOT process real payments.
 
-const db =
-getFirestore(app);
-
-
-await setPersistence(
-auth,
-browserLocalPersistence
-);
-
-
-const $ = id =>
-document.getElementById(id);
-
-
-const tournaments = {
-
-starter:{
-name:"Starter Tournament",
-entry:2,
-days:6
-},
-
-five:{
-name:"$5 Tournament",
-entry:5,
-days:1
-},
-
-ten:{
-name:"$10 Tournament",
-entry:10,
-days:3
-}
-
-};
-
-
-const markets = {
-
-"BTC/USD":65000,
-
-"ETH/USD":3200,
-
-"Gold":2380,
-
-"Apple":210,
-
-"Tesla":240,
-
-"Nvidia":120,
-
-"EUR/USD":1.085,
-
-"GBP/USD":1.274
-
-};
-
-
-const oldPrices = {...markets};
-
-const historyPrices = {};
-
-Object.keys(markets).forEach(
-name=>{
-historyPrices[name]=[
-markets[name]
-];
-}
-);
-
-
-let user = null;
-
-let tournament = "starter";
-
-let balance = 500;
-
-let positions = [];
-
-let selectedMarket = null;
-
-let unsubscribe = null;
-
-let endAt = 0;
-
-
-window.show = function(page){
-
-[
-"home",
-"trade",
-"rank",
-"account"
-].forEach(
-p=>{
-$(p).classList.add("hidden");
-}
-);
-
-$(page).classList.remove("hidden");
-
-if(page==="rank"){
-loadLeaderboard();
-}
-
-};
-
-
-$("loginBtn").onclick =
-async function(){
-
-try{
-
-await signInWithEmailAndPassword(
-auth,
-$("email").value.trim(),
-$("password").value
-);
-
-}catch(error){
-
-$("message").textContent =
-error.message;
-
-}
-
-};
-
-
-$("signupBtn").onclick =
-async function(){
-
-try{
-
-await createUserWithEmailAndPassword(
-auth,
-$("email").value.trim(),
-$("password").value
-);
-
-}catch(error){
-
-$("message").textContent =
-error.message;
-
-}
-
-};
-
-
-$("logout").onclick =
-function(){
-
-signOut(auth);
-
-};
-
-
-function playerRef(){
-
-return doc(
-db,
-"tournaments",
-tournament,
-"players",
-user.uid
-);
-
-}
-
-
-async function loadPlayer(){
-
-const snapshot =
-await getDoc(
-playerRef()
-);
-
-
-if(snapshot.exists()){
-
-const data =
-snapshot.data();
-
-balance =
-Number(data.balance ?? 500);
-
-positions =
-data.positions || [];
-
-endAt =
-Number(data.endAt || 0);
-
-}else{
-
-balance = 500;
-
-positions = [];
-
-endAt =
-Date.now() +
-tournaments[tournament].days *
-86400000;
-
-
-await setDoc(
-playerRef(),
-{
-
-uid:user.uid,
-
-trader:
-user.email.split("@")[0],
-
-email:user.email,
-
-balance:500,
-
-startingBalance:500,
-
-positions:[],
-
-endAt:endAt,
-
-updatedAt:Date.now()
-
-},
-{merge:true}
-);
-
-}
-
-
-updateUI();
-
-drawPositions();
-
-}
-
-
-async function savePlayer(){
-
-await setDoc(
-
-playerRef(),
-
-{
-
-uid:user.uid,
-
-trader:
-user.email.split("@")[0],
-
-email:user.email,
-
-balance:balance,
-
-startingBalance:500,
-
-positions:positions,
-
-endAt:endAt,
-
-updatedAt:Date.now()
-
-},
-
-{merge:true}
-
-);
-
-
-await setDoc(
-
-doc(
-db,
-"leaderboards",
-tournament,
-"players",
-user.uid
-),
-
-{
-
-uid:user.uid,
-
-trader:
-user.email.split("@")[0],
-
-email:user.email,
-
-balance:balance,
-
-startingBalance:500,
-
-updatedAt:Date.now()
-
-},
-
-{merge:true}
-
-);
-
-}
-
-
-function updateUI(){
-
-$("balance").textContent =
-balance.toFixed(2);
-
-$("accountBalance").textContent =
-balance.toFixed(2);
-
-$("userEmail").textContent =
-user ? user.email : "";
-
-$("tname").textContent =
-tournaments[tournament].name;
-
-}
-
-
-function drawTournaments(){
-
-let html = "";
-
-for(
-const id in tournaments
-){
-
-const t =
-tournaments[id];
-
-html += `
-
-<div class="market">
-
-<b>${t.name}</b>
-
-<p>
-Demo Entry:
-$${t.entry}
-</p>
-
-<p>
-Duration:
-${t.days} day(s)
-</p>
-
-<button
-onclick="joinTournament('${id}')">
-
-Open
-
-</button>
-
-</div>
-
-`;
-
-}
-
-$("tournaments").innerHTML =
-html;
-
-}
-
-
-window.joinTournament =
-async function(id){
-
-tournament = id;
-
-await loadPlayer();
-
-show("trade");
-
-};
-
-
-function drawMarkets(){
-
-let html = "";
-
-for(
-const name in markets
-){
-
-html += `
-
-<div class="market">
-
-<b>${name}</b>
-
-<div class="price">
-
-$${markets[name].toFixed(2)}
-
-</div>
-
-<button
-onclick="openMarket('${name}')">
-
-Trade
-
-</button>
-
-</div>
-
-`;
-
-}
-
-$("markets").innerHTML =
-html;
-
-}
-
-
-window.openMarket =
-function(name){
-
-selectedMarket = name;
-
-$("marketName").textContent =
-name;
-
-$("price").textContent =
-markets[name].toFixed(2);
-
-drawChart();
-
-show("trade");
-
-};
-
-
-function drawChart(){
-
-if(!selectedMarket)
-return;
-
-const canvas =
-$("chart");
-
-const ctx =
-canvas.getContext("2d");
-
-const width =
-canvas.clientWidth;
-
-const height =
-canvas.clientHeight;
-
-canvas.width =
-width;
-
-canvas.height =
-height;
-
-ctx.clearRect(
-0,
-0,
-width,
-height
-);
-
-
-const values =
-historyPrices[selectedMarket];
-
-let min =
-Math.min(...values);
-
-let max =
-Math.max(...values);
-
-let range =
-max-min;
-
-if(range===0)
-range=1;
-
-
-ctx.beginPath();
-
-ctx.lineWidth = 3;
-
-ctx.strokeStyle =
-markets[selectedMarket]
->=oldPrices[selectedMarket]
-?
-"#22c55e"
-:
-"#ef4444";
-
-
-values.forEach(
-(value,index)=>{
-
-const x =
-5 +
-index /
-(values.length-1) *
-(width-10);
-
-const y =
-height-5 -
-(value-min) /
-range *
-(height-10);
-
-
-if(index===0)
-ctx.moveTo(x,y);
-else
-ctx.lineTo(x,y);
-
-}
-);
-
-
-ctx.stroke();
-
-}
-
-
-setInterval(
-function(){
-
-for(
-const name in markets
-){
-
-oldPrices[name] =
-markets[name];
-
-markets[name] +=
-markets[name] *
-(Math.random()-0.5) *
-0.003;
-
-historyPrices[name].push(
-markets[name]
-);
-
-if(
-historyPrices[name].length>60
-){
-
-historyPrices[name].shift();
-
-}
-
-}
-
-
-drawMarkets();
-
-
-if(selectedMarket){
-
-$("price").textContent =
-markets[selectedMarket]
-.toFixed(2);
-
-const change =
-(
-markets[selectedMarket] -
-oldPrices[selectedMarket]
-) /
-oldPrices[selectedMarket] *
-100;
-
-
-$("movement").textContent =
-(change>=0?"+":"") +
-change.toFixed(3) +
-"%";
-
-
-$("movement").className =
-change>=0
-?
-"green"
-:
-"redtext";
-
-
-drawChart();
-
-}
-
-},
-1000
-);
-
-
-async function openTrade(type){
-
-const amount =
-Number(
-$("amount").value
-);
-
-
-if(!selectedMarket){
-
-$("tradeMessage").textContent =
-"Select a market.";
-
-return;
-
-}
-
-
-if(
-!amount ||
-amount<=0
-){
-
-$("tradeMessage").textContent =
-"Enter an amount.";
-
-return;
-
-}
-
-
-if(amount>balance){
-
-$("tradeMessage").textContent =
-"Not enough demo balance.";
-
-return;
-
-}
-
-
-balance -= amount;
-
-
-positions.push({
-
-market:selectedMarket,
-
-type:type,
-
-amount:amount,
-
-entry:markets[selectedMarket]
-
-});
-
-
-$("amount").value = "";
-
-$("tradeMessage").textContent =
-"✅ Demo trade opened.";
-
-
-await savePlayer();
-
-drawPositions();
-
-updateUI();
-
-}
-
-
-$("buy").onclick =
-function(){
-
-openTrade("BUY");
-
-};
-
-
-$("sell").onclick =
-function(){
-
-openTrade("SELL");
-
-};
-
-
-function drawPositions(){
-
-if(!positions.length){
-
-$("positions").textContent =
-"None";
-
-return;
-
-}
-
-
-let html = "";
-
-positions.forEach(
-(p,index)=>{
-
-html += `
-
-<div class="market">
-
-<b>
-${p.type}
-${p.market}
-</b>
-
-<p>
-Amount:
-$${p.amount.toFixed(2)}
-</p>
-
-<p>
-Entry:
-$${p.entry.toFixed(2)}
-</p>
-
-<button
-class="red"
-onclick="closeTrade(${index})">
-
-Close
-
-</button>
-
-</div>
-
-`;
-
-}
-);
-
-
-$("positions").innerHTML =
-html;
-
-}
-
-
-window.closeTrade =
-async function(index){
-
-const p =
-positions[index];
-
-if(!p)
-return;
-
-
-const current =
-markets[p.market];
-
-const difference =
-current-p.entry;
-
-
-let profit;
-
-
-if(p.type==="BUY"){
-
-profit =
-difference /
-p.entry *
-p.amount;
-
-}else{
-
-profit =
--difference /
-p.entry *
-p.amount;
-
-}
-
-
-balance +=
-p.amount +
-profit;
-
-
-positions.splice(
-index,
-1
-);
-
-
-await savePlayer();
-
-drawPositions();
-
-updateUI();
-
-};
-
-
-$("boardSelect").innerHTML =
-Object.entries(tournaments)
-.map(
-([id,t])=>
-`
-<option value="${id}">
-${t.name}
-</option>
-`
-)
-.join("");
-
-
-$("boardSelect").onchange =
-function(){
-
-loadLeaderboard();
-
-};
-
-
-function loadLeaderboard(){
-
-if(!user)
-return;
-
-
-if(unsubscribe){
-
-unsubscribe();
-
-unsubscribe = null;
-
-}
-
-
-const id =
-$("boardSelect").value;
-
-
-const leaderboardQuery =
-query(
-
-collection(
-db,
-"leaderboards",
-id,
-"players"
-),
-
-orderBy(
-"balance",
-"desc"
-)
-
-);
-
-
-unsubscribe =
-onSnapshot(
-
-leaderboardQuery,
-
-snapshot=>{
-
-let html = "";
-
-let rank = 0;
-
-
-snapshot.forEach(
-docSnap=>{
-
-rank++;
-
-
-const data =
-docSnap.data();
-
-
-const current =
-Number(
-data.balance || 0
-);
-
-
-const starting =
-Number(
-data.startingBalance || 500
-);
-
-
-const profit =
-current-starting;
-
-
-html += `
-
-<tr>
-
-<td>
-${rank}
-</td>
-
-<td>
-${data.trader || "Trader"}
-</td>
-
-<td>
-$${current.toFixed(2)}
-</td>
-
-<td class="${
-profit>=0
-?
-"green"
-:
-"redtext"
-}">
-
-${profit>=0?"+":""}
-$${profit.toFixed(2)}
-
-</td>
-
-</tr>
-
-`;
-
-}
-);
-
-
-$("board").innerHTML =
-html ||
-`
-<tr>
-<td colspan="4">
-No players yet.
-</td>
-</tr>
-`;
-
-
-$("boardStatus").textContent =
-"🔴 LIVE — updates automatically.";
-
-},
-
-error=>{
-
-console.error(error);
-
-$("boardStatus").textContent =
-"Leaderboard permission error: " +
-error.code;
-
-}
-
-);
-
-}
-
-
-setInterval(
-function(){
-
-if(!endAt)
-return;
-
-
-const remaining =
-Math.max(
-0,
-endAt-Date.now()
-);
-
-
-const seconds =
-Math.floor(
-remaining/1000
-);
-
-
-const days =
-Math.floor(
-seconds/86400
-);
-
-
-const hours =
-Math.floor(
-(seconds%86400)/3600
-);
-
-
-const minutes =
-Math.floor(
-(seconds%3600)/60
-);
-
-
-const secs =
-seconds%60;
-
-
-const text =
-days+"d "+
-String(hours).padStart(2,"0")+":"+
-String(minutes).padStart(2,"0")+":"+
-String(secs).padStart(2,"0");
-
-
-$("timer").textContent =
-text;
-
-$("boardTimer").textContent =
-text;
-
-},
-1000
-);
-
-
-onAuthStateChanged(
-auth,
-async function(currentUser){
-
-if(currentUser){
-
-user =
-currentUser;
-
-
-$("loading")
-.classList.add("hidden");
-
-$("login")
-.classList.add("hidden");
-
-$("app")
-.classList.remove("hidden");
-
-$("nav")
-.classList.remove("hidden");
-
-
-await loadPlayer();
-
-drawTournaments();
-
-drawMarkets();
-
-show("home");
-
-
-}else{
-
-user = null;
-
-
-$("loading")
-.classList.add("hidden");
-
-$("app")
-.classList.add("hidden");
-
-$("nav")
-.classList.add("hidden");
-
-$("login")
-.classList.remove("hidden");
-
-}
-
-}
-);
-
-</script>
-
-</body>
-  </html>
+      The $2 button only sends the user to the tournament page.
+      Real DPay payment processing must happen through a secure
+      backend, not inside this HTML file
