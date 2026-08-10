@@ -3,69 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Trading League | Markets</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 body{
   background:#06110d;
   color:#f5f8f7;
   font-family:Arial,sans-serif;
 }
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
+a{text-decoration:none;color:inherit}
 
 nav{
   background:#040e0a;
   border-bottom:1px solid #183027;
-  padding:12px 15px;
+  padding:13px 15px;
 }
-
 .nav{
   max-width:1100px;
   margin:auto;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   gap:15px;
 }
-
 .brand{
-  display:flex;
-  align-items:center;
   font-size:17px;
   font-weight:900;
   white-space:nowrap;
 }
-
 .logo{
-  width:36px;
-  height:36px;
-  margin-right:8px;
-  border-radius:10px;
-  display:grid;
+  display:inline-grid;
   place-items:center;
+  width:35px;
+  height:35px;
+  margin-right:7px;
+  border-radius:9px;
   background:#18df98;
   color:#03110b;
-  font-weight:900;
 }
-
 .links{
   display:flex;
-  gap:5px;
+  gap:6px;
   overflow-x:auto;
 }
-
 .links a{
-  padding:8px;
   color:#91a39c;
   font-size:11px;
   font-weight:bold;
+  padding:8px;
   white-space:nowrap;
 }
 
@@ -81,33 +67,66 @@ main{
   font-weight:900;
   margin-bottom:10px;
 }
-
 h1{
-  font-size:40px;
+  font-size:42px;
   margin-bottom:10px;
 }
-
 .intro{
   color:#91a39c;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.guide{
+  margin:22px 0 30px;
+  padding:20px;
+  background:linear-gradient(145deg,#10251c,#0c1d16);
+  border:1px solid #183027;
+  border-radius:16px;
+}
+.guide h2{
+  font-size:20px;
+  margin-bottom:8px;
+}
+.guide p{
+  color:#91a39c;
   font-size:12px;
-  line-height:1.6;
-  margin-bottom:25px;
+  line-height:1.7;
+}
+.steps{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+.step{
+  padding:14px;
+  background:#06110d;
+  border:1px solid #183027;
+  border-radius:11px;
+}
+.step b{
+  display:block;
+  color:#18df98;
+  font-size:12px;
+  margin-bottom:6px;
+}
+.step span{
+  color:#91a39c;
+  font-size:10px;
+  line-height:1.5;
 }
 
 .section{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin:25px 0 13px;
+  margin:25px 0 14px;
 }
-
-.section h2{
-  font-size:19px;
-}
-
+.section h2{font-size:20px}
 .live{
   color:#18df98;
-  font-size:9px;
+  font-size:10px;
   font-weight:bold;
 }
 
@@ -118,308 +137,100 @@ h1{
 }
 
 .market{
-  cursor:pointer;
-  padding:16px;
+  display:block;
+  padding:17px;
   background:linear-gradient(145deg,#10251c,#0c1d16);
   border:1px solid #183027;
   border-radius:15px;
   transition:.15s;
 }
-
 .market:hover{
   border-color:#18df98;
+  transform:translateY(-2px);
 }
-
-.market:active{
-  transform:scale(.98);
-}
+.market:active{transform:scale(.98)}
 
 .top{
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:10px;
 }
-
 .asset{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:11px;
 }
-
 .icon{
-  width:42px;
-  height:42px;
+  width:44px;
+  height:44px;
   border-radius:12px;
   display:grid;
   place-items:center;
   background:#06110d;
   border:1px solid #183027;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.icon img{
+  width:27px;
+  height:27px;
+  object-fit:contain;
+}
+.fallback{
   color:#18df98;
   font-size:12px;
   font-weight:900;
 }
-
 .name{
   font-size:14px;
   font-weight:900;
 }
-
 .symbol{
   color:#91a39c;
   font-size:10px;
   margin-top:4px;
 }
-
 .arrow{
   color:#18df98;
-  font-size:23px;
+  font-size:22px;
 }
-
 .type{
-  margin-top:13px;
-  padding-top:10px;
+  margin-top:15px;
+  padding-top:11px;
   border-top:1px solid #183027;
   color:#60716a;
   font-size:9px;
   font-weight:bold;
 }
 
-/* CHART SCREEN */
-
-#chartScreen{
-  display:none;
-}
-
-.back{
-  display:inline-block;
-  color:#91a39c;
-  font-size:12px;
-  margin-bottom:18px;
-  cursor:pointer;
-}
-
-.chartHeader{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:15px;
-  margin-bottom:15px;
-}
-
-.chartName{
-  font-size:32px;
-  font-weight:900;
-}
-
-.chartSymbol{
-  color:#91a39c;
-  font-size:11px;
-  margin-top:5px;
-}
-
-.balance{
-  padding:12px;
-  background:#0c1d16;
-  border:1px solid #183027;
-  border-radius:11px;
-}
-
-.balance small{
-  display:block;
-  color:#91a39c;
-  font-size:8px;
-}
-
-.balance strong{
-  display:block;
-  color:#18df98;
-  font-size:20px;
-  margin-top:4px;
-}
-
-.chart{
-  position:relative;
-  height:500px;
-  overflow:hidden;
-  background:#0a1712;
-  border:1px solid #183027;
-  border-radius:15px;
-}
-
-.chartLoading{
-  position:absolute;
-  inset:0;
-  z-index:5;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:12px;
-  background:#0a1712;
-  color:#91a39c;
-  font-size:12px;
-}
-
-.spinner{
-  width:30px;
-  height:30px;
-  border:3px solid #183027;
-  border-top-color:#18df98;
-  border-radius:50%;
-  animation:spin .7s linear infinite;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-/* TRADE */
-
-.tradeCard{
-  margin-top:15px;
-  padding:17px;
-  background:#0c1d16;
-  border:1px solid #183027;
-  border-radius:15px;
-}
-
-.tradeCard h2{
-  font-size:17px;
-  margin-bottom:6px;
-}
-
-.sub{
-  color:#91a39c;
-  font-size:10px;
-  line-height:1.5;
-  margin-bottom:13px;
-}
-
-.amount{
-  width:100%;
-  padding:13px;
-  border-radius:9px;
-  border:1px solid #183027;
-  background:#06110d;
-  color:white;
-  outline:none;
-  font-size:15px;
-}
-
-.quick{
-  display:flex;
-  gap:6px;
-  margin-top:8px;
-  flex-wrap:wrap;
-}
-
-.quick button{
-  padding:8px 11px;
-  border-radius:7px;
-  background:#10251c;
-  color:#91a39c;
-  border:1px solid #183027;
-  font-size:10px;
-}
-
-.tradeButtons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  margin-top:13px;
-}
-
-.buy,.sell{
-  border:0;
-  padding:14px;
-  border-radius:9px;
-  color:white;
-  font-weight:900;
-}
-
-.buy{background:#079b69}
-.sell{background:#c83e4c}
-
-.message{
-  margin-top:10px;
-  font-size:11px;
-}
-
-.history{
-  margin-top:15px;
-}
-
-.history h2{
-  font-size:17px;
-  margin-bottom:8px;
-}
-
-.tradeRow{
-  display:flex;
-  justify-content:space-between;
-  padding:10px 0;
-  border-bottom:1px solid #183027;
-  font-size:11px;
-}
-
-.buyText{color:#18df98}
-.sellText{color:#ff6875}
-
 .notice{
-  margin-top:20px;
-  padding:13px;
-  color:#91a39c;
+  margin-top:22px;
+  padding:15px;
   border:1px solid #183027;
   border-radius:10px;
+  color:#91a39c;
   font-size:10px;
-  line-height:1.5;
+  line-height:1.7;
 }
 
 footer{
   text-align:center;
   color:#60716a;
   font-size:10px;
-  margin-top:30px;
+  margin-top:35px;
 }
 
 @media(max-width:700px){
-
   .nav{
     flex-direction:column;
     align-items:flex-start;
   }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .chartHeader{
-    flex-direction:column;
-    align-items:stretch;
-  }
-
-  .balance{
-    width:100%;
-  }
-
-  .chart{
-    height:400px;
-  }
+  .grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
 }
-
 @media(max-width:450px){
-
-  h1{
-    font-size:34px;
-  }
-
-  .chart{
-    height:360px;
-  }
-
-  .chartName{
-    font-size:28px;
-  }
+  h1{font-size:34px}
 }
 </style>
 </head>
@@ -446,23 +257,55 @@ Trading League
 </div>
 </nav>
 
-
 <main>
 
-<!-- MARKET LIST -->
-
-<section id="marketList">
-
-<div class="eyebrow">
-TRADING LEAGUE / MARKETS
-</div>
+<div class="eyebrow">TRADING LEAGUE / LEARN & TRADE</div>
 
 <h1>Markets</h1>
 
 <p class="intro">
-Choose a stock or cryptocurrency to open its
-live chart and demo trading screen.
+Not familiar with trading? That's okay. Start with the
+simple guide below, then choose a market to practice.
 </p>
+
+
+<div class="guide">
+
+<h2>New to trading?</h2>
+
+<p>
+Trading means choosing whether you think the price of
+something will go up or down. Trading League lets you
+practice with demo money before using real money.
+</p>
+
+<div class="steps">
+
+<div class="step">
+<b>1. Choose a market</b>
+<span>
+Pick something like Apple, Tesla or Bitcoin.
+</span>
+</div>
+
+<div class="step">
+<b>2. Look at the chart</b>
+<span>
+The chart shows how the price has moved over time.
+</span>
+</div>
+
+<div class="step">
+<b>3. Choose BUY or SELL</b>
+<span>
+BUY means you expect the price to rise.
+SELL means you expect the price to fall.
+</span>
+</div>
+
+</div>
+
+</div>
 
 
 <div class="section">
@@ -473,10 +316,15 @@ live chart and demo trading screen.
 <div class="grid">
 
 
-<div class="market" onclick="openMarket('AAPL','Apple','STOCK','NASDAQ:AAPL')">
+<a class="market"
+href="market.html?type=stock&symbol=AAPL&name=Apple">
 <div class="top">
 <div class="asset">
-<div class="icon">A</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/apple"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">A</span>
+</div>
 <div>
 <div class="name">Apple</div>
 <div class="symbol">AAPL / USD</div>
@@ -485,13 +333,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('MSFT','Microsoft','STOCK','NASDAQ:MSFT')">
+<a class="market"
+href="market.html?type=stock&symbol=MSFT&name=Microsoft">
 <div class="top">
 <div class="asset">
-<div class="icon">M</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/microsoft"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">M</span>
+</div>
 <div>
 <div class="name">Microsoft</div>
 <div class="symbol">MSFT / USD</div>
@@ -500,13 +353,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('NVDA','NVIDIA','STOCK','NASDAQ:NVDA')">
+<a class="market"
+href="market.html?type=stock&symbol=NVDA&name=NVIDIA">
 <div class="top">
 <div class="asset">
-<div class="icon">N</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/nvidia"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">N</span>
+</div>
 <div>
 <div class="name">NVIDIA</div>
 <div class="symbol">NVDA / USD</div>
@@ -515,13 +373,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('AMZN','Amazon','STOCK','NASDAQ:AMZN')">
+<a class="market"
+href="market.html?type=stock&symbol=AMZN&name=Amazon">
 <div class="top">
 <div class="asset">
-<div class="icon">AM</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/amazon"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">AM</span>
+</div>
 <div>
 <div class="name">Amazon</div>
 <div class="symbol">AMZN / USD</div>
@@ -530,13 +393,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('GOOGL','Alphabet','STOCK','NASDAQ:GOOGL')">
+<a class="market"
+href="market.html?type=stock&symbol=GOOGL&name=Alphabet">
 <div class="top">
 <div class="asset">
-<div class="icon">G</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/google"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">G</span>
+</div>
 <div>
 <div class="name">Alphabet</div>
 <div class="symbol">GOOGL / USD</div>
@@ -545,13 +413,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('META','Meta','STOCK','NASDAQ:META')">
+<a class="market"
+href="market.html?type=stock&symbol=META&name=Meta">
 <div class="top">
 <div class="asset">
-<div class="icon">M</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/meta"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">M</span>
+</div>
 <div>
 <div class="name">Meta</div>
 <div class="symbol">META / USD</div>
@@ -560,13 +433,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('TSLA','Tesla','STOCK','NASDAQ:TSLA')">
+<a class="market"
+href="market.html?type=stock&symbol=TSLA&name=Tesla">
 <div class="top">
 <div class="asset">
-<div class="icon">T</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/tesla"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">T</span>
+</div>
 <div>
 <div class="name">Tesla</div>
 <div class="symbol">TSLA / USD</div>
@@ -575,13 +453,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('NFLX','Netflix','STOCK','NASDAQ:NFLX')">
+<a class="market"
+href="market.html?type=stock&symbol=NFLX&name=Netflix">
 <div class="top">
 <div class="asset">
-<div class="icon">N</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/netflix"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">N</span>
+</div>
 <div>
 <div class="name">Netflix</div>
 <div class="symbol">NFLX / USD</div>
@@ -590,13 +473,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('AMD','AMD','STOCK','NASDAQ:AMD')">
+<a class="market"
+href="market.html?type=stock&symbol=AMD&name=AMD">
 <div class="top">
 <div class="asset">
-<div class="icon">A</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/amd"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">A</span>
+</div>
 <div>
 <div class="name">AMD</div>
 <div class="symbol">AMD / USD</div>
@@ -605,13 +493,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('INTC','Intel','STOCK','NASDAQ:INTC')">
+<a class="market"
+href="market.html?type=stock&symbol=INTC&name=Intel">
 <div class="top">
 <div class="asset">
-<div class="icon">I</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/intel"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">I</span>
+</div>
 <div>
 <div class="name">Intel</div>
 <div class="symbol">INTC / USD</div>
@@ -620,13 +513,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('KO','Coca-Cola','STOCK','NYSE:KO')">
+<a class="market"
+href="market.html?type=stock&symbol=KO&name=Coca-Cola">
 <div class="top">
 <div class="asset">
-<div class="icon">C</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/coca-cola"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">C</span>
+</div>
 <div>
 <div class="name">Coca-Cola</div>
 <div class="symbol">KO / USD</div>
@@ -635,13 +533,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NYSE</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('PEP','PepsiCo','STOCK','NASDAQ:PEP')">
+<a class="market"
+href="market.html?type=stock&symbol=PEP&name=PepsiCo">
 <div class="top">
 <div class="asset">
-<div class="icon">P</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/pepsi"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">P</span>
+</div>
 <div>
 <div class="name">PepsiCo</div>
 <div class="symbol">PEP / USD</div>
@@ -650,13 +553,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NASDAQ</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('MCD','McDonald’s','STOCK','NYSE:MCD')">
+<a class="market"
+href="market.html?type=stock&symbol=MCD&name=McDonalds">
 <div class="top">
 <div class="asset">
-<div class="icon">M</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/mcdonalds"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">M</span>
+</div>
 <div>
 <div class="name">McDonald's</div>
 <div class="symbol">MCD / USD</div>
@@ -665,13 +573,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NYSE</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('NKE','Nike','STOCK','NYSE:NKE')">
+<a class="market"
+href="market.html?type=stock&symbol=NKE&name=Nike">
 <div class="top">
 <div class="asset">
-<div class="icon">N</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/nike"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">N</span>
+</div>
 <div>
 <div class="name">Nike</div>
 <div class="symbol">NKE / USD</div>
@@ -680,7 +593,7 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">STOCK · NYSE</div>
-</div>
+</a>
 
 </div>
 
@@ -693,10 +606,15 @@ live chart and demo trading screen.
 <div class="grid">
 
 
-<div class="market" onclick="openMarket('BTC','Bitcoin','CRYPTO','COINBASE:BTCUSD')">
+<a class="market"
+href="market.html?type=crypto&symbol=bitcoin&name=Bitcoin">
 <div class="top">
 <div class="asset">
-<div class="icon">₿</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/bitcoin"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">₿</span>
+</div>
 <div>
 <div class="name">Bitcoin</div>
 <div class="symbol">BTC / USD</div>
@@ -705,13 +623,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">CRYPTO</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('ETH','Ethereum','CRYPTO','COINBASE:ETHUSD')">
+<a class="market"
+href="market.html?type=crypto&symbol=ethereum&name=Ethereum">
 <div class="top">
 <div class="asset">
-<div class="icon">Ξ</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/ethereum"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">Ξ</span>
+</div>
 <div>
 <div class="name">Ethereum</div>
 <div class="symbol">ETH / USD</div>
@@ -720,13 +643,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">CRYPTO</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('BNB','BNB','CRYPTO','BINANCE:BNBUSDT')">
+<a class="market"
+href="market.html?type=crypto&symbol=binancecoin&name=BNB">
 <div class="top">
 <div class="asset">
-<div class="icon">BNB</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/binance"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">BNB</span>
+</div>
 <div>
 <div class="name">BNB</div>
 <div class="symbol">BNB / USD</div>
@@ -735,13 +663,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">CRYPTO</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('SOL','Solana','CRYPTO','COINBASE:SOLUSD')">
+<a class="market"
+href="market.html?type=crypto&symbol=solana&name=Solana">
 <div class="top">
 <div class="asset">
-<div class="icon">SOL</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/solana"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">SOL</span>
+</div>
 <div>
 <div class="name">Solana</div>
 <div class="symbol">SOL / USD</div>
@@ -750,13 +683,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">CRYPTO</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('XRP','XRP','CRYPTO','COINBASE:XRPUSD')">
+<a class="market"
+href="market.html?type=crypto&symbol=ripple&name=XRP">
 <div class="top">
 <div class="asset">
-<div class="icon">X</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/xrp"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">X</span>
+</div>
 <div>
 <div class="name">XRP</div>
 <div class="symbol">XRP / USD</div>
@@ -765,13 +703,18 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">CRYPTO</div>
-</div>
+</a>
 
 
-<div class="market" onclick="openMarket('DOGE','Dogecoin','CRYPTO','COINBASE:DOGEUSD')">
+<a class="market"
+href="market.html?type=crypto&symbol=dogecoin&name=Dogecoin">
 <div class="top">
 <div class="asset">
-<div class="icon">Ð</div>
+<div class="icon">
+<img src="https://cdn.simpleicons.org/dogecoin"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+<span class="fallback" style="display:none">Ð</span>
+</div>
 <div>
 <div class="name">Dogecoin</div>
 <div class="symbol">DOGE / USD</div>
@@ -780,465 +723,23 @@ live chart and demo trading screen.
 <div class="arrow">›</div>
 </div>
 <div class="type">CRYPTO</div>
-</div>
-
-</div>
-
-<div class="notice">
-<strong>Demo trading:</strong>
-Choose a market to open its chart and simulated
-trading screen. No real money is used.
-</div>
-
-</section>
-
-
-<!-- CHART SCREEN -->
-
-<section id="chartScreen">
-
-<div class="back" onclick="backToMarkets()">
-← Back to Markets
-</div>
-
-<div class="chartHeader">
-
-<div>
-<div class="chartName" id="selectedName"></div>
-<div class="chartSymbol" id="selectedSymbol"></div>
-</div>
-
-<div class="balance">
-<small>DEMO BALANCE</small>
-<strong id="balance">$1,000.00</strong>
-</div>
-
-</div>
-
-
-<div class="chart" id="chart">
-
-<div class="chartLoading" id="chartLoading">
-<div class="spinner"></div>
-<div>Loading chart...</div>
-</div>
-
-</div>
-
-
-<div class="tradeCard">
-
-<h2>Enter Trade</h2>
-
-<p class="sub">
-Choose an amount and make a BUY or SELL demo entry.
-You can make multiple entries until your demo balance
-is finished.
-</p>
-
-<input
-class="amount"
-id="amount"
-type="number"
-min="1"
-step="0.01"
-placeholder="Enter amount">
-
-<div class="quick">
-
-<button onclick="setAmount(10)">$10</button>
-<button onclick="setAmount(25)">$25</button>
-<button onclick="setAmount(50)">$50</button>
-<button onclick="setAmount(100)">$100</button>
-<button onclick="setMax()">MAX</button>
-
-</div>
-
-<div class="tradeButtons">
-
-<button class="buy" onclick="trade('BUY')">
-BUY
-</button>
-
-<button class="sell" onclick="trade('SELL')">
-SELL
-</button>
-
-</div>
-
-<div class="message" id="message"></div>
-
-</div>
-
-
-<div class="tradeCard history">
-
-<h2>Trade History</h2>
-
-<div id="history"></div>
+</a>
 
 </div>
 
 
 <div class="notice">
-<strong>Demo Trading:</strong>
-This is simulated trading only. No real money is
-deposited, withdrawn, or used to execute trades.
+<strong>Important:</strong>
+Trading League is currently a demo trading experience.
+Demo money is not real money. Market charts are provided
+for educational purposes and do not guarantee future results.
 </div>
-
-</section>
 
 <footer>
 Trading League © 2026
 </footer>
 
 </main>
-
-
-<script>
-
-let selectedMarket=null;
-
-
-/* OPEN MARKET */
-
-function openMarket(symbol,name,type,chartSymbol){
-
-selectedMarket={
-symbol:symbol,
-name:name,
-type:type,
-chartSymbol:chartSymbol
-};
-
-document.getElementById("marketList").style.display="none";
-
-document.getElementById("chartScreen").style.display="block";
-
-document.getElementById("selectedName").textContent=name;
-
-document.getElementById("selectedSymbol").textContent=
-symbol+" / USD";
-
-updateBalance();
-
-loadChart(chartSymbol);
-
-showHistory();
-
-window.scrollTo({
-top:0,
-behavior:"instant"
-});
-
-}
-
-
-/* BACK */
-
-function backToMarkets(){
-
-document.getElementById("chartScreen").style.display="none";
-
-document.getElementById("marketList").style.display="block";
-
-document.getElementById("chart").innerHTML=
-'<div class="chartLoading" id="chartLoading">'+
-'<div class="spinner"></div>'+
-'<div>Loading chart...</div>'+
-'</div>';
-
-window.scrollTo({
-top:0,
-behavior:"instant"
-});
-
-}
-
-
-/* CHART */
-
-function loadChart(symbol){
-
-const chart=document.getElementById("chart");
-
-chart.innerHTML=
-'<div class="chartLoading" id="chartLoading">'+
-'<div class="spinner"></div>'+
-'<div>Loading chart...</div>'+
-'</div>';
-
-const script=document.createElement("script");
-
-script.src=
-"https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-
-script.async=true;
-
-script.innerHTML=JSON.stringify({
-
-autosize:true,
-symbol:symbol,
-interval:"D",
-timezone:"Etc/UTC",
-theme:"dark",
-style:"1",
-locale:"en",
-allow_symbol_change:false,
-hide_top_toolbar:false,
-hide_legend:false,
-withdateranges:true,
-save_image:false,
-support_host:"https://www.tradingview.com"
-
-});
-
-chart.appendChild(script);
-
-setTimeout(function(){
-
-const loading=document.getElementById("chartLoading");
-
-if(loading) loading.style.display="none";
-
-},1800);
-
-}
-
-
-/* BALANCE */
-
-const BALANCE_KEY=
-"tradingLeagueDemoBalance";
-
-const HISTORY_KEY=
-"tradingLeagueTradeHistory";
-
-
-function getBalance(){
-
-const value=
-Number(localStorage.getItem(BALANCE_KEY));
-
-return Number.isFinite(value)
-? value
-:1000;
-
-}
-
-
-function saveBalance(value){
-
-localStorage.setItem(
-BALANCE_KEY,
-value
-);
-
-}
-
-
-function updateBalance(){
-
-document.getElementById("balance").textContent=
-"$"+
-getBalance().toLocaleString(
-"en-US",
-{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-}
-);
-
-}
-
-
-/* QUICK AMOUNTS */
-
-function setAmount(value){
-
-document.getElementById("amount").value=
-Math.min(value,getBalance()).toFixed(2);
-
-}
-
-
-function setMax(){
-
-document.getElementById("amount").value=
-getBalance().toFixed(2);
-
-}
-
-
-/* TRADE */
-
-function trade(direction){
-
-if(!selectedMarket)return;
-
-const input=
-document.getElementById("amount");
-
-const message=
-document.getElementById("message");
-
-const amount=
-Number(input.value);
-
-const balance=
-getBalance();
-
-if(!Number.isFinite(amount)||amount<=0){
-
-message.style.color="#ff6875";
-message.textContent="Enter a valid amount.";
-return;
-
-}
-
-if(amount>balance){
-
-message.style.color="#ff6875";
-message.textContent="Insufficient demo balance.";
-return;
-
-}
-
-const newBalance=
-balance-amount;
-
-saveBalance(newBalance);
-
-updateBalance();
-
-
-let history=[];
-
-try{
-
-history=
-JSON.parse(
-localStorage.getItem(HISTORY_KEY)
-)||[];
-
-}catch(e){
-
-history=[];
-
-}
-
-
-history.unshift({
-
-market:selectedMarket.name,
-
-symbol:selectedMarket.symbol,
-
-direction:direction,
-
-amount:amount,
-
-time:new Date().toLocaleString()
-
-});
-
-
-localStorage.setItem(
-HISTORY_KEY,
-JSON.stringify(history)
-);
-
-
-input.value="";
-
-message.style.color="#18df98";
-
-message.textContent=
-direction+
-" entered for $"+
-amount.toFixed(2)+
-". Remaining balance: $"+
-newBalance.toFixed(2);
-
-showHistory();
-
-}
-
-
-/* HISTORY */
-
-function showHistory(){
-
-const box=
-document.getElementById("history");
-
-if(!selectedMarket){
-
-box.innerHTML="";
-return;
-
-}
-
-let history=[];
-
-try{
-
-history=
-JSON.parse(
-localStorage.getItem(HISTORY_KEY)
-)||[];
-
-}catch(e){
-
-history=[];
-
-}
-
-const current=
-history.filter(
-t=>t.symbol===selectedMarket.symbol
-);
-
-if(!current.length){
-
-box.innerHTML=
-'<div class="empty">No trades for this market yet.</div>';
-
-return;
-
-}
-
-box.innerHTML="";
-
-current.slice(0,20).forEach(function(t){
-
-const row=
-document.createElement("div");
-
-row.className="tradeRow";
-
-row.innerHTML=
-'<span>'+
-'<b class="'+
-(t.direction==="BUY"
-?"buyText"
-:"sellText")+
-'">'+
-t.direction+
-'</b> · '+
-t.symbol+
-'</span>'+
-'<span>$'+
-Number(t.amount).toFixed(2)+
-'</span>';
-
-box.appendChild(row);
-
-});
-
-}
-
-</script>
 
 </body>
   </html>
